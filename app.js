@@ -46,7 +46,7 @@ function setSpecFinish(finishName, dotElement) {
     nameLabel.innerText = finishName;
   }
 
-  const dots = document.querySelectorAll(".color-dot");
+  const dots = document.querySelectorAll(".finish-circle, .color-dot");
   dots.forEach(d => d.classList.remove("active"));
   if (dotElement) {
     dotElement.classList.add("active");
