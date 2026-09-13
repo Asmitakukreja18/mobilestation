@@ -419,30 +419,37 @@ function createScreenTexture() {
   canvas.height = 2048;
   const ctx = canvas.getContext("2d");
 
-  // Premium Luxury Wallpaper Gradient
+  // Premium Deep Space Obsidian Wallpaper
   const grad = ctx.createLinearGradient(0, 0, 1024, 2048);
-  grad.addColorStop(0, "#ffffff");
-  grad.addColorStop(0.35, "#f8fafc");
-  grad.addColorStop(0.70, "#fde2e7");
-  grad.addColorStop(1, "#ffe4e6");
+  grad.addColorStop(0, "#080a10");
+  grad.addColorStop(0.4, "#131622");
+  grad.addColorStop(0.75, "#2a0d17");
+  grad.addColorStop(1, "#08090d");
   ctx.fillStyle = grad;
   ctx.fillRect(0, 0, 1024, 2048);
 
+  // Subtle glowing ambient mesh
+  const glow = ctx.createRadialGradient(512, 1024, 50, 512, 1024, 600);
+  glow.addColorStop(0, "rgba(225, 29, 72, 0.25)");
+  glow.addColorStop(1, "transparent");
+  ctx.fillStyle = glow;
+  ctx.fillRect(0, 0, 1024, 2048);
+
   // Dynamic Island Notch Pill
-  ctx.fillStyle = "#0b0d12";
+  ctx.fillStyle = "#000000";
   ctx.beginPath();
   ctx.roundRect(392, 64, 240, 72, 36);
   ctx.fill();
 
   // Clock
-  ctx.fillStyle = "#0b0d12";
+  ctx.fillStyle = "#ffffff";
   ctx.font = "bold 168px 'Outfit', sans-serif";
   ctx.textAlign = "center";
   ctx.fillText("09:41", 512, 440);
 
   // Date
   ctx.font = "600 56px 'Plus Jakarta Sans', sans-serif";
-  ctx.fillStyle = "rgba(11, 13, 18, 0.65)";
+  ctx.fillStyle = "rgba(255, 255, 255, 0.75)";
   ctx.fillText("Sunday, September 13", 512, 540);
 
   // Mobile Station Monogram Watermark
@@ -451,7 +458,7 @@ function createScreenTexture() {
   ctx.fillText("MOBILE STATION", 512, 1840);
 
   ctx.font = "600 36px 'Plus Jakarta Sans', sans-serif";
-  ctx.fillStyle = "rgba(11, 13, 18, 0.45)";
+  ctx.fillStyle = "rgba(255, 255, 255, 0.45)";
   ctx.fillText("Garud Complex • Balaji Mandir Road", 512, 1910);
 
   const tex = new THREE.CanvasTexture(canvas);
