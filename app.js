@@ -1,14 +1,15 @@
-// Application Logic for Mobile Station & Siddhi Marketing Storefront
+// Application Logic for Mobile Station & Siddhi Marketing
 
 // App State
 const state = {
+  currentPage: "home",
   activeCategory: "all",
   activeBrand: "All",
   searchQuery: "",
   priceFilter: "all",
   sortBy: "featured",
   cart: JSON.parse(localStorage.getItem("ms_cart") || "[]"),
-  theme: localStorage.getItem("ms_theme") || "dark",
+  theme: localStorage.getItem("ms_theme") || "light", // Default is White Light Theme
   reviews: [...CUSTOMER_REVIEWS]
 };
 
@@ -16,19 +17,17 @@ const state = {
 document.addEventListener("DOMContentLoaded", () => {
   initTheme();
   initCountdownTimer();
-  renderCategoryTabs();
-  renderBrandPills();
-  renderProducts();
-  renderRepairServices();
-  renderReviews();
+  renderCategoryFilterStrip();
+  renderBrandChips();
+  renderAllGrids();
   updateCartBadge();
   setupEventListeners();
+  calculateExchangeValue();
 });
 
 // Setup Listeners
 function setupEventListeners() {
   const searchInput = document.getElementById("searchInput");
-  const searchSubmitBtn = document.getElementById("searchSubmitBtn");
   const priceFilter = document.getElementById("priceFilter");
   const sortFilter = document.getElementById("sortFilter");
   const themeToggleBtn = document.getElementById("themeToggleBtn");
@@ -38,14 +37,6 @@ function setupEventListeners() {
     searchInput.addEventListener("input", (e) => {
       state.searchQuery = e.target.value.trim().toLowerCase();
       renderProducts();
-    });
-  }
-
-  if (searchSubmitBtn && searchInput) {
-    searchSubmitBtn.addEventListener("click", () => {
-      state.searchQuery = searchInput.value.trim().toLowerCase();
-      renderProducts();
-      document.getElementById("products-catalog")?.scrollIntoView({ behavior: "smooth" });
     });
   }
 
@@ -72,69 +63,113 @@ function setupEventListeners() {
   }
 }
 
-// Theme Handling
+// Multi-Page View Navigation System
+function navigateTo(pageId) {
+  state.currentPage = pageId;
+
+  // Hide all views
+  const views = document.querySelectorAll(".page-view");
+  views.forEach(view => view.classList.remove("active-view"));
+
+  // Show selected view
+  const targetView = document.getElementById(`view-${pageId}`);
+  if (targetView) {
+    targetView.classList.add("active-view");
+  }
+
+  // Update Nav Buttons
+  const navBtns = document.querySelectorAll(".nav-page-btn");
+  navBtns.forEach(btn => btn.classList.remove("active"));
+  const activeBtn = document.getElementById(`nav-btn-${pageId}`);
+  if (activeBtn) {
+    activeBtn.classList.add("active");
+  }
+
+  // Re-render grids if required
+  if (pageId === "shop") {
+    renderProducts();
+  } else if (pageId === "exchange") {
+    renderRefurbishedGrid();
+  } else if (pageId === "repair") {
+    renderRepairServices();
+  } else if (pageId === "reviews") {
+    renderReviews();
+  }
+
+  window.scrollTo({ top: 0, behavior: "smooth" });
+}
+
+// Theme Handling (Default: Crisp White Light Theme)
 function initTheme() {
   document.documentElement.setAttribute("data-theme", state.theme);
 }
 
 function toggleTheme() {
-  state.theme = state.theme === "dark" ? "light" : "dark";
+  state.theme = state.theme === "light" ? "dark" : "light";
   document.documentElement.setAttribute("data-theme", state.theme);
   localStorage.setItem("ms_theme", state.theme);
-  showToast(state.theme === "dark" ? "🌙 Switched to Dark Theme" : "☀️ Switched to Light Theme");
+  showToast(state.theme === "light" ? "☀️ Switched to White Light Theme" : "🌙 Switched to Dark Theme");
 }
 
-// Category Tabs
-function renderCategoryTabs() {
-  const container = document.getElementById("categoryTabs");
+// Render All Grids on Startup
+function renderAllGrids() {
+  renderHomeFeatured();
+  renderProducts();
+  renderRefurbishedGrid();
+  renderRepairServices();
+  renderReviews();
+}
+
+// Category Filter Pills
+function renderCategoryFilterStrip() {
+  const container = document.getElementById("categoryFilterStrip");
   if (!container) return;
 
   container.innerHTML = CATEGORIES.map(cat => `
-    <button class="category-tab ${state.activeCategory === cat.id ? 'active' : ''}" onclick="setCategoryFilter('${cat.id}')">
+    <button class="category-pill-btn ${state.activeCategory === cat.id ? 'active' : ''}" onclick="setCategory('${cat.id}')">
       <span>${cat.icon}</span>
       <span>${cat.name}</span>
     </button>
   `).join("");
 }
 
-function setCategoryFilter(categoryId) {
-  state.activeCategory = categoryId;
-  renderCategoryTabs();
+function setCategory(catId) {
+  state.activeCategory = catId;
+  renderCategoryFilterStrip();
   renderProducts();
-  
-  // Update Catalog Heading
-  const found = CATEGORIES.find(c => c.id === categoryId);
+
+  const found = CATEGORIES.find(c => c.id === catId);
   const heading = document.getElementById("catalogHeading");
   const subtitle = document.getElementById("catalogSubtitle");
   if (heading && found) {
     heading.innerHTML = `${found.icon} ${found.name}`;
   }
   if (subtitle && found) {
-    subtitle.innerText = categoryId === 'all' 
-      ? "Showing all latest smartphones, refurbished certified devices & accessories"
+    subtitle.innerText = catId === 'all'
+      ? "Showing all latest smartphones, certified refurbished devices & accessories"
       : `Filtered by ${found.name} collection at Mobile Station`;
   }
 }
 
-// Brand Filter Pills
-function renderBrandPills() {
-  const container = document.getElementById("brandPills");
+// Brand Filter Chips
+function renderBrandChips() {
+  const container = document.getElementById("brandChipsRow");
   if (!container) return;
 
-  container.innerHTML = BRANDS.map(brand => `
-    <button class="brand-pill ${state.activeBrand === brand ? 'active' : ''}" onclick="setBrandFilter('${brand}')">
-      ${brand}
+  container.innerHTML = BRANDS.map(b => `
+    <button class="brand-chip ${state.activeBrand === b ? 'active' : ''}" onclick="setBrand('${b}')">
+      ${b}
     </button>
   `).join("");
 }
 
-function setBrandFilter(brand) {
+function setBrand(brand) {
   state.activeBrand = brand;
-  renderBrandPills();
+  renderBrandChips();
   renderProducts();
 }
 
-// Product Filtering & Sorting
+// Filtering & Sorting Logic
 function getFilteredProducts() {
   let filtered = [...PRODUCTS];
 
@@ -183,7 +218,63 @@ function getFilteredProducts() {
   return filtered;
 }
 
-// Render Products Grid
+// Generate Product Card HTML
+function createProductCardHTML(product) {
+  const formatPrice = (val) => "₹" + Number(val).toLocaleString("en-IN");
+
+  return `
+    <article class="product-card" data-id="${product.id}">
+      <div class="card-badge-row">
+        <span class="card-tag">${product.badge}</span>
+        ${product.discountPercent > 0 ? `<span class="card-discount-tag">${product.discountPercent}% OFF</span>` : ''}
+      </div>
+
+      <div class="product-image-area" onclick="openQuickView('${product.id}')">
+        <img src="${product.image}" alt="${product.name}" loading="lazy">
+        <button class="quick-view-hover-btn">👁️ Quick Specs & Colors</button>
+      </div>
+
+      <div class="product-meta-row">
+        <span class="product-brand-tag">${product.brand}</span>
+        <div class="rating-badge">★ ${product.rating} (${product.reviewsCount})</div>
+      </div>
+
+      <h3 class="product-title" onclick="openQuickView('${product.id}')">${product.name}</h3>
+
+      <div class="product-specs-list">
+        <span class="spec-badge">🛡️ ${product.condition}</span>
+        ${product.specs?.display ? `<span class="spec-badge">${product.specs.display.split(',')[0]}</span>` : ''}
+      </div>
+
+      <div class="product-price-section">
+        <div class="price-container">
+          <span class="price-current">${formatPrice(product.price)}</span>
+          ${product.originalPrice ? `<span class="price-original">${formatPrice(product.originalPrice)}</span>` : ''}
+        </div>
+        ${product.emiStart !== "N/A" ? `<div class="emi-note">0% EMI from ${product.emiStart}*</div>` : ''}
+      </div>
+
+      <div class="card-actions-row">
+        <button class="btn-whatsapp-order" onclick="orderProductWhatsApp('${product.id}')" title="Direct order on WhatsApp">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor">
+            <path d="M.057 24l1.687-6.163c-1.041-1.804-1.588-3.849-1.587-5.946.003-6.556 5.338-11.891 11.893-11.891 3.181.001 6.167 1.24 8.413 3.488 2.245 2.248 3.481 5.236 3.48 8.414-.003 6.557-5.338 11.892-11.893 11.892-1.99-.001-3.951-.5-5.688-1.448l-6.305 1.654zm6.597-3.807c1.676.995 3.276 1.591 5.392 1.592 5.448 0 9.886-4.434 9.889-9.885.002-5.462-4.415-9.89-9.881-9.892-5.452 0-9.887 4.434-9.889 9.884-.001 2.225.651 3.891 1.746 5.634l-.999 3.648 3.742-.981zm11.387-5.464c-.074-.124-.272-.198-.57-.347-.297-.149-1.758-.868-2.031-.967-.272-.099-.47-.149-.669.149-.198.297-.768.967-.941 1.165-.173.198-.347.223-.644.074-.297-.149-1.255-.462-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.297-.347.446-.521.151-.172.2-.296.3-.495.099-.198.05-.372-.025-.521-.075-.148-.669-1.611-.916-2.206-.242-.579-.487-.501-.669-.51l-.57-.01c-.198 0-.52.074-.792.372s-1.04 1.016-1.04 2.479 1.065 2.876 1.213 3.074c.149.198 2.095 3.2 5.076 4.487.709.306 1.263.489 1.694.626.712.226 1.36.194 1.872.118.571-.085 1.758-.719 2.006-1.413.248-.695.248-1.29.173-1.414z"/>
+          </svg>
+          <span>Order on WhatsApp</span>
+        </button>
+        
+        <button class="btn-bag-add" onclick="addToCart('${product.id}')" title="Add to Inquiry Bag">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2">
+            <path d="M6 2L3 6v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V6l-3-4z"></path>
+            <line x1="3" y1="6" x2="21" y2="6"></line>
+            <path d="M16 10a4 4 0 0 1-8 0"></path>
+          </svg>
+        </button>
+      </div>
+    </article>
+  `;
+}
+
+// Render Products for Shop Page
 function renderProducts() {
   const container = document.getElementById("productGridContainer");
   if (!container) return;
@@ -192,74 +283,35 @@ function renderProducts() {
 
   if (products.length === 0) {
     container.innerHTML = `
-      <div style="grid-column: 1 / -1; text-align: center; padding: 3.5rem 1rem; background: var(--bg-card); border-radius: var(--radius-lg); border: 1px solid var(--border);">
-        <div style="font-size: 3rem; margin-bottom: 0.75rem;">🔍</div>
-        <h3 style="font-family: var(--font-heading); font-size: 1.35rem; margin-bottom: 0.5rem;">No Matching Products Found</h3>
-        <p style="color: var(--text-muted); margin-bottom: 1.25rem;">Try adjusting your filters, search term, or select another brand.</p>
+      <div style="grid-column: 1 / -1; text-align: center; padding: 4rem 1rem; background: var(--bg-surface); border-radius: var(--radius-lg); border: 1.5px solid var(--border); box-shadow: var(--shadow-sm);">
+        <div style="font-size: 3.5rem; margin-bottom: 0.75rem;">🔍</div>
+        <h3 style="font-family: var(--font-heading); font-size: 1.5rem; margin-bottom: 0.5rem; font-weight:800;">No Matching Products Found</h3>
+        <p style="color: var(--text-muted); margin-bottom: 1.5rem;">Try adjusting your filters, search term, or select another brand.</p>
         <button class="btn-primary" onclick="resetFilters()">Reset All Filters</button>
       </div>
     `;
     return;
   }
 
-  container.innerHTML = products.map(product => {
-    const formatPrice = (val) => "₹" + Number(val).toLocaleString("en-IN");
+  container.innerHTML = products.map(p => createProductCardHTML(p)).join("");
+}
 
-    return `
-      <article class="product-card" data-id="${product.id}">
-        <div class="card-top-badges">
-          <span class="badge-tag">${product.badge}</span>
-          ${product.discountPercent > 0 ? `<span class="badge-discount">${product.discountPercent}% OFF</span>` : ''}
-        </div>
+// Render Featured Products for Home Page (Top 6 Items)
+function renderHomeFeatured() {
+  const container = document.getElementById("homeFeaturedGrid");
+  if (!container) return;
 
-        <div class="product-img-wrapper" onclick="openQuickView('${product.id}')">
-          <img src="${product.image}" alt="${product.name}" class="product-img" loading="lazy">
-          <button class="quick-view-overlay-btn">👁️ Quick View & Specs</button>
-        </div>
+  const featured = PRODUCTS.filter(p => p.isHotDeal).slice(0, 6);
+  container.innerHTML = featured.map(p => createProductCardHTML(p)).join("");
+}
 
-        <div class="product-meta">
-          <span class="brand-label">${product.brand}</span>
-          <div class="rating-box">
-            <span>★</span>
-            <span>${product.rating}</span>
-            <span class="rating-count">(${product.reviewsCount})</span>
-          </div>
-        </div>
+// Render Refurbished Grid
+function renderRefurbishedGrid() {
+  const container = document.getElementById("refurbishedGrid");
+  if (!container) return;
 
-        <h3 class="product-name" onclick="openQuickView('${product.id}')">${product.name}</h3>
-
-        <div class="product-specs-chips">
-          <span class="spec-chip">🛡️ ${product.condition}</span>
-          ${product.specs?.display ? `<span class="spec-chip">${product.specs.display.split(',')[0]}</span>` : ''}
-        </div>
-
-        <div class="product-pricing">
-          <div class="price-row-main">
-            <span class="card-current-price">${formatPrice(product.price)}</span>
-            ${product.originalPrice ? `<span class="card-original-price">${formatPrice(product.originalPrice)}</span>` : ''}
-          </div>
-          ${product.emiStart !== "N/A" ? `<div class="card-emi-note">EMI from ${product.emiStart}*</div>` : ''}
-        </div>
-
-        <div class="product-actions">
-          <button class="btn-whatsapp-card" onclick="orderProductWhatsApp('${product.id}')" title="Direct order on WhatsApp">
-            <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor">
-              <path d="M.057 24l1.687-6.163c-1.041-1.804-1.588-3.849-1.587-5.946.003-6.556 5.338-11.891 11.893-11.891 3.181.001 6.167 1.24 8.413 3.488 2.245 2.248 3.481 5.236 3.48 8.414-.003 6.557-5.338 11.892-11.893 11.892-1.99-.001-3.951-.5-5.688-1.448l-6.305 1.654zm6.597-3.807c1.676.995 3.276 1.591 5.392 1.592 5.448 0 9.886-4.434 9.889-9.885.002-5.462-4.415-9.89-9.881-9.892-5.452 0-9.887 4.434-9.889 9.884-.001 2.225.651 3.891 1.746 5.634l-.999 3.648 3.742-.981zm11.387-5.464c-.074-.124-.272-.198-.57-.347-.297-.149-1.758-.868-2.031-.967-.272-.099-.47-.149-.669.149-.198.297-.768.967-.941 1.165-.173.198-.347.223-.644.074-.297-.149-1.255-.462-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.297-.347.446-.521.151-.172.2-.296.3-.495.099-.198.05-.372-.025-.521-.075-.148-.669-1.611-.916-2.206-.242-.579-.487-.501-.669-.51l-.57-.01c-.198 0-.52.074-.792.372s-1.04 1.016-1.04 2.479 1.065 2.876 1.213 3.074c.149.198 2.095 3.2 5.076 4.487.709.306 1.263.489 1.694.626.712.226 1.36.194 1.872.118.571-.085 1.758-.719 2.006-1.413.248-.695.248-1.29.173-1.414z"/>
-            </svg>
-            <span>Order on WhatsApp</span>
-          </button>
-          
-          <button class="btn-cart-card" onclick="addToCart('${product.id}')" title="Add to Inquiry Bag">
-            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-              <path d="M6 2L3 6v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V6l-3-4z"></path>
-              <line x1="3" y1="6" x2="21" y2="6"></line>
-              <path d="M16 10a4 4 0 0 1-8 0"></path>
-            </svg>
-          </button>
-        </div>
-      </article>
-    `;
-  }).join("");
+  const refurbs = PRODUCTS.filter(p => p.category === "refurbished");
+  container.innerHTML = refurbs.map(p => createProductCardHTML(p)).join("");
 }
 
 function resetFilters() {
@@ -277,8 +329,8 @@ function resetFilters() {
   if (priceFilter) priceFilter.value = "all";
   if (sortFilter) sortFilter.value = "featured";
 
-  renderCategoryTabs();
-  renderBrandPills();
+  renderCategoryFilterStrip();
+  renderBrandChips();
   renderProducts();
 }
 
@@ -303,42 +355,42 @@ function openQuickView(productId) {
 
   content.innerHTML = `
     <div style="text-align:center;">
-      <div style="background:rgba(255,255,255,0.03); padding:1.5rem; border-radius:var(--radius-lg); margin-bottom:1rem;">
+      <div style="background:#f8fafc; padding:2rem; border-radius:var(--radius-lg); margin-bottom:1rem; border:1px solid var(--border);">
         <img src="${product.image}" alt="${product.name}" style="max-height:280px; margin:0 auto; object-fit:contain;">
       </div>
-      <div style="font-size:0.85rem; color:var(--text-muted);">
-        ✅ Verified Original | In Stock at Mobile Station (Garud Complex)
+      <div style="font-size:0.85rem; color:#16a34a; font-weight:700;">
+        ✅ 100% Verified Original | Ready for Store Pickup at Garud Complex
       </div>
     </div>
 
     <div>
       <div style="display:flex; gap:0.5rem; margin-bottom:0.5rem;">
-        <span class="badge-tag">${product.badge}</span>
-        <span class="badge-discount">${product.discountPercent}% OFF</span>
+        <span class="card-tag">${product.badge}</span>
+        <span class="card-discount-tag">${product.discountPercent}% OFF</span>
       </div>
 
-      <h2 style="font-family:var(--font-heading); font-size:1.6rem; font-weight:800; line-height:1.25; margin-bottom:0.5rem;">${product.name}</h2>
+      <h2 style="font-family:var(--font-heading); font-size:1.75rem; font-weight:900; line-height:1.2; margin-bottom:0.5rem;">${product.name}</h2>
       
       <div style="display:flex; align-items:center; gap:0.6rem; margin-bottom:1rem;">
-        <div class="rating-box">★ ${product.rating}</div>
-        <span style="font-size:0.85rem; color:var(--text-dim);">${product.reviewsCount} customer reviews</span>
+        <div class="rating-badge">★ ${product.rating}</div>
+        <span style="font-size:0.85rem; color:var(--text-dim); font-weight:600;">(${product.reviewsCount} Customer Reviews)</span>
       </div>
 
       <div style="display:flex; align-items:baseline; gap:0.75rem; margin-bottom:1.25rem;">
-        <span style="font-family:var(--font-heading); font-size:1.85rem; font-weight:900; color:#38bdf8;">${formatPrice(product.price)}</span>
-        <span style="font-size:1.05rem; color:var(--text-dim); text-decoration:line-through;">${formatPrice(product.originalPrice)}</span>
-        <span style="font-size:0.88rem; color:var(--accent-green); font-weight:700;">Save ${formatPrice(product.originalPrice - product.price)}</span>
+        <span style="font-family:var(--font-heading); font-size:2rem; font-weight:900; color:#e11d48;">${formatPrice(product.price)}</span>
+        <span style="font-size:1.1rem; color:var(--text-dim); text-decoration:line-through;">${formatPrice(product.originalPrice)}</span>
+        <span style="font-size:0.9rem; color:#16a34a; font-weight:800;">Save ${formatPrice(product.originalPrice - product.price)}</span>
       </div>
 
-      <!-- Color Selection -->
+      <!-- Color Swatches -->
       ${product.colors && product.colors.length > 0 ? `
         <div style="margin-bottom:1rem;">
-          <label style="font-size:0.85rem; font-weight:700; color:var(--text-muted); display:block; margin-bottom:0.4rem;">
-            Select Color: <span id="qvSelectedColorText" style="color:var(--text-main);">${selectedColor}</span>
+          <label style="font-size:0.85rem; font-weight:800; color:var(--text-muted); display:block; margin-bottom:0.4rem;">
+            Select Color: <span id="qvSelectedColorText" style="color:var(--text-main); font-weight:900;">${selectedColor}</span>
           </label>
-          <div style="display:flex; flex-wrap:wrap; gap:0.4rem;">
+          <div style="display:flex; flex-wrap:wrap; gap:0.45rem;">
             ${product.colors.map(col => `
-              <button class="category-tab ${col === selectedColor ? 'active' : ''}" style="font-size:0.8rem; padding:0.35rem 0.75rem;" onclick="selectQVColor('${col}')">
+              <button class="category-pill-btn ${col === selectedColor ? 'active' : ''}" style="font-size:0.82rem; padding:0.4rem 0.85rem;" onclick="selectQVColor('${col}')">
                 ${col}
               </button>
             `).join("")}
@@ -346,15 +398,15 @@ function openQuickView(productId) {
         </div>
       ` : ''}
 
-      <!-- Storage Selection -->
+      <!-- Storage Options -->
       ${product.storageOptions && product.storageOptions.length > 0 ? `
         <div style="margin-bottom:1.25rem;">
-          <label style="font-size:0.85rem; font-weight:700; color:var(--text-muted); display:block; margin-bottom:0.4rem;">
-            Select Variant / Storage: <span id="qvSelectedStorageText" style="color:var(--text-main);">${selectedStorage}</span>
+          <label style="font-size:0.85rem; font-weight:800; color:var(--text-muted); display:block; margin-bottom:0.4rem;">
+            Select Variant: <span id="qvSelectedStorageText" style="color:var(--text-main); font-weight:900;">${selectedStorage}</span>
           </label>
-          <div style="display:flex; flex-wrap:wrap; gap:0.4rem;">
+          <div style="display:flex; flex-wrap:wrap; gap:0.45rem;">
             ${product.storageOptions.map(st => `
-              <button class="category-tab ${st === selectedStorage ? 'active' : ''}" style="font-size:0.8rem; padding:0.35rem 0.75rem;" onclick="selectQVStorage('${st}')">
+              <button class="category-pill-btn ${st === selectedStorage ? 'active' : ''}" style="font-size:0.82rem; padding:0.4rem 0.85rem;" onclick="selectQVStorage('${st}')">
                 ${st}
               </button>
             `).join("")}
@@ -362,13 +414,13 @@ function openQuickView(productId) {
         </div>
       ` : ''}
 
-      <!-- Technical Specifications Sheet -->
-      <div style="background:var(--bg-input); padding:1rem; border-radius:var(--radius-md); margin-bottom:1.5rem; font-size:0.82rem;">
-        <strong style="display:block; margin-bottom:0.5rem; color:#38bdf8;">⚙️ Key Specifications:</strong>
+      <!-- Key Specifications -->
+      <div style="background:var(--bg-input); padding:1rem; border-radius:var(--radius-md); margin-bottom:1.5rem; font-size:0.85rem;">
+        <strong style="display:block; margin-bottom:0.5rem; color:#e11d48;">⚙️ Key Specifications:</strong>
         <div style="display:grid; grid-template-columns:1fr; gap:0.4rem; color:var(--text-muted);">
-          <div>📱 <strong>Display:</strong> ${product.specs?.display || 'Super Retina High Resolution'}</div>
-          <div>⚡ <strong>Processor:</strong> ${product.specs?.processor || 'High performance chipset'}</div>
-          <div>📸 <strong>Camera:</strong> ${product.specs?.camera || 'Pro Grade Camera System'}</div>
+          <div>📱 <strong>Display:</strong> ${product.specs?.display || 'Super High Resolution'}</div>
+          <div>⚡ <strong>Processor:</strong> ${product.specs?.processor || 'Ultra-Fast Performance'}</div>
+          <div>📸 <strong>Camera:</strong> ${product.specs?.camera || 'Pro Grade Camera'}</div>
           <div>🔋 <strong>Battery:</strong> ${product.specs?.battery || 'All-day battery life'}</div>
           <div>🛡️ <strong>Warranty:</strong> ${product.warranty}</div>
         </div>
@@ -391,15 +443,11 @@ function openQuickView(productId) {
 
 function selectQVColor(color) {
   selectedColor = color;
-  const txt = document.getElementById("qvSelectedColorText");
-  if (txt) txt.innerText = color;
   openQuickView(currentQuickViewProduct.id);
 }
 
 function selectQVStorage(storage) {
   selectedStorage = storage;
-  const txt = document.getElementById("qvSelectedStorageText");
-  if (txt) txt.innerText = storage;
   openQuickView(currentQuickViewProduct.id);
 }
 
@@ -407,6 +455,49 @@ function closeQuickViewModal() {
   const modal = document.getElementById("quickViewModal");
   if (modal) modal.classList.remove("active");
   document.body.style.overflow = "";
+}
+
+// 3D Visiting Card Flip Handler
+function toggleCardFlip(cardContainer) {
+  cardContainer.classList.toggle("flipped");
+}
+
+// Old Phone Exchange Value Calculator
+function calculateExchangeValue() {
+  const brand = document.getElementById("calcBrand")?.value || "Apple";
+  const condition = document.getElementById("calcCondition")?.value || "flawless";
+  const display = document.getElementById("exchangePriceDisplay");
+
+  const baseValues = {
+    Apple: { flawless: "₹24,000 - ₹48,000", good: "₹18,000 - ₹34,000", cracked: "₹10,000 - ₹22,000" },
+    Samsung: { flawless: "₹16,000 - ₹38,000", good: "₹12,000 - ₹26,000", cracked: "₹7,000 - ₹16,000" },
+    OnePlus: { flawless: "₹14,000 - ₹28,000", good: "₹10,000 - ₹20,000", cracked: "₹6,000 - ₹12,000" },
+    Xiaomi: { flawless: "₹8,000 - ₹16,000", good: "₹6,000 - ₹11,000", cracked: "₹3,500 - ₹7,000" },
+    Vivo: { flawless: "₹9,000 - ₹18,000", good: "₹6,500 - ₹12,000", cracked: "₹4,000 - ₹8,000" },
+    Realme: { flawless: "₹7,000 - ₹14,000", good: "₹5,000 - ₹9,500", cracked: "₹3,000 - ₹6,000" }
+  };
+
+  const val = baseValues[brand]?.[condition] || "₹10,000 - ₹20,000";
+  if (display) display.innerText = val;
+}
+
+function sendExchangeWhatsApp() {
+  const brand = document.getElementById("calcBrand")?.value || "Apple";
+  const condition = document.getElementById("calcCondition")?.value || "flawless";
+  const estVal = document.getElementById("exchangePriceDisplay")?.innerText || "";
+  const phone = STORE_CONFIG.primaryPhone;
+
+  const msg = `Hello Mobile Station (Garud Complex)! ♻️
+
+I want to exchange my old smartphone:
+📱 *Old Phone Brand:* ${brand}
+🔍 *Physical Condition:* ${condition.toUpperCase()}
+💰 *Estimated Valuation:* ${estVal}
+
+Please evaluate my phone and let me know the final discount for upgrading. Thank you!`;
+
+  const url = `https://wa.me/${phone}?text=${encodeURIComponent(msg)}`;
+  window.open(url, "_blank");
 }
 
 // Direct WhatsApp Order Handlers
@@ -417,14 +508,15 @@ function orderProductWhatsApp(productId) {
   const phone = STORE_CONFIG.primaryPhone;
   const message = `Hello Mobile Station (Garud Complex)! 👋
 
-I am interested in buying this product from your website:
+I want to purchase this item from your catalog:
 📱 *Product:* ${product.name}
 🏷️ *Brand:* ${product.brand}
-💰 *Offer Price:* ₹${product.price.toLocaleString("en-IN")} (M.R.P. ₹${product.originalPrice?.toLocaleString("en-IN")})
+💰 *Offer Price:* ₹${product.price.toLocaleString("en-IN")}
 🛡️ *Condition:* ${product.condition}
 ✨ *Warranty:* ${product.warranty}
+📍 *Store Pickup:* Garud Complex showroom
 
-Please let me know if this is ready for pickup or delivery today. Thank you!`;
+Please confirm stock & payment options. Thank you!`;
 
   const url = `https://wa.me/${phone}?text=${encodeURIComponent(message)}`;
   window.open(url, "_blank");
@@ -436,20 +528,20 @@ function orderCurrentQuickViewWhatsApp() {
   const phone = STORE_CONFIG.primaryPhone;
   const message = `Hello Mobile Station! 👋
 
-I want to order / inquire about:
+I want to order:
 📱 *Product:* ${currentQuickViewProduct.name}
-🎨 *Selected Color:* ${selectedColor}
-💾 *Selected Variant:* ${selectedStorage}
+🎨 *Color:* ${selectedColor}
+💾 *Storage / Variant:* ${selectedStorage}
 💰 *Price:* ₹${currentQuickViewProduct.price.toLocaleString("en-IN")}
-📍 *Store Pickup:* Garud Complex showroom
+📍 *Store:* Garud Complex, In front of Sony Novelty
 
-Please share payment/pickup details.`;
+Please share pickup details.`;
 
   const url = `https://wa.me/${phone}?text=${encodeURIComponent(message)}`;
   window.open(url, "_blank");
 }
 
-// Cart / Inquiry Bag Logic
+// Cart Management
 function addToCart(productId) {
   const product = PRODUCTS.find(p => p.id === productId);
   if (!product) return;
@@ -524,9 +616,9 @@ function renderCartDrawer() {
   if (state.cart.length === 0) {
     container.innerHTML = `
       <div style="text-align: center; padding: 3rem 1rem; color: var(--text-muted);">
-        <div style="font-size: 3rem; margin-bottom: 0.5rem;">🛍️</div>
-        <p style="font-weight: 600;">Your Inquiry Bag is Empty</p>
-        <p style="font-size: 0.85rem; margin-top: 0.35rem;">Add any smartphone, charger or gadget to inquire in a single WhatsApp message!</p>
+        <div style="font-size: 3.5rem; margin-bottom: 0.5rem;">🛍️</div>
+        <p style="font-weight: 800; font-size:1.1rem; color:var(--text-main);">Your Inquiry Bag is Empty</p>
+        <p style="font-size: 0.88rem; margin-top: 0.35rem;">Add any smartphone, charger or gadget to send an all-in-one WhatsApp inquiry!</p>
       </div>
     `;
     subtotalEl.innerText = "₹0";
@@ -538,14 +630,14 @@ function renderCartDrawer() {
 
   container.innerHTML = state.cart.map(item => `
     <div class="cart-item">
-      <img src="${item.image}" alt="${item.name}" class="cart-item-img">
-      <div class="cart-item-details">
-        <h4 class="cart-item-name">${item.name}</h4>
-        <div class="cart-item-price">₹${(item.price * item.qty).toLocaleString("en-IN")}</div>
-        <div class="cart-item-actions">
-          <button class="cart-qty-btn" onclick="updateCartQty('${item.id}', -1)">-</button>
-          <span class="cart-qty-val">${item.qty}</span>
-          <button class="cart-qty-btn" onclick="updateCartQty('${item.id}', 1)">+</button>
+      <img src="${item.image}" alt="${item.name}">
+      <div style="flex:1;">
+        <h4 style="font-size:0.92rem; font-weight:800; line-height:1.25; margin-bottom:0.25rem;">${item.name}</h4>
+        <div style="font-size:0.9rem; font-weight:900; color:#e11d48;">₹${(item.price * item.qty).toLocaleString("en-IN")}</div>
+        <div style="display:flex; align-items:center; gap:0.5rem; margin-top:0.4rem;">
+          <button style="background:var(--bg-surface); border:1px solid var(--border); width:26px; height:26px; border-radius:4px; font-weight:800; cursor:pointer;" onclick="updateCartQty('${item.id}', -1)">-</button>
+          <span style="font-weight:800; font-size:0.9rem;">${item.qty}</span>
+          <button style="background:var(--bg-surface); border:1px solid var(--border); width:26px; height:26px; border-radius:4px; font-weight:800; cursor:pointer;" onclick="updateCartQty('${item.id}', 1)">+</button>
         </div>
       </div>
     </div>
@@ -575,7 +667,7 @@ ${itemList}
 💰 *Estimated Total:* ₹${subtotal.toLocaleString("en-IN")}
 ━━━━━━━━━━━━━━━━━
 
-Please confirm availability, store pickup location (Garud Complex / Balaji Mandir Road), and final discount. Thank you!`;
+Please confirm availability and best discounted price. Thank you!`;
 
   const url = `https://wa.me/${phone}?text=${encodeURIComponent(message)}`;
   window.open(url, "_blank");
@@ -587,22 +679,22 @@ function renderRepairServices() {
   if (!container) return;
 
   container.innerHTML = REPAIR_SERVICES.map(rep => `
-    <div class="repair-card">
-      <div class="repair-icon-box">${rep.icon}</div>
+    <div class="repair-item-card">
+      <div class="repair-icon-large">${rep.icon}</div>
       <h3>${rep.title}</h3>
       <p>${rep.description}</p>
       
-      <div class="repair-meta-row">
-        <span class="repair-time">⏱️ ${rep.turnaround}</span>
-        <span class="repair-warranty">🛡️ ${rep.warranty}</span>
+      <div class="repair-meta-box">
+        <span style="color:#d97706;">⏱️ ${rep.turnaround}</span>
+        <span style="color:#16a34a;">🛡️ ${rep.warranty}</span>
       </div>
 
       <div style="display:flex; justify-content:space-between; align-items:center; margin-top:auto;">
         <div>
-          <span style="font-size:0.75rem; color:var(--text-dim);">Starting at</span>
-          <div style="font-family:var(--font-heading); font-weight:800; font-size:1.15rem; color:#38bdf8;">${rep.startingPrice}</div>
+          <span style="font-size:0.75rem; color:var(--text-dim); font-weight:700;">Starting at</span>
+          <div style="font-family:var(--font-heading); font-weight:900; font-size:1.25rem; color:#e11d48;">${rep.startingPrice}</div>
         </div>
-        <button class="btn-whatsapp-card" onclick="bookRepairServiceWhatsApp('${rep.title}', '${rep.startingPrice}')">
+        <button class="btn-whatsapp-order" style="padding:0.6rem 0.9rem; font-size:0.82rem;" onclick="bookRepairServiceWhatsApp('${rep.title}', '${rep.startingPrice}')">
           ⚡ Book on WhatsApp
         </button>
       </div>
@@ -612,13 +704,13 @@ function renderRepairServices() {
 
 function bookRepairServiceWhatsApp(serviceTitle, startingPrice) {
   const phone = STORE_CONFIG.primaryPhone;
-  const message = `Hello Mobile Station Repair Hub (Garud Complex)! 🔧
+  const message = `Hello Mobile Station Repair Station (Garud Complex)! 🔧
 
-I need to book a repair service:
-🛠️ *Service Required:* ${serviceTitle}
-💰 *Est. Starting Price:* ${startingPrice}
+I want to book an express 30-min repair:
+🛠️ *Service:* ${serviceTitle}
+💰 *Est. Price:* ${startingPrice}
 
-Please tell me the earliest slot and technician availability.`;
+Please tell me the earliest technician slot today.`;
 
   const url = `https://wa.me/${phone}?text=${encodeURIComponent(message)}`;
   window.open(url, "_blank");
@@ -629,38 +721,36 @@ function submitRepairInquiry() {
   const issue = document.getElementById("repairIssueSelect")?.value || "General Inspection";
   const phone = STORE_CONFIG.primaryPhone;
 
-  const message = `Hello Mobile Station Repair Station! 📱🔧
+  const message = `Hello Mobile Station Repair Hub! 📱🔧
 
-*Fast Repair Estimation Request:*
+*30-Min Fast Repair Request:*
 📱 *Phone Model:* ${model}
-⚠️ *Issue / Fault:* ${issue}
-📍 *Store Location:* Garud Complex, In front of Sony Novelty
+⚠️ *Issue:* ${issue}
+📍 *Store:* Garud Complex, In front of Sony Novelty
 
-Please quote the estimate repair cost & turnaround time.`;
+Please quote the estimate cost and turnaround time.`;
 
   const url = `https://wa.me/${phone}?text=${encodeURIComponent(message)}`;
   window.open(url, "_blank");
 }
 
-// Reviews Rendering & Adding
+// Reviews Rendering
 function renderReviews() {
-  const container = document.getElementById("reviewsGrid");
+  const container = document.getElementById("reviewsGridView");
   if (!container) return;
 
   container.innerHTML = state.reviews.map(rev => `
-    <div class="review-card">
+    <div class="review-card-item">
       <div>
-        <div class="review-header">
-          <div>
-            <div class="reviewer-name">${rev.name}</div>
-            <div class="reviewer-location">${rev.location}</div>
-          </div>
-          <div class="review-stars">${"★".repeat(rev.rating)}</div>
-        </div>
-        <p class="review-text">"${rev.comment}"</p>
+        <div class="review-stars-row">${"★".repeat(rev.rating)}</div>
+        <p class="review-quote">"${rev.comment}"</p>
       </div>
-      <div>
-        <span class="review-product-tag">🛍️ ${rev.product}</span>
+      <div class="reviewer-meta">
+        <div class="reviewer-avatar">${rev.name.charAt(0)}</div>
+        <div>
+          <strong style="display:block; font-size:0.95rem; color:var(--text-main);">${rev.name}</strong>
+          <span style="font-size:0.78rem; color:var(--text-dim);">${rev.location} • 🛍️ ${rev.product}</span>
+        </div>
       </div>
     </div>
   `).join("");
@@ -701,7 +791,7 @@ function handleReviewSubmit(e) {
 
   renderReviews();
   closeReviewModal();
-  showToast("🌟 Thank you! Your review has been posted.");
+  showToast("🌟 Thank you! Your review has been added.");
 }
 
 // Contact Form WhatsApp Submission
@@ -712,17 +802,17 @@ function handleFormWhatsAppSubmit(e) {
   const interest = document.getElementById("formInterest")?.value;
   const messageText = document.getElementById("formMessage")?.value.trim();
 
-  const phone = branch.includes("Siddhi Marketing") ? "919876543211" : STORE_CONFIG.primaryPhone;
+  const phone = branch.includes("Siddhi Marketing") ? STORE_CONFIG.siddhiPhone : STORE_CONFIG.primaryPhone;
 
   const msg = `Hello *${branch}*! 👋
 
-*New Customer Inquiry via Website Form:*
-👤 *Customer Name:* ${name}
-🎯 *Looking for:* ${interest}
-🏢 *Preferred Branch:* ${branch}
-${messageText ? `💬 *Message / Query:* ${messageText}` : ''}
+*Customer Inquiry:*
+👤 *Name:* ${name}
+🎯 *Interest:* ${interest}
+🏢 *Branch:* ${branch}
+${messageText ? `💬 *Details:* ${messageText}` : ''}
 
-Please connect with me regarding current best offers and availability.`;
+Please share current offers and availability.`;
 
   const url = `https://wa.me/${phone}?text=${encodeURIComponent(msg)}`;
   window.open(url, "_blank");
@@ -767,7 +857,7 @@ function initCountdownTimer() {
     if (totalSeconds > 0) {
       totalSeconds--;
     } else {
-      totalSeconds = 24 * 3600; // Reset next cycle
+      totalSeconds = 24 * 3600;
     }
 
     const hrs = String(Math.floor(totalSeconds / 3600)).padStart(2, "0");

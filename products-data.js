@@ -1,6 +1,7 @@
-// Product Catalog Data for Mobile Station & Siddhi Marketing
+// Product Catalog Data & Configuration for Mobile Station & Siddhi Marketing
 const STORE_CONFIG = {
-  primaryPhone: "919876543210", // Default store WhatsApp (editable by store owner)
+  primaryPhone: "919876543210", // Mobile Station Retail WhatsApp
+  siddhiPhone: "919876543211",  // Siddhi Marketing Wholesale WhatsApp
   siddhiEmail: "siddhimarketing2017@gmail.com",
   stores: [
     {
@@ -10,29 +11,31 @@ const STORE_CONFIG = {
       address: "Garud Complex, In front of Sony Novelty",
       phone: "+91 98765 43210",
       whatsapp: "919876543210",
-      type: "Retail Showroom & Service Hub",
-      timing: "10:00 AM - 9:30 PM (All 7 Days)",
-      badge: "Flagship Showroom"
+      type: "Retail Showroom & 30-Min Fast Repair Hub",
+      timing: "10:00 AM - 9:30 PM (Open All 7 Days)",
+      badge: "Flagship Retail Showroom",
+      features: ["Brand New 5G Smartphones", "Certified Pre-Owned Devices", "On-Spot Screen & Battery Repair", "0% Easy EMI & Instant Exchange"]
     },
     {
       id: "siddhi-marketing",
       name: "Siddhi Marketing",
       tagline: "Wholesale & Enterprise Distribution Partner",
-      address: "Gali no. 4, Balaji Mandir Road",
+      address: "Gali no. 4, Balaji Mandir Road, SIDDHI MARKETING",
       email: "siddhimarketing2017@gmail.com",
       phone: "+91 98765 43211",
       whatsapp: "919876543211",
-      type: "Wholesale & B2B Supply",
+      type: "Wholesale & B2B Distribution Hub",
       timing: "10:00 AM - 8:30 PM (Mon - Sat)",
-      badge: "Wholesale & Bulk Supply"
+      badge: "Wholesale & Bulk Supply Partner",
+      features: ["Bulk Mobile Accessories", "Fast Chargers & Cables (B2B)", "Tempered Glass & Armor Cases", "Direct Dealer Wholesale Pricing"]
     }
   ]
 };
 
 const CATEGORIES = [
   { id: "all", name: "All Products", icon: "📱" },
-  { id: "flagship", name: "Flagship 5G", icon: "👑" },
   { id: "apple", name: "Apple iPhones", icon: "🍏" },
+  { id: "flagship", name: "Flagship 5G", icon: "👑" },
   { id: "budget", name: "Budget Champions", icon: "🔥" },
   { id: "refurbished", name: "Certified Pre-Owned", icon: "♻️" },
   { id: "smartwatches", name: "Smartwatches", icon: "⌚" },
@@ -56,16 +59,16 @@ const PRODUCTS = [
     reviewsCount: 384,
     badge: "🔥 Best Seller",
     isHotDeal: true,
-    condition: "Brand New Sealed",
+    condition: "Brand New Sealed Box Pack",
     warranty: "1 Year Official Apple Warranty",
     image: "https://images.unsplash.com/photo-1695048133142-1a20484d2569?auto=format&fit=crop&w=600&q=80",
     colors: ["Desert Titanium", "Natural Titanium", "White Titanium", "Black Titanium"],
     storageOptions: ["256GB", "512GB", "1TB"],
     specs: {
       display: "6.9\" Super Retina XDR OLED (120Hz ProMotion)",
-      processor: "Apple A18 Pro Bionic Chip",
+      processor: "Apple A18 Pro Bionic Chip (3nm)",
       camera: "48MP Fusion + 48MP Ultra-Wide + 12MP 5x Telephoto",
-      battery: "Up to 33 hours video playback, MagSafe fast charging",
+      battery: "Up to 33 hours video playback, MagSafe Fast Charging",
       os: "iOS 18 with Apple Intelligence"
     },
     inStock: true,
@@ -82,19 +85,19 @@ const PRODUCTS = [
     discountPercent: 11,
     rating: 4.8,
     reviewsCount: 295,
-    badge: "⭐ AI Powered",
+    badge: "⭐ Galaxy AI",
     isHotDeal: true,
-    condition: "Brand New Sealed",
+    condition: "Brand New Sealed Box Pack",
     warranty: "1 Year Samsung India Warranty",
     image: "https://images.unsplash.com/photo-1610945265064-0e34e5519bbf?auto=format&fit=crop&w=600&q=80",
     colors: ["Titanium Gray", "Titanium Black", "Titanium Violet", "Titanium Yellow"],
     storageOptions: ["12GB/256GB", "12GB/512GB", "12GB/1TB"],
     specs: {
-      display: "6.8\" Dynamic AMOLED 2X, 2600 nits, Gorilla Armor",
+      display: "6.8\" Dynamic AMOLED 2X, 2600 nits Peak, Gorilla Armor",
       processor: "Snapdragon 8 Gen 3 for Galaxy",
-      camera: "200MP Quad Camera + 100x Space Zoom with Galaxy AI",
+      camera: "200MP Quad Camera + 100x Space Zoom with AI",
       battery: "5000 mAh with 45W Fast Charging & S-Pen Included",
-      os: "Android 14 (One UI 6.1 with 7 Years Updates)"
+      os: "Android 14 (One UI 6.1 with 7 Years OS Updates)"
     },
     inStock: true,
     emiStart: "₹5,750/mo"
@@ -112,14 +115,14 @@ const PRODUCTS = [
     reviewsCount: 182,
     badge: "⚡ 100W SuperVOOC",
     isHotDeal: false,
-    condition: "Brand New Sealed",
+    condition: "Brand New Sealed Box",
     warranty: "1 Year OnePlus Warranty",
     image: "https://images.unsplash.com/photo-1598327105666-5b89351aff97?auto=format&fit=crop&w=600&q=80",
     colors: ["Flowy Emerald", "Silky Black", "Glacial White"],
     storageOptions: ["12GB/256GB", "16GB/512GB"],
     specs: {
-      display: "6.82\" 2K 120Hz ProXDR Display with 4500 nits peak",
-      processor: "Snapdragon 8 Gen 3",
+      display: "6.82\" 2K 120Hz ProXDR Display, 4500 nits peak",
+      processor: "Snapdragon 8 Gen 3 Flagship Chipset",
       camera: "4th Gen Hasselblad Camera (50MP Sony LYT-808)",
       battery: "5400 mAh, 100W Wired + 50W Wireless AIRVOOC",
       os: "OxygenOS 14 based on Android 14"
@@ -129,7 +132,7 @@ const PRODUCTS = [
   },
   {
     id: "prod-004",
-    name: "Vivo V40 Pro 5G (ZEISS Optics)",
+    name: "Vivo V40 Pro 5G (ZEISS Portrait)",
     brand: "Vivo",
     category: "flagship",
     subCategory: "budget",
@@ -138,7 +141,7 @@ const PRODUCTS = [
     discountPercent: 11,
     rating: 4.6,
     reviewsCount: 145,
-    badge: "📸 Portrait King",
+    badge: "📸 ZEISS Optics",
     isHotDeal: true,
     condition: "Brand New Sealed",
     warranty: "1 Year Vivo India Warranty",
@@ -168,8 +171,8 @@ const PRODUCTS = [
     reviewsCount: 520,
     badge: "🏷️ Big Price Drop",
     isHotDeal: true,
-    condition: "Brand New Sealed",
-    warranty: "1 Year Apple India Warranty",
+    condition: "Brand New Sealed Box",
+    warranty: "1 Year Official Apple Warranty",
     image: "https://images.unsplash.com/photo-1592750475338-74b7b21085ab?auto=format&fit=crop&w=600&q=80",
     colors: ["Blue", "Pink", "Yellow", "Green", "Black"],
     storageOptions: ["128GB", "256GB", "512GB"],
@@ -177,8 +180,8 @@ const PRODUCTS = [
       display: "6.1\" Super Retina XDR OLED with Dynamic Island",
       processor: "A16 Bionic chip with 5-core GPU",
       camera: "48MP Main Camera with 2x Telephoto + 12MP Ultra-Wide",
-      battery: "All-day battery life, USB-C Connectivity",
-      os: "iOS 17 (Upgradable to iOS 18)"
+      battery: "All-day battery life, USB-C Port",
+      os: "iOS 18 Ready"
     },
     inStock: true,
     emiStart: "₹3,170/mo"
@@ -202,9 +205,9 @@ const PRODUCTS = [
     colors: ["Fusion Purple", "Fusion Black", "Fusion White"],
     storageOptions: ["8GB/256GB", "12GB/512GB"],
     specs: {
-      display: "6.67\" 1.5K 120Hz 3D Curved AMOLED with Gorilla Glass Victus",
+      display: "6.67\" 1.5K 120Hz 3D Curved AMOLED with Victus Glass",
       processor: "MediaTek Dimensity 7200 Ultra 5G",
-      camera: "200MP Samsung ISOCELL HP3 with OIS + 8MP Wide + 2MP",
+      camera: "200MP Samsung ISOCELL HP3 with OIS + 8MP + 2MP",
       battery: "5000 mAh with 120W HyperCharge (0-100% in 19 mins)",
       os: "Xiaomi HyperOS (Android 14)"
     },
@@ -252,7 +255,7 @@ const PRODUCTS = [
     reviewsCount: 412,
     badge: "💎 Certified Grade A+",
     isHotDeal: true,
-    condition: "Certified Pre-Owned (Flawless condition, 100% Tested)",
+    condition: "Certified Pre-Owned (32-Point Quality Inspected, 100% Original)",
     warranty: "6 Months Mobile Station Replacement Warranty",
     image: "https://images.unsplash.com/photo-1575695342320-d2d2d2f9b73f?auto=format&fit=crop&w=600&q=80",
     colors: ["Midnight", "Starlight", "Blue", "Pink"],
@@ -260,8 +263,8 @@ const PRODUCTS = [
     specs: {
       display: "6.1\" Super Retina XDR OLED Display (Scratchless)",
       processor: "A15 Bionic chip (Blazing Fast)",
-      camera: "Dual 12MP Camera system with Cinematic mode 4K",
-      battery: "Tested 95%+ Battery Health, Original Components Guaranteed",
+      camera: "Dual 12MP Camera with Cinematic mode 4K",
+      battery: "Tested 95%+ Battery Health, Original Parts Guaranteed",
       os: "iOS 18 Ready"
     },
     inStock: true,
@@ -269,7 +272,7 @@ const PRODUCTS = [
   },
   {
     id: "prod-009",
-    name: "Samsung Galaxy S22 5G (Pre-Owned Flawless)",
+    name: "Samsung Galaxy S22 5G (Certified Pre-Owned)",
     brand: "Samsung",
     category: "refurbished",
     subCategory: "refurbished",
@@ -278,9 +281,9 @@ const PRODUCTS = [
     discountPercent: 62,
     rating: 4.7,
     reviewsCount: 189,
-    badge: "🔥 Super Value",
+    badge: "🔥 62% OFF",
     isHotDeal: true,
-    condition: "Certified Refurbished (Grade A+)",
+    condition: "Certified Refurbished (Flawless Grade A+)",
     warranty: "6 Months Mobile Station Warranty",
     image: "https://images.unsplash.com/photo-1610945265064-0e34e5519bbf?auto=format&fit=crop&w=600&q=80",
     colors: ["Phantom Black", "Green", "Phantom White"],
@@ -290,7 +293,7 @@ const PRODUCTS = [
       processor: "Snapdragon 8 Gen 1",
       camera: "50MP Triple Pro Camera + 30X Space Zoom",
       battery: "3700 mAh + 25W Fast Charging",
-      os: "One UI 6 (Android 14)"
+      os: "One UI 6.1 (Android 14)"
     },
     inStock: true,
     emiStart: "₹1,340/mo"
@@ -306,19 +309,19 @@ const PRODUCTS = [
     discountPercent: 16,
     rating: 4.9,
     reviewsCount: 310,
-    badge: "🎧 2x Active Noise Cancelling",
+    badge: "🎧 Active Noise Cancelling",
     isHotDeal: false,
-    condition: "Brand New Sealed",
-    warranty: "1 Year Apple Warranty",
+    condition: "Brand New Sealed Box",
+    warranty: "1 Year Official Apple Warranty",
     image: "https://images.unsplash.com/photo-1600294037681-c80b4cb5b434?auto=format&fit=crop&w=600&q=80",
     colors: ["White"],
-    storageOptions: ["Standard Case"],
+    storageOptions: ["MagSafe USB-C Case"],
     specs: {
-      display: "H2 Apple Silicon Chip with Personalized Spatial Audio",
-      processor: "Up to 2x more Active Noise Cancellation + Transparency Mode",
+      display: "Apple H2 Silicon Chip with Personalized Spatial Audio",
+      processor: "Up to 2x more Active Noise Cancellation + Adaptive Audio",
       camera: "Touch control volume slider on stem",
-      battery: "Up to 6 hours listening (30 hours total with MagSafe Case)",
-      os: "iOS / Android Compatible"
+      battery: "Up to 6 hours listening (30 hours with MagSafe Case)",
+      os: "Universal iOS / Android Support"
     },
     inStock: true,
     emiStart: "₹1,010/mo"
@@ -336,7 +339,7 @@ const PRODUCTS = [
     reviewsCount: 890,
     badge: "💥 67% OFF",
     isHotDeal: true,
-    condition: "Brand New Sealed",
+    condition: "Brand New Box Pack",
     warranty: "1 Year boAt Warranty",
     image: "https://images.unsplash.com/photo-1590658268037-6bf12165a8df?auto=format&fit=crop&w=600&q=80",
     colors: ["Active Black", "Cider Cyan", "Gunmetal Grey"],
@@ -344,7 +347,7 @@ const PRODUCTS = [
     specs: {
       display: "32dB Active Noise Cancellation (ANC)",
       processor: "42 Hours Total Playback with ASAP Fast Charge",
-      camera: "ENx Technology for Crystal Clear Calls (Quad Mics)",
+      camera: "ENx Quad Mics for Crystal Clear Calls",
       battery: "10 mins charge = 150 mins playtime",
       os: "Bluetooth v5.3"
     },
@@ -364,8 +367,8 @@ const PRODUCTS = [
     reviewsCount: 142,
     badge: "⌚ Health & ECG Track",
     isHotDeal: true,
-    condition: "Brand New Sealed",
-    warranty: "1 Year Samsung Warranty",
+    condition: "Brand New Sealed Box",
+    warranty: "1 Year Samsung India Warranty",
     image: "https://images.unsplash.com/photo-1523275335684-37898b6baf30?auto=format&fit=crop&w=600&q=80",
     colors: ["Graphite", "Silver"],
     storageOptions: ["44mm Bluetooth", "44mm LTE"],
@@ -392,7 +395,7 @@ const PRODUCTS = [
     reviewsCount: 760,
     badge: "⚡ 100% Original Apple",
     isHotDeal: false,
-    condition: "Brand New Sealed",
+    condition: "Brand New Box Pack",
     warranty: "1 Year Apple Warranty",
     image: "https://images.unsplash.com/photo-1583863788434-e58a36330cf0?auto=format&fit=crop&w=600&q=80",
     colors: ["White"],
@@ -449,7 +452,7 @@ const PRODUCTS = [
     badge: "🛡️ Heavy Duty Combo",
     isHotDeal: true,
     condition: "Brand New",
-    warranty: "Replacement Guarantee for fitment",
+    warranty: "Fitment & Replacement Guarantee",
     image: "https://images.unsplash.com/photo-1584438784894-089d6a62b8fa?auto=format&fit=crop&w=600&q=80",
     colors: ["Translucent Matte", "Smoky Black", "Navy Blue"],
     storageOptions: ["Available for All iPhone & Android Models"],
