@@ -1,8 +1,6 @@
-// Product Catalog Data & Configuration for Mobile Station & Siddhi Marketing
+// Product Catalog Data & Configuration for Mobile Station
 const STORE_CONFIG = {
   primaryPhone: "919876543210", // Mobile Station Retail WhatsApp
-  siddhiPhone: "919876543211",  // Siddhi Marketing Wholesale WhatsApp
-  siddhiEmail: "siddhimarketing2017@gmail.com",
   stores: [
     {
       id: "mobile-station",
@@ -15,19 +13,6 @@ const STORE_CONFIG = {
       timing: "10:00 AM - 9:30 PM (Open All 7 Days)",
       badge: "Flagship Retail Showroom",
       features: ["Brand New 5G Smartphones", "Certified Pre-Owned Devices", "On-Spot Screen & Battery Repair", "0% Easy EMI & Instant Exchange"]
-    },
-    {
-      id: "siddhi-marketing",
-      name: "Siddhi Marketing",
-      tagline: "Wholesale & Enterprise Distribution Partner",
-      address: "Gali no. 4, Balaji Mandir Road, SIDDHI MARKETING",
-      email: "siddhimarketing2017@gmail.com",
-      phone: "+91 98765 43211",
-      whatsapp: "919876543211",
-      type: "Wholesale & B2B Distribution Hub",
-      timing: "10:00 AM - 8:30 PM (Mon - Sat)",
-      badge: "Wholesale & Bulk Supply Partner",
-      features: ["Bulk Mobile Accessories", "Fast Chargers & Cables (B2B)", "Tempered Glass & Armor Cases", "Direct Dealer Wholesale Pricing"]
     }
   ]
 };
