@@ -95,106 +95,61 @@ img {
 }
 
 /* ========================================================================= */
-/* 0. MINIMALIST LUXURY PRELOADER (APPLE STUDIO STYLE) */
+/* 0. SIMPLE CLEAN PRELOADER */
 /* ========================================================================= */
-.luxury-preloader {
+.simple-preloader {
   position: fixed;
   top: 0;
   left: 0;
   width: 100vw;
   height: 100vh;
   z-index: 99999;
+  background: #ffffff;
   display: flex;
   align-items: center;
   justify-content: center;
-  background: var(--bg-studio);
-  overflow: hidden;
-  transition: transform 0.85s cubic-bezier(0.76, 0, 0.24, 1), opacity 0.6s ease;
-  will-change: transform;
+  transition: opacity 0.4s ease, visibility 0.4s ease;
 }
 
-.luxury-preloader.fade-out {
-  transform: translateY(-100%);
+.simple-preloader.fade-out {
+  opacity: 0;
+  visibility: hidden;
   pointer-events: none;
 }
 
-.preloader-minimal-wrap {
+.simple-preloader-center {
   display: flex;
   flex-direction: column;
   align-items: center;
-  text-align: center;
-  max-width: 380px;
-  width: 85%;
+  gap: 1.25rem;
 }
 
-.preloader-minimal-logo {
-  width: 54px;
-  height: 54px;
+.simple-preloader-logo {
+  width: 58px;
+  height: 58px;
   border-radius: var(--radius-sm);
   overflow: hidden;
-  box-shadow: 0 10px 25px rgba(11, 15, 25, 0.08);
-  border: 1.5px solid rgba(11, 15, 25, 0.06);
-  background: #ffffff;
-  margin-bottom: 1.25rem;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.06);
+  border: 1px solid rgba(11, 15, 25, 0.06);
 }
 
-.preloader-minimal-logo img {
+.simple-preloader-logo img {
   width: 100%;
   height: 100%;
   object-fit: cover;
 }
 
-.preloader-minimal-title {
-  font-family: var(--font-display);
-  font-size: 1.6rem;
-  font-weight: 900;
-  letter-spacing: -0.02em;
-  color: var(--text-headline);
-  line-height: 1.1;
-  margin-bottom: 0.35rem;
+.simple-preloader-spinner {
+  width: 22px;
+  height: 22px;
+  border: 2px solid rgba(223, 19, 73, 0.15);
+  border-top-color: var(--crimson-pink);
+  border-radius: 50%;
+  animation: simpleSpin 0.75s linear infinite;
 }
 
-.preloader-minimal-title .accent-pink {
-  color: var(--crimson-pink);
-}
-
-.preloader-minimal-kicker {
-  font-size: 0.68rem;
-  font-weight: 800;
-  letter-spacing: 0.24em;
-  text-transform: uppercase;
-  color: var(--text-muted);
-  margin-bottom: 2rem;
-}
-
-.preloader-minimal-line-track {
-  width: 100%;
-  max-width: 220px;
-  height: 2px;
-  background: rgba(11, 15, 25, 0.08);
-  border-radius: var(--radius-full);
-  overflow: hidden;
-  position: relative;
-  margin-bottom: 0.85rem;
-}
-
-.preloader-minimal-line-fill {
-  position: absolute;
-  top: 0;
-  left: 0;
-  height: 100%;
-  width: 0%;
-  background: linear-gradient(90deg, #df1349 0%, #f43f5e 50%, #fb923c 100%);
-  border-radius: var(--radius-full);
-  transition: width 0.1s ease-out;
-}
-
-.preloader-minimal-counter {
-  font-family: var(--font-display);
-  font-size: 0.85rem;
-  font-weight: 800;
-  letter-spacing: 0.05em;
-  color: var(--crimson-pink);
+@keyframes simpleSpin {
+  to { transform: rotate(360deg); }
 }
 
 /* ========================================================================= */

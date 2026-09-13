@@ -18,7 +18,7 @@ if (typeof Lenis !== 'undefined') {
 }
 
 document.addEventListener("DOMContentLoaded", () => {
-  initLuxuryPreloader();
+  initSimplePreloader();
   initHeroMouseParallax();
   initStory3D();
   initScrollHeader();
@@ -27,34 +27,20 @@ document.addEventListener("DOMContentLoaded", () => {
 });
 
 // =========================================================================
-// 0. MINIMALIST LUXURY PRELOADER & HERO ENTRANCE SEQUENCE
+// 0. SIMPLE CLEAN PRELOADER & HERO ENTRANCE
 // =========================================================================
-function initLuxuryPreloader() {
-  const preloader = document.getElementById("luxuryPreloader");
-  const bar = document.getElementById("preloaderBar");
-  const percentText = document.getElementById("preloaderPercent");
-
+function initSimplePreloader() {
+  const preloader = document.getElementById("sitePreloader");
   if (!preloader) return;
 
-  let progress = 0;
-  const interval = setInterval(() => {
-    progress += Math.floor(Math.random() * 14) + 8;
-    if (progress > 100) progress = 100;
-
-    if (bar) bar.style.width = `${progress}%`;
-    if (percentText) percentText.innerText = `${progress}%`;
-
-    if (progress >= 100) {
-      clearInterval(interval);
-      setTimeout(() => {
-        preloader.classList.add("fade-out");
-        triggerHeroEntrance();
-        setTimeout(() => {
-          preloader.style.display = "none";
-        }, 900);
-      }, 200);
-    }
-  }, 30);
+  // Fade out smoothly after brief moment
+  setTimeout(() => {
+    preloader.classList.add("fade-out");
+    triggerHeroEntrance();
+    setTimeout(() => {
+      preloader.style.display = "none";
+    }, 450);
+  }, 450);
 }
 
 // Mobile Menu Navigation Toggle
