@@ -1,152 +1,426 @@
-// Application Controller: Next-Level Cinematic Showroom Experience
+// Mobile Station — Next-Level 3D WebGL & GSAP Scroll-Driven Engine
 
-const appState = {
-  activeHeroFinish: 0,
-  activeStoryStep: 0,
-  activeRepairComponent: "screen",
-  bag: JSON.parse(localStorage.getItem("ms_studio_bag") || "[]")
-};
+// Initialize Lenis Smooth Scroll
+let lenis;
+if (typeof Lenis !== 'undefined') {
+  lenis = new Lenis({
+    duration: 1.2,
+    easing: (t) => Math.min(1, 1.001 - Math.pow(2, -10 * t)),
+    smoothWheel: true
+  });
 
-// Hero Finish Palette
-const HERO_FINISHES = [
-  { name: "Desert Titanium", img: "https://images.unsplash.com/photo-1695048133142-1a20484d2569?auto=format&fit=crop&w=700&q=80" },
-  { name: "Natural Titanium", img: "https://images.unsplash.com/photo-1592750475338-74b7b21085ab?auto=format&fit=crop&w=700&q=80" },
-  { name: "Black Titanium", img: "https://images.unsplash.com/photo-1511707171634-5f897ff02aa9?auto=format&fit=crop&w=700&q=80" }
-];
-
-// Story Exploration Steps
-const STORY_STEPS = [
-  {
-    num: "01",
-    title: "Super Retina XDR Display",
-    body: "6.9-inch OLED with ProMotion 120Hz adaptive refresh rate and 2,000 nits peak outdoor brightness. Scratchless ceramic shield glass protection.",
-    img: "https://images.unsplash.com/photo-1592750475338-74b7b21085ab?auto=format&fit=crop&w=800&q=80"
-  },
-  {
-    num: "02",
-    title: "Aerospace Titanium Profile",
-    body: "Precision micro-blasted Grade 5 titanium chassis. Ultra-narrow borders with highest strength-to-weight ratio in any smartphone.",
-    img: "https://images.unsplash.com/photo-1511707171634-5f897ff02aa9?auto=format&fit=crop&w=800&q=80"
-  },
-  {
-    num: "03",
-    title: "Pro 48MP Triple Lens Module",
-    body: "Next-gen quad-pixel sensor with 5x optical telephoto zoom, anti-reflective lens coating, and zero-shutter-lag action capture.",
-    img: "https://images.unsplash.com/photo-1695048133142-1a20484d2569?auto=format&fit=crop&w=800&q=80"
+  function raf(time) {
+    lenis.raf(time);
+    requestAnimationFrame(raf);
   }
-];
+  requestAnimationFrame(raf);
+}
 
-// Component Repair Views
-const REPAIR_DATA = {
-  screen: {
-    banner: "✨ Active: 120Hz Super Retina Display Replacement",
-    img: "https://images.unsplash.com/photo-1592750475338-74b7b21085ab?auto=format&fit=crop&w=600&q=80"
-  },
-  battery: {
-    banner: "🔋 Active: 100% OEM Battery Health Boost",
-    img: "https://images.unsplash.com/photo-1580910051074-3eb694886505?auto=format&fit=crop&w=600&q=80"
-  },
-  charging: {
-    banner: "⚡ Active: Fast Charging Port & Mic Clean",
-    img: "https://images.unsplash.com/photo-1583863788434-e58a36330cf0?auto=format&fit=crop&w=600&q=80"
-  }
+// Global 3D State
+let scene, camera, renderer, phoneGroup;
+let chassisMesh, screenMesh, backMesh, cameraModule, batteryMesh;
+let keyLight, fillLight, rimLight;
+
+const FINISH_COLORS = {
+  desert: { chassis: 0xcbb799, back: 0xdecbb4, rim: 0xf5dfc6 },
+  natural: { chassis: 0x9e9b94, back: 0xb5b2ab, rim: 0xd8d6d0 },
+  black: { chassis: 0x222326, back: 0x18191c, rim: 0x4a4d55 }
 };
 
 document.addEventListener("DOMContentLoaded", () => {
-  initHeroParallax();
-  initHeaderScroll();
-  runScannerSimulation();
-  updateBagUI();
-  setupEventListeners();
+  init3DScene();
+  initOpeningReveal();
+  initGSAPScrollStory();
+  initScrollHeader();
+  triggerScannerSequence();
 });
 
-// Setup Listeners
-function setupEventListeners() {
-  const bagOpenBtn = document.getElementById("cartOpenBtn");
-  if (bagOpenBtn) bagOpenBtn.addEventListener("click", openBagDrawer);
+// =========================================================================
+// 1. THREE.JS PROCEDURAL 3D SMARTPHONE ENGINE
+// =========================================================================
+function init3DScene() {
+  const canvas = document.getElementById("phoneWebGLCanvas");
+  if (!canvas || typeof THREE === 'undefined') return;
+
+  scene = new THREE.Scene();
+
+  camera = new THREE.PerspectiveCamera(38, window.innerWidth / window.innerHeight, 0.1, 100);
+  camera.position.set(0, 0, 8.5);
+
+  renderer = new THREE.WebGLRenderer({
+    canvas: canvas,
+    alpha: true,
+    antialias: true,
+    powerPreference: "high-performance"
+  });
+  renderer.setSize(window.innerWidth, window.innerHeight);
+  renderer.setPixelRatio(Math.min(window.devicePixelRatio, 2));
+  renderer.toneMapping = THREE.ACESFilmicToneMapping;
+  renderer.toneMappingExposure = 1.3;
+
+  // Studio Lighting
+  keyLight = new THREE.DirectionalLight(0xffffff, 2.5);
+  keyLight.position.set(5, 5, 6);
+  scene.add(keyLight);
+
+  fillLight = new THREE.DirectionalLight(0xffffff, 1.2);
+  fillLight.position.set(-5, -3, 4);
+  scene.add(fillLight);
+
+  rimLight = new THREE.PointLight(0xe51d48, 4.0, 15);
+  rimLight.position.set(2, 3, -4);
+  scene.add(rimLight);
+
+  const ambientLight = new THREE.AmbientLight(0xffffff, 0.6);
+  scene.add(ambientLight);
+
+  // Construct 3D Phone Model
+  buildPhoneModel();
+
+  // Mouse Parallax on Hero
+  window.addEventListener("mousemove", onMouseMoveParallax);
+  window.addEventListener("resize", onWindowResize);
+
+  // Render Loop
+  animate3D();
 }
 
-// 1. 3D Mouse Parallax & Dynamic Tilt Rig
-function initHeroParallax() {
-  const stage = document.getElementById("heroStageContainer");
-  const rotator = document.getElementById("heroPhoneRotator");
+function buildPhoneModel() {
+  phoneGroup = new THREE.Group();
 
-  if (!stage || !rotator) return;
+  const width = 2.4;
+  const height = 4.9;
+  const depth = 0.28;
+  const radius = 0.35;
 
-  stage.addEventListener("mousemove", (e) => {
-    const rect = stage.getBoundingClientRect();
-    const x = (e.clientX - rect.left) / rect.width - 0.5;
-    const y = (e.clientY - rect.top) / rect.height - 0.5;
+  // 1. Titanium Chassis Frame
+  const chassisGeom = createRoundedBoxGeometry(width, height, depth, radius, 16);
+  const chassisMat = new THREE.MeshPhysicalMaterial({
+    color: FINISH_COLORS.desert.chassis,
+    metalness: 0.95,
+    roughness: 0.22,
+    clearcoat: 0.8,
+    clearcoatRoughness: 0.15,
+    reflectivity: 0.9
+  });
+  chassisMesh = new THREE.Mesh(chassisGeom, chassisMat);
+  phoneGroup.add(chassisMesh);
 
-    const rotX = -y * 20; // Deg
-    const rotY = x * 26;  // Deg
+  // 2. Front OLED Display with Custom Canvas Wallpaper
+  const screenTexture = createScreenTexture();
+  const screenGeom = new THREE.PlaneGeometry(width * 0.92, height * 0.94);
+  const screenMat = new THREE.MeshBasicMaterial({
+    map: screenTexture
+  });
+  screenMesh = new THREE.Mesh(screenGeom, screenMat);
+  screenMesh.position.z = depth / 2 + 0.005;
+  phoneGroup.add(screenMesh);
 
-    rotator.style.transform = `rotateX(${rotX}deg) rotateY(${rotY}deg) translateZ(15px)`;
+  // 3. Back Matte Frosted Glass Panel
+  const backGeom = new THREE.PlaneGeometry(width * 0.94, height * 0.94);
+  const backMat = new THREE.MeshPhysicalMaterial({
+    color: FINISH_COLORS.desert.back,
+    metalness: 0.1,
+    roughness: 0.35,
+    transmission: 0.2,
+    thickness: 0.5
+  });
+  backMesh = new THREE.Mesh(backGeom, backMat);
+  backMesh.rotation.y = Math.PI;
+  backMesh.position.z = -(depth / 2 + 0.005);
+  phoneGroup.add(backMesh);
+
+  // 4. Triple Camera Island on Rear
+  cameraModule = new THREE.Group();
+  const islandPlateGeom = createRoundedBoxGeometry(1.1, 1.1, 0.12, 0.2, 8);
+  const islandPlateMat = new THREE.MeshPhysicalMaterial({
+    color: FINISH_COLORS.desert.chassis,
+    metalness: 0.9,
+    roughness: 0.25
+  });
+  const islandPlate = new THREE.Mesh(islandPlateGeom, islandPlateMat);
+  islandPlate.position.set(0.45, 1.55, -(depth / 2 + 0.06));
+  cameraModule.add(islandPlate);
+
+  // Three Sapphire Lenses
+  const lensGeom = new THREE.CylinderGeometry(0.18, 0.18, 0.14, 24);
+  const lensMat = new THREE.MeshPhysicalMaterial({
+    color: 0x0a0c10,
+    metalness: 0.95,
+    roughness: 0.1,
+    clearcoat: 1.0,
+    reflectivity: 1.0
   });
 
-  stage.addEventListener("mouseleave", () => {
-    rotator.style.transform = `rotateX(0deg) rotateY(0deg) translateZ(0px)`;
+  const lens1 = new THREE.Mesh(lensGeom, lensMat);
+  lens1.rotation.x = Math.PI / 2;
+  lens1.position.set(0.28, 1.75, -(depth / 2 + 0.12));
+  cameraModule.add(lens1);
+
+  const lens2 = new THREE.Mesh(lensGeom, lensMat);
+  lens2.rotation.x = Math.PI / 2;
+  lens2.position.set(0.65, 1.75, -(depth / 2 + 0.12));
+  cameraModule.add(lens2);
+
+  const lens3 = new THREE.Mesh(lensGeom, lensMat);
+  lens3.rotation.x = Math.PI / 2;
+  lens3.position.set(0.45, 1.35, -(depth / 2 + 0.12));
+  cameraModule.add(lens3);
+
+  phoneGroup.add(cameraModule);
+
+  // 5. Internal Glowing Battery Component (Revealed during Battery Step)
+  const battGeom = new THREE.BoxGeometry(1.6, 2.8, 0.08);
+  const battMat = new THREE.MeshBasicMaterial({
+    color: 0x22c55e,
+    wireframe: true,
+    transparent: true,
+    opacity: 0
   });
+  batteryMesh = new THREE.Mesh(battGeom, battMat);
+  batteryMesh.position.set(0, -0.2, 0);
+  phoneGroup.add(batteryMesh);
+
+  // Initial Placement
+  phoneGroup.position.set(2.0, 0, 0);
+  scene.add(phoneGroup);
 }
 
-// 2. Hero Finish Switcher
-function setHeroFinish(index) {
-  appState.activeHeroFinish = index;
-  const finish = HERO_FINISHES[index];
-  const render = document.getElementById("heroPhoneRender");
-  const buttons = document.querySelectorAll(".finish-pill-btn");
+// Procedural Screen Texture
+function createScreenTexture() {
+  const canvas = document.createElement("canvas");
+  canvas.width = 512;
+  canvas.height = 1024;
+  const ctx = canvas.getContext("2d");
 
-  if (render && finish) {
-    render.style.opacity = "0.2";
-    render.style.transform = "scale(0.96)";
-    setTimeout(() => {
-      render.src = finish.img;
-      render.style.opacity = "1";
-      render.style.transform = "scale(1)";
-    }, 180);
+  // Gradient Wallpaper
+  const grad = ctx.createLinearGradient(0, 0, 512, 1024);
+  grad.addColorStop(0, "#080a12");
+  grad.addColorStop(0.5, "#e51d48");
+  grad.addColorStop(1, "#12050b");
+  ctx.fillStyle = grad;
+  ctx.fillRect(0, 0, 512, 1024);
+
+  // Dynamic Island Notch
+  ctx.fillStyle = "#000000";
+  ctx.beginPath();
+  ctx.roundRect(196, 30, 120, 36, 18);
+  ctx.fill();
+
+  // Clock
+  ctx.fillStyle = "rgba(255, 255, 255, 0.9)";
+  ctx.font = "bold 84px 'Outfit', sans-serif";
+  ctx.textAlign = "center";
+  ctx.fillText("09:41", 256, 220);
+
+  // Date
+  ctx.font = "600 28px 'Plus Jakarta Sans', sans-serif";
+  ctx.fillStyle = "rgba(255, 255, 255, 0.7)";
+  ctx.fillText("Sunday, September 13", 256, 270);
+
+  const tex = new THREE.CanvasTexture(canvas);
+  tex.needsUpdate = true;
+  return tex;
+}
+
+// Helper: Rounded Box Geometry
+function createRoundedBoxGeometry(w, h, d, r, s) {
+  const shape = new THREE.Shape();
+  const x = -w / 2;
+  const y = -h / 2;
+
+  shape.moveTo(x + r, y);
+  shape.lineTo(x + w - r, y);
+  shape.quadraticCurveTo(x + w, y, x + w, y + r);
+  shape.lineTo(x + w, y + h - r);
+  shape.quadraticCurveTo(x + w, y + h, x + w - r, y + h);
+  shape.lineTo(x + r, y + h);
+  shape.quadraticCurveTo(x, y + h, x, y + h - r);
+  shape.lineTo(x, y + r);
+  shape.quadraticCurveTo(x, y, x + r, y);
+
+  const extrudeSettings = {
+    depth: d,
+    bevelEnabled: true,
+    bevelSegments: s,
+    steps: 1,
+    bevelSize: r * 0.4,
+    bevelThickness: r * 0.4
+  };
+
+  const geom = new THREE.ExtrudeGeometry(shape, extrudeSettings);
+  geom.center();
+  return geom;
+}
+
+// Mouse Parallax in Hero
+let targetRotX = 0;
+let targetRotY = 0;
+
+function onMouseMoveParallax(e) {
+  if (window.scrollY > window.innerHeight) return;
+  const x = (e.clientX / window.innerWidth - 0.5) * 2;
+  const y = (e.clientY / window.innerHeight - 0.5) * 2;
+
+  targetRotY = x * 0.45;
+  targetRotX = y * 0.35;
+}
+
+function onWindowResize() {
+  if (!camera || !renderer) return;
+  camera.aspect = window.innerWidth / window.innerHeight;
+  camera.updateProjectionMatrix();
+  renderer.setSize(window.innerWidth, window.innerHeight);
+}
+
+function animate3D() {
+  requestAnimationFrame(animate3D);
+
+  if (phoneGroup && window.scrollY < window.innerHeight * 0.8) {
+    phoneGroup.rotation.y += (targetRotY - phoneGroup.rotation.y) * 0.05;
+    phoneGroup.rotation.x += (targetRotX - phoneGroup.rotation.x) * 0.05;
   }
 
-  buttons.forEach((b, idx) => {
-    b.classList.toggle("active", idx === index);
-  });
-}
-
-// 3. Story Pinned Step Switcher
-function setStoryStep(index) {
-  appState.activeStoryStep = index;
-  const step = STORY_STEPS[index];
-  const numEl = document.getElementById("storyStepNum");
-  const titleEl = document.getElementById("storyStepTitle");
-  const bodyEl = document.getElementById("storyStepBody");
-  const imgEl = document.getElementById("storyRenderImg");
-  const buttons = document.querySelectorAll(".stepper-btn");
-
-  if (numEl) numEl.innerText = step.num;
-  if (titleEl) titleEl.innerText = step.title;
-  if (bodyEl) bodyEl.innerText = step.body;
-
-  if (imgEl) {
-    imgEl.style.opacity = "0.2";
-    imgEl.style.transform = "scale(0.95)";
-    setTimeout(() => {
-      imgEl.src = step.img;
-      imgEl.style.opacity = "1";
-      imgEl.style.transform = "scale(1)";
-    }, 180);
+  if (renderer && scene && camera) {
+    renderer.render(scene, camera);
   }
-
-  buttons.forEach((btn, idx) => {
-    btn.classList.toggle("active", idx === index);
-  });
 }
 
-// 4. Header Scroll Frosted Glass Effect
-function initHeaderScroll() {
-  const header = document.getElementById("siteHeader");
+// =========================================================================
+// 2. OPENING 3-5 SECOND CINEMATIC REVEAL
+// =========================================================================
+function initOpeningReveal() {
+  const curtain = document.getElementById("openingCurtain");
+  if (!phoneGroup) return;
+
+  // Set initial dramatic darkness position
+  phoneGroup.rotation.set(0, Math.PI, 0);
+  phoneGroup.position.set(0, 0, 3.5);
+
+  setTimeout(() => {
+    if (typeof gsap !== 'undefined') {
+      const tl = gsap.timeline();
+
+      // Sweep light & rotate phone from rear -> side -> front
+      tl.to(phoneGroup.rotation, { y: 0, duration: 2.2, ease: "power3.inOut" })
+        .to(phoneGroup.position, { x: 2.0, y: 0, z: 0, duration: 2.0, ease: "power3.inOut" }, "-=1.5")
+        .to(rimLight, { intensity: 5.0, duration: 1.5, yoyo: true, repeat: 1 }, "-=2.0");
+
+      setTimeout(() => {
+        curtain?.classList.add("hide");
+      }, 1200);
+    } else {
+      curtain?.classList.add("hide");
+    }
+  }, 800);
+}
+
+// =========================================================================
+// 3. GSAP PINNED SCROLL STORY ENGINE (01 DISPLAY -> 02 TITANIUM -> 03 CAMERA -> 04 BATTERY)
+// =========================================================================
+function initGSAPScrollStory() {
+  if (typeof gsap === 'undefined' || typeof ScrollTrigger === 'undefined') return;
+  gsap.registerPlugin(ScrollTrigger);
+
+  const storySection = document.getElementById("story");
+  if (!storySection || !phoneGroup) return;
+
+  const storyTimeline = gsap.timeline({
+    scrollTrigger: {
+      trigger: storySection,
+      start: "top top",
+      end: "bottom bottom",
+      scrub: 1.2,
+      onUpdate: (self) => {
+        const progress = self.progress;
+        updateStoryText(progress);
+      }
+    }
+  });
+
+  // Scroll Choreography:
+  // 0% - 25%: Front Display Zoom
+  storyTimeline
+    .to(phoneGroup.position, { x: 1.2, y: 0, z: 2.2, ease: "none" }, 0)
+    .to(phoneGroup.rotation, { x: 0.1, y: 0.2, z: 0, ease: "none" }, 0);
+
+  // 25% - 50%: 90° Side Profile (Titanium Rim Light)
+  storyTimeline
+    .to(phoneGroup.position, { x: 0.8, y: 0, z: 1.8, ease: "none" }, 0.25)
+    .to(phoneGroup.rotation, { x: 0, y: Math.PI / 2, z: 0.1, ease: "none" }, 0.25);
+
+  // 50% - 75%: Macro Camera Module Zoom
+  storyTimeline
+    .to(phoneGroup.position, { x: -0.5, y: -0.8, z: 3.8, ease: "none" }, 0.5)
+    .to(phoneGroup.rotation, { x: 0.2, y: Math.PI - 0.2, z: 0, ease: "none" }, 0.5);
+
+  // 75% - 100%: Internal Battery Glow & Transparency
+  storyTimeline
+    .to(phoneGroup.position, { x: 0, y: 0, z: 1.2, ease: "none" }, 0.75)
+    .to(phoneGroup.rotation, { x: 0, y: 0, z: 0, ease: "none" }, 0.75)
+    .to(chassisMesh.material, { opacity: 0.35, transparent: true, ease: "none" }, 0.75)
+    .to(backMesh.material, { opacity: 0.2, transparent: true, ease: "none" }, 0.75)
+    .to(batteryMesh.material, { opacity: 0.95, ease: "none" }, 0.75)
+    .to(phoneGroup.position, { y: -8, opacity: 0, ease: "none" }, 0.95);
+}
+
+function updateStoryText(progress) {
+  const badge = document.getElementById("storyBadge");
+  const title = document.getElementById("storyTitle");
+  const desc = document.getElementById("storyDesc");
+
+  if (!badge || !title || !desc) return;
+
+  if (progress < 0.25) {
+    badge.innerText = "01";
+    title.innerText = "Super Retina XDR Display";
+    desc.innerText = "6.9-inch OLED with ProMotion 120Hz adaptive refresh rate and 2,000 nits peak outdoor brightness. Scratchless ceramic shield glass.";
+  } else if (progress < 0.5) {
+    badge.innerText = "02";
+    title.innerText = "Grade 5 Titanium Profile";
+    desc.innerText = "Micro-blasted aerospace titanium frame with precision chamfered edges. The lightest, strongest flagship chassis ever engineered.";
+  } else if (progress < 0.75) {
+    badge.innerText = "03";
+    title.innerText = "48MP Fusion Triple Camera";
+    desc.innerText = "Next-gen quad-pixel sensor with 5x optical telephoto, anti-reflective coating, and 4K 120fps Dolby Vision master recording.";
+  } else {
+    badge.innerText = "04";
+    title.innerText = "All-Day Power & A18 Pro";
+    desc.innerText = "Up to 33 hours continuous battery life backed by 3nm Apple Silicon architecture and MagSafe ultra-fast wireless charging.";
+  }
+}
+
+// 3D Phone Finish Switcher
+function set3DPhoneFinish(finishKey) {
+  const finish = FINISH_COLORS[finishKey];
+  if (!finish || !chassisMesh) return;
+
+  gsap.to(chassisMesh.material.color, {
+    r: ((finish.chassis >> 16) & 255) / 255,
+    g: ((finish.chassis >> 8) & 255) / 255,
+    b: (finish.chassis & 255) / 255,
+    duration: 0.6
+  });
+
+  gsap.to(backMesh.material.color, {
+    r: ((finish.back >> 16) & 255) / 255,
+    g: ((finish.back >> 8) & 255) / 255,
+    b: (finish.back & 255) / 255,
+    duration: 0.6
+  });
+
+  const buttons = document.querySelectorAll(".finish-btn");
+  buttons.forEach(b => b.classList.remove("active"));
+  event?.target?.classList.add("active");
+}
+
+// Header Frosted Scroll
+function initScrollHeader() {
+  const header = document.getElementById("filmHeader");
   if (!header) return;
 
   window.addEventListener("scroll", () => {
-    if (window.scrollY > 40) {
+    if (window.scrollY > 50) {
       header.classList.add("scrolled");
     } else {
       header.classList.remove("scrolled");
@@ -154,54 +428,66 @@ function initHeaderScroll() {
   });
 }
 
-// 5. Interactive Repair Lab Component Switcher
-function switchRepairLabComponent(componentKey) {
-  appState.activeRepairComponent = componentKey;
-  const data = REPAIR_DATA[componentKey];
-  const visual = document.getElementById("repairLabVisual");
-  const banner = document.getElementById("repairLabBanner");
-  const cards = document.querySelectorAll(".component-switch-card");
+// =========================================================================
+// 4. INTERACTIVE REPAIR LAB SIMULATION (CRACK TO OLED & BATTERY SURGE)
+// =========================================================================
+function simulateRepairAnimation(type) {
+  const overlay = document.getElementById("crackOverlay");
+  const counterVal = document.getElementById("batteryCounterVal");
 
-  if (visual && data) {
-    visual.style.opacity = "0.4";
-    setTimeout(() => {
-      visual.src = data.img;
-      visual.style.opacity = "1";
-    }, 150);
+  if (type === "screen") {
+    if (overlay) {
+      overlay.classList.add("cracked");
+      setTimeout(() => {
+        overlay.classList.remove("cracked");
+      }, 700);
+    }
+  } else if (type === "battery") {
+    let count = 12;
+    const interval = setInterval(() => {
+      count += 4;
+      if (counterVal) counterVal.innerText = `${count}%`;
+      if (count >= 100) {
+        clearInterval(interval);
+        if (counterVal) counterVal.innerText = "100%";
+      }
+    }, 40);
   }
-
-  if (banner && data) banner.innerText = data.banner;
-
-  cards.forEach(c => c.classList.remove("active"));
-  event?.currentTarget?.classList.add("active");
 }
 
-// 6. Diagnostic Trade-In Scanner
-function runScannerSimulation() {
-  const brand = document.getElementById("scannerBrand")?.value || "Apple";
-  const condition = document.getElementById("scannerCondition")?.value || "flawless";
-  const display = document.getElementById("scannerValueDisplay");
+// =========================================================================
+// 5. HARDWARE TRADE-IN SCANNER SIMULATION (RAPID VALUE COUNTER)
+// =========================================================================
+function triggerScannerSequence() {
+  const brand = document.getElementById("tradeScanBrand")?.value || "Apple";
+  const cond = document.getElementById("tradeScanCondition")?.value || "flawless";
+  const ticker = document.getElementById("scannerValTicker");
 
-  const matrix = {
-    Apple: { flawless: "₹26,000 - ₹52,000", good: "₹19,000 - ₹36,000", cracked: "₹12,000 - ₹24,000" },
-    Samsung: { flawless: "₹18,000 - ₹42,000", good: "₹13,000 - ₹28,000", cracked: "₹8,000 - ₹18,000" },
-    OnePlus: { flawless: "₹15,000 - ₹30,000", good: "₹11,000 - ₹22,000", cracked: "₹6,500 - ₹14,000" },
-    Vivo: { flawless: "₹10,000 - ₹20,000", good: "₹7,500 - ₹14,000", cracked: "₹4,500 - ₹9,000" },
-    Xiaomi: { flawless: "₹9,000 - ₹18,000", good: "₹6,500 - ₹12,000", cracked: "₹4,000 - ₹8,000" }
+  const targetValues = {
+    Apple: { flawless: 42500, good: 34000, cracked: 21000 },
+    Samsung: { flawless: 36000, good: 27500, cracked: 16000 },
+    OnePlus: { flawless: 28000, good: 21000, cracked: 12500 },
+    Vivo: { flawless: 22000, good: 16000, cracked: 9500 },
+    Xiaomi: { flawless: 18000, good: 13500, cracked: 7500 }
   };
 
-  const computed = matrix[brand]?.[condition] || "₹15,000 - ₹30,000";
+  const finalVal = targetValues[brand]?.[cond] || 32000;
+  let current = Math.floor(finalVal * 0.4);
 
-  if (display) {
-    display.style.opacity = "0.4";
-    setTimeout(() => {
-      display.innerText = computed;
-      display.style.opacity = "1";
-    }, 150);
-  }
+  const step = Math.floor((finalVal - current) / 20);
+  const counterInterval = setInterval(() => {
+    current += step;
+    if (current >= finalVal) {
+      current = finalVal;
+      clearInterval(counterInterval);
+    }
+    if (ticker) ticker.innerText = `₹${current.toLocaleString("en-IN")}`;
+  }, 35);
 }
 
-// 7. Direct WhatsApp Single Order
+// =========================================================================
+// 6. WHATSAPP DIRECT ORDER ACTION
+// =========================================================================
 function orderWhatsAppDirect(productId) {
   const product = PRODUCTS.find(p => p.id === productId);
   if (!product) return;
@@ -217,132 +503,6 @@ I am viewing this flagship model on your showroom website:
 ✨ *Warranty:* ${product.warranty}
 
 Please share payment options and store pickup details today.`;
-
-  const url = `https://wa.me/${phone}?text=${encodeURIComponent(msg)}`;
-  window.open(url, "_blank");
-}
-
-// 8. Showroom Bag Management
-function addToStudioBag(productId) {
-  const product = PRODUCTS.find(p => p.id === productId);
-  if (!product) return;
-
-  const exist = appState.bag.find(i => i.id === productId);
-  if (exist) {
-    exist.qty += 1;
-  } else {
-    appState.bag.push({
-      id: product.id,
-      name: product.name,
-      price: product.price,
-      image: product.image,
-      qty: 1
-    });
-  }
-
-  saveBag();
-  updateBagUI();
-  openBagDrawer();
-}
-
-function saveBag() {
-  localStorage.setItem("ms_studio_bag", JSON.stringify(appState.bag));
-}
-
-function updateBagUI() {
-  const count = appState.bag.reduce((s, i) => s + i.qty, 0);
-  const badge = document.getElementById("cartCountBadge");
-  const countText = document.getElementById("bagCountText");
-  if (badge) badge.innerText = count;
-  if (countText) countText.innerText = count;
-  renderBagItems();
-}
-
-function openBagDrawer() {
-  const drawer = document.getElementById("bagDrawer");
-  const overlay = document.getElementById("drawerOverlay");
-  if (drawer) drawer.classList.add("active");
-  if (overlay) overlay.classList.add("active");
-  document.body.style.overflow = "hidden";
-}
-
-function closeBagDrawer() {
-  const drawer = document.getElementById("bagDrawer");
-  const overlay = document.getElementById("drawerOverlay");
-  if (drawer) drawer.classList.remove("active");
-  if (overlay) overlay.classList.remove("active");
-  document.body.style.overflow = "";
-}
-
-function updateBagItemQty(id, delta) {
-  const item = appState.bag.find(i => i.id === id);
-  if (!item) return;
-
-  item.qty += delta;
-  if (item.qty <= 0) {
-    appState.bag = appState.bag.filter(i => i.id !== id);
-  }
-
-  saveBag();
-  updateBagUI();
-}
-
-function renderBagItems() {
-  const container = document.getElementById("bagItemsContainer");
-  const subtotalEl = document.getElementById("bagSubtotalDisplay");
-  if (!container || !subtotalEl) return;
-
-  if (appState.bag.length === 0) {
-    container.innerHTML = `
-      <div style="text-align:center; padding:3.5rem 1rem; color:var(--text-muted);">
-        <p style="font-weight:700; color:var(--text-headline);">Your Showroom Bag is Empty</p>
-        <p style="font-size:0.85rem; margin-top:0.35rem;">Select any flagship smartphone or accessory to assemble a direct inquiry.</p>
-      </div>
-    `;
-    subtotalEl.innerText = "₹0";
-    return;
-  }
-
-  const subtotal = appState.bag.reduce((s, i) => s + (i.price * i.qty), 0);
-  subtotalEl.innerText = "₹" + subtotal.toLocaleString("en-IN");
-
-  container.innerHTML = appState.bag.map(item => `
-    <div style="display:flex; gap:1rem; padding:0.85rem 0; border-bottom:1px solid var(--border-hairline); align-items:center;">
-      <img src="${item.image}" alt="${item.name}" style="width:55px; height:55px; object-fit:contain; background:var(--bg-surface); border-radius:var(--radius-xs); padding:4px;">
-      <div style="flex:1;">
-        <h4 style="font-size:0.9rem; font-weight:800; line-height:1.2; margin-bottom:0.2rem;">${item.name}</h4>
-        <div style="font-size:0.85rem; font-weight:900; color:var(--crimson);">₹${(item.price * item.qty).toLocaleString("en-IN")}</div>
-        <div style="display:flex; align-items:center; gap:0.4rem; margin-top:0.35rem;">
-          <button style="border:1px solid var(--border-hairline); width:22px; height:22px; border-radius:4px; font-weight:800;" onclick="updateBagItemQty('${item.id}', -1)">-</button>
-          <span style="font-size:0.85rem; font-weight:800;">${item.qty}</span>
-          <button style="border:1px solid var(--border-hairline); width:22px; height:22px; border-radius:4px; font-weight:800;" onclick="updateBagItemQty('${item.id}', 1)">+</button>
-        </div>
-      </div>
-    </div>
-  `).join("");
-}
-
-function transmitBagWhatsApp() {
-  if (appState.bag.length === 0) return;
-
-  const phone = STORE_CONFIG.primaryPhone;
-  const subtotal = appState.bag.reduce((s, i) => s + (i.price * i.qty), 0);
-  
-  const list = appState.bag.map((item, idx) => 
-    `${idx + 1}. *${item.name}* (Qty: ${item.qty}) - ₹${(item.price * item.qty).toLocaleString("en-IN")}`
-  ).join("\n");
-
-  const msg = `Hello Mobile Station & Siddhi Marketing! 👋
-
-I have prepared an inquiry checklist from your showroom website:
-
-${list}
-
-━━━━━━━━━━━━━━━━━
-💰 *Estimated Total:* ₹${subtotal.toLocaleString("en-IN")}
-━━━━━━━━━━━━━━━━━
-
-Please confirm availability at Garud Complex / Balaji Mandir Road. Thank you!`;
 
   const url = `https://wa.me/${phone}?text=${encodeURIComponent(msg)}`;
   window.open(url, "_blank");
