@@ -499,24 +499,24 @@ img {
 
 .hero-oversized-title {
   font-family: var(--font-display);
-  font-size: 4.4rem;
+  font-size: 4.5rem;
   font-weight: 900;
-  line-height: 0.96;
+  line-height: 0.94;
   letter-spacing: -0.04em;
-  color: var(--text-headline);
-  margin-bottom: 1.15rem;
+  color: #0b0f19;
+  margin-bottom: 1.25rem;
 }
 
 @media (max-width: 1280px) {
-  .hero-oversized-title { font-size: 3.6rem; }
+  .hero-oversized-title { font-size: 3.8rem; }
 }
 
 @media (max-width: 768px) {
-  .hero-oversized-title { font-size: 2.8rem; }
+  .hero-oversized-title { font-size: 2.9rem; }
 }
 
 .hero-oversized-title .pink-accent {
-  background: linear-gradient(135deg, #df1349 0%, #f43f5e 45%, #fb923c 100%);
+  background: linear-gradient(135deg, #e11456 0%, #ff2a6d 45%, #ff7e40 100%);
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
   display: inline-block;
@@ -524,10 +524,10 @@ img {
 
 .hero-editorial-subtext {
   font-size: 1.05rem;
-  color: var(--text-body);
+  color: #475467;
   line-height: 1.6;
-  margin-bottom: 1.85rem;
-  max-width: 490px;
+  margin-bottom: 2rem;
+  max-width: 480px;
 }
 
 @media (max-width: 992px) {
@@ -539,7 +539,7 @@ img {
   align-items: center;
   gap: 1rem;
   flex-wrap: wrap;
-  margin-bottom: 2.5rem;
+  margin-bottom: 2.75rem;
 }
 
 @media (max-width: 992px) {
@@ -547,42 +547,42 @@ img {
 }
 
 .btn-primary-pink {
-  background: var(--crimson-pink);
+  background: #e11456;
   color: #ffffff;
-  padding: 0.95rem 2.1rem;
+  padding: 0.95rem 2.2rem;
   border-radius: var(--radius-full);
   font-size: 0.92rem;
   font-weight: 700;
   display: inline-flex;
   align-items: center;
   gap: 0.6rem;
-  box-shadow: var(--shadow-pink);
+  box-shadow: 0 10px 28px rgba(225, 20, 86, 0.35);
   transition: all 0.3s var(--ease-cinematic);
 }
 
 .btn-primary-pink:hover {
   background: #c50c3d;
   transform: translateY(-2px);
-  box-shadow: 0 14px 32px rgba(223, 19, 73, 0.4);
+  box-shadow: 0 14px 34px rgba(225, 20, 86, 0.45);
 }
 
 .btn-secondary-white {
   background: #ffffff;
-  color: var(--text-headline);
-  padding: 0.95rem 1.85rem;
+  color: #0b0f19;
+  padding: 0.95rem 1.9rem;
   border-radius: var(--radius-full);
   font-size: 0.92rem;
   font-weight: 700;
-  border: 1.5px solid var(--border-light);
+  border: 1.5px solid rgba(11, 15, 25, 0.12);
   display: inline-flex;
   align-items: center;
   gap: 0.6rem;
-  box-shadow: var(--shadow-subtle);
+  box-shadow: 0 4px 16px rgba(11, 15, 25, 0.04);
   transition: all 0.25s var(--ease-cinematic);
 }
 
 .btn-secondary-white:hover {
-  border-color: var(--text-headline);
+  border-color: #0b0f19;
   transform: translateY(-2px);
 }
 
