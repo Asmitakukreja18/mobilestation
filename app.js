@@ -18,24 +18,132 @@ if (typeof Lenis !== 'undefined') {
 }
 
 document.addEventListener("DOMContentLoaded", () => {
+  initLuxuryPreloader();
   initHeroMouseParallax();
   initStory3D();
   initScrollHeader();
+  initScrollRevealObserver();
   triggerScannerSequence();
 });
 
 // =========================================================================
-// 1. HERO STUDIO CENTER PIECE MOUSE PARALLAX
+// 0. LUXURY PRELOADER & HERO ENTRANCE SEQUENCE
+// =========================================================================
+function initLuxuryPreloader() {
+  const preloader = document.getElementById("luxuryPreloader");
+  const bar = document.getElementById("preloaderBar");
+  const percentText = document.getElementById("preloaderPercent");
+  const statusText = document.getElementById("preloaderStatusText");
+
+  if (!preloader || !bar || !percentText) return;
+
+  let progress = 0;
+  const statusMessages = [
+    { threshold: 25, text: "Calibrating Titanium Studio..." },
+    { threshold: 55, text: "Loading Flagship Catalog..." },
+    { threshold: 85, text: "Configuring 3D Engine..." },
+    { threshold: 100, text: "Showroom Ready." }
+  ];
+
+  const interval = setInterval(() => {
+    progress += Math.floor(Math.random() * 8) + 5;
+    if (progress > 100) progress = 100;
+
+    bar.style.width = `${progress}%`;
+    percentText.innerText = `${progress}%`;
+
+    const currentMsg = statusMessages.find(m => progress <= m.threshold);
+    if (currentMsg && statusText) {
+      statusText.innerText = currentMsg.text;
+    }
+
+    if (progress >= 100) {
+      clearInterval(interval);
+      setTimeout(() => {
+        preloader.classList.add("fade-out");
+        triggerHeroEntrance();
+        setTimeout(() => {
+          preloader.style.display = "none";
+        }, 900);
+      }, 350);
+    }
+  }, 35);
+}
+
+function triggerHeroEntrance() {
+  if (typeof gsap !== 'undefined') {
+    const tl = gsap.timeline({ defaults: { ease: "power3.out", duration: 0.9 } });
+    tl.fromTo(".site-header-clean", { y: -25, opacity: 0 }, { y: 0, opacity: 1, duration: 0.7 }, 0.05)
+      .fromTo(".hero-kicker-tag", { y: 15, opacity: 0 }, { y: 0, opacity: 1, duration: 0.6 }, 0.15)
+      .fromTo(".hero-oversized-title", { y: 30, opacity: 0 }, { y: 0, opacity: 1, duration: 0.8 }, 0.25)
+      .fromTo(".hero-editorial-subtext", { y: 18, opacity: 0 }, { y: 0, opacity: 1, duration: 0.65 }, 0.38)
+      .fromTo(".hero-cta-buttons-row", { y: 18, opacity: 0 }, { y: 0, opacity: 1, duration: 0.65 }, 0.48)
+      .fromTo(".trust-item-node", { y: 12, opacity: 0 }, { y: 0, opacity: 1, stagger: 0.07, duration: 0.55 }, 0.58)
+      .fromTo(".hero-master-phone-render-box", { scale: 0.92, opacity: 0, y: 25 }, { scale: 1, opacity: 1, y: 0, duration: 1.0, ease: "expo.out" }, 0.25)
+      .fromTo(".hero-integrated-spec-panel", { x: 25, opacity: 0 }, { x: 0, opacity: 1, duration: 0.8, ease: "power2.out" }, 0.5)
+      .fromTo(".hero-vertical-index-markers", { opacity: 0, x: 10 }, { opacity: 1, x: 0, duration: 0.5 }, 0.6)
+      .fromTo(".hero-scroll-explore-anchor", { opacity: 0, y: 10 }, { opacity: 1, y: 0, duration: 0.5 }, 0.7);
+  }
+}
+
+// =========================================================================
+// 1. SILKY SMOOTH LERPED MOUSE PARALLAX
 // =========================================================================
 function initHeroMouseParallax() {
   const visual = document.getElementById("heroStudioCenter");
   if (!visual) return;
 
+  let targetX = 0, targetY = 0;
+  let currentX = 0, currentY = 0;
+  let isMoving = false;
+
   window.addEventListener("mousemove", (e) => {
     if (window.scrollY > 600) return;
-    const x = (e.clientX / window.innerWidth - 0.5) * 20;
-    const y = (e.clientY / window.innerHeight - 0.5) * 15;
-    visual.style.transform = `perspective(1000px) rotateY(${x * 0.4}deg) rotateX(${-y * 0.4}deg) translateY(${y * 0.3}px)`;
+    targetX = (e.clientX / window.innerWidth - 0.5) * 16;
+    targetY = (e.clientY / window.innerHeight - 0.5) * 12;
+    if (!isMoving) {
+      isMoving = true;
+      requestAnimationFrame(renderParallax);
+    }
+  });
+
+  function renderParallax() {
+    currentX += (targetX - currentX) * 0.06;
+    currentY += (targetY - currentY) * 0.06;
+    visual.style.transform = `perspective(1200px) rotateY(${currentX * 0.4}deg) rotateX(${-currentY * 0.4}deg) translateY(${currentY * 0.25}px)`;
+
+    if (Math.abs(targetX - currentX) > 0.01 || Math.abs(targetY - currentY) > 0.01) {
+      requestAnimationFrame(renderParallax);
+    } else {
+      isMoving = false;
+    }
+  }
+}
+
+// Universal Scroll Reveal Observer
+function initScrollRevealObserver() {
+  const revealElements = document.querySelectorAll(".story-split-grid, .section-editorial-header, .quad-phone-card, .repair-split-box, .scanner-monolith-box, .showroom-single-pavilion, .footer-main-grid");
+  
+  if (!('IntersectionObserver' in window)) {
+    revealElements.forEach(el => el.classList.add("is-revealed"));
+    return;
+  }
+
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) {
+        entry.target.classList.add("is-revealed");
+        observer.unobserve(entry.target);
+      }
+    });
+  }, {
+    threshold: 0.1,
+    rootMargin: "0px 0px -40px 0px"
+  });
+
+  revealElements.forEach(el => {
+    el.classList.add("reveal-on-scroll");
+    observer.observe(el);
   });
 }
 
