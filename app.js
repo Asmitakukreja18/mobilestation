@@ -27,35 +27,22 @@ document.addEventListener("DOMContentLoaded", () => {
 });
 
 // =========================================================================
-// 0. LUXURY PRELOADER & HERO ENTRANCE SEQUENCE
+// 0. MINIMALIST LUXURY PRELOADER & HERO ENTRANCE SEQUENCE
 // =========================================================================
 function initLuxuryPreloader() {
   const preloader = document.getElementById("luxuryPreloader");
   const bar = document.getElementById("preloaderBar");
   const percentText = document.getElementById("preloaderPercent");
-  const statusText = document.getElementById("preloaderStatusText");
 
-  if (!preloader || !bar || !percentText) return;
+  if (!preloader) return;
 
   let progress = 0;
-  const statusMessages = [
-    { threshold: 25, text: "Calibrating Titanium Studio..." },
-    { threshold: 55, text: "Loading Flagship Catalog..." },
-    { threshold: 85, text: "Configuring 3D Engine..." },
-    { threshold: 100, text: "Showroom Ready." }
-  ];
-
   const interval = setInterval(() => {
-    progress += Math.floor(Math.random() * 8) + 5;
+    progress += Math.floor(Math.random() * 14) + 8;
     if (progress > 100) progress = 100;
 
-    bar.style.width = `${progress}%`;
-    percentText.innerText = `${progress}%`;
-
-    const currentMsg = statusMessages.find(m => progress <= m.threshold);
-    if (currentMsg && statusText) {
-      statusText.innerText = currentMsg.text;
-    }
+    if (bar) bar.style.width = `${progress}%`;
+    if (percentText) percentText.innerText = `${progress}%`;
 
     if (progress >= 100) {
       clearInterval(interval);
@@ -65,9 +52,28 @@ function initLuxuryPreloader() {
         setTimeout(() => {
           preloader.style.display = "none";
         }, 900);
-      }, 350);
+      }, 200);
     }
-  }, 35);
+  }, 30);
+}
+
+// Mobile Menu Navigation Toggle
+function toggleMobileMenu() {
+  const drawer = document.getElementById("mobileNavDrawer");
+  const btn = document.getElementById("mobileMenuBtn");
+  if (drawer && btn) {
+    drawer.classList.toggle("open");
+    btn.classList.toggle("active");
+  }
+}
+
+function closeMobileMenu() {
+  const drawer = document.getElementById("mobileNavDrawer");
+  const btn = document.getElementById("mobileMenuBtn");
+  if (drawer && btn) {
+    drawer.classList.remove("open");
+    btn.classList.remove("active");
+  }
 }
 
 function triggerHeroEntrance() {
