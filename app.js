@@ -1,144 +1,186 @@
-// Application Logic: Cinematic Luxury Experience for Mobile Station & Siddhi Marketing
+// Application Controller: Next-Level Cinematic Showroom Experience
 
-const state = {
-  activeGalleryFilter: "all",
-  cart: JSON.parse(localStorage.getItem("ms_luxury_cart") || "[]"),
-  heroAngle: 0
+const appState = {
+  activeHeroFinish: 0,
+  activeStoryStep: 0,
+  activeRepairComponent: "screen",
+  bag: JSON.parse(localStorage.getItem("ms_studio_bag") || "[]")
 };
 
-const HERO_ANGLES = [
-  { name: "Desert Titanium", img: "https://images.unsplash.com/photo-1695048133142-1a20484d2569?auto=format&fit=crop&w=700&q=80", tilt: 6 },
-  { name: "Natural Titanium", img: "https://images.unsplash.com/photo-1592750475338-74b7b21085ab?auto=format&fit=crop&w=700&q=80", tilt: -6 },
-  { name: "Black Titanium", img: "https://images.unsplash.com/photo-1511707171634-5f897ff02aa9?auto=format&fit=crop&w=700&q=80", tilt: 0 }
+// Hero Finish Palette
+const HERO_FINISHES = [
+  { name: "Desert Titanium", img: "https://images.unsplash.com/photo-1695048133142-1a20484d2569?auto=format&fit=crop&w=700&q=80" },
+  { name: "Natural Titanium", img: "https://images.unsplash.com/photo-1592750475338-74b7b21085ab?auto=format&fit=crop&w=700&q=80" },
+  { name: "Black Titanium", img: "https://images.unsplash.com/photo-1511707171634-5f897ff02aa9?auto=format&fit=crop&w=700&q=80" }
 ];
 
+// Story Exploration Steps
+const STORY_STEPS = [
+  {
+    num: "01",
+    title: "Super Retina XDR Display",
+    body: "6.9-inch OLED with ProMotion 120Hz adaptive refresh rate and 2,000 nits peak outdoor brightness. Scratchless ceramic shield glass protection.",
+    img: "https://images.unsplash.com/photo-1592750475338-74b7b21085ab?auto=format&fit=crop&w=800&q=80"
+  },
+  {
+    num: "02",
+    title: "Aerospace Titanium Profile",
+    body: "Precision micro-blasted Grade 5 titanium chassis. Ultra-narrow borders with highest strength-to-weight ratio in any smartphone.",
+    img: "https://images.unsplash.com/photo-1511707171634-5f897ff02aa9?auto=format&fit=crop&w=800&q=80"
+  },
+  {
+    num: "03",
+    title: "Pro 48MP Triple Lens Module",
+    body: "Next-gen quad-pixel sensor with 5x optical telephoto zoom, anti-reflective lens coating, and zero-shutter-lag action capture.",
+    img: "https://images.unsplash.com/photo-1695048133142-1a20484d2569?auto=format&fit=crop&w=800&q=80"
+  }
+];
+
+// Component Repair Views
+const REPAIR_DATA = {
+  screen: {
+    banner: "✨ Active: 120Hz Super Retina Display Replacement",
+    img: "https://images.unsplash.com/photo-1592750475338-74b7b21085ab?auto=format&fit=crop&w=600&q=80"
+  },
+  battery: {
+    banner: "🔋 Active: 100% OEM Battery Health Boost",
+    img: "https://images.unsplash.com/photo-1580910051074-3eb694886505?auto=format&fit=crop&w=600&q=80"
+  },
+  charging: {
+    banner: "⚡ Active: Fast Charging Port & Mic Clean",
+    img: "https://images.unsplash.com/photo-1583863788434-e58a36330cf0?auto=format&fit=crop&w=600&q=80"
+  }
+};
+
 document.addEventListener("DOMContentLoaded", () => {
-  initHero3DParallax();
-  renderCuratedGallery();
-  updateCartUI();
-  runDeviceScan();
-  setupNavScrollSpy();
+  initHeroParallax();
+  initHeaderScroll();
+  runScannerSimulation();
+  updateBagUI();
+  setupEventListeners();
 });
 
-// 3D Mouse Parallax & Dynamic Perspective Tilt on Hero Phone Rig
-function initHero3DParallax() {
-  const heroStage = document.querySelector(".hero-stage");
-  const phoneRig = document.getElementById("heroPhoneElement");
+// Setup Listeners
+function setupEventListeners() {
+  const bagOpenBtn = document.getElementById("cartOpenBtn");
+  if (bagOpenBtn) bagOpenBtn.addEventListener("click", openBagDrawer);
+}
 
-  if (!heroStage || !phoneRig) return;
+// 1. 3D Mouse Parallax & Dynamic Tilt Rig
+function initHeroParallax() {
+  const stage = document.getElementById("heroStageContainer");
+  const rotator = document.getElementById("heroPhoneRotator");
 
-  heroStage.addEventListener("mousemove", (e) => {
-    const rect = heroStage.getBoundingClientRect();
+  if (!stage || !rotator) return;
+
+  stage.addEventListener("mousemove", (e) => {
+    const rect = stage.getBoundingClientRect();
     const x = (e.clientX - rect.left) / rect.width - 0.5;
     const y = (e.clientY - rect.top) / rect.height - 0.5;
 
-    const rotX = -y * 18; // Degrees
-    const rotY = x * 24;  // Degrees
+    const rotX = -y * 20; // Deg
+    const rotY = x * 26;  // Deg
 
-    phoneRig.style.transform = `rotateX(${rotX}deg) rotateY(${rotY}deg) translateZ(10px)`;
+    rotator.style.transform = `rotateX(${rotX}deg) rotateY(${rotY}deg) translateZ(15px)`;
   });
 
-  heroStage.addEventListener("mouseleave", () => {
-    phoneRig.style.transform = `rotateX(0deg) rotateY(0deg) translateZ(0px)`;
+  stage.addEventListener("mouseleave", () => {
+    rotator.style.transform = `rotateX(0deg) rotateY(0deg) translateZ(0px)`;
   });
 }
 
-// Switch Hero Color & Visual Angle
-function switchHeroAngle(idx) {
-  state.heroAngle = idx;
-  const config = HERO_ANGLES[idx];
-  const img = document.getElementById("heroPhoneImage");
-  const phoneRig = document.getElementById("heroPhoneElement");
-  const buttons = document.querySelectorAll(".angle-switch-btn");
+// 2. Hero Finish Switcher
+function setHeroFinish(index) {
+  appState.activeHeroFinish = index;
+  const finish = HERO_FINISHES[index];
+  const render = document.getElementById("heroPhoneRender");
+  const buttons = document.querySelectorAll(".finish-pill-btn");
 
-  if (img && config) {
-    img.style.opacity = "0.3";
-    img.style.transform = "scale(0.95)";
+  if (render && finish) {
+    render.style.opacity = "0.2";
+    render.style.transform = "scale(0.96)";
     setTimeout(() => {
-      img.src = config.img;
-      img.style.opacity = "1";
-      img.style.transform = "scale(1)";
-    }, 200);
+      render.src = finish.img;
+      render.style.opacity = "1";
+      render.style.transform = "scale(1)";
+    }, 180);
   }
 
-  buttons.forEach((btn, i) => {
-    btn.classList.toggle("active", i === idx);
+  buttons.forEach((b, idx) => {
+    b.classList.toggle("active", idx === index);
   });
 }
 
-// Render Curated Gallery Grid
-function renderCuratedGallery() {
-  const container = document.getElementById("curatedGrid");
-  const countEl = document.getElementById("galleryCount");
-  if (!container) return;
+// 3. Story Pinned Step Switcher
+function setStoryStep(index) {
+  appState.activeStoryStep = index;
+  const step = STORY_STEPS[index];
+  const numEl = document.getElementById("storyStepNum");
+  const titleEl = document.getElementById("storyStepTitle");
+  const bodyEl = document.getElementById("storyStepBody");
+  const imgEl = document.getElementById("storyRenderImg");
+  const buttons = document.querySelectorAll(".stepper-btn");
 
-  let filtered = [...PRODUCTS];
-  if (state.activeGalleryFilter !== "all") {
-    filtered = filtered.filter(p => p.category === state.activeGalleryFilter || p.subCategory === state.activeGalleryFilter);
+  if (numEl) numEl.innerText = step.num;
+  if (titleEl) titleEl.innerText = step.title;
+  if (bodyEl) bodyEl.innerText = step.body;
+
+  if (imgEl) {
+    imgEl.style.opacity = "0.2";
+    imgEl.style.transform = "scale(0.95)";
+    setTimeout(() => {
+      imgEl.src = step.img;
+      imgEl.style.opacity = "1";
+      imgEl.style.transform = "scale(1)";
+    }, 180);
   }
 
-  if (countEl) countEl.innerText = filtered.length;
-
-  container.innerHTML = filtered.map(product => {
-    const formatPrice = (val) => "₹" + Number(val).toLocaleString("en-IN");
-
-    return `
-      <article class="luxury-phone-card">
-        <div class="card-stage-wrap" onclick="orderWhatsAppDirect('${product.id}')">
-          <img src="${product.image}" alt="${product.name}" loading="lazy">
-        </div>
-
-        <div class="card-brand-kicker">${product.brand} • ${product.condition.includes('Pre-Owned') ? 'CERTIFIED PRE-OWNED' : 'FACTORY SEALED'}</div>
-        <h3 class="card-phone-name">${product.name}</h3>
-        <p class="card-specs-line">${product.specs?.display ? product.specs.display.split(',')[0] : 'High Resolution Display'} • ${product.warranty}</p>
-
-        <div class="card-bottom-row">
-          <div>
-            <span style="font-size:0.75rem; color:var(--text-tertiary); display:block; font-weight:700;">SHOWROOM PRICE</span>
-            <div class="card-price-value">${formatPrice(product.price)}</div>
-          </div>
-
-          <div style="display:flex; gap:0.4rem;">
-            <button class="btn-card-inquire" onclick="addToLuxuryCart('${product.id}')" title="Add to Showroom Bag">
-              🛒 Bag
-            </button>
-            <button class="btn-card-inquire" style="background:var(--text-primary); color:#ffffff;" onclick="orderWhatsAppDirect('${product.id}')">
-              ⚡ Inquire
-            </button>
-          </div>
-        </div>
-      </article>
-    `;
-  }).join("");
+  buttons.forEach((btn, idx) => {
+    btn.classList.toggle("active", idx === index);
+  });
 }
 
-function filterGallery(category) {
-  state.activeGalleryFilter = category;
-  const pills = document.querySelectorAll("#galleryPills .filter-tab-pill");
-  pills.forEach(p => p.classList.remove("active"));
-  event?.target?.classList.add("active");
-  renderCuratedGallery();
+// 4. Header Scroll Frosted Glass Effect
+function initHeaderScroll() {
+  const header = document.getElementById("siteHeader");
+  if (!header) return;
+
+  window.addEventListener("scroll", () => {
+    if (window.scrollY > 40) {
+      header.classList.add("scrolled");
+    } else {
+      header.classList.remove("scrolled");
+    }
+  });
 }
 
-// Repair Demo State Switcher
-function setRepairDemoState(type) {
-  const dial = document.getElementById("repairDialStatus");
-  const img = document.getElementById("repairVisualImg");
+// 5. Interactive Repair Lab Component Switcher
+function switchRepairLabComponent(componentKey) {
+  appState.activeRepairComponent = componentKey;
+  const data = REPAIR_DATA[componentKey];
+  const visual = document.getElementById("repairLabVisual");
+  const banner = document.getElementById("repairLabBanner");
+  const cards = document.querySelectorAll(".component-switch-card");
 
-  if (type === "battery") {
-    if (dial) dial.innerText = "🔋 Battery Health Boosted to 100% (Original OEM Cell)";
-    if (img) img.src = "https://images.unsplash.com/photo-1580910051074-3eb694886505?auto=format&fit=crop&w=600&q=80";
-  } else {
-    if (dial) dial.innerText = "✨ Restored: 120Hz Super Retina OLED";
-    if (img) img.src = "https://images.unsplash.com/photo-1592750475338-74b7b21085ab?auto=format&fit=crop&w=600&q=80";
+  if (visual && data) {
+    visual.style.opacity = "0.4";
+    setTimeout(() => {
+      visual.src = data.img;
+      visual.style.opacity = "1";
+    }, 150);
   }
+
+  if (banner && data) banner.innerText = data.banner;
+
+  cards.forEach(c => c.classList.remove("active"));
+  event?.currentTarget?.classList.add("active");
 }
 
-// Trade-In Scanner Calculation
-function runDeviceScan() {
-  const brand = document.getElementById("tradeBrand")?.value || "Apple";
-  const condition = document.getElementById("tradeCondition")?.value || "flawless";
-  const output = document.getElementById("tradeValueOutput");
+// 6. Diagnostic Trade-In Scanner
+function runScannerSimulation() {
+  const brand = document.getElementById("scannerBrand")?.value || "Apple";
+  const condition = document.getElementById("scannerCondition")?.value || "flawless";
+  const display = document.getElementById("scannerValueDisplay");
 
   const matrix = {
     Apple: { flawless: "₹26,000 - ₹52,000", good: "₹19,000 - ₹36,000", cracked: "₹12,000 - ₹24,000" },
@@ -149,16 +191,17 @@ function runDeviceScan() {
   };
 
   const computed = matrix[brand]?.[condition] || "₹15,000 - ₹30,000";
-  if (output) {
-    output.style.opacity = "0.5";
+
+  if (display) {
+    display.style.opacity = "0.4";
     setTimeout(() => {
-      output.innerText = computed;
-      output.style.opacity = "1";
+      display.innerText = computed;
+      display.style.opacity = "1";
     }, 150);
   }
 }
 
-// WhatsApp Order Direct
+// 7. Direct WhatsApp Single Order
 function orderWhatsAppDirect(productId) {
   const product = PRODUCTS.find(p => p.id === productId);
   if (!product) return;
@@ -166,29 +209,29 @@ function orderWhatsAppDirect(productId) {
   const phone = STORE_CONFIG.primaryPhone;
   const msg = `Hello Mobile Station (Garud Complex)! 👋
 
-I am viewing this smartphone in your showroom catalog:
+I am viewing this flagship model on your showroom website:
 📱 *Model:* ${product.name}
 🏷️ *Brand:* ${product.brand}
 💰 *Showroom Price:* ₹${product.price.toLocaleString("en-IN")}
 🛡️ *Condition:* ${product.condition}
 ✨ *Warranty:* ${product.warranty}
 
-Please confirm reserve availability for store pickup today.`;
+Please share payment options and store pickup details today.`;
 
   const url = `https://wa.me/${phone}?text=${encodeURIComponent(msg)}`;
   window.open(url, "_blank");
 }
 
-// Showroom Bag Management
-function addToLuxuryCart(productId) {
+// 8. Showroom Bag Management
+function addToStudioBag(productId) {
   const product = PRODUCTS.find(p => p.id === productId);
   if (!product) return;
 
-  const exist = state.cart.find(i => i.id === productId);
+  const exist = appState.bag.find(i => i.id === productId);
   if (exist) {
     exist.qty += 1;
   } else {
-    state.cart.push({
+    appState.bag.push({
       id: product.id,
       name: product.name,
       price: product.price,
@@ -197,116 +240,110 @@ function addToLuxuryCart(productId) {
     });
   }
 
-  saveCart();
-  updateCartUI();
-  openCartDrawer();
+  saveBag();
+  updateBagUI();
+  openBagDrawer();
 }
 
-function saveCart() {
-  localStorage.setItem("ms_luxury_cart", JSON.stringify(state.cart));
+function saveBag() {
+  localStorage.setItem("ms_studio_bag", JSON.stringify(appState.bag));
 }
 
-function updateCartUI() {
-  const count = state.cart.reduce((s, i) => s + i.qty, 0);
+function updateBagUI() {
+  const count = appState.bag.reduce((s, i) => s + i.qty, 0);
   const badge = document.getElementById("cartCountBadge");
-  const drawerCount = document.getElementById("drawerBagCount");
+  const countText = document.getElementById("bagCountText");
   if (badge) badge.innerText = count;
-  if (drawerCount) drawerCount.innerText = count;
-  renderDrawerItems();
+  if (countText) countText.innerText = count;
+  renderBagItems();
 }
 
-function openCartDrawer() {
-  const drawer = document.getElementById("luxuryDrawer");
+function openBagDrawer() {
+  const drawer = document.getElementById("bagDrawer");
   const overlay = document.getElementById("drawerOverlay");
   if (drawer) drawer.classList.add("active");
   if (overlay) overlay.classList.add("active");
   document.body.style.overflow = "hidden";
 }
 
-function closeCartDrawer() {
-  const drawer = document.getElementById("luxuryDrawer");
+function closeBagDrawer() {
+  const drawer = document.getElementById("bagDrawer");
   const overlay = document.getElementById("drawerOverlay");
   if (drawer) drawer.classList.remove("active");
   if (overlay) overlay.classList.remove("active");
   document.body.style.overflow = "";
 }
 
-function updateCartItemQty(id, delta) {
-  const item = state.cart.find(i => i.id === id);
+function updateBagItemQty(id, delta) {
+  const item = appState.bag.find(i => i.id === id);
   if (!item) return;
 
   item.qty += delta;
   if (item.qty <= 0) {
-    state.cart = state.cart.filter(i => i.id !== id);
+    appState.bag = appState.bag.filter(i => i.id !== id);
   }
 
-  saveCart();
-  updateCartUI();
+  saveBag();
+  updateBagUI();
 }
 
-function renderDrawerItems() {
-  const container = document.getElementById("drawerItemsList");
-  const subtotalEl = document.getElementById("drawerSubtotal");
+function renderBagItems() {
+  const container = document.getElementById("bagItemsContainer");
+  const subtotalEl = document.getElementById("bagSubtotalDisplay");
   if (!container || !subtotalEl) return;
 
-  if (state.cart.length === 0) {
+  if (appState.bag.length === 0) {
     container.innerHTML = `
-      <div style="text-align:center; padding:3rem 1rem; color:var(--text-tertiary);">
-        <p style="font-weight:700; color:var(--text-secondary);">Your Showroom Bag is Empty</p>
-        <p style="font-size:0.85rem; margin-top:0.35rem;">Select any flagship or accessory to send an all-in-one inquiry.</p>
+      <div style="text-align:center; padding:3.5rem 1rem; color:var(--text-muted);">
+        <p style="font-weight:700; color:var(--text-headline);">Your Showroom Bag is Empty</p>
+        <p style="font-size:0.85rem; margin-top:0.35rem;">Select any flagship smartphone or accessory to assemble a direct inquiry.</p>
       </div>
     `;
     subtotalEl.innerText = "₹0";
     return;
   }
 
-  const subtotal = state.cart.reduce((s, i) => s + (i.price * i.qty), 0);
+  const subtotal = appState.bag.reduce((s, i) => s + (i.price * i.qty), 0);
   subtotalEl.innerText = "₹" + subtotal.toLocaleString("en-IN");
 
-  container.innerHTML = state.cart.map(item => `
-    <div style="display:flex; gap:1rem; padding:0.85rem; border-bottom:1px solid var(--border-subtle); align-items:center;">
-      <img src="${item.image}" alt="${item.name}" style="width:55px; height:55px; object-fit:contain; background:#f4f5f8; border-radius:var(--radius-sm); padding:4px;">
+  container.innerHTML = appState.bag.map(item => `
+    <div style="display:flex; gap:1rem; padding:0.85rem 0; border-bottom:1px solid var(--border-hairline); align-items:center;">
+      <img src="${item.image}" alt="${item.name}" style="width:55px; height:55px; object-fit:contain; background:var(--bg-surface); border-radius:var(--radius-xs); padding:4px;">
       <div style="flex:1;">
         <h4 style="font-size:0.9rem; font-weight:800; line-height:1.2; margin-bottom:0.2rem;">${item.name}</h4>
-        <div style="font-size:0.85rem; font-weight:900; color:var(--accent-crimson);">₹${(item.price * item.qty).toLocaleString("en-IN")}</div>
+        <div style="font-size:0.85rem; font-weight:900; color:var(--crimson);">₹${(item.price * item.qty).toLocaleString("en-IN")}</div>
         <div style="display:flex; align-items:center; gap:0.4rem; margin-top:0.35rem;">
-          <button style="border:1px solid var(--border-subtle); width:22px; height:22px; border-radius:4px; font-weight:800;" onclick="updateCartItemQty('${item.id}', -1)">-</button>
+          <button style="border:1px solid var(--border-hairline); width:22px; height:22px; border-radius:4px; font-weight:800;" onclick="updateBagItemQty('${item.id}', -1)">-</button>
           <span style="font-size:0.85rem; font-weight:800;">${item.qty}</span>
-          <button style="border:1px solid var(--border-subtle); width:22px; height:22px; border-radius:4px; font-weight:800;" onclick="updateCartItemQty('${item.id}', 1)">+</button>
+          <button style="border:1px solid var(--border-hairline); width:22px; height:22px; border-radius:4px; font-weight:800;" onclick="updateBagItemQty('${item.id}', 1)">+</button>
         </div>
       </div>
     </div>
   `).join("");
 }
 
-function sendLuxuryBagWhatsApp() {
-  if (state.cart.length === 0) return;
+function transmitBagWhatsApp() {
+  if (appState.bag.length === 0) return;
 
   const phone = STORE_CONFIG.primaryPhone;
-  const subtotal = state.cart.reduce((s, i) => s + (i.price * i.qty), 0);
+  const subtotal = appState.bag.reduce((s, i) => s + (i.price * i.qty), 0);
   
-  const list = state.cart.map((item, idx) => 
+  const list = appState.bag.map((item, idx) => 
     `${idx + 1}. *${item.name}* (Qty: ${item.qty}) - ₹${(item.price * item.qty).toLocaleString("en-IN")}`
   ).join("\n");
 
   const msg = `Hello Mobile Station & Siddhi Marketing! 👋
 
-I have assembled an inquiry bag from your showroom website:
+I have prepared an inquiry checklist from your showroom website:
 
 ${list}
 
 ━━━━━━━━━━━━━━━━━
-💰 *Total Valuation:* ₹${subtotal.toLocaleString("en-IN")}
+💰 *Estimated Total:* ₹${subtotal.toLocaleString("en-IN")}
 ━━━━━━━━━━━━━━━━━
 
-Please confirm availability at Garud Complex / Balaji Mandir Road.`;
+Please confirm availability at Garud Complex / Balaji Mandir Road. Thank you!`;
 
   const url = `https://wa.me/${phone}?text=${encodeURIComponent(msg)}`;
   window.open(url, "_blank");
-}
-
-// Nav Scroll Spy
-function setupNavScrollSpy() {
-  const trigger = document.getElementById("cartTriggerBtn");
-  if (trigger) trigger.addEventListener("click", openCartDrawer);
 }
