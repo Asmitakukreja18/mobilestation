@@ -1,4 +1,5 @@
-// Mobile Station — Next-Level 3D WebGL & GSAP Scroll-Driven Engine
+// Mobile Station & Siddhi Marketing — Ultra-Clean Luxury Light Theme 3D Engine
+// Procedural WebGL Models • GSAP 360° Choreography • WhatsApp Concierge
 
 // Initialize Lenis Smooth Scroll
 let lenis;
@@ -16,125 +17,359 @@ if (typeof Lenis !== 'undefined') {
   requestAnimationFrame(raf);
 }
 
-// Global 3D State
-let scene, camera, renderer, phoneGroup;
-let chassisMesh, screenMesh, backMesh, cameraModule, batteryMesh;
-let keyLight, fillLight, rimLight;
+// Global 3D State for Hero
+let heroScene, heroCamera, heroRenderer, heroPhoneGroup;
+let heroChassisMesh, heroBackMesh;
+let heroTargetRotX = 0, heroTargetRotY = 0;
+
+// Global 3D State for Story Stage
+let storyScene, storyCamera, storyRenderer, storyPhoneGroup;
+let storyChassisMesh, storyBackMesh, storyBatteryMesh;
 
 const FINISH_COLORS = {
   desert: { chassis: 0xcbb799, back: 0xdecbb4, rim: 0xf5dfc6 },
-  natural: { chassis: 0x9e9b94, back: 0xb5b2ab, rim: 0xd8d6d0 },
-  black: { chassis: 0x222326, back: 0x18191c, rim: 0x4a4d55 }
+  natural: { chassis: 0xa8a6a0, back: 0xc4c2bb, rim: 0xe8e6df },
+  black: { chassis: 0x242528, back: 0x1a1b1d, rim: 0x4a4d55 }
 };
 
 document.addEventListener("DOMContentLoaded", () => {
-  init3DScene();
-  initOpeningReveal();
-  initGSAPScrollStory();
+  initHero3D();
+  initStory3D();
   initScrollHeader();
   triggerScannerSequence();
+  initB2BCounters();
 });
 
 // =========================================================================
-// 1. THREE.JS PROCEDURAL 3D SMARTPHONE ENGINE
+// 1. HERO 3D SMARTPHONE (STUDIO LIGHTING & PARALLAX)
 // =========================================================================
-function init3DScene() {
-  const canvas = document.getElementById("phoneWebGLCanvas");
+function initHero3D() {
+  const canvas = document.getElementById("heroWebGLCanvas");
   if (!canvas || typeof THREE === 'undefined') return;
 
-  scene = new THREE.Scene();
+  const container = canvas.parentElement;
+  const width = container.clientWidth || 440;
+  const height = container.clientHeight || 480;
 
-  camera = new THREE.PerspectiveCamera(38, window.innerWidth / window.innerHeight, 0.1, 100);
-  camera.position.set(0, 0, 8.5);
+  heroScene = new THREE.Scene();
 
-  renderer = new THREE.WebGLRenderer({
+  heroCamera = new THREE.PerspectiveCamera(40, width / height, 0.1, 100);
+  heroCamera.position.set(0, 0, 8.2);
+
+  heroRenderer = new THREE.WebGLRenderer({
     canvas: canvas,
     alpha: true,
     antialias: true,
     powerPreference: "high-performance"
   });
-  renderer.setSize(window.innerWidth, window.innerHeight);
-  renderer.setPixelRatio(Math.min(window.devicePixelRatio, 2));
-  renderer.toneMapping = THREE.ACESFilmicToneMapping;
-  renderer.toneMappingExposure = 1.3;
+  heroRenderer.setSize(width, height);
+  heroRenderer.setPixelRatio(Math.min(window.devicePixelRatio, 2));
+  heroRenderer.toneMapping = THREE.ACESFilmicToneMapping;
+  heroRenderer.toneMappingExposure = 1.35;
 
-  // Studio Lighting
-  keyLight = new THREE.DirectionalLight(0xffffff, 2.5);
-  keyLight.position.set(5, 5, 6);
-  scene.add(keyLight);
+  // Studio Lighting (Clean Light Theme)
+  const keyLight = new THREE.DirectionalLight(0xffffff, 2.4);
+  keyLight.position.set(4, 5, 5);
+  heroScene.add(keyLight);
 
-  fillLight = new THREE.DirectionalLight(0xffffff, 1.2);
-  fillLight.position.set(-5, -3, 4);
-  scene.add(fillLight);
+  const fillLight = new THREE.DirectionalLight(0xffeedd, 1.4);
+  fillLight.position.set(-4, -2, 3);
+  heroScene.add(fillLight);
 
-  rimLight = new THREE.PointLight(0xe51d48, 4.0, 15);
-  rimLight.position.set(2, 3, -4);
-  scene.add(rimLight);
+  const rimLight = new THREE.PointLight(0xe11d48, 2.2, 12);
+  rimLight.position.set(2, 2, -3);
+  heroScene.add(rimLight);
 
-  const ambientLight = new THREE.AmbientLight(0xffffff, 0.6);
-  scene.add(ambientLight);
+  const ambient = new THREE.AmbientLight(0xffffff, 0.85);
+  heroScene.add(ambient);
 
-  // Construct 3D Phone Model
-  buildPhoneModel();
+  // Build Hero Phone
+  heroPhoneGroup = createSmartphoneModel(FINISH_COLORS.desert, false);
+  heroPhoneGroup.rotation.y = -0.25;
+  heroPhoneGroup.rotation.x = 0.12;
+  heroScene.add(heroPhoneGroup);
 
-  // Mouse Parallax on Hero
-  window.addEventListener("mousemove", onMouseMoveParallax);
-  window.addEventListener("resize", onWindowResize);
+  heroChassisMesh = heroPhoneGroup.userData.chassis;
+  heroBackMesh = heroPhoneGroup.userData.back;
+
+  // Mouse Parallax on Hero Box
+  window.addEventListener("mousemove", (e) => {
+    if (window.scrollY > 800) return;
+    const x = (e.clientX / window.innerWidth - 0.5) * 2;
+    const y = (e.clientY / window.innerHeight - 0.5) * 2;
+    heroTargetRotY = -0.25 + x * 0.45;
+    heroTargetRotX = 0.12 + y * 0.35;
+  });
+
+  window.addEventListener("resize", () => {
+    if (!heroCamera || !heroRenderer) return;
+    const newW = container.clientWidth || 440;
+    const newH = container.clientHeight || 480;
+    heroCamera.aspect = newW / newH;
+    heroCamera.updateProjectionMatrix();
+    heroRenderer.setSize(newW, newH);
+  });
 
   // Render Loop
-  animate3D();
+  function animateHero() {
+    requestAnimationFrame(animateHero);
+    if (heroPhoneGroup) {
+      heroPhoneGroup.rotation.y += (heroTargetRotY - heroPhoneGroup.rotation.y) * 0.08;
+      heroPhoneGroup.rotation.x += (heroTargetRotX - heroPhoneGroup.rotation.x) * 0.08;
+      // Gentle floating oscillation
+      heroPhoneGroup.position.y = Math.sin(Date.now() * 0.0018) * 0.08;
+    }
+    if (heroRenderer && heroScene && heroCamera) {
+      heroRenderer.render(heroScene, heroCamera);
+    }
+  }
+  animateHero();
 }
 
-function buildPhoneModel() {
-  phoneGroup = new THREE.Group();
+// Finish Switcher for Hero Phone
+function setHeroPhoneFinish(finishKey, btnElement) {
+  const finish = FINISH_COLORS[finishKey];
+  if (!finish || !heroChassisMesh || !heroBackMesh) return;
+
+  if (typeof gsap !== 'undefined') {
+    gsap.to(heroChassisMesh.material.color, {
+      r: ((finish.chassis >> 16) & 255) / 255,
+      g: ((finish.chassis >> 8) & 255) / 255,
+      b: (finish.chassis & 255) / 255,
+      duration: 0.5
+    });
+
+    gsap.to(heroBackMesh.material.color, {
+      r: ((finish.back >> 16) & 255) / 255,
+      g: ((finish.back >> 8) & 255) / 255,
+      b: (finish.back & 255) / 255,
+      duration: 0.5
+    });
+  }
+
+  const buttons = document.querySelectorAll(".hero-finish-selector .finish-btn");
+  buttons.forEach(b => b.classList.remove("active"));
+  if (btnElement) btnElement.classList.add("active");
+}
+
+// =========================================================================
+// 2. 360° HARDWARE STORY STAGE 3D SMARTPHONE
+// =========================================================================
+function initStory3D() {
+  const canvas = document.getElementById("storyWebGLCanvas");
+  if (!canvas || typeof THREE === 'undefined') return;
+
+  const container = canvas.parentElement;
+  const width = container.clientWidth || 560;
+  const height = container.clientHeight || 520;
+
+  storyScene = new THREE.Scene();
+
+  storyCamera = new THREE.PerspectiveCamera(40, width / height, 0.1, 100);
+  storyCamera.position.set(0, 0, 7.8);
+
+  storyRenderer = new THREE.WebGLRenderer({
+    canvas: canvas,
+    alpha: true,
+    antialias: true,
+    powerPreference: "high-performance"
+  });
+  storyRenderer.setSize(width, height);
+  storyRenderer.setPixelRatio(Math.min(window.devicePixelRatio, 2));
+  storyRenderer.toneMapping = THREE.ACESFilmicToneMapping;
+  storyRenderer.toneMappingExposure = 1.3;
+
+  // Studio Lighting
+  const keyLight = new THREE.DirectionalLight(0xffffff, 2.5);
+  keyLight.position.set(4, 5, 5);
+  storyScene.add(keyLight);
+
+  const fillLight = new THREE.DirectionalLight(0xffeedd, 1.2);
+  fillLight.position.set(-4, -2, 4);
+  storyScene.add(fillLight);
+
+  const rimLight = new THREE.PointLight(0xe11d48, 2.5, 10);
+  rimLight.position.set(0, 3, -3);
+  storyScene.add(rimLight);
+
+  const ambient = new THREE.AmbientLight(0xffffff, 0.8);
+  storyScene.add(ambient);
+
+  // Build Story Phone with Internal Battery Component
+  storyPhoneGroup = createSmartphoneModel(FINISH_COLORS.desert, true);
+  storyScene.add(storyPhoneGroup);
+
+  storyChassisMesh = storyPhoneGroup.userData.chassis;
+  storyBackMesh = storyPhoneGroup.userData.back;
+  storyBatteryMesh = storyPhoneGroup.userData.battery;
+
+  window.addEventListener("resize", () => {
+    if (!storyCamera || !storyRenderer) return;
+    const newW = container.clientWidth || 560;
+    const newH = container.clientHeight || 520;
+    storyCamera.aspect = newW / newH;
+    storyCamera.updateProjectionMatrix();
+    storyRenderer.setSize(newW, newH);
+  });
+
+  // Render Loop
+  function animateStory() {
+    requestAnimationFrame(animateStory);
+    if (storyRenderer && storyScene && storyCamera) {
+      storyRenderer.render(storyScene, storyCamera);
+    }
+  }
+  animateStory();
+}
+
+// Switch Story 360° Stage with Buttery Smooth GSAP Animation
+const STORY_STAGES = [
+  {
+    badge: "01",
+    title: "Super Retina XDR Display",
+    desc: "6.9-inch OLED display with ProMotion 120Hz adaptive refresh rate and 2,000 nits peak outdoor brightness. Scratchless ceramic shield glass engineered for pure visual fidelity.",
+    rot: { x: 0.05, y: 0.15, z: 0 },
+    pos: { x: 0, y: 0, z: 0 },
+    batteryAlpha: 0,
+    bodyAlpha: 1.0
+  },
+  {
+    badge: "02",
+    title: "Grade 5 Titanium Profile",
+    desc: "Micro-blasted aerospace titanium chassis with precision chamfered contours. Ultra-light, ultra-strong thermal dispersion frame with zero bulk.",
+    rot: { x: 0.0, y: Math.PI / 2, z: 0.08 },
+    pos: { x: 0.2, y: 0, z: 0.4 },
+    batteryAlpha: 0,
+    bodyAlpha: 1.0
+  },
+  {
+    badge: "03",
+    title: "48MP Fusion Triple Camera",
+    desc: "Next-gen quad-pixel sensor with 5x optical telephoto prism, anti-reflective nano coating, and 4K 120fps Dolby Vision master studio recording.",
+    rot: { x: 0.18, y: Math.PI - 0.25, z: 0 },
+    pos: { x: -0.3, y: -0.4, z: 1.6 },
+    batteryAlpha: 0,
+    bodyAlpha: 1.0
+  },
+  {
+    badge: "04",
+    title: "All-Day Power & Silicon",
+    desc: "Up to 33 hours continuous high-drain battery life backed by cutting-edge 3nm Silicon architecture and MagSafe ultra-fast wireless charging.",
+    rot: { x: 0.0, y: 0.0, z: 0 },
+    pos: { x: 0, y: 0, z: 0.2 },
+    batteryAlpha: 0.95,
+    bodyAlpha: 0.35
+  }
+];
+
+function switchStoryStage(index, btnElement) {
+  const stage = STORY_STAGES[index];
+  if (!stage || !storyPhoneGroup) return;
+
+  // Update DOM Text
+  const badge = document.getElementById("storyBadge");
+  const title = document.getElementById("storyTitle");
+  const desc = document.getElementById("storyDesc");
+
+  if (badge) badge.innerText = stage.badge;
+  if (title) title.innerText = stage.title;
+  if (desc) desc.innerText = stage.desc;
+
+  // Update Active Button
+  const tabs = document.querySelectorAll(".story-tab-btn");
+  tabs.forEach(t => t.classList.remove("active"));
+  if (btnElement) {
+    btnElement.classList.add("active");
+  } else if (tabs[index]) {
+    tabs[index].classList.add("active");
+  }
+
+  // Animate 3D Phone with GSAP
+  if (typeof gsap !== 'undefined') {
+    gsap.to(storyPhoneGroup.rotation, {
+      x: stage.rot.x,
+      y: stage.rot.y,
+      z: stage.rot.z,
+      duration: 1.2,
+      ease: "power3.inOut"
+    });
+
+    gsap.to(storyPhoneGroup.position, {
+      x: stage.pos.x,
+      y: stage.pos.y,
+      z: stage.pos.z,
+      duration: 1.2,
+      ease: "power3.inOut"
+    });
+
+    if (storyBatteryMesh) {
+      gsap.to(storyBatteryMesh.material, {
+        opacity: stage.batteryAlpha,
+        duration: 0.8
+      });
+    }
+
+    if (storyChassisMesh && storyBackMesh) {
+      gsap.to([storyChassisMesh.material, storyBackMesh.material], {
+        opacity: stage.bodyAlpha,
+        transparent: stage.bodyAlpha < 1.0,
+        duration: 0.8
+      });
+    }
+  }
+}
+
+// =========================================================================
+// 3. REUSABLE THREE.JS SMARTPHONE BUILDER
+// =========================================================================
+function createSmartphoneModel(finish, includeBattery) {
+  const group = new THREE.Group();
 
   const width = 2.4;
   const height = 4.9;
-  const depth = 0.28;
+  const depth = 0.26;
   const radius = 0.35;
 
-  // 1. Titanium Chassis Frame
+  // 1. Titanium Chassis
   const chassisGeom = createRoundedBoxGeometry(width, height, depth, radius, 16);
   const chassisMat = new THREE.MeshPhysicalMaterial({
-    color: FINISH_COLORS.desert.chassis,
+    color: finish.chassis,
     metalness: 0.95,
     roughness: 0.22,
-    clearcoat: 0.8,
-    clearcoatRoughness: 0.15,
-    reflectivity: 0.9
+    clearcoat: 0.9,
+    clearcoatRoughness: 0.1,
+    reflectivity: 0.95
   });
-  chassisMesh = new THREE.Mesh(chassisGeom, chassisMat);
-  phoneGroup.add(chassisMesh);
+  const chassis = new THREE.Mesh(chassisGeom, chassisMat);
+  group.add(chassis);
 
-  // 2. Front OLED Display with Custom Canvas Wallpaper
+  // 2. Front OLED Display Screen
   const screenTexture = createScreenTexture();
   const screenGeom = new THREE.PlaneGeometry(width * 0.92, height * 0.94);
-  const screenMat = new THREE.MeshBasicMaterial({
-    map: screenTexture
-  });
-  screenMesh = new THREE.Mesh(screenGeom, screenMat);
-  screenMesh.position.z = depth / 2 + 0.005;
-  phoneGroup.add(screenMesh);
+  const screenMat = new THREE.MeshBasicMaterial({ map: screenTexture });
+  const screen = new THREE.Mesh(screenGeom, screenMat);
+  screen.position.z = depth / 2 + 0.005;
+  group.add(screen);
 
   // 3. Back Matte Frosted Glass Panel
-  const backGeom = new THREE.PlaneGeometry(width * 0.94, height * 0.94);
+  const backGeom = new THREE.PlaneGeometry(width * 0.93, height * 0.94);
   const backMat = new THREE.MeshPhysicalMaterial({
-    color: FINISH_COLORS.desert.back,
-    metalness: 0.1,
+    color: finish.back,
+    metalness: 0.15,
     roughness: 0.35,
-    transmission: 0.2,
-    thickness: 0.5
+    transmission: 0.15,
+    thickness: 0.4
   });
-  backMesh = new THREE.Mesh(backGeom, backMat);
-  backMesh.rotation.y = Math.PI;
-  backMesh.position.z = -(depth / 2 + 0.005);
-  phoneGroup.add(backMesh);
+  const back = new THREE.Mesh(backGeom, backMat);
+  back.rotation.y = Math.PI;
+  back.position.z = -(depth / 2 + 0.005);
+  group.add(back);
 
-  // 4. Triple Camera Island on Rear
-  cameraModule = new THREE.Group();
+  // 4. Triple Camera Island
+  const cameraModule = new THREE.Group();
   const islandPlateGeom = createRoundedBoxGeometry(1.1, 1.1, 0.12, 0.2, 8);
   const islandPlateMat = new THREE.MeshPhysicalMaterial({
-    color: FINISH_COLORS.desert.chassis,
+    color: finish.chassis,
     metalness: 0.9,
     roughness: 0.25
   });
@@ -142,12 +377,12 @@ function buildPhoneModel() {
   islandPlate.position.set(0.45, 1.55, -(depth / 2 + 0.06));
   cameraModule.add(islandPlate);
 
-  // Three Sapphire Lenses
+  // Lenses
   const lensGeom = new THREE.CylinderGeometry(0.18, 0.18, 0.14, 24);
   const lensMat = new THREE.MeshPhysicalMaterial({
-    color: 0x0a0c10,
+    color: 0x08090d,
     metalness: 0.95,
-    roughness: 0.1,
+    roughness: 0.08,
     clearcoat: 1.0,
     reflectivity: 1.0
   });
@@ -167,23 +402,24 @@ function buildPhoneModel() {
   lens3.position.set(0.45, 1.35, -(depth / 2 + 0.12));
   cameraModule.add(lens3);
 
-  phoneGroup.add(cameraModule);
+  group.add(cameraModule);
 
-  // 5. Internal Glowing Battery Component (Revealed during Battery Step)
-  const battGeom = new THREE.BoxGeometry(1.6, 2.8, 0.08);
-  const battMat = new THREE.MeshBasicMaterial({
-    color: 0x22c55e,
-    wireframe: true,
-    transparent: true,
-    opacity: 0
-  });
-  batteryMesh = new THREE.Mesh(battGeom, battMat);
-  batteryMesh.position.set(0, -0.2, 0);
-  phoneGroup.add(batteryMesh);
+  let battery = null;
+  if (includeBattery) {
+    const battGeom = new THREE.BoxGeometry(1.6, 2.8, 0.08);
+    const battMat = new THREE.MeshBasicMaterial({
+      color: 0x22c55e,
+      wireframe: true,
+      transparent: true,
+      opacity: 0
+    });
+    battery = new THREE.Mesh(battGeom, battMat);
+    battery.position.set(0, -0.2, 0);
+    group.add(battery);
+  }
 
-  // Initial Placement
-  phoneGroup.position.set(2.0, 0, 0);
-  scene.add(phoneGroup);
+  group.userData = { chassis, back, battery };
+  return group;
 }
 
 // Procedural Screen Texture
@@ -193,37 +429,43 @@ function createScreenTexture() {
   canvas.height = 1024;
   const ctx = canvas.getContext("2d");
 
-  // Gradient Wallpaper
+  // Crisp Editorial Gradient Wallpaper
   const grad = ctx.createLinearGradient(0, 0, 512, 1024);
-  grad.addColorStop(0, "#080a12");
-  grad.addColorStop(0.5, "#e51d48");
-  grad.addColorStop(1, "#12050b");
+  grad.addColorStop(0, "#ffffff");
+  grad.addColorStop(0.3, "#f8fafc");
+  grad.addColorStop(0.7, "#fce7ec");
+  grad.addColorStop(1, "#ffe4e6");
   ctx.fillStyle = grad;
   ctx.fillRect(0, 0, 512, 1024);
 
   // Dynamic Island Notch
-  ctx.fillStyle = "#000000";
+  ctx.fillStyle = "#0b0d12";
   ctx.beginPath();
-  ctx.roundRect(196, 30, 120, 36, 18);
+  ctx.roundRect(196, 32, 120, 36, 18);
   ctx.fill();
 
   // Clock
-  ctx.fillStyle = "rgba(255, 255, 255, 0.9)";
+  ctx.fillStyle = "#0b0d12";
   ctx.font = "bold 84px 'Outfit', sans-serif";
   ctx.textAlign = "center";
   ctx.fillText("09:41", 256, 220);
 
   // Date
   ctx.font = "600 28px 'Plus Jakarta Sans', sans-serif";
-  ctx.fillStyle = "rgba(255, 255, 255, 0.7)";
+  ctx.fillStyle = "rgba(11, 13, 18, 0.65)";
   ctx.fillText("Sunday, September 13", 256, 270);
+
+  // Brand Watermark
+  ctx.font = "800 24px 'Outfit', sans-serif";
+  ctx.fillStyle = "#e11d48";
+  ctx.fillText("MOBILE STATION", 256, 920);
 
   const tex = new THREE.CanvasTexture(canvas);
   tex.needsUpdate = true;
   return tex;
 }
 
-// Helper: Rounded Box Geometry
+// Rounded Box Geometry Helper
 function createRoundedBoxGeometry(w, h, d, r, s) {
   const shape = new THREE.Shape();
   const x = -w / 2;
@@ -253,196 +495,28 @@ function createRoundedBoxGeometry(w, h, d, r, s) {
   return geom;
 }
 
-// Mouse Parallax in Hero
-let targetRotX = 0;
-let targetRotY = 0;
-
-function onMouseMoveParallax(e) {
-  if (window.scrollY > window.innerHeight) return;
-  const x = (e.clientX / window.innerWidth - 0.5) * 2;
-  const y = (e.clientY / window.innerHeight - 0.5) * 2;
-
-  targetRotY = x * 0.45;
-  targetRotX = y * 0.35;
-}
-
-function onWindowResize() {
-  if (!camera || !renderer) return;
-  camera.aspect = window.innerWidth / window.innerHeight;
-  camera.updateProjectionMatrix();
-  renderer.setSize(window.innerWidth, window.innerHeight);
-}
-
-function animate3D() {
-  requestAnimationFrame(animate3D);
-
-  if (phoneGroup && window.scrollY < window.innerHeight * 0.8) {
-    phoneGroup.rotation.y += (targetRotY - phoneGroup.rotation.y) * 0.05;
-    phoneGroup.rotation.x += (targetRotX - phoneGroup.rotation.x) * 0.05;
-  }
-
-  if (renderer && scene && camera) {
-    renderer.render(scene, camera);
-  }
-}
-
-// =========================================================================
-// 2. OPENING 3-5 SECOND CINEMATIC REVEAL
-// =========================================================================
-function initOpeningReveal() {
-  const curtain = document.getElementById("openingCurtain");
-  if (!phoneGroup) return;
-
-  // Set initial dramatic darkness position
-  phoneGroup.rotation.set(0, Math.PI, 0);
-  phoneGroup.position.set(0, 0, 3.5);
-
-  setTimeout(() => {
-    if (typeof gsap !== 'undefined') {
-      const tl = gsap.timeline();
-
-      // Sweep light & rotate phone from rear -> side -> front
-      tl.to(phoneGroup.rotation, { y: 0, duration: 2.2, ease: "power3.inOut" })
-        .to(phoneGroup.position, { x: 2.0, y: 0, z: 0, duration: 2.0, ease: "power3.inOut" }, "-=1.5")
-        .to(rimLight, { intensity: 5.0, duration: 1.5, yoyo: true, repeat: 1 }, "-=2.0");
-
-      setTimeout(() => {
-        curtain?.classList.add("hide");
-      }, 1200);
-    } else {
-      curtain?.classList.add("hide");
-    }
-  }, 800);
-}
-
-// =========================================================================
-// 3. GSAP PINNED SCROLL STORY ENGINE (01 DISPLAY -> 02 TITANIUM -> 03 CAMERA -> 04 BATTERY)
-// =========================================================================
-function initGSAPScrollStory() {
-  if (typeof gsap === 'undefined' || typeof ScrollTrigger === 'undefined') return;
-  gsap.registerPlugin(ScrollTrigger);
-
-  const storySection = document.getElementById("story");
-  if (!storySection || !phoneGroup) return;
-
-  const storyTimeline = gsap.timeline({
-    scrollTrigger: {
-      trigger: storySection,
-      start: "top top",
-      end: "bottom bottom",
-      scrub: 1.2,
-      onUpdate: (self) => {
-        const progress = self.progress;
-        updateStoryText(progress);
-      }
-    }
-  });
-
-  // Scroll Choreography:
-  // 0% - 25%: Front Display Zoom
-  storyTimeline
-    .to(phoneGroup.position, { x: 1.2, y: 0, z: 2.2, ease: "none" }, 0)
-    .to(phoneGroup.rotation, { x: 0.1, y: 0.2, z: 0, ease: "none" }, 0);
-
-  // 25% - 50%: 90° Side Profile (Titanium Rim Light)
-  storyTimeline
-    .to(phoneGroup.position, { x: 0.8, y: 0, z: 1.8, ease: "none" }, 0.25)
-    .to(phoneGroup.rotation, { x: 0, y: Math.PI / 2, z: 0.1, ease: "none" }, 0.25);
-
-  // 50% - 75%: Macro Camera Module Zoom
-  storyTimeline
-    .to(phoneGroup.position, { x: -0.5, y: -0.8, z: 3.8, ease: "none" }, 0.5)
-    .to(phoneGroup.rotation, { x: 0.2, y: Math.PI - 0.2, z: 0, ease: "none" }, 0.5);
-
-  // 75% - 100%: Internal Battery Glow & Transparency
-  storyTimeline
-    .to(phoneGroup.position, { x: 0, y: 0, z: 1.2, ease: "none" }, 0.75)
-    .to(phoneGroup.rotation, { x: 0, y: 0, z: 0, ease: "none" }, 0.75)
-    .to(chassisMesh.material, { opacity: 0.35, transparent: true, ease: "none" }, 0.75)
-    .to(backMesh.material, { opacity: 0.2, transparent: true, ease: "none" }, 0.75)
-    .to(batteryMesh.material, { opacity: 0.95, ease: "none" }, 0.75)
-    .to(phoneGroup.position, { y: -8, opacity: 0, ease: "none" }, 0.95);
-}
-
-function updateStoryText(progress) {
-  const badge = document.getElementById("storyBadge");
-  const title = document.getElementById("storyTitle");
-  const desc = document.getElementById("storyDesc");
-
-  if (!badge || !title || !desc) return;
-
-  if (progress < 0.25) {
-    badge.innerText = "01";
-    title.innerText = "Super Retina XDR Display";
-    desc.innerText = "6.9-inch OLED with ProMotion 120Hz adaptive refresh rate and 2,000 nits peak outdoor brightness. Scratchless ceramic shield glass.";
-  } else if (progress < 0.5) {
-    badge.innerText = "02";
-    title.innerText = "Grade 5 Titanium Profile";
-    desc.innerText = "Micro-blasted aerospace titanium frame with precision chamfered edges. The lightest, strongest flagship chassis ever engineered.";
-  } else if (progress < 0.75) {
-    badge.innerText = "03";
-    title.innerText = "48MP Fusion Triple Camera";
-    desc.innerText = "Next-gen quad-pixel sensor with 5x optical telephoto, anti-reflective coating, and 4K 120fps Dolby Vision master recording.";
-  } else {
-    badge.innerText = "04";
-    title.innerText = "All-Day Power & A18 Pro";
-    desc.innerText = "Up to 33 hours continuous battery life backed by 3nm Apple Silicon architecture and MagSafe ultra-fast wireless charging.";
-  }
-}
-
-// 3D Phone Finish Switcher
-function set3DPhoneFinish(finishKey) {
-  const finish = FINISH_COLORS[finishKey];
-  if (!finish || !chassisMesh) return;
-
-  gsap.to(chassisMesh.material.color, {
-    r: ((finish.chassis >> 16) & 255) / 255,
-    g: ((finish.chassis >> 8) & 255) / 255,
-    b: (finish.chassis & 255) / 255,
-    duration: 0.6
-  });
-
-  gsap.to(backMesh.material.color, {
-    r: ((finish.back >> 16) & 255) / 255,
-    g: ((finish.back >> 8) & 255) / 255,
-    b: (finish.back & 255) / 255,
-    duration: 0.6
-  });
-
-  const buttons = document.querySelectorAll(".finish-btn");
-  buttons.forEach(b => b.classList.remove("active"));
-  event?.target?.classList.add("active");
-}
-
-// Header Frosted Scroll
-function initScrollHeader() {
-  const header = document.getElementById("filmHeader");
-  if (!header) return;
-
-  window.addEventListener("scroll", () => {
-    if (window.scrollY > 50) {
-      header.classList.add("scrolled");
-    } else {
-      header.classList.remove("scrolled");
-    }
-  });
-}
-
 // =========================================================================
 // 4. INTERACTIVE REPAIR LAB SIMULATION (CRACK TO OLED & BATTERY SURGE)
 // =========================================================================
 function simulateRepairAnimation(type) {
   const overlay = document.getElementById("crackOverlay");
   const counterVal = document.getElementById("batteryCounterVal");
+  const btnScreen = document.getElementById("btnSimScreen");
+  const btnBatt = document.getElementById("btnSimBatt");
 
   if (type === "screen") {
+    btnScreen?.classList.add("active");
+    btnBatt?.classList.remove("active");
     if (overlay) {
-      overlay.classList.add("cracked");
+      overlay.classList.add("active");
       setTimeout(() => {
-        overlay.classList.remove("cracked");
-      }, 700);
+        overlay.classList.remove("active");
+      }, 900);
     }
   } else if (type === "battery") {
+    btnBatt?.classList.add("active");
+    btnScreen?.classList.remove("active");
+
     let count = 12;
     const interval = setInterval(() => {
       count += 4;
@@ -451,59 +525,112 @@ function simulateRepairAnimation(type) {
         clearInterval(interval);
         if (counterVal) counterVal.innerText = "100%";
       }
-    }, 40);
+    }, 45);
   }
 }
 
 // =========================================================================
-// 5. HARDWARE TRADE-IN SCANNER SIMULATION (RAPID VALUE COUNTER)
+// 5. HARDWARE TRADE-IN SCANNER SIMULATION
 // =========================================================================
 function triggerScannerSequence() {
   const brand = document.getElementById("tradeScanBrand")?.value || "Apple";
-  const cond = document.getElementById("tradeScanCondition")?.value || "flawless";
+  const condition = document.getElementById("tradeScanCondition")?.value || "flawless";
   const ticker = document.getElementById("scannerValTicker");
 
-  const targetValues = {
-    Apple: { flawless: 42500, good: 34000, cracked: 21000 },
-    Samsung: { flawless: 36000, good: 27500, cracked: 16000 },
-    OnePlus: { flawless: 28000, good: 21000, cracked: 12500 },
-    Vivo: { flawless: 22000, good: 16000, cracked: 9500 },
-    Xiaomi: { flawless: 18000, good: 13500, cracked: 7500 }
+  const baseValues = {
+    "Apple": 48000,
+    "Samsung": 38000,
+    "OnePlus": 26000,
+    "Vivo": 18000,
+    "Xiaomi": 14000
   };
 
-  const finalVal = targetValues[brand]?.[cond] || 32000;
-  let current = Math.floor(finalVal * 0.4);
+  const conditionMultiplier = {
+    "flawless": 1.0,
+    "good": 0.82,
+    "cracked": 0.65
+  };
 
-  const step = Math.floor((finalVal - current) / 20);
-  const counterInterval = setInterval(() => {
+  const targetVal = Math.round((baseValues[brand] || 35000) * (conditionMultiplier[condition] || 1.0));
+
+  let current = Math.round(targetVal * 0.4);
+  const step = Math.round((targetVal - current) / 15);
+
+  const interval = setInterval(() => {
     current += step;
-    if (current >= finalVal) {
-      current = finalVal;
-      clearInterval(counterInterval);
+    if (current >= targetVal) {
+      current = targetVal;
+      clearInterval(interval);
     }
-    if (ticker) ticker.innerText = `₹${current.toLocaleString("en-IN")}`;
-  }, 35);
+    if (ticker) {
+      ticker.innerText = "₹" + current.toLocaleString('en-IN');
+    }
+  }, 40);
 }
 
 // =========================================================================
-// 6. WHATSAPP DIRECT ORDER ACTION
+// 6. DIRECT WHATSAPP ORDERING CONCIERGE
 // =========================================================================
 function orderWhatsAppDirect(productId) {
-  const product = PRODUCTS.find(p => p.id === productId);
-  if (!product) return;
+  const productMap = {
+    "prod-001": { title: "iPhone 16 Pro Max", price: "₹1,44,900" },
+    "prod-002": { title: "Samsung Galaxy S24 Ultra 5G", price: "₹1,19,999" },
+    "prod-003": { title: "OnePlus 12 5G", price: "₹64,999" },
+    "prod-004": { title: "Vivo V40 Pro 5G", price: "₹49,999" }
+  };
 
-  const phone = STORE_CONFIG.primaryPhone;
-  const msg = `Hello Mobile Station (Garud Complex)! 👋
-
-I am viewing this flagship model on your showroom website:
-📱 *Model:* ${product.name}
-🏷️ *Brand:* ${product.brand}
-💰 *Showroom Price:* ₹${product.price.toLocaleString("en-IN")}
-🛡️ *Condition:* ${product.condition}
-✨ *Warranty:* ${product.warranty}
-
-Please share payment options and store pickup details today.`;
-
-  const url = `https://wa.me/${phone}?text=${encodeURIComponent(msg)}`;
+  const item = productMap[productId] || { title: "Smartphone Flagship", price: "Best Price" };
+  const message = `Hello Mobile Station (Garud Complex)! I want to purchase the ${item.title} (${item.price}). Please confirm instant availability, color options, and billing offer.`;
+  const url = `https://wa.me/919876543210?text=${encodeURIComponent(message)}`;
   window.open(url, "_blank");
+}
+
+// =========================================================================
+// 7. HEADER BLUR ON SCROLL & B2B COUNTERS
+// =========================================================================
+function initScrollHeader() {
+  const header = document.getElementById("siteHeader");
+  if (!header) return;
+
+  window.addEventListener("scroll", () => {
+    if (window.scrollY > 40) {
+      header.classList.add("scrolled");
+    } else {
+      header.classList.remove("scrolled");
+    }
+  });
+}
+
+function initB2BCounters() {
+  const partnerEl = document.getElementById("b2bPartnersCount");
+  const unitsEl = document.getElementById("b2bUnitsCount");
+
+  if (typeof ScrollTrigger !== 'undefined' && partnerEl && unitsEl) {
+    ScrollTrigger.create({
+      trigger: "#showrooms",
+      start: "top 80%",
+      once: true,
+      onEnter: () => {
+        let partners = 0;
+        let units = 0;
+        const pInt = setInterval(() => {
+          partners += 25;
+          if (partners >= 500) {
+            partners = 500;
+            clearInterval(pInt);
+          }
+          partnerEl.innerText = `${partners}+`;
+        }, 50);
+
+        const uInt = setInterval(() => {
+          units += 2;
+          if (units >= 50) {
+            units = 50;
+            clearInterval(uInt);
+          }
+          unitsEl.innerText = `${units}K+`;
+        }, 40);
+      }
+    });
+  }
 }

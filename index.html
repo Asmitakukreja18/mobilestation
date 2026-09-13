@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Mobile Station | The Cinematic Smartphone Showroom & Wholesale Hub</title>
+  <title>Mobile Station & Siddhi Marketing | Flagship Smartphone Showroom & Wholesale Hub</title>
   <meta name="description" content="Official 3D Smartphone Showroom experience at Mobile Station (Garud Complex) & Siddhi Marketing (Balaji Mandir Road). Genuine flagships, certified pre-owned editions, 30-min precision repair, and instant WhatsApp ordering.">
   
   <!-- Studio Fonts: Outfit & Plus Jakarta Sans -->
@@ -22,121 +22,108 @@
 <body>
 
   <!-- ========================================================================= -->
-  <!-- OPENING CINEMATIC LIGHT CURTAIN -->
+  <!-- 1. MINIMAL LUXURY SITE HEADER (LIGHT THEME) -->
   <!-- ========================================================================= -->
-  <div class="opening-curtain" id="openingCurtain">
-    <div class="opening-logo-flash">
-      MOBILE <span>STATION</span>
-    </div>
-    <div class="opening-light-bar"></div>
-  </div>
-
-  <!-- ========================================================================= -->
-  <!-- PERSISTENT 3D WEBGL CANVAS STAGE -->
-  <!-- ========================================================================= -->
-  <div class="global-webgl-canvas-container" id="webglContainer">
-    <canvas id="phoneWebGLCanvas"></canvas>
-  </div>
-
-  <!-- ========================================================================= -->
-  <!-- MINIMAL GLASS SITE HEADER -->
-  <!-- ========================================================================= -->
-  <header class="film-header" id="filmHeader">
-    <div class="container-wide header-row">
-      <!-- Brand Monogram -->
-      <a href="#hero" class="brand-monogram">
-        <div class="brand-monogram-img">
-          <img src="WhatsApp Image 2026-09-12 at 8.40.39 PM.jpeg" alt="Mobile Station">
+  <header class="site-header-clean" id="siteHeader">
+    <div class="container-editorial header-inner">
+      <!-- Brand Logotype with Logo Image -->
+      <a href="#hero" class="brand-logotype">
+        <div class="brand-mark">
+          <img src="WhatsApp Image 2026-09-12 at 8.40.39 PM.jpeg" alt="Mobile Station Logo">
         </div>
-        <div class="brand-name-film">
+        <div class="brand-words">
           MOBILE <span>STATION</span>
         </div>
       </a>
 
-      <!-- Clean Minimal Navigation -->
+      <!-- Clean Minimal Navigation Links -->
       <nav>
-        <ul class="film-nav-links">
-          <li><a href="#hero" class="film-nav-item active">Hero</a></li>
-          <li><a href="#story" class="film-nav-item">360° Story</a></li>
-          <li><a href="#world" class="film-nav-item">Choose World</a></li>
-          <li><a href="#repair" class="film-nav-item">Repair Lab</a></li>
-          <li><a href="#trade" class="film-nav-item">Trade-In</a></li>
-          <li><a href="#showrooms" class="film-nav-item">Showrooms</a></li>
+        <ul class="nav-links-track">
+          <li><a href="#hero" class="nav-link-item active">Hero</a></li>
+          <li><a href="#story" class="nav-link-item">360° Studio</a></li>
+          <li><a href="#world" class="nav-link-item">Flagships</a></li>
+          <li><a href="#repair" class="nav-link-item">Repair Lab</a></li>
+          <li><a href="#trade" class="nav-link-item">Trade-In</a></li>
+          <li><a href="#showrooms" class="nav-link-item">Showrooms</a></li>
         </ul>
       </nav>
 
-      <!-- Header Controls -->
-      <div class="film-nav-actions">
-        <button class="btn-film-bag" id="cartOpenBtn" title="Showroom Bag">
+      <!-- Header Actions -->
+      <div style="display:flex; align-items:center; gap:1rem;">
+        <button class="finish-btn" id="cartOpenBtn" style="border:1px solid var(--border-subtle); display:flex; align-items:center; gap:0.4rem; padding:0.6rem 1rem;" title="Showroom Bag">
           <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2">
             <path d="M6 2L3 6v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V6l-3-4z"></path>
             <line x1="3" y1="6" x2="21" y2="6"></line>
             <path d="M16 10a4 4 0 0 1-8 0"></path>
           </svg>
-          <span class="bag-pill-badge" id="cartBadgeCount">0</span>
+          <span style="background:var(--crimson); color:#fff; font-size:0.75rem; padding:0.15rem 0.45rem; border-radius:999px; font-weight:800;" id="cartBadgeCount">0</span>
         </button>
 
-        <a href="https://wa.me/919876543210?text=Hello%20Mobile%20Station!%20I%20am%20exploring%20your%20cinematic%20showroom%20and%20want%20to%20inquire." target="_blank" rel="noopener noreferrer" class="btn-film-whatsapp">
+        <a href="https://wa.me/919876543210?text=Hello%20Mobile%20Station!%20I%20am%20exploring%20your%20showroom%20and%20want%20to%20inquire." target="_blank" rel="noopener noreferrer" class="btn-header-whatsapp">
           <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor">
             <path d="M.057 24l1.687-6.163c-1.041-1.804-1.588-3.849-1.587-5.946.003-6.556 5.338-11.891 11.893-11.891 3.181.001 6.167 1.24 8.413 3.488 2.245 2.248 3.481 5.236 3.48 8.414-.003 6.557-5.338 11.892-11.893 11.892-1.99-.001-3.951-.5-5.688-1.448l-6.305 1.654zm6.597-3.807c1.676.995 3.276 1.591 5.392 1.592 5.448 0 9.886-4.434 9.889-9.885.002-5.462-4.415-9.89-9.881-9.892-5.452 0-9.887 4.434-9.889 9.884-.001 2.225.651 3.891 1.746 5.634l-.999 3.648 3.742-.981zm11.387-5.464c-.074-.124-.272-.198-.57-.347-.297-.149-1.758-.868-2.031-.967-.272-.099-.47-.149-.669.149-.198.297-.768.967-.941 1.165-.173.198-.347.223-.644.074-.297-.149-1.255-.462-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.297-.347.446-.521.151-.172.2-.296.3-.495.099-.198.05-.372-.025-.521-.075-.148-.669-1.611-.916-2.206-.242-.579-.487-.501-.669-.51l-.57-.01c-.198 0-.52.074-.792.372s-1.04 1.016-1.04 2.479 1.065 2.876 1.213 3.074c.149.198 2.095 3.2 5.076 4.487.709.306 1.263.489 1.694.626.712.226 1.36.194 1.872.118.571-.085 1.758-.719 2.006-1.413.248-.695.248-1.29.173-1.414z"/>
           </svg>
-          <span>WhatsApp Concierge</span>
+          <span>WhatsApp Direct</span>
         </a>
       </div>
     </div>
   </header>
 
   <!-- ========================================================================= -->
-  <!-- 1. FULL-SCREEN CINEMATIC HERO -->
+  <!-- 2. CINEMATIC HERO SECTION (STUDIO WHITE STAGE WITH 3D PHONE) -->
   <!-- ========================================================================= -->
-  <section class="film-hero-section" id="hero">
-    <div class="container-wide">
-      <div class="hero-editorial-layout">
+  <section class="hero-white-stage" id="hero">
+    <div class="container-editorial">
+      <div class="hero-grid-layout">
+        <!-- Left Editorial Copy -->
         <div>
-          <div class="hero-kicker-caps">Flagship Retail & Distribution Hub</div>
-          <h1 class="hero-cinematic-title">
-            MOBILE<br>
-            <span class="accent-text">STATION.</span>
+          <div class="hero-kicker">Flagship Retail & Distribution Hub</div>
+          <h1 class="hero-headline">
+            THE RIGHT PHONE.<br>
+            <span class="crimson-text">ZERO COMPROMISE.</span>
           </h1>
-          <p class="hero-subline">
-            Technology that feels right. Pristine sealed smartphones, grade A+ certified editions, and on-spot 30-minute component engineering.
+          <p class="hero-subtext">
+            Experience the benchmark smartphone destination. 100% genuine brand-sealed editions, certified pre-owned devices, and express 30-minute component engineering.
           </p>
 
-          <div class="hero-action-buttons">
-            <a href="#world" class="btn-hero-solid">
+          <div class="hero-cta-group">
+            <a href="#world" class="btn-primary-solid">
               <span>Choose Your Phone</span>
               <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
                 <line x1="5" y1="12" x2="19" y2="12"></line>
                 <polyline points="12 5 19 12 12 19"></polyline>
               </svg>
             </a>
-            <a href="https://wa.me/919876543210?text=Hello%20Mobile%20Station,%20please%20send%20today's%20iPhone%20and%20flagship%20price%20sheet." target="_blank" rel="noopener noreferrer" class="btn-hero-ghost">
-              <span>WhatsApp Price Sheet</span>
+            <a href="https://wa.me/919876543210?text=Hello%20Mobile%20Station,%20please%20send%20today's%20iPhone%20and%20flagship%20price%20sheet." target="_blank" rel="noopener noreferrer" class="btn-secondary-outline">
+              <span>WhatsApp Daily Price Sheet</span>
             </a>
           </div>
 
-          <div class="hero-metric-strip">
-            <div class="metric-item">
+          <div class="hero-stats-band">
+            <div class="stat-cell">
               <strong>100%</strong>
               <span>Brand Sealed Guarantee</span>
             </div>
-            <div class="metric-item">
+            <div class="stat-cell">
               <strong>30 Min</strong>
               <span>Express Screen & Battery</span>
             </div>
-            <div class="metric-item">
+            <div class="stat-cell">
               <strong>2 Hubs</strong>
               <span>Garud Complex & Balaji Mandir</span>
             </div>
           </div>
         </div>
 
-        <!-- 3D Phone Finish Interactive Zone -->
-        <div class="hero-3d-interactive-zone">
-          <div class="finish-switcher-panel">
-            <button class="finish-btn active" onclick="set3DPhoneFinish('desert')">Desert Titanium</button>
-            <button class="finish-btn" onclick="set3DPhoneFinish('natural')">Natural Titanium</button>
-            <button class="finish-btn" onclick="set3DPhoneFinish('black')">Black Titanium</button>
+        <!-- Right 3D Interactive Phone Canvas Stage -->
+        <div class="hero-3d-viewport">
+          <div class="hero-canvas-box">
+            <canvas id="heroWebGLCanvas"></canvas>
+          </div>
+          <div class="hero-finish-selector">
+            <button class="finish-btn active" onclick="setHeroPhoneFinish('desert', this)">Desert Titanium</button>
+            <button class="finish-btn" onclick="setHeroPhoneFinish('natural', this)">Natural Titanium</button>
+            <button class="finish-btn" onclick="setHeroPhoneFinish('black', this)">Black Titanium</button>
           </div>
         </div>
       </div>
@@ -144,113 +131,125 @@
   </section>
 
   <!-- ========================================================================= -->
-  <!-- 2. PINNED SCROLL 360° HARDWARE STORYTELLING (CONTINUOUS 3D ANIMATION) -->
+  <!-- 3. 360° HARDWARE STORYTELLING (INTERACTIVE SPLIT STAGE) -->
   <!-- ========================================================================= -->
-  <section class="pinned-story-section" id="story">
-    <div class="pinned-story-viewport container-wide">
-      <div class="story-content-panel">
-        <div class="story-step-badge" id="storyBadge">01</div>
-        <h2 class="story-step-title" id="storyTitle">Super Retina XDR Display</h2>
-        <p class="story-step-desc" id="storyDesc">
-          6.9-inch OLED display with ProMotion 120Hz adaptive refresh rate and 2,000 nits peak outdoor brightness. Scratchless ceramic shield glass.
-        </p>
+  <section class="story-scroll-section" id="story">
+    <div class="container-editorial">
+      <div class="story-split-grid">
+        <!-- Story Info Card -->
+        <div class="story-info-card">
+          <div class="story-step-badge" id="storyBadge">01</div>
+          <h2 class="story-step-title" id="storyTitle">Super Retina XDR Display</h2>
+          <p class="story-step-desc" id="storyDesc">
+            6.9-inch OLED display with ProMotion 120Hz adaptive refresh rate and 2,000 nits peak outdoor brightness. Scratchless ceramic shield glass engineered for pure visual fidelity.
+          </p>
+
+          <div class="story-tabs-nav">
+            <button class="story-tab-btn active" onclick="switchStoryStage(0, this)">01 Display</button>
+            <button class="story-tab-btn" onclick="switchStoryStage(1, this)">02 Titanium Frame</button>
+            <button class="story-tab-btn" onclick="switchStoryStage(2, this)">03 48MP Optics</button>
+            <button class="story-tab-btn" onclick="switchStoryStage(3, this)">04 Battery & Silicon</button>
+          </div>
+        </div>
+
+        <!-- Dedicated 3D Story Canvas Stage -->
+        <div class="story-3d-stage-box">
+          <canvas id="storyWebGLCanvas"></canvas>
+        </div>
       </div>
-      <div></div>
     </div>
   </section>
 
   <!-- ========================================================================= -->
-  <!-- 3. "CHOOSE YOUR WORLD" (4-PHONE 3D STUDIO STAGE) -->
+  <!-- 4. "CHOOSE YOUR WORLD" (4-PHONE STUDIO SHOWCASE) -->
   <!-- ========================================================================= -->
-  <section class="choose-world-section" id="world">
-    <div class="container-wide">
-      <div class="section-hero-header">
-        <span class="section-hero-kicker">CURATED FLAGSHIP SHOWCASE</span>
-        <h2 class="section-hero-title">CHOOSE YOUR WORLD.</h2>
-        <p style="color:var(--text-dim); font-size:1.15rem; margin-top:0.75rem;">
-          Hover over any flagship to command the studio spotlight. One tap to order directly on WhatsApp.
+  <section class="world-showcase-section" id="world">
+    <div class="container-editorial">
+      <div class="section-editorial-header">
+        <span class="editorial-kicker">CURATED FLAGSHIP SHOWCASE</span>
+        <h2 class="editorial-title">CHOOSE YOUR WORLD.</h2>
+        <p style="color:var(--text-body); font-size:1.15rem; margin-top:0.75rem;">
+          Tap any device to order with instant stock confirmation and VIP WhatsApp booking.
         </p>
       </div>
 
-      <div class="four-phones-quad-stage">
+      <div class="quad-cards-grid">
         <!-- Phone 1: iPhone 16 Pro Max -->
-        <div class="phone-quad-card" onclick="orderWhatsAppDirect('prod-001')">
-          <div class="quad-img-wrap">
+        <div class="quad-phone-card" onclick="orderWhatsAppDirect('prod-001')">
+          <div class="quad-img-box">
             <img src="https://images.unsplash.com/photo-1695048133142-1a20484d2569?auto=format&fit=crop&w=600&q=80" alt="iPhone 16 Pro Max">
           </div>
-          <span class="quad-brand">Apple Flagship</span>
-          <h3 class="quad-title">iPhone 16 Pro Max</h3>
-          <div class="quad-price">₹1,44,900</div>
-          <button class="quad-action-btn">Explore on WhatsApp →</button>
+          <span class="quad-brand-tag">Apple Flagship</span>
+          <h3 class="quad-device-title">iPhone 16 Pro Max</h3>
+          <div class="quad-price-tag">₹1,44,900</div>
+          <button class="btn-quad-whatsapp">Explore on WhatsApp →</button>
         </div>
 
         <!-- Phone 2: Samsung Galaxy S24 Ultra -->
-        <div class="phone-quad-card" onclick="orderWhatsAppDirect('prod-002')">
-          <div class="quad-img-wrap">
+        <div class="quad-phone-card" onclick="orderWhatsAppDirect('prod-002')">
+          <div class="quad-img-box">
             <img src="https://images.unsplash.com/photo-1610945265064-0e34e5519bbf?auto=format&fit=crop&w=600&q=80" alt="Galaxy S24 Ultra">
           </div>
-          <span class="quad-brand">Galaxy AI</span>
-          <h3 class="quad-title">Galaxy S24 Ultra 5G</h3>
-          <div class="quad-price">₹1,19,999</div>
-          <button class="quad-action-btn">Explore on WhatsApp →</button>
+          <span class="quad-brand-tag">Galaxy AI</span>
+          <h3 class="quad-device-title">Galaxy S24 Ultra 5G</h3>
+          <div class="quad-price-tag">₹1,19,999</div>
+          <button class="btn-quad-whatsapp">Explore on WhatsApp →</button>
         </div>
 
         <!-- Phone 3: OnePlus 12 5G -->
-        <div class="phone-quad-card" onclick="orderWhatsAppDirect('prod-003')">
-          <div class="quad-img-wrap">
+        <div class="quad-phone-card" onclick="orderWhatsAppDirect('prod-003')">
+          <div class="quad-img-box">
             <img src="https://images.unsplash.com/photo-1598327105666-5b89351aff97?auto=format&fit=crop&w=600&q=80" alt="OnePlus 12">
           </div>
-          <span class="quad-brand">Hasselblad Optics</span>
-          <h3 class="quad-title">OnePlus 12 5G</h3>
-          <div class="quad-price">₹64,999</div>
-          <button class="quad-action-btn">Explore on WhatsApp →</button>
+          <span class="quad-brand-tag">Hasselblad Optics</span>
+          <h3 class="quad-device-title">OnePlus 12 5G</h3>
+          <div class="quad-price-tag">₹64,999</div>
+          <button class="btn-quad-whatsapp">Explore on WhatsApp →</button>
         </div>
 
         <!-- Phone 4: Vivo V40 Pro 5G -->
-        <div class="phone-quad-card" onclick="orderWhatsAppDirect('prod-004')">
-          <div class="quad-img-wrap">
+        <div class="quad-phone-card" onclick="orderWhatsAppDirect('prod-004')">
+          <div class="quad-img-box">
             <img src="https://images.unsplash.com/photo-1511707171634-5f897ff02aa9?auto=format&fit=crop&w=600&q=80" alt="Vivo V40 Pro">
           </div>
-          <span class="quad-brand">ZEISS Portrait</span>
-          <h3 class="quad-title">Vivo V40 Pro 5G</h3>
-          <div class="quad-price">₹49,999</div>
-          <button class="quad-action-btn">Explore on WhatsApp →</button>
+          <span class="quad-brand-tag">ZEISS Portrait</span>
+          <h3 class="quad-device-title">Vivo V40 Pro 5G</h3>
+          <div class="quad-price-tag">₹49,999</div>
+          <button class="btn-quad-whatsapp">Explore on WhatsApp →</button>
         </div>
       </div>
     </div>
   </section>
 
   <!-- ========================================================================= -->
-  <!-- 4. 30-MINUTE PRECISION REPAIR LAB (CRACK TO PRISTINE TRANSFORMATION) -->
+  <!-- 5. 30-MINUTE PRECISION REPAIR LAB (CRACK TO OLED & BATTERY SURGE) -->
   <!-- ========================================================================= -->
-  <section class="repair-film-stage" id="repair">
-    <div class="container-wide">
-      <div class="repair-transformation-box">
-        <!-- Interactive Screen Fix Demonstrator -->
-        <div style="position:relative;">
-          <div class="repair-glass-demo-screen">
-            <img id="repairScreenImg" src="https://images.unsplash.com/photo-1592750475338-74b7b21085ab?auto=format&fit=crop&w=600&q=80" alt="Restored OLED Screen">
-            <div class="repair-crack-overlay" id="crackOverlay"></div>
-            <div class="battery-counter-pill" id="batteryBoostPill">
-              🔋 Battery Health: <span id="batteryCounterVal">100%</span> (OEM Grade)
-            </div>
+  <section class="repair-lab-section" id="repair">
+    <div class="container-editorial">
+      <div class="repair-split-box">
+        <!-- Interactive Screen Demonstrator -->
+        <div class="repair-screen-demonstrator">
+          <img id="repairScreenImg" src="https://images.unsplash.com/photo-1592750475338-74b7b21085ab?auto=format&fit=crop&w=600&q=80" alt="Restored Smartphone">
+          <div class="crack-overlay-layer" id="crackOverlay"></div>
+          <div class="repair-live-pill" id="batteryBoostPill">
+            🔋 Battery Health: <span id="batteryCounterVal" style="color:#22c55e;">100%</span> (OEM Grade)
           </div>
         </div>
 
-        <!-- Repair Story & Actions -->
+        <!-- Copy & Action Controls -->
         <div>
-          <span class="section-hero-kicker">ON-SPOT RESTORATION</span>
-          <h2 class="section-hero-title" style="font-size:2.8rem; margin-bottom:1rem;">30 MINUTES.<br>GOOD AS NEW.</h2>
-          <p style="color:var(--text-dim); font-size:1.1rem; line-height:1.7; margin-bottom:2.5rem;">
-            Watch cracked screens disappear and degraded batteries surge to 100% health in under 30 minutes at our Garud Complex technician lab. Genuine OEM component warranty included.
+          <span class="editorial-kicker">ON-SPOT COMPONENT ENGINEERING</span>
+          <h2 class="editorial-title" style="font-size:2.8rem; margin-bottom:1rem;">30 MINUTES.<br>GOOD AS NEW.</h2>
+          <p style="color:var(--text-body); font-size:1.1rem; line-height:1.7; margin-bottom:2.25rem;">
+            Watch cracked glass vanish and degraded batteries surge back to 100% health in under 30 minutes at our Garud Complex repair lab. Genuine OEM component warranty included with every service.
           </p>
 
-          <div style="display:flex; gap:0.75rem; margin-bottom:2.5rem;">
-            <button class="finish-btn active" onclick="simulateRepairAnimation('screen')">📱 Screen Replacement</button>
-            <button class="finish-btn" onclick="simulateRepairAnimation('battery')">🔋 100% Battery Boost</button>
+          <div style="display:flex; gap:0.75rem; margin-bottom:2.5rem; flex-wrap:wrap;">
+            <button class="finish-btn active" id="btnSimScreen" onclick="simulateRepairAnimation('screen')">📱 Screen Replacement Demo</button>
+            <button class="finish-btn" id="btnSimBatt" onclick="simulateRepairAnimation('battery')">🔋 100% Battery Boost Demo</button>
           </div>
 
-          <a href="https://wa.me/919876543210?text=Hello%20Mobile%20Station%20Repair%20Lab!%20I%20want%20to%20reserve%20an%20on-spot%2030-min%20repair%20slot." target="_blank" rel="noopener noreferrer" class="btn-hero-solid">
+          <a href="https://wa.me/919876543210?text=Hello%20Mobile%20Station%20Repair%20Lab!%20I%20want%20to%20reserve%20an%20on-spot%2030-min%20repair%20slot." target="_blank" rel="noopener noreferrer" class="btn-primary-solid">
             <span>Reserve 30-Min Repair Slot</span>
           </a>
         </div>
@@ -259,60 +258,60 @@
   </section>
 
   <!-- ========================================================================= -->
-  <!-- 5. HARDWARE TRADE-IN DIAGNOSTIC SCANNER -->
+  <!-- 6. HARDWARE TRADE-IN DIAGNOSTIC SCANNER -->
   <!-- ========================================================================= -->
-  <section class="trade-scanner-chamber" id="trade">
-    <div class="container-wide">
-      <div class="scanner-chamber-chassis">
-        <div style="text-align:center; max-width:600px; margin:0 auto 2rem;">
-          <span class="section-hero-kicker">INSTANT TRADE-IN VALUATION</span>
-          <h2 class="section-hero-title" style="font-size:2.8rem;">PLACE YOUR PHONE.</h2>
-          <p style="color:var(--text-dim); font-size:1.05rem; margin-top:0.5rem;">
-            Select your current smartphone brand to trigger the live hardware diagnostic scan:
+  <section class="trade-scanner-section" id="trade">
+    <div class="container-editorial">
+      <div class="scanner-monolith-box">
+        <div style="text-align:center; max-width:620px; margin:0 auto 2.5rem;">
+          <span class="editorial-kicker">INSTANT TRADE-IN VALUATION</span>
+          <h2 class="editorial-title" style="font-size:2.8rem;">PLACE YOUR PHONE.</h2>
+          <p style="color:var(--text-body); font-size:1.05rem; margin-top:0.5rem;">
+            Select your current smartphone model to trigger the live hardware diagnostic evaluation:
           </p>
         </div>
 
         <div style="display:grid; grid-template-columns:1fr 1fr; gap:1.5rem;">
           <div>
-            <label style="font-size:0.8rem; font-weight:800; color:var(--text-dim); display:block; margin-bottom:0.4rem; text-transform:uppercase;">Select Existing Brand</label>
-            <select id="tradeScanBrand" class="finish-btn" style="width:100%; border:1px solid var(--border-dark); background:#101218; color:#fff;" onchange="triggerScannerSequence()">
-              <option value="Apple">Apple iPhone (11 / 12 / 13 / 14 / 15 Series)</option>
-              <option value="Samsung">Samsung Galaxy (S Series / Note / Ultra)</option>
-              <option value="OnePlus">OnePlus (9 / 10 / 11 / 12 Series)</option>
+            <label style="font-size:0.8rem; font-weight:800; color:var(--text-muted); display:block; margin-bottom:0.4rem; text-transform:uppercase;">Select Existing Brand</label>
+            <select id="tradeScanBrand" class="finish-btn" style="width:100%; border:1px solid var(--border-subtle); background:#ffffff; color:var(--text-headline); padding:0.8rem 1.2rem;" onchange="triggerScannerSequence()">
+              <option value="Apple">Apple iPhone (11 / 12 / 13 / 14 / 15 / 16 Series)</option>
+              <option value="Samsung">Samsung Galaxy (S Series / Note / Ultra / Fold)</option>
+              <option value="OnePlus">OnePlus (9 / 10 / 11 / 12 Series / Open)</option>
               <option value="Vivo">Vivo / Oppo Flagship Series</option>
               <option value="Xiaomi">Xiaomi / Redmi Note Series</option>
             </select>
           </div>
 
           <div>
-            <label style="font-size:0.8rem; font-weight:800; color:var(--text-dim); display:block; margin-bottom:0.4rem; text-transform:uppercase;">Device Condition</label>
-            <select id="tradeScanCondition" class="finish-btn" style="width:100%; border:1px solid var(--border-dark); background:#101218; color:#fff;" onchange="triggerScannerSequence()">
+            <label style="font-size:0.8rem; font-weight:800; color:var(--text-muted); display:block; margin-bottom:0.4rem; text-transform:uppercase;">Device Condition</label>
+            <select id="tradeScanCondition" class="finish-btn" style="width:100%; border:1px solid var(--border-subtle); background:#ffffff; color:var(--text-headline); padding:0.8rem 1.2rem;" onchange="triggerScannerSequence()">
               <option value="flawless">Flawless (Scratchless, 100% Functional)</option>
-              <option value="good">Good (Light signs of use, all features working)</option>
-              <option value="cracked">Screen Glass Crack (Touch screen fully responsive)</option>
+              <option value="good">Good (Light signs of daily use, fully working)</option>
+              <option value="cracked">Screen Glass Crack (Touch screen working)</option>
             </select>
           </div>
         </div>
 
         <!-- Laser Scanning Viewport -->
-        <div class="scanner-beam-stage">
-          <div class="laser-scan-bar"></div>
+        <div class="scanner-laser-viewport">
+          <div class="laser-beam-line"></div>
           
-          <div class="diagnostic-checkmarks-track">
-            <div class="check-item-node"><span class="pass-mark">✓</span> Display & Touch Panel</div>
-            <div class="check-item-node"><span class="pass-mark">✓</span> Camera & Sensor Array</div>
-            <div class="check-item-node"><span class="pass-mark">✓</span> Battery Health Integrity</div>
-            <div class="check-item-node"><span class="pass-mark">✓</span> Chassis & Housing</div>
-            <div class="check-item-node"><span class="pass-mark">✓</span> Biometrics / FaceID</div>
-            <div class="check-item-node"><span class="pass-mark">✓</span> IMEI Verification</div>
+          <div class="scanner-checks-grid">
+            <div class="check-node"><span class="checkmark">✓</span> Display & Touch Panel</div>
+            <div class="check-node"><span class="checkmark">✓</span> Camera & Sensor Array</div>
+            <div class="check-node"><span class="checkmark">✓</span> Battery Health Integrity</div>
+            <div class="check-node"><span class="checkmark">✓</span> Chassis & Housing</div>
+            <div class="check-node"><span class="checkmark">✓</span> Biometrics / FaceID</div>
+            <div class="check-node"><span class="checkmark">✓</span> IMEI Verification</div>
           </div>
 
-          <div style="font-size:0.8rem; font-weight:800; letter-spacing:0.2em; text-transform:uppercase; color:rgba(255,255,255,0.5); text-align:center; margin-bottom:0.5rem;">YOUR ESTIMATED TRADE-IN VALUE</div>
+          <div style="font-size:0.8rem; font-weight:800; letter-spacing:0.2em; text-transform:uppercase; color:rgba(255,255,255,0.6); text-align:center; margin-bottom:0.5rem;">YOUR ESTIMATED TRADE-IN VALUE</div>
           <div class="scanner-value-ticker" id="scannerValTicker">₹42,500</div>
         </div>
 
         <div style="text-align:center;">
-          <a href="https://wa.me/919876543210?text=Hello%20Mobile%20Station!%20I%20want%20to%20claim%20my%20device%20trade-in%20quote." target="_blank" rel="noopener noreferrer" class="btn-hero-solid">
+          <a href="https://wa.me/919876543210?text=Hello%20Mobile%20Station!%20I%20want%20to%20claim%20my%20device%20trade-in%20quote." target="_blank" rel="noopener noreferrer" class="btn-primary-solid">
             <span>Lock In Value on WhatsApp</span>
           </a>
         </div>
@@ -321,63 +320,63 @@
   </section>
 
   <!-- ========================================================================= -->
-  <!-- 6. SHOWROOM MONOLITHS (MOBILE STATION & SIDDHI MARKETING) -->
+  <!-- 7. ARCHITECTURAL SHOWROOM PAVILIONS -->
   <!-- ========================================================================= -->
-  <section class="showrooms-monolith-section" id="showrooms">
-    <div class="container-wide">
-      <div class="showrooms-monolith-grid">
+  <section class="showrooms-section" id="showrooms">
+    <div class="container-editorial">
+      <div class="showrooms-dual-grid">
         <!-- Pavilion 1: Mobile Station -->
-        <div class="showroom-pavilion-box">
+        <div class="showroom-pavilion-card">
           <div>
-            <div class="pavilion-badge-film">FLAGSHIP RETAIL & REPAIR SHOWROOM</div>
-            <h3 class="pavilion-headline">Mobile Station</h3>
-            <p style="color:var(--text-dim); font-size:1.1rem; line-height:1.7; margin-bottom:2rem;">
+            <div class="pavilion-kicker-tag">FLAGSHIP RETAIL & REPAIR SHOWROOM</div>
+            <h3 class="pavilion-title">Mobile Station</h3>
+            <p style="color:var(--text-body); font-size:1.1rem; line-height:1.7; margin-bottom:1.5rem;">
               Garud Complex, In Front of Sony Novelty.<br>
               Open all 7 days from 10:00 AM to 9:30 PM.
             </p>
 
-            <div style="display:flex; flex-direction:column; gap:0.75rem; font-size:0.95rem; color:rgba(255,255,255,0.85);">
+            <div style="display:flex; flex-direction:column; gap:0.75rem; font-size:0.95rem; color:var(--text-body);">
               <div>✓ Sealed Brand New iPhones & Android Flagships</div>
               <div>✓ Certified Pre-Owned Units with 6 Months Warranty</div>
               <div>✓ 30-Minute On-Spot Precision Display & Battery Fix</div>
             </div>
           </div>
 
-          <div style="display:flex; gap:1rem; margin-top:2.5rem;">
-            <a href="tel:+919876543210" class="btn-hero-solid" style="padding:0.8rem 1.6rem; font-size:0.88rem;">📞 Call Store</a>
-            <a href="https://wa.me/919876543210" target="_blank" class="btn-hero-ghost" style="padding:0.8rem 1.6rem; font-size:0.88rem;">💬 WhatsApp</a>
+          <div style="display:flex; gap:1rem; margin-top:2.5rem; flex-wrap:wrap;">
+            <a href="tel:+919876543210" class="btn-primary-solid" style="padding:0.8rem 1.6rem; font-size:0.88rem;">📞 Call Store</a>
+            <a href="https://wa.me/919876543210" target="_blank" class="btn-secondary-outline" style="padding:0.8rem 1.6rem; font-size:0.88rem;">💬 WhatsApp</a>
           </div>
         </div>
 
         <!-- Pavilion 2: Siddhi Marketing (B2B Wholesale) -->
-        <div class="showroom-pavilion-box">
+        <div class="showroom-pavilion-card">
           <div>
-            <div class="pavilion-badge-film blue">WHOLESALE & B2B DISTRIBUTION HUB</div>
-            <h3 class="pavilion-headline">Siddhi Marketing</h3>
-            <p style="color:var(--text-dim); font-size:1.1rem; line-height:1.7;">
+            <div class="pavilion-kicker-tag" style="color:#0284c7;">WHOLESALE & B2B DISTRIBUTION HUB</div>
+            <h3 class="pavilion-title">Siddhi Marketing</h3>
+            <p style="color:var(--text-body); font-size:1.1rem; line-height:1.7;">
               Gali no. 4, Balaji Mandir Road • siddhimarketing2017@gmail.com<br>
               Direct dealer wholesale supply across regional retail networks.
             </p>
 
-            <div style="display:grid; grid-template-columns:repeat(3, 1fr); gap:1rem; margin:2rem 0; padding:1.5rem 0; border-top:1px solid var(--border-dark); border-bottom:1px solid var(--border-dark);">
-              <div>
-                <strong style="font-family:var(--font-title); font-size:1.8rem; color:#fff;" id="b2bPartnersCount">500+</strong>
-                <div style="font-size:0.75rem; color:var(--text-dim);">Retail Partners</div>
+            <div class="b2b-metrics-row">
+              <div class="b2b-metric-item">
+                <strong id="b2bPartnersCount">500+</strong>
+                <span>Retail Partners</span>
               </div>
-              <div>
-                <strong style="font-family:var(--font-title); font-size:1.8rem; color:#fff;" id="b2bUnitsCount">50K+</strong>
-                <div style="font-size:0.75rem; color:var(--text-dim);">Units Supplied</div>
+              <div class="b2b-metric-item">
+                <strong id="b2bUnitsCount">50K+</strong>
+                <span>Units Supplied</span>
               </div>
-              <div>
-                <strong style="font-family:var(--font-title); font-size:1.8rem; color:#fff;">Factory</strong>
-                <div style="font-size:0.75rem; color:var(--text-dim);">Direct Rates</div>
+              <div class="b2b-metric-item">
+                <strong>Factory</strong>
+                <span>Direct Rates</span>
               </div>
             </div>
           </div>
 
-          <div style="display:flex; gap:1rem;">
-            <a href="mailto:siddhimarketing2017@gmail.com" class="btn-hero-solid" style="background:#0284c7; color:#fff; padding:0.8rem 1.6rem; font-size:0.88rem;">✉️ Email B2B Desk</a>
-            <a href="https://wa.me/919876543211" target="_blank" class="btn-hero-ghost" style="padding:0.8rem 1.6rem; font-size:0.88rem;">💬 Wholesale WhatsApp</a>
+          <div style="display:flex; gap:1rem; flex-wrap:wrap;">
+            <a href="mailto:siddhimarketing2017@gmail.com" class="btn-primary-solid" style="background:#0284c7; color:#fff; padding:0.8rem 1.6rem; font-size:0.88rem;">✉️ Email B2B Desk</a>
+            <a href="https://wa.me/919876543211" target="_blank" class="btn-secondary-outline" style="padding:0.8rem 1.6rem; font-size:0.88rem;">💬 Wholesale WhatsApp</a>
           </div>
         </div>
       </div>
@@ -385,21 +384,21 @@
   </section>
 
   <!-- ========================================================================= -->
-  <!-- 7. MINIMAL LUXURY FOOTER -->
+  <!-- 8. MINIMAL LUXURY FOOTER -->
   <!-- ========================================================================= -->
-  <footer class="film-footer">
-    <div class="container-wide">
-      <div class="footer-monument-grid">
+  <footer class="minimal-footer">
+    <div class="container-editorial">
+      <div class="footer-main-grid">
         <div>
-          <div class="footer-brand-monolith">MOBILE STATION</div>
-          <p style="font-size:0.92rem; color:var(--text-dim); max-width:340px; line-height:1.7;">
-            The benchmark mobile showroom and wholesale distributor. Garud Complex & Balaji Mandir Road.
+          <div class="footer-brand-title">MOBILE <span style="color:var(--crimson);">STATION</span></div>
+          <p style="font-size:0.92rem; color:var(--text-body); max-width:340px; line-height:1.7;">
+            The premier smartphone showroom and certified wholesale distributor. Located at Garud Complex & Balaji Mandir Road.
           </p>
         </div>
 
         <div>
-          <div class="footer-col-title">Showrooms</div>
-          <ul class="footer-links-list">
+          <div class="footer-col-head">Showrooms</div>
+          <ul class="footer-links-clean">
             <li>Garud Complex (In Front of Sony Novelty)</li>
             <li>Gali no. 4, Balaji Mandir Road</li>
             <li>Mon - Sun (10 AM - 9:30 PM)</li>
@@ -407,8 +406,8 @@
         </div>
 
         <div>
-          <div class="footer-col-title">Showroom Hubs</div>
-          <ul class="footer-links-list">
+          <div class="footer-col-head">Experience Hubs</div>
+          <ul class="footer-links-clean">
             <li><a href="#world">Flagship Devices</a></li>
             <li><a href="#repair">30-Min Repair Lab</a></li>
             <li><a href="#trade">Trade-In Valuation</a></li>
@@ -417,8 +416,8 @@
         </div>
 
         <div>
-          <div class="footer-col-title">Direct Concierge</div>
-          <ul class="footer-links-list">
+          <div class="footer-col-head">Direct Concierge</div>
+          <ul class="footer-links-clean">
             <li>Retail: +91 98765 43210</li>
             <li>Wholesale: +91 98765 43211</li>
             <li>siddhimarketing2017@gmail.com</li>
@@ -428,7 +427,7 @@
 
       <div class="footer-bottom-bar">
         <div>© 2026 Mobile Station & Siddhi Marketing. All rights reserved.</div>
-        <div>Engineered as a Live 3D Smartphone Product Film.</div>
+        <div>Crafted with Pure Luxury Light Aesthetics & Procedural 3D WebGL.</div>
       </div>
     </div>
   </footer>
