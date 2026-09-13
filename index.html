@@ -1,0 +1,680 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="dark">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Mobile Station & Siddhi Marketing | Smartphones, Certified Pre-Owned, Gadgets & Repair Hub</title>
+  <meta name="description" content="Shop the latest 5G smartphones, Apple iPhones, certified refurbished devices, original accessories & fast repair service at Mobile Station (Garud Complex) & Siddhi Marketing (Balaji Mandir Road). Direct WhatsApp Ordering.">
+  
+  <!-- Google Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@400;500;600;700;800;900&family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+
+  <!-- Top Announcement Bar -->
+  <aside class="announcement-bar">
+    <div class="container announcement-content">
+      <div class="announcement-left">
+        <span>🔥 <strong>Mega Smartphone Fest:</strong> Extra ₹2,000 OFF on iPhone 16 & S24 Series!</span>
+        <span>⚡ <strong>Express Repair:</strong> 30-Min Screen & Battery Replacement at Garud Complex</span>
+      </div>
+      <div class="announcement-right">
+        <span>📍 <strong>2 Locations:</strong> Garud Complex & Balaji Mandir Road</span>
+        <a href="#branches">View Visiting Cards</a>
+      </div>
+    </div>
+  </aside>
+
+  <!-- Sticky Main Navbar -->
+  <header class="navbar">
+    <div class="container nav-container">
+      <!-- Brand Logo -->
+      <a href="#" class="brand-group" id="brand-logo-link">
+        <div class="brand-icon-wrapper">
+          <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <rect x="5" y="2" width="14" height="20" rx="2" ry="2"></rect>
+            <line x1="12" y1="18" x2="12.01" y2="18"></line>
+            <path d="M9 6h6"></path>
+          </svg>
+        </div>
+        <div class="brand-info">
+          <h1>Mobile Station</h1>
+          <div class="brand-sub">
+            <span class="dot"></span> & Siddhi Marketing Hub
+          </div>
+        </div>
+      </a>
+
+      <!-- Live Search Bar -->
+      <div class="nav-search">
+        <div class="search-input-wrapper">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="var(--text-dim)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <circle cx="11" cy="11" r="8"></circle>
+            <line x1="21" y1="21" x2="16.65" y2="16.65"></line>
+          </svg>
+          <input type="text" id="searchInput" placeholder="Search iPhone, Samsung, chargers, displays..." autocomplete="off">
+          <button class="search-btn" id="searchSubmitBtn" title="Search">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+              <polyline points="9 18 15 12 9 6"></polyline>
+            </svg>
+          </button>
+        </div>
+      </div>
+
+      <!-- Nav Actions -->
+      <div class="nav-actions">
+        <button class="theme-toggle-btn" id="themeToggleBtn" title="Toggle Light/Dark Theme">
+          <svg class="sun-icon" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <circle cx="12" cy="12" r="5"></circle>
+            <line x1="12" y1="1" x2="12" y2="3"></line>
+            <line x1="12" y1="21" x2="12" y2="23"></line>
+            <line x1="4.22" y1="4.22" x2="5.64" y2="5.64"></line>
+            <line x1="18.36" y1="18.36" x2="19.78" y2="19.78"></line>
+            <line x1="1" y1="12" x2="3" y2="12"></line>
+            <line x1="21" y1="12" x2="23" y2="12"></line>
+            <line x1="4.22" y1="19.78" x2="5.64" y2="18.36"></line>
+            <line x1="18.36" y1="5.64" x2="19.78" y2="4.22"></line>
+          </svg>
+        </button>
+
+        <a href="#repair-section" class="nav-link-btn">
+          <span>🔧 Phone Repair</span>
+        </a>
+
+        <!-- Cart / Bag Trigger Button -->
+        <button class="cart-trigger-btn" id="cartOpenBtn">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M6 2L3 6v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V6l-3-4z"></path>
+            <line x1="3" y1="6" x2="21" y2="6"></line>
+            <path d="M16 10a4 4 0 0 1-8 0"></path>
+          </svg>
+          <span>Inquiry Bag</span>
+          <span class="cart-badge" id="cartBadgeCount">0</span>
+        </button>
+
+        <!-- Direct WhatsApp Chat -->
+        <a href="https://wa.me/919876543210?text=Hello%20Mobile%20Station!%20I%20am%20visiting%20your%20website%20and%20want%20to%20inquire%20about%20smartphones%20and%20deals." target="_blank" rel="noopener noreferrer" class="whatsapp-nav-btn">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor">
+            <path d="M.057 24l1.687-6.163c-1.041-1.804-1.588-3.849-1.587-5.946.003-6.556 5.338-11.891 11.893-11.891 3.181.001 6.167 1.24 8.413 3.488 2.245 2.248 3.481 5.236 3.48 8.414-.003 6.557-5.338 11.892-11.893 11.892-1.99-.001-3.951-.5-5.688-1.448l-6.305 1.654zm6.597-3.807c1.676.995 3.276 1.591 5.392 1.592 5.448 0 9.886-4.434 9.889-9.885.002-5.462-4.415-9.89-9.881-9.892-5.452 0-9.887 4.434-9.889 9.884-.001 2.225.651 3.891 1.746 5.634l-.999 3.648 3.742-.981zm11.387-5.464c-.074-.124-.272-.198-.57-.347-.297-.149-1.758-.868-2.031-.967-.272-.099-.47-.149-.669.149-.198.297-.768.967-.941 1.165-.173.198-.347.223-.644.074-.297-.149-1.255-.462-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.297-.347.446-.521.151-.172.2-.296.3-.495.099-.198.05-.372-.025-.521-.075-.148-.669-1.611-.916-2.206-.242-.579-.487-.501-.669-.51l-.57-.01c-.198 0-.52.074-.792.372s-1.04 1.016-1.04 2.479 1.065 2.876 1.213 3.074c.149.198 2.095 3.2 5.076 4.487.709.306 1.263.489 1.694.626.712.226 1.36.194 1.872.118.571-.085 1.758-.719 2.006-1.413.248-.695.248-1.29.173-1.414z"/>
+          </svg>
+          <span>Chat on WhatsApp</span>
+        </a>
+      </div>
+    </div>
+  </header>
+
+  <!-- Secondary Category Navigation Strip -->
+  <nav class="category-strip">
+    <div class="container category-strip-inner" id="categoryTabs">
+      <!-- Injected via JavaScript -->
+    </div>
+  </nav>
+
+  <!-- Main Content Body -->
+  <main>
+    <!-- Hero Section with Hot Deals & Amazon-Style Showcase -->
+    <section class="hero-section">
+      <div class="container">
+        <div class="hero-grid">
+          <div class="hero-text-content">
+            <div class="hero-badge-row">
+              <span>⚡ AUTHORIZED RETAIL & WHOLESALE HUB</span>
+            </div>
+            <h1 class="hero-title">
+              Upgrade to the Latest <span class="gradient-text">5G Smartphones</span> & Gadgets
+            </h1>
+            <p class="hero-desc">
+              Welcome to <strong>Mobile Station</strong> & <strong>Siddhi Marketing</strong>. Get brand-new sealed iPhones, flagship Androids, certified pre-owned deals, original accessories, and instant WhatsApp ordering.
+            </p>
+
+            <div class="hero-highlights">
+              <div class="highlight-item">
+                <span class="icon">🛡️</span> 100% Genuine Box Packs
+              </div>
+              <div class="highlight-item">
+                <span class="icon">⚡</span> 30-Min Fast Screen Repair
+              </div>
+              <div class="highlight-item">
+                <span class="icon">💬</span> Direct WhatsApp Ordering
+              </div>
+              <div class="highlight-item">
+                <span class="icon">💳</span> 0% EMI & Exchange Offers
+              </div>
+            </div>
+
+            <div class="hero-cta-group">
+              <a href="#products-catalog" class="btn-primary">
+                <span>Explore Catalog</span>
+                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
+                  <line x1="5" y1="12" x2="19" y2="12"></line>
+                  <polyline points="12 5 19 12 12 19"></polyline>
+                </svg>
+              </a>
+              <a href="https://wa.me/919876543210?text=Hello%20Mobile%20Station,%20please%20send%20today's%20best%20smartphone%20price%20list%20and%20offers." target="_blank" rel="noopener noreferrer" class="btn-whatsapp-large">
+                <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor">
+                  <path d="M.057 24l1.687-6.163c-1.041-1.804-1.588-3.849-1.587-5.946.003-6.556 5.338-11.891 11.893-11.891 3.181.001 6.167 1.24 8.413 3.488 2.245 2.248 3.481 5.236 3.48 8.414-.003 6.557-5.338 11.892-11.893 11.892-1.99-.001-3.951-.5-5.688-1.448l-6.305 1.654zm6.597-3.807c1.676.995 3.276 1.591 5.392 1.592 5.448 0 9.886-4.434 9.889-9.885.002-5.462-4.415-9.89-9.881-9.892-5.452 0-9.887 4.434-9.889 9.884-.001 2.225.651 3.891 1.746 5.634l-.999 3.648 3.742-.981zm11.387-5.464c-.074-.124-.272-.198-.57-.347-.297-.149-1.758-.868-2.031-.967-.272-.099-.47-.149-.669.149-.198.297-.768.967-.941 1.165-.173.198-.347.223-.644.074-.297-.149-1.255-.462-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.297-.347.446-.521.151-.172.2-.296.3-.495.099-.198.05-.372-.025-.521-.075-.148-.669-1.611-.916-2.206-.242-.579-.487-.501-.669-.51l-.57-.01c-.198 0-.52.074-.792.372s-1.04 1.016-1.04 2.479 1.065 2.876 1.213 3.074c.149.198 2.095 3.2 5.076 4.487.709.306 1.263.489 1.694.626.712.226 1.36.194 1.872.118.571-.085 1.758-.719 2.006-1.413.248-.695.248-1.29.173-1.414z"/>
+                </svg>
+                <span>Get Today's Best Price</span>
+              </a>
+            </div>
+          </div>
+
+          <!-- Hero Spotlight Deal Card -->
+          <div class="hero-showcase-card">
+            <div class="deal-header">
+              <span class="deal-badge">🔥 DEAL OF THE DAY</span>
+              <div class="timer-box">
+                <span>Ends In:</span>
+                <span id="dealTimer">08h : 42m : 19s</span>
+              </div>
+            </div>
+
+            <div class="hero-product-preview">
+              <img src="https://images.unsplash.com/photo-1695048133142-1a20484d2569?auto=format&fit=crop&w=400&q=80" alt="iPhone 16 Pro Max Spotlight" class="hero-product-img">
+              <div class="hero-product-info">
+                <span style="font-size:0.75rem; color:#38bdf8; font-weight:700;">APPLE FLAGSHIP</span>
+                <h3>iPhone 16 Pro Max</h3>
+                <p style="font-size:0.85rem; color:var(--text-muted);">Titanium Design, A18 Pro, 48MP Camera</p>
+                <div class="hero-price-row">
+                  <span class="current-price">₹1,44,900</span>
+                  <span class="original-price">₹1,59,900</span>
+                  <span class="save-amount">Save ₹15,000</span>
+                </div>
+                <button class="btn-whatsapp-card" style="width:100%; margin-top:0.6rem;" onclick="orderProductWhatsApp('prod-001')">
+                  ⚡ Order on WhatsApp
+                </button>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Two Main Branch Locations Banner -->
+    <section class="container" id="branch-overview">
+      <div class="branches-banner">
+        <div class="branch-mini-card">
+          <div class="branch-icon">🏬</div>
+          <div class="branch-text">
+            <h4>Mobile Station <span class="badge-tag" style="background:#2563eb; font-size:0.68rem;">Retail & Service</span></h4>
+            <p><strong>Address:</strong> Garud Complex, In front of Sony Novelty</p>
+            <div class="branch-links">
+              <a href="tel:+919876543210">📞 Call: +91 98765 43210</a>
+              <a href="https://wa.me/919876543210" target="_blank">💬 WhatsApp</a>
+              <a href="#branches">View Visiting Card &rarr;</a>
+            </div>
+          </div>
+        </div>
+
+        <div class="branch-mini-card">
+          <div class="branch-icon">🏢</div>
+          <div class="branch-text">
+            <h4>Siddhi Marketing <span class="badge-tag" style="background:#7c3aed; font-size:0.68rem;">Wholesale & B2B</span></h4>
+            <p><strong>Address:</strong> Gali no. 4, Balaji Mandir Road | Mail: siddhimarketing2017@gmail.com</p>
+            <div class="branch-links">
+              <a href="mailto:siddhimarketing2017@gmail.com">✉️ siddhimarketing2017@gmail.com</a>
+              <a href="https://wa.me/919876543211" target="_blank">💬 WhatsApp</a>
+              <a href="#branches">View Visiting Card &rarr;</a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Amazon-Style Catalog Section -->
+    <section class="container" id="products-catalog">
+      <div class="catalog-header">
+        <div class="catalog-title-area">
+          <h2 id="catalogHeading">📱 Smartphone & Gadget Catalog</h2>
+          <p id="catalogSubtitle">Showing all latest smartphones, refurbished certified devices & accessories</p>
+        </div>
+
+        <!-- Filter & Sorting Controls -->
+        <div class="filter-controls">
+          <select id="priceFilter" class="custom-select">
+            <option value="all">All Price Ranges</option>
+            <option value="under-15k">Under ₹15,000</option>
+            <option value="15k-35k">₹15,000 - ₹35,000</option>
+            <option value="35k-70k">₹35,000 - ₹70,000</option>
+            <option value="above-70k">Above ₹70,000 (Flagships)</option>
+          </select>
+
+          <select id="sortFilter" class="custom-select">
+            <option value="featured">Featured & Best Deals</option>
+            <option value="price-low">Price: Low to High</option>
+            <option value="price-high">Price: High to Low</option>
+            <option value="rating">Top Customer Ratings</option>
+            <option value="discount">Biggest Discounts</option>
+          </select>
+        </div>
+      </div>
+
+      <!-- Brand Filter Pills Row -->
+      <div class="brand-pills-row" id="brandPills">
+        <!-- Injected via JavaScript -->
+      </div>
+
+      <!-- Product Grid (Amazon/Flipkart Cards) -->
+      <div class="product-grid" id="productGridContainer">
+        <!-- Injected dynamically via JS -->
+      </div>
+    </section>
+
+    <!-- Express Phone Repair & Service Hub Section -->
+    <section class="repair-section" id="repair-section">
+      <div class="container">
+        <div class="section-title-center">
+          <span class="section-badge">⚡ EXPRESS REPAIR STATION</span>
+          <h2>Professional Phone Repair & Restoration</h2>
+          <p>Broken screen? Battery draining fast? Water damage? Our certified master technicians fix it in under 45 minutes with genuine parts & warranty.</p>
+        </div>
+
+        <div class="repair-grid" id="repairServicesGrid">
+          <!-- Injected via JS -->
+        </div>
+
+        <!-- Quick Repair WhatsApp Estimator Form -->
+        <div style="max-width:700px; margin:0 auto; background:var(--bg-card); padding:2rem; border-radius:var(--radius-lg); border:1px solid var(--border);">
+          <h3 style="font-family:var(--font-heading); margin-bottom:1rem; text-align:center;">⚡ Get Instant Repair Estimate on WhatsApp</h3>
+          <div style="display:grid; grid-template-columns:1fr 1fr; gap:1rem; margin-bottom:1rem;">
+            <div>
+              <label style="font-size:0.85rem; font-weight:600; color:var(--text-muted); display:block; margin-bottom:0.4rem;">Your Phone Model</label>
+              <input type="text" id="repairModelInput" class="form-input" placeholder="e.g. iPhone 13, Samsung S22, Redmi Note 12">
+            </div>
+            <div>
+              <label style="font-size:0.85rem; font-weight:600; color:var(--text-muted); display:block; margin-bottom:0.4rem;">Select Issue</label>
+              <select id="repairIssueSelect" class="form-select">
+                <option value="Broken Display / Touch Screen">Broken Display / Touch Screen</option>
+                <option value="Battery Draining / Dead Battery">Battery Draining / Dead Battery</option>
+                <option value="Water / Liquid Damage">Water / Liquid Damage</option>
+                <option value="Charging Port / Mic / Speaker">Charging Port / Mic / Speaker</option>
+                <option value="Camera Lens / Blurry Camera">Camera Lens / Blurry Camera</option>
+                <option value="Software / Bootloop / Pattern Lock">Software / Bootloop / Pattern Lock</option>
+              </select>
+            </div>
+          </div>
+          <button class="btn-whatsapp-large" style="width:100%; justify-content:center;" onclick="submitRepairInquiry()">
+            💬 Send Repair Inquiry on WhatsApp
+          </button>
+        </div>
+      </div>
+    </section>
+
+    <!-- Digital Visiting Card & Multi-Branch Section -->
+    <section class="visiting-cards-section" id="branches">
+      <div class="container">
+        <div class="section-title-center">
+          <span class="section-badge">🪪 DIGITAL VISITING CARDS & LOCATIONS</span>
+          <h2>Our Showrooms & Wholesale Distribution</h2>
+          <p>Tap below to instantly save contact cards, chat directly on WhatsApp, or get instant navigation directions to our stores.</p>
+        </div>
+
+        <div class="cards-container-grid">
+          <!-- Card 1: Mobile Station -->
+          <div class="digital-visiting-card">
+            <div>
+              <div class="card-branch-tag">📍 RETAIL SHOWROOM & SERVICE HUB</div>
+              <h3 class="card-brand-name">Mobile Station</h3>
+              <p class="card-tagline">Your Ultimate Smartphone & Gadget Destination</p>
+              
+              <div class="card-details-list">
+                <div class="detail-item">
+                  <span class="detail-icon">🏢</span>
+                  <div>
+                    <strong>Store Address:</strong>
+                    <p>Garud Complex, In front of Sony Novelty</p>
+                  </div>
+                </div>
+                <div class="detail-item">
+                  <span class="detail-icon">📞</span>
+                  <div>
+                    <strong>Phone / WhatsApp:</strong>
+                    <p>+91 98765 43210</p>
+                  </div>
+                </div>
+                <div class="detail-item">
+                  <span class="detail-icon">🕒</span>
+                  <div>
+                    <strong>Store Hours:</strong>
+                    <p>10:00 AM - 9:30 PM (Open 7 Days)</p>
+                  </div>
+                </div>
+                <div class="detail-item">
+                  <span class="detail-icon">✨</span>
+                  <div>
+                    <strong>Specialization:</strong>
+                    <p>New iPhones & Androids, Certified Pre-Owned, Instant Repair & Accessories</p>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <div class="card-actions-grid">
+              <a href="tel:+919876543210" class="btn-card-action btn-card-call">
+                📞 Call Store
+              </a>
+              <a href="https://wa.me/919876543210?text=Hello%20Mobile%20Station%20(Garud%20Complex),%20I%20am%20connecting%20via%20your%20digital%20visiting%20card." target="_blank" rel="noopener noreferrer" class="btn-card-action btn-card-whatsapp">
+                💬 WhatsApp
+              </a>
+              <button class="btn-card-action btn-card-vcf" onclick="downloadVCard('mobile-station')">
+                📥 Save Contact Card (.vcf)
+              </button>
+            </div>
+          </div>
+
+          <!-- Card 2: Siddhi Marketing -->
+          <div class="digital-visiting-card" style="border-top: 5px solid #7c3aed;">
+            <div>
+              <div class="card-branch-tag" style="background:rgba(124, 58, 237, 0.2); border-color:rgba(124, 58, 237, 0.4); color:#c084fc;">
+                📦 WHOLESALE & ENTERPRISE PARTNER
+              </div>
+              <h3 class="card-brand-name">Siddhi Marketing</h3>
+              <p class="card-tagline">Wholesale & Enterprise Distribution Partner</p>
+              
+              <div class="card-details-list">
+                <div class="detail-item">
+                  <span class="detail-icon">🏢</span>
+                  <div>
+                    <strong>Office / Warehouse Address:</strong>
+                    <p>Gali no. 4, Balaji Mandir Road, SIDDHI MARKETING</p>
+                  </div>
+                </div>
+                <div class="detail-item">
+                  <span class="detail-icon">✉️</span>
+                  <div>
+                    <strong>Official Email:</strong>
+                    <p>siddhimarketing2017@gmail.com</p>
+                  </div>
+                </div>
+                <div class="detail-item">
+                  <span class="detail-icon">📞</span>
+                  <div>
+                    <strong>Wholesale WhatsApp:</strong>
+                    <p>+91 98765 43211</p>
+                  </div>
+                </div>
+                <div class="detail-item">
+                  <span class="detail-icon">🕒</span>
+                  <div>
+                    <strong>Operating Hours:</strong>
+                    <p>10:00 AM - 8:30 PM (Mon - Sat)</p>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <div class="card-actions-grid">
+              <a href="mailto:siddhimarketing2017@gmail.com" class="btn-card-action btn-card-call" style="background:rgba(124, 58, 237, 0.2); border-color:rgba(124, 58, 237, 0.4); color:#d8b4fe;">
+                ✉️ Email Us
+              </a>
+              <a href="https://wa.me/919876543211?text=Hello%20Siddhi%20Marketing%20(Balaji%20Mandir%20Road),%20I%20am%20looking%20for%20wholesale%20distribution%20rates." target="_blank" rel="noopener noreferrer" class="btn-card-action btn-card-whatsapp">
+                💬 WhatsApp
+              </a>
+              <button class="btn-card-action btn-card-vcf" onclick="downloadVCard('siddhi-marketing')">
+                📥 Save Contact Card (.vcf)
+              </button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Verified Customer Reviews & Testimonials -->
+    <section class="reviews-section" id="reviews">
+      <div class="container">
+        <div class="section-title-center">
+          <span class="section-badge">⭐ 4.9/5 RATED BY 2,500+ CUSTOMERS</span>
+          <h2>What Our Happy Clients Say</h2>
+          <p>Read real experiences from buyers across Garud Complex and Balaji Mandir Road.</p>
+        </div>
+
+        <div class="reviews-grid" id="reviewsGrid">
+          <!-- Injected via JS -->
+        </div>
+
+        <div style="text-align:center;">
+          <button class="btn-secondary" onclick="openReviewModal()">
+            ✍️ Write a Customer Review
+          </button>
+        </div>
+      </div>
+    </section>
+
+    <!-- Direct WhatsApp Contact & Inquiry Form -->
+    <section class="contact-section" id="contact">
+      <div class="container">
+        <div class="contact-grid">
+          <div class="contact-info-box">
+            <span class="section-badge">💬 INSTANT ASSISTANCE</span>
+            <h3>Need Help Finding the Right Smartphone?</h3>
+            <p>Fill in your requirements below or ask any question. The form automatically formats a neat inquiry ticket and connects directly to our WhatsApp store representative!</p>
+
+            <div class="contact-perks-list">
+              <div class="contact-perk">
+                <div class="perk-icon-circle">⚡</div>
+                <div>Instant responses within 2 minutes on WhatsApp</div>
+              </div>
+              <div class="contact-perk">
+                <div class="perk-icon-circle">🏷️</div>
+                <div>Best price match & extra store discount vouchers</div>
+              </div>
+              <div class="contact-perk">
+                <div class="perk-icon-circle">🚚</div>
+                <div>Same-day store pickup & express local delivery</div>
+              </div>
+            </div>
+          </div>
+
+          <div class="inquiry-form-card">
+            <form id="whatsappContactForm" onsubmit="handleFormWhatsAppSubmit(event)">
+              <div class="form-group">
+                <label for="formName">Your Full Name</label>
+                <input type="text" id="formName" class="form-input" placeholder="e.g. Rahul Sharma" required>
+              </div>
+
+              <div class="form-group">
+                <label for="formBranch">Select Preferred Store / Branch</label>
+                <select id="formBranch" class="form-select">
+                  <option value="Mobile Station (Garud Complex - Retail & Repair)">Mobile Station (Garud Complex - Retail & Repair)</option>
+                  <option value="Siddhi Marketing (Balaji Mandir Road - Wholesale)">Siddhi Marketing (Balaji Mandir Road - Wholesale)</option>
+                </select>
+              </div>
+
+              <div class="form-group">
+                <label for="formInterest">What are you looking for?</label>
+                <select id="formInterest" class="form-select">
+                  <option value="Buying New 5G Smartphone">Buying New 5G Smartphone</option>
+                  <option value="Certified Pre-Owned / Refurbished Phone">Certified Pre-Owned / Refurbished Phone</option>
+                  <option value="Screen / Battery Phone Repair Service">Screen / Battery Phone Repair Service</option>
+                  <option value="Wholesale Bulk Mobile Accessories">Wholesale Bulk Mobile Accessories</option>
+                  <option value="Old Phone Exchange / Trade-in">Old Phone Exchange / Trade-in</option>
+                </select>
+              </div>
+
+              <div class="form-group">
+                <label for="formMessage">Specific Model or Question (Optional)</label>
+                <textarea id="formMessage" class="form-textarea" placeholder="e.g. Is iPhone 15 128GB Blue available in stock today? What is the best price with exchange?"></textarea>
+              </div>
+
+              <button type="submit" class="btn-whatsapp-large" style="width:100%; justify-content:center;">
+                <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor">
+                  <path d="M.057 24l1.687-6.163c-1.041-1.804-1.588-3.849-1.587-5.946.003-6.556 5.338-11.891 11.893-11.891 3.181.001 6.167 1.24 8.413 3.488 2.245 2.248 3.481 5.236 3.48 8.414-.003 6.557-5.338 11.892-11.893 11.892-1.99-.001-3.951-.5-5.688-1.448l-6.305 1.654zm6.597-3.807c1.676.995 3.276 1.591 5.392 1.592 5.448 0 9.886-4.434 9.889-9.885.002-5.462-4.415-9.89-9.881-9.892-5.452 0-9.887 4.434-9.889 9.884-.001 2.225.651 3.891 1.746 5.634l-.999 3.648 3.742-.981zm11.387-5.464c-.074-.124-.272-.198-.57-.347-.297-.149-1.758-.868-2.031-.967-.272-.099-.47-.149-.669.149-.198.297-.768.967-.941 1.165-.173.198-.347.223-.644.074-.297-.149-1.255-.462-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.297-.347.446-.521.151-.172.2-.296.3-.495.099-.198.05-.372-.025-.521-.075-.148-.669-1.611-.916-2.206-.242-.579-.487-.501-.669-.51l-.57-.01c-.198 0-.52.074-.792.372s-1.04 1.016-1.04 2.479 1.065 2.876 1.213 3.074c.149.198 2.095 3.2 5.076 4.487.709.306 1.263.489 1.694.626.712.226 1.36.194 1.872.118.571-.085 1.758-.719 2.006-1.413.248-.695.248-1.29.173-1.414z"/>
+                </svg>
+                <span>Send via WhatsApp</span>
+              </button>
+            </form>
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <!-- Product Quick View Modal -->
+  <div class="modal-overlay" id="quickViewModal">
+    <div class="modal-card">
+      <button class="modal-close-btn" onclick="closeQuickViewModal()" title="Close">✕</button>
+      <div class="modal-content-grid" id="quickViewContent">
+        <!-- Injected via JS -->
+      </div>
+    </div>
+  </div>
+
+  <!-- Write Review Modal -->
+  <div class="modal-overlay" id="reviewModal">
+    <div class="modal-card" style="max-width:500px; padding:2rem;">
+      <button class="modal-close-btn" onclick="closeReviewModal()">✕</button>
+      <h3 style="font-family:var(--font-heading); margin-bottom:0.5rem;">✍️ Write a Customer Review</h3>
+      <p style="font-size:0.85rem; color:var(--text-muted); margin-bottom:1.5rem;">Share your experience with Mobile Station & Siddhi Marketing.</p>
+      
+      <form onsubmit="handleReviewSubmit(event)">
+        <div class="form-group">
+          <label>Your Name</label>
+          <input type="text" id="reviewAuthor" class="form-input" placeholder="e.g. Rohit Patil" required>
+        </div>
+        <div class="form-group">
+          <label>Location / Branch</label>
+          <input type="text" id="reviewLoc" class="form-input" placeholder="e.g. Garud Complex Customer" required>
+        </div>
+        <div class="form-group">
+          <label>Product / Service Purchased</label>
+          <input type="text" id="reviewProd" class="form-input" placeholder="e.g. iPhone 15 or Screen Repair" required>
+        </div>
+        <div class="form-group">
+          <label>Rating</label>
+          <select id="reviewRating" class="form-select">
+            <option value="5">⭐⭐⭐⭐⭐ (5 Stars - Exceptional)</option>
+            <option value="4">⭐⭐⭐⭐ (4 Stars - Very Good)</option>
+            <option value="3">⭐⭐⭐ (3 Stars - Average)</option>
+          </select>
+        </div>
+        <div class="form-group">
+          <label>Your Review</label>
+          <textarea id="reviewText" class="form-textarea" placeholder="Tell us about the product quality, price, staff service..." required></textarea>
+        </div>
+        <button type="submit" class="btn-primary" style="width:100%; justify-content:center;">Submit Review</button>
+      </form>
+    </div>
+  </div>
+
+  <!-- Cart / Inquiry Drawer Overlay -->
+  <div class="cart-drawer-overlay" id="cartOverlay" onclick="closeCart()"></div>
+  <aside class="cart-drawer" id="cartDrawer">
+    <div class="cart-drawer-header">
+      <h3>
+        <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+          <path d="M6 2L3 6v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V6l-3-4z"></path>
+          <line x1="3" y1="6" x2="21" y2="6"></line>
+          <path d="M16 10a4 4 0 0 1-8 0"></path>
+        </svg>
+        Inquiry Bag (<span id="cartDrawerCount">0</span>)
+      </h3>
+      <button class="modal-close-btn" style="position:static;" onclick="closeCart()">✕</button>
+    </div>
+
+    <div class="cart-drawer-body" id="cartDrawerItems">
+      <!-- Injected via JS -->
+    </div>
+
+    <div class="cart-drawer-footer">
+      <div class="cart-subtotal-row">
+        <span>Estimated Total:</span>
+        <span id="cartSubtotal" style="color:#38bdf8; font-size:1.25rem;">₹0</span>
+      </div>
+      <button class="btn-whatsapp-large" style="width:100%; justify-content:center;" onclick="sendCartWhatsApp()">
+        <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor">
+          <path d="M.057 24l1.687-6.163c-1.041-1.804-1.588-3.849-1.587-5.946.003-6.556 5.338-11.891 11.893-11.891 3.181.001 6.167 1.24 8.413 3.488 2.245 2.248 3.481 5.236 3.48 8.414-.003 6.557-5.338 11.892-11.893 11.892-1.99-.001-3.951-.5-5.688-1.448l-6.305 1.654zm6.597-3.807c1.676.995 3.276 1.591 5.392 1.592 5.448 0 9.886-4.434 9.889-9.885.002-5.462-4.415-9.89-9.881-9.892-5.452 0-9.887 4.434-9.889 9.884-.001 2.225.651 3.891 1.746 5.634l-.999 3.648 3.742-.981zm11.387-5.464c-.074-.124-.272-.198-.57-.347-.297-.149-1.758-.868-2.031-.967-.272-.099-.47-.149-.669.149-.198.297-.768.967-.941 1.165-.173.198-.347.223-.644.074-.297-.149-1.255-.462-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.297-.347.446-.521.151-.172.2-.296.3-.495.099-.198.05-.372-.025-.521-.075-.148-.669-1.611-.916-2.206-.242-.579-.487-.501-.669-.51l-.57-.01c-.198 0-.52.074-.792.372s-1.04 1.016-1.04 2.479 1.065 2.876 1.213 3.074c.149.198 2.095 3.2 5.076 4.487.709.306 1.263.489 1.694.626.712.226 1.36.194 1.872.118.571-.085 1.758-.719 2.006-1.413.248-.695.248-1.29.173-1.414z"/>
+        </svg>
+        <span>Send Bag to WhatsApp</span>
+      </button>
+    </div>
+  </aside>
+
+  <!-- Floating WhatsApp Quick Button -->
+  <a href="https://wa.me/919876543210?text=Hello%20Mobile%20Station!%20I%20have%20an%20inquiry%20regarding%20smartphones%20and%20repair." target="_blank" rel="noopener noreferrer" class="floating-whatsapp-btn" title="Chat on WhatsApp">
+    <svg width="34" height="34" viewBox="0 0 24 24" fill="currentColor">
+      <path d="M.057 24l1.687-6.163c-1.041-1.804-1.588-3.849-1.587-5.946.003-6.556 5.338-11.891 11.893-11.891 3.181.001 6.167 1.24 8.413 3.488 2.245 2.248 3.481 5.236 3.48 8.414-.003 6.557-5.338 11.892-11.893 11.892-1.99-.001-3.951-.5-5.688-1.448l-6.305 1.654zm6.597-3.807c1.676.995 3.276 1.591 5.392 1.592 5.448 0 9.886-4.434 9.889-9.885.002-5.462-4.415-9.89-9.881-9.892-5.452 0-9.887 4.434-9.889 9.884-.001 2.225.651 3.891 1.746 5.634l-.999 3.648 3.742-.981zm11.387-5.464c-.074-.124-.272-.198-.57-.347-.297-.149-1.758-.868-2.031-.967-.272-.099-.47-.149-.669.149-.198.297-.768.967-.941 1.165-.173.198-.347.223-.644.074-.297-.149-1.255-.462-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.297-.347.446-.521.151-.172.2-.296.3-.495.099-.198.05-.372-.025-.521-.075-.148-.669-1.611-.916-2.206-.242-.579-.487-.501-.669-.51l-.57-.01c-.198 0-.52.074-.792.372s-1.04 1.016-1.04 2.479 1.065 2.876 1.213 3.074c.149.198 2.095 3.2 5.076 4.487.709.306 1.263.489 1.694.626.712.226 1.36.194 1.872.118.571-.085 1.758-.719 2.006-1.413.248-.695.248-1.29.173-1.414z"/>
+    </svg>
+  </a>
+
+  <!-- Toast Notification Container -->
+  <div class="toast-container" id="toastContainer"></div>
+
+  <!-- Footer -->
+  <footer class="footer">
+    <div class="container">
+      <div class="footer-grid">
+        <div class="footer-col">
+          <div class="brand-group" style="margin-bottom:1rem;">
+            <div class="brand-icon-wrapper">
+              <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <rect x="5" y="2" width="14" height="20" rx="2" ry="2"></rect>
+                <line x1="12" y1="18" x2="12.01" y2="18"></line>
+              </svg>
+            </div>
+            <div class="brand-info">
+              <h3 style="font-size:1.25rem; font-weight:800; color:#fff;">Mobile Station</h3>
+              <div class="brand-sub">& Siddhi Marketing</div>
+            </div>
+          </div>
+          <p style="font-size:0.88rem; line-height:1.6; margin-bottom:1rem;">
+            Premier smartphone retail showroom, certified pre-owned device center, original accessories & chip-level repair hub in Garud Complex & Balaji Mandir Road.
+          </p>
+          <p style="font-size:0.85rem; color:#38bdf8;">
+            ✉️ Email: <strong>siddhimarketing2017@gmail.com</strong>
+          </p>
+        </div>
+
+        <div class="footer-col">
+          <h4>Branch 1: Mobile Station</h4>
+          <ul class="footer-links">
+            <li>📍 Garud Complex, In front of Sony Novelty</li>
+            <li>📱 Retail Smartphones & Accessories</li>
+            <li>🔧 30-Min Fast Mobile Repair Hub</li>
+            <li>🕒 Open All 7 Days (10 AM - 9:30 PM)</li>
+            <li><a href="https://wa.me/919876543210" target="_blank">💬 Direct WhatsApp Chat</a></li>
+          </ul>
+        </div>
+
+        <div class="footer-col">
+          <h4>Branch 2: Siddhi Marketing</h4>
+          <ul class="footer-links">
+            <li>📍 Gali no. 4, Balaji Mandir Road</li>
+            <li>🏢 SIDDHI MARKETING Warehouse</li>
+            <li>📦 Wholesale & Bulk Distributor</li>
+            <li>✉️ siddhimarketing2017@gmail.com</li>
+            <li><a href="https://wa.me/919876543211" target="_blank">💬 Wholesale WhatsApp</a></li>
+          </ul>
+        </div>
+
+        <div class="footer-col">
+          <h4>Top Categories</h4>
+          <ul class="footer-links">
+            <li><a href="javascript:void(0)" onclick="setCategoryFilter('apple')">Apple iPhones (16 Pro Max, 15)</a></li>
+            <li><a href="javascript:void(0)" onclick="setCategoryFilter('flagship')">Samsung Galaxy S24 Ultra & Flagships</a></li>
+            <li><a href="javascript:void(0)" onclick="setCategoryFilter('refurbished')">Certified Pre-Owned 100% Tested</a></li>
+            <li><a href="javascript:void(0)" onclick="setCategoryFilter('accessories')">Original Chargers & MagSafe Cases</a></li>
+            <li><a href="#repair-section">Display & Battery Repair</a></li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="footer-bottom">
+        <div>
+          © 2026 <strong>Mobile Station & Siddhi Marketing</strong>. All Rights Reserved.
+        </div>
+        <div>
+          Designed for Ultra-Fast WhatsApp E-Commerce & Customer Satisfaction.
+        </div>
+      </div>
+    </div>
+  </footer>
+
+  <!-- Scripts -->
+  <script src="products-data.js"></script>
+  <script src="app.js"></script>
+</body>
+</html>
