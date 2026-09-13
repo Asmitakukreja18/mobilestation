@@ -349,7 +349,10 @@ img {
 }
 
 .hero-oversized-title .pink-accent {
-  color: var(--crimson-pink);
+  background: linear-gradient(135deg, #df1349 0%, #f43f5e 45%, #fb923c 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  display: inline-block;
 }
 
 .hero-editorial-subtext {
