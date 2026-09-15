@@ -343,10 +343,10 @@ const PRODUCTS = [
     display: "6.4\" Dynamic AMOLED 2X 120Hz",
     camera: "50MP OIS + 12MP Ultra-Wide + 8MP 3x Telephoto",
     battery: "4700 mAh Fast Charging",
-    image: "assets/phone.png",
+    image: "assets/samsung-s26-fe.png",
     colors: [
-      { name: "Blue Topaz", hex: "#3b587d", image: "assets/phone.png" },
-      { name: "Graphite", hex: "#262627", image: "assets/phone.png" }
+      { name: "Blue Topaz", hex: "#3b587d", image: "assets/samsung-s26-fe.png" },
+      { name: "Graphite", hex: "#262627", image: "assets/samsung-s26-fe.png" }
     ],
     storage: ["128GB", "256GB"],
     emi: "₹2,440/mo"
