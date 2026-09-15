@@ -2481,12 +2481,14 @@ img {
 
 
 /* =========================================================================
-   FOOTER
+   FOOTER (LUXURY CREAM SHOWROOM FOOTER)
 ========================================================================= */
 .site-footer {
-  background: #0d0205;
-  border-top: 1px solid rgba(255, 100, 130, 0.15);
+  background: #ebe0d5;
+  border-top: 1px solid rgba(215, 175, 155, 0.6);
   padding: 80px 0 32px;
+  position: relative;
+  z-index: 10;
 }
 
 .footer-top-row {
@@ -2501,26 +2503,30 @@ img {
 }
 
 .footer-bio {
-  font-size: 13px;
-  color: var(--text-muted);
+  font-size: 14px;
+  color: var(--text-secondary);
   line-height: 1.6;
   margin-bottom: 20px;
 }
 
 .footer-contact-item span {
   display: block;
-  font-size: 11px;
-  color: var(--text-muted);
+  font-size: 12px;
+  color: var(--text-secondary);
 }
 
 .footer-contact-item strong {
-  font-size: 15px;
-  color: var(--crimson-glow);
+  font-size: 18px;
+  color: var(--crimson-primary);
+  font-weight: 900;
+  display: block;
+  margin-top: 2px;
 }
 
 .footer-links-col h4 {
-  font-size: 15px;
-  color: #fff;
+  font-size: 16px;
+  color: #170d10;
+  font-weight: 800;
   margin-bottom: 18px;
 }
 
@@ -2532,33 +2538,36 @@ img {
 }
 
 .footer-links-col a {
-  font-size: 13px;
+  font-size: 14px;
   color: var(--text-secondary);
-  transition: color 0.2s;
-}
-
-.footer-links-col a:hover {
-  color: var(--crimson-glow);
-}
-
-.footer-trust-pill {
-  padding: 8px 14px;
-  border-radius: 20px;
-  background: rgba(229, 23, 68, 0.15);
-  border: 1px solid rgba(229, 23, 68, 0.35);
-  font-size: 11px;
-  font-weight: 700;
-  color: #ff859d;
+  transition: color 0.2s ease, transform 0.2s ease;
   display: inline-block;
 }
 
-.footer-bottom-bar {
+.footer-links-col a:hover {
+  color: var(--crimson-primary);
+  transform: translateX(4px);
+}
+
+.footer-trust-pill {
+  padding: 8px 16px;
+  border-radius: 20px;
+  background: rgba(229, 23, 68, 0.08);
+  border: 1px solid rgba(229, 23, 68, 0.25);
+  font-size: 12px;
+  font-weight: 800;
+  color: var(--crimson-primary);
+  display: inline-block;
+}
+
+.footer-bottom-bar,
+.footer-bottom-row {
   display: flex;
   justify-content: space-between;
   align-items: center;
   padding-top: 28px;
-  border-top: 1px solid rgba(255, 255, 255, 0.08);
-  font-size: 12px;
+  border-top: 1px solid rgba(215, 175, 155, 0.4);
+  font-size: 13px;
   color: var(--text-muted);
   flex-wrap: wrap;
   gap: 16px;
@@ -2569,8 +2578,13 @@ img {
   gap: 20px;
 }
 
+.footer-bottom-links a {
+  color: var(--text-secondary);
+  transition: color 0.2s;
+}
+
 .footer-bottom-links a:hover {
-  color: #fff;
+  color: var(--crimson-primary);
 }
 
 
