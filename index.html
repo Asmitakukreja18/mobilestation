@@ -1,1080 +1,755 @@
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
-    <meta charset="UTF-8">
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 
-    <meta name="viewport"
-          content="width=device-width, initial-scale=1.0">
+  <title>Mobile Station | Flagship Smartphones</title>
 
-    <title>Mobile Station — Flagship Smartphones</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 
-    <link rel="preconnect"
-          href="https://fonts.googleapis.com">
+  <link
+    href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Manrope:wght@500;600;700;800&display=swap"
+    rel="stylesheet"
+  />
 
-    <link rel="preconnect"
-          href="https://fonts.gstatic.com"
-          crossorigin>
-
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Manrope:wght@500;600;700;800&family=Outfit:wght@600;700;800;900&display=swap"
-          rel="stylesheet">
-
-    <link rel="stylesheet"
-          href="styles.css">
+  <link rel="stylesheet" href="styles.css" />
 </head>
-
 
 <body>
 
-
-<!-- =====================================================
-     NAVBAR
-===================================================== -->
+<!-- ================= NAVBAR ================= -->
 
 <header class="navbar">
 
-    <a href="#home"
-       class="logo">
+  <a href="#home" class="brand">
+    <div class="brand-mark">MS</div>
 
-        <div class="logo-box">
-            MS
-        </div>
-
-        <div class="logo-name">
-            <strong>MOBILE</strong>
-            <span>STATION</span>
-        </div>
-
-    </a>
-
-
-    <nav>
-
-        <a href="#home"
-           class="active">
-            Home
-        </a>
-
-        <a href="#story">
-            Story
-        </a>
-
-        <a href="#flagships">
-            Flagships
-        </a>
-
-        <a href="#schemes">
-            Schemes
-        </a>
-
-        <a href="#repair">
-            Repair Lab
-        </a>
-
-        <a href="#trade">
-            Trade-In
-        </a>
-
-        <a href="#showrooms">
-            Showrooms
-        </a>
-
-    </nav>
-
-
-    <div class="nav-right">
-
-        <button class="search-btn"
-                id="searchBtn"
-                title="Search">
-            ⌕
-        </button>
-
-        <button class="bag-btn"
-                id="bagBtn"
-                title="Showroom Bag">
-
-            Bag
-
-            <span id="bagCount">
-                0
-            </span>
-
-        </button>
-
-        <button class="whatsapp-top"
-                id="whatsappTop">
-
-            ◉ WhatsApp
-            <br>
-            Concierge
-
-        </button>
-
+    <div class="brand-text">
+      <strong>MOBILE</strong>
+      <span>STATION</span>
     </div>
+  </a>
 
+  <nav class="navigation">
+    <a href="#home" class="active">Home</a>
+    <a href="#story">Story</a>
+    <a href="#flagships">Flagships</a>
+    <a href="#schemes">Schemes</a>
+    <a href="#repair">Repair Lab</a>
+    <a href="#trade">Trade-In</a>
+    <a href="#showrooms">Showrooms</a>
+  </nav>
+
+  <div class="nav-actions">
+
+    <button class="search-btn" aria-label="Search">
+      ⌕
+    </button>
+
+    <button class="bag-button" id="openBag">
+      Bag
+      <span id="bagCount">0</span>
+    </button>
+
+    <button class="whatsapp-button" onclick="openWhatsApp()">
+      <span>◉</span>
+      WhatsApp
+      <small>Concierge</small>
+    </button>
+
+  </div>
 
 </header>
 
 
+<!-- ================= HERO ================= -->
 
-<!-- =====================================================
-     HERO
-===================================================== -->
+<section class="hero" id="home">
 
-<main>
+  <!-- Architectural background -->
+  <div class="architecture">
 
-<section class="hero"
-         id="home">
+    <div class="ceiling"></div>
 
+    <div class="left-wall"></div>
 
-    <!-- ARCHITECTURAL BACKGROUND -->
+    <div class="right-wall"></div>
 
-    <div class="showroom-bg">
+    <div class="red-columns">
+      <i></i>
+      <i></i>
+      <i></i>
+      <i></i>
+      <i></i>
+      <i></i>
+    </div>
 
-        <div class="back-wall"></div>
+    <div class="giant-circle">
+      <div></div>
+    </div>
 
-        <div class="left-architecture"></div>
+    <div class="ambient ambient-one"></div>
+    <div class="ambient ambient-two"></div>
 
-        <div class="right-architecture"></div>
+    <div class="floor">
 
-        <div class="vertical-lines"></div>
+      <div class="floor-glow glow-one"></div>
+      <div class="floor-glow glow-two"></div>
 
-        <div class="giant-arch">
+      <div class="floor-lines">
+        <i></i>
+        <i></i>
+        <i></i>
+      </div>
 
-            <div class="arch-glow"></div>
+    </div>
 
-        </div>
-
-
-        <!-- Ambient light -->
-
-        <div class="red-light red-light-1"></div>
-
-        <div class="red-light red-light-2"></div>
-
-        <div class="red-light red-light-3"></div>
-
-
-        <!-- Background plants -->
-
-        <div class="plant plant-left">
-            🌿
-        </div>
-
-        <div class="plant plant-right">
-            🌿
-        </div>
+  </div>
 
 
-        <!-- FLOOR -->
+  <!-- ================= LEFT CONTENT ================= -->
 
-        <div class="floor">
+  <div class="hero-copy">
 
-            <div class="floor-line line-1"></div>
-            <div class="floor-line line-2"></div>
-            <div class="floor-line line-3"></div>
+    <div class="eyebrow">
+      THE ALL NEW
+    </div>
 
-        </div>
+    <h1>
+      iPhone 18
+      <strong>Pro Max</strong>
+    </h1>
+
+    <p>
+      Power. Beauty. Beyond.
+    </p>
+
+    <div class="flagship-tag">
+      <span></span>
+      Latest Flagship
+    </div>
+
+  </div>
+
+
+  <!-- ================= PHONE STAGE ================= -->
+
+  <div class="phone-scene" id="phoneScene">
+
+    <div class="phone-halo"></div>
+
+    <!-- Orbit -->
+    <div class="orbit orbit-a"></div>
+    <div class="orbit orbit-b"></div>
+    <div class="orbit orbit-c"></div>
+
+    <!-- glowing electric particles -->
+    <div class="energy-dot dot-one"></div>
+    <div class="energy-dot dot-two"></div>
+    <div class="energy-dot dot-three"></div>
+
+    <!-- ACTUAL PHONE -->
+    <div class="phone-container" id="phoneContainer">
+
+      <img
+        src="assets/phone.png"
+        class="phone-image"
+        id="phoneImage"
+        alt="iPhone 18 Pro Max"
+      />
+
+    </div>
+
+    <!-- pedestal -->
+    <div class="pedestal">
+
+      <div class="pedestal-top"></div>
+
+      <div class="pedestal-ring"></div>
+
+    </div>
+
+    <!-- reflection -->
+    <div class="reflection"></div>
+
+  </div>
+
+
+  <!-- ================= PRODUCT PANEL ================= -->
+
+  <aside class="product-panel">
+
+    <div class="product-heading">
+
+      <span class="apple"></span>
+
+      <span id="productName">
+        iPhone 18 Pro Max
+      </span>
+
+    </div>
+
+    <div class="latest">
+      Latest Flagship
+    </div>
+
+    <div class="price">
+      <strong id="productPrice">₹1,79,900</strong>
+      <span>onwards</span>
+    </div>
+
+
+    <div class="option-title">
+      Storage
+    </div>
+
+    <div class="storage-options">
+
+      <button class="storage active">256GB</button>
+      <button class="storage">512GB</button>
+      <button class="storage">1TB</button>
+      <button class="storage">2TB</button>
 
     </div>
 
 
+    <div class="colour-selector">
 
-    <!-- LEFT CONTENT -->
+      <button class="colour active red" title="Deep Red"></button>
+      <button class="colour cream" title="Champagne"></button>
+      <button class="colour silver" title="Silver"></button>
+      <button class="colour black" title="Graphite"></button>
 
-    <div class="hero-content">
-
-        <div class="eyebrow">
-            THE ALL NEW
-        </div>
-
-
-        <h1 id="heroTitle">
-            iPhone 18 Pro Max
-        </h1>
-
-
-        <p class="hero-subtitle">
-            Power. Beauty. Beyond.
-        </p>
-
-
-        <div class="flagship-label">
-
-            <span></span>
-
-            Latest Flagship
-
-        </div>
+      <span id="colourName">
+        Deep Red
+      </span>
 
     </div>
 
 
+    <button class="add-bag" id="addBag">
 
-    <!-- PHONE AREA -->
+      <span>♧</span>
 
-    <div class="phone-stage">
+      Add to Bag
 
-
-        <!-- Energy orbit -->
-
-        <div class="orbit orbit-1"></div>
-
-        <div class="orbit orbit-2"></div>
-
-        <div class="orbit orbit-3"></div>
+    </button>
 
 
-        <!-- Glow behind phone -->
+    <div class="contact-actions">
 
-        <div class="phone-glow"></div>
+      <button
+        class="whatsapp-small"
+        onclick="openWhatsApp()"
+      >
+        ◉ Chat on WhatsApp
+      </button>
 
+      <button
+        class="callback-small"
+        id="callbackButton"
+      >
+        ☎ Request Callback
+      </button>
 
-        <!-- Actual phone image -->
+    </div>
 
-        <div class="phone-wrapper"
-             id="phoneWrapper">
-
-            <img
-                id="heroPhone"
-                class="hero-phone"
-                src="assets/phone.png"
-                alt="Latest smartphone"
-            >
-
-        </div>
-
-
-        <!-- Platform -->
-
-        <div class="display-platform">
-
-            <div class="platform-glow"></div>
-
-        </div>
+  </aside>
 
 
-        <!-- Phone reflection -->
+  <!-- ================= SPECS ================= -->
 
-        <div class="phone-reflection"
-             id="phoneReflection">
-        </div>
+  <div class="specs">
 
+    <div class="spec">
+
+      <div class="spec-icon">◈</div>
+
+      <strong>A20 Pro</strong>
+
+      <span>Chip</span>
 
     </div>
 
 
+    <div class="spec">
 
-    <!-- PRODUCT CARD -->
+      <div class="spec-icon">▣</div>
 
-    <aside class="product-panel">
+      <strong>ProMotion</strong>
 
-
-        <div class="product-name">
-
-            <span class="apple-icon">
-                
-            </span>
-
-            <strong id="cardTitle">
-                iPhone 18 Pro Max
-            </strong>
-
-        </div>
-
-
-        <div class="latest-pill">
-            Latest Flagship
-        </div>
-
-
-        <div class="price-row">
-
-            <strong id="cardPrice">
-                ₹1,79,900
-            </strong>
-
-            <span>
-                onwards
-            </span>
-
-        </div>
-
-
-        <!-- STORAGE -->
-
-        <div class="option-label">
-            Storage
-        </div>
-
-        <div class="storage-options">
-
-            <button class="storage active">
-                256GB
-            </button>
-
-            <button class="storage">
-                512GB
-            </button>
-
-            <button class="storage">
-                1TB
-            </button>
-
-            <button class="storage">
-                2TB
-            </button>
-
-        </div>
-
-
-        <!-- COLORS -->
-
-        <div class="colour-row">
-
-            <button
-                class="colour active"
-                data-colour="red"
-                title="Deep Burgundy Red">
-            </button>
-
-            <button
-                class="colour cream"
-                data-colour="cream"
-                title="Titanium Cream">
-            </button>
-
-            <button
-                class="colour silver"
-                data-colour="silver"
-                title="Natural Titanium Silver">
-            </button>
-
-            <button
-                class="colour black"
-                data-colour="black"
-                title="Space Black">
-            </button>
-
-            <span id="colourName">
-                Deep Red
-            </span>
-
-        </div>
-
-
-        <!-- ADD BAG -->
-
-        <button class="add-bag"
-                id="addBag">
-
-            <span>
-                🛍
-            </span>
-
-            Add to Bag
-
-        </button>
-
-
-        <!-- CONTACT -->
-
-        <div class="contact-buttons">
-
-            <button
-                class="chat-whatsapp"
-                id="heroWhatsapp">
-
-                ◉
-                Chat on WhatsApp
-
-            </button>
-
-
-            <button
-                class="callback"
-                id="callbackBtn">
-
-                ☎
-                Request Callback
-
-            </button>
-
-        </div>
-
-
-    </aside>
-
-
-
-    <!-- BOTTOM SPECS -->
-
-    <div class="hero-specs">
-
-
-        <div class="spec">
-
-            <b>◈</b>
-
-            <strong>
-                A20 Pro
-            </strong>
-
-            <span>
-                Chip
-            </span>
-
-        </div>
-
-
-        <div class="spec">
-
-            <b>▣</b>
-
-            <strong>
-                ProMotion
-            </strong>
-
-            <span>
-                120Hz
-            </span>
-
-        </div>
-
-
-        <div class="spec">
-
-            <b>◎</b>
-
-            <strong>
-                48MP
-            </strong>
-
-            <span>
-                Camera
-            </span>
-
-        </div>
-
-
-        <div class="spec">
-
-            <b>▰</b>
-
-            <strong>
-                All-Day
-            </strong>
-
-            <span>
-                Battery
-            </span>
-
-        </div>
-
+      <span>120Hz</span>
 
     </div>
 
 
+    <div class="spec">
 
-    <!-- SCROLL -->
+      <div class="spec-icon">◎</div>
 
-    <div class="scroll-indicator">
+      <strong>48MP</strong>
 
-        <div class="scroll-icon">
-            ↓
-        </div>
-
-        <span>
-            Scroll to explore
-        </span>
-
-        <div class="scroll-line"></div>
+      <span>Camera</span>
 
     </div>
 
 
+    <div class="spec">
 
-    <!-- PRODUCT THUMBNAILS -->
+      <div class="spec-icon">▰</div>
 
-    <div class="product-switcher">
+      <strong>All-Day</strong>
 
-        <button class="switch-arrow" id="prevThumb">
-            ‹
-        </button>
-
-        <button class="product-thumb active" data-index="0" title="iPhone 18 Pro Max">
-            <img src="assets/phone.png" alt="iPhone 18 Pro Max">
-        </button>
-
-        <button class="product-thumb" data-index="1" title="Galaxy S26 Ultra">
-            <img src="https://m.media-amazon.com/images/I/71RVuWl+CeL._SL1500_.jpg" alt="Galaxy S26 Ultra">
-        </button>
-
-        <button class="product-thumb" data-index="2" title="Pixel 11 Pro XL">
-            <img src="https://m.media-amazon.com/images/I/71x4xQ7c2GL._SL1500_.jpg" alt="Pixel 11 Pro XL">
-        </button>
-
-        <button class="product-thumb" data-index="3" title="OnePlus 13 5G">
-            <img src="https://m.media-amazon.com/images/I/717Qo4MH97L._SL1500_.jpg" alt="OnePlus 13">
-        </button>
-
-        <button class="switch-arrow" id="nextThumb">
-            ›
-        </button>
+      <span>Battery</span>
 
     </div>
 
+  </div>
+
+
+  <!-- ================= SCROLL ================= -->
+
+  <div class="scroll-explore">
+
+    <div class="scroll-icon">
+      ↓
+    </div>
+
+    <span>Scroll to explore</span>
+
+    <div class="scroll-line"></div>
+
+  </div>
+
+
+  <!-- ================= THUMBNAILS ================= -->
+
+  <div class="phone-thumbnails">
+
+    <button aria-label="Previous image">‹</button>
+
+    <div class="thumbnail active">
+      <img src="assets/phone.png" alt="Front angle view" />
+    </div>
+
+    <div class="thumbnail">
+      <img src="assets/phone.png" alt="Side angle view" />
+    </div>
+
+    <div class="thumbnail">
+      <img src="assets/phone.png" alt="Back angle view" />
+    </div>
+
+    <div class="thumbnail">
+      <img src="assets/phone.png" alt="Dynamic island view" />
+    </div>
+
+    <button aria-label="Next image">›</button>
+
+  </div>
 
 </section>
 
 
+<!-- ================= STORY ================= -->
 
-<!-- =====================================================
-     STORY
-===================================================== -->
+<section class="section story" id="story">
 
-<section class="content-section"
-         id="story">
+  <div class="section-label">
+    MOBILE STATION
+  </div>
+
+  <h2>
+    More than a phone.
+    <span>It's your next move.</span>
+  </h2>
+
+  <p>
+    Discover flagship smartphones, premium accessories,
+    expert advice and trusted after-sales support.
+  </p>
+
+</section>
+
+
+<!-- ================= FLAGSHIPS ================= -->
+
+<section class="section flagships" id="flagships">
+
+  <div class="section-top">
+
+    <div>
+      <div class="section-label">
+        THE COLLECTION
+      </div>
+
+      <h2>
+        Latest <span>Flagships.</span>
+      </h2>
+    </div>
+
+    <button class="outline-button">
+      View All →
+    </button>
+
+  </div>
+
+
+  <div class="phone-grid">
+
+    <article class="phone-card">
+
+      <div class="card-image red-card">
+        <img src="assets/phone.png" alt="iPhone 18 Pro Max" />
+      </div>
+
+      <h3>iPhone 18 Pro Max</h3>
+
+      <p>Latest Apple flagship</p>
+
+      <div class="card-bottom">
+
+        <strong>₹1,79,900</strong>
+
+        <button onclick="addProduct('iPhone 18 Pro Max',179900)">
+          Add to Bag
+        </button>
+
+      </div>
+
+    </article>
+
+
+    <article class="phone-card">
+
+      <div class="card-image dark-card">
+        <img src="assets/phone.png" alt="Galaxy S26 Ultra" />
+      </div>
+
+      <h3>Galaxy S26 Ultra</h3>
+
+      <p>Ultimate Android flagship</p>
+
+      <div class="card-bottom">
+
+        <strong>₹1,39,999</strong>
+
+        <button onclick="addProduct('Galaxy S26 Ultra',139999)">
+          Add to Bag
+        </button>
+
+      </div>
+
+    </article>
+
+
+    <article class="phone-card">
+
+      <div class="card-image cream-card">
+        <img src="assets/phone.png" alt="Pixel 11 Pro XL" />
+      </div>
+
+      <h3>Pixel 11 Pro XL</h3>
+
+      <p>AI-powered flagship</p>
+
+      <div class="card-bottom">
+
+        <strong>₹1,24,999</strong>
+
+        <button onclick="addProduct('Pixel 11 Pro XL',124999)">
+          Add to Bag
+        </button>
+
+      </div>
+
+    </article>
+
+  </div>
+
+</section>
+
+
+<!-- ================= SCHEMES ================= -->
+
+<section class="section schemes" id="schemes">
+
+  <div class="section-label">
+    SMARTER WAYS TO BUY
+  </div>
+
+  <h2>
+    Upgrade without
+    <span>the compromise.</span>
+  </h2>
+
+  <div class="scheme-grid">
+
+    <article>
+      <div>↻</div>
+      <h3>Exchange</h3>
+      <p>
+        Get value for your old smartphone
+        when upgrading.
+      </p>
+    </article>
+
+    <article>
+      <div>%</div>
+      <h3>Easy EMI</h3>
+      <p>
+        Flexible payment options for
+        your next flagship.
+      </p>
+    </article>
+
+    <article>
+      <div>✦</div>
+      <h3>Exclusive Offers</h3>
+      <p>
+        Unlock special showroom offers
+        and deals.
+      </p>
+    </article>
+
+  </div>
+
+</section>
+
+
+<!-- ================= REPAIR ================= -->
+
+<section class="repair" id="repair">
+
+  <div class="repair-circle">
+    MS
+  </div>
+
+  <div>
 
     <div class="section-label">
-        MOBILE STATION
+      REPAIR LAB
     </div>
 
     <h2>
-        More than a phone.
-        <span>It's your next move.</span>
+      Your phone.
+      <span>Our expertise.</span>
     </h2>
 
     <p>
-        Discover sealed flagships in a cinematic architectural showroom built around the way
-        you actually shop — rotate in 3D, customize your storage, choose your finish, add to bag, or talk
-        directly to our showroom specialists on WhatsApp.
+      Professional diagnostics, repairs
+      and genuine replacement support.
     </p>
 
-</section>
+    <button class="light-button">
+      Book a Repair →
+    </button>
 
-
-
-<!-- =====================================================
-     FLAGSHIPS
-===================================================== -->
-
-<section class="flagships"
-         id="flagships">
-
-    <div class="section-heading">
-
-        <div>
-            <div class="section-label">
-                THE COLLECTION
-            </div>
-
-            <h2>
-                Latest <span>Flagships.</span>
-            </h2>
-        </div>
-
-
-        <button class="view-all" onclick="document.getElementById('flagships').scrollIntoView({behavior:'smooth'})">
-            View All →
-        </button>
-
-    </div>
-
-
-    <div class="phones-grid">
-
-
-        <article class="phone-card">
-
-            <div class="phone-card-image">
-                <img src="assets/phone.png" alt="iPhone 18 Pro Max">
-            </div>
-
-            <h3>
-                iPhone 18 Pro Max
-            </h3>
-
-            <p>
-                A20 Pro Silicon • 48MP Quad Prism • 120Hz ProMotion
-            </p>
-
-            <div class="phone-card-bottom">
-
-                <strong>
-                    ₹1,79,900
-                </strong>
-
-                <button
-                    onclick="addProduct('iPhone 18 Pro Max', 179900, 'assets/phone.png')">
-                    Add to Bag
-                </button>
-
-            </div>
-
-        </article>
-
-
-
-        <article class="phone-card">
-
-            <div class="phone-card-image silver-bg">
-                <img src="https://m.media-amazon.com/images/I/71RVuWl+CeL._SL1500_.jpg" alt="Galaxy S26 Ultra">
-            </div>
-
-            <h3>
-                Galaxy S26 Ultra
-            </h3>
-
-            <p>
-                Snapdragon 8 Gen 4 • 200MP Quad Zoom • S-Pen Integrated
-            </p>
-
-            <div class="phone-card-bottom">
-
-                <strong>
-                    ₹1,39,999
-                </strong>
-
-                <button
-                    onclick="addProduct('Galaxy S26 Ultra', 139999, 'https://m.media-amazon.com/images/I/71RVuWl+CeL._SL1500_.jpg')">
-                    Add to Bag
-                </button>
-
-            </div>
-
-        </article>
-
-
-
-        <article class="phone-card">
-
-            <div class="phone-card-image dark-bg">
-                <img src="https://m.media-amazon.com/images/I/71x4xQ7c2GL._SL1500_.jpg" alt="Pixel 11 Pro XL">
-            </div>
-
-            <h3>
-                Pixel 11 Pro XL
-            </h3>
-
-            <p>
-                Google Tensor G6 • Gemini Live AI • Super Actua OLED
-            </p>
-
-            <div class="phone-card-bottom">
-
-                <strong>
-                    ₹1,24,999
-                </strong>
-
-                <button
-                    onclick="addProduct('Pixel 11 Pro XL', 124999, 'https://m.media-amazon.com/images/I/71x4xQ7c2GL._SL1500_.jpg')">
-                    Add to Bag
-                </button>
-
-            </div>
-
-        </article>
-
-
-    </div>
+  </div>
 
 </section>
 
 
+<!-- ================= TRADE ================= -->
 
-<!-- =====================================================
-     SCHEMES
-===================================================== -->
+<section class="trade" id="trade">
 
-<section class="schemes"
-         id="schemes">
+  <div>
 
     <div class="section-label">
-        SMARTER WAYS TO BUY
+      TRADE-IN
     </div>
 
     <h2>
-        Upgrade without
-        <span>the compromise.</span>
+      Your old phone
+      <span>has value.</span>
     </h2>
 
+    <p>
+      Exchange your current device and
+      upgrade to the latest flagship.
+    </p>
 
-    <div class="scheme-grid">
+    <button>
+      Check Exchange Value →
+    </button>
 
-        <article>
-            <div class="scheme-icon">
-                ↻
-            </div>
-
-            <h3>
-                Exchange
-            </h3>
-
-            <p>
-                Bring your old phone and
-                unlock guaranteed on-spot exchange bonus at Garud Complex.
-            </p>
-        </article>
-
-
-        <article>
-            <div class="scheme-icon">
-                %
-            </div>
-
-            <h3>
-                Easy EMI
-            </h3>
-
-            <p>
-                0% Down Payment & No-Cost EMI via Bajaj Finserv, HDFC, ICICI, and TVS Credit.
-            </p>
-        </article>
-
-
-        <article>
-            <div class="scheme-icon">
-                ✦
-            </div>
-
-            <h3>
-                Exclusive Offers
-            </h3>
-
-            <p>
-                Get access to special showroom-only launch bundles, cases, and VIP Shield protection.
-            </p>
-        </article>
-
-    </div>
+  </div>
 
 </section>
 
 
+<!-- ================= SHOWROOMS ================= -->
 
-<!-- =====================================================
-     REPAIR
-===================================================== -->
+<section class="section showrooms" id="showrooms">
 
-<section class="repair"
-         id="repair">
+  <div class="section-label">
+    VISIT US
+  </div>
 
-    <div class="repair-visual">
+  <h2>
+    Experience it
+    <span>in person.</span>
+  </h2>
 
-        <div class="repair-circle">
-            MS
-        </div>
+  <div class="showroom-grid">
 
-    </div>
+    <article>
+      <h3>Mobile Station</h3>
 
+      <p>
+        Visit our showroom and experience
+        the latest smartphones hands-on.
+      </p>
 
-    <div class="repair-content">
+      <button>
+        Get Directions →
+      </button>
+    </article>
 
-        <div class="section-label">
-            REPAIR LAB
-        </div>
+    <article>
 
-        <h2>
-            Your phone.
-            <span>Our expertise.</span>
-        </h2>
+      <h3>Need help choosing?</h3>
 
-        <p>
-            On-spot 30-minute express screen, battery, and component engineering by certified technicians with transparent live diagnostics.
-        </p>
+      <p>
+        Talk directly with our smartphone experts.
+      </p>
 
-        <button class="light-button" onclick="openCallback()">
-            Book a Repair →
-        </button>
+      <button onclick="openWhatsApp()">
+        WhatsApp Us →
+      </button>
 
-    </div>
+    </article>
 
-</section>
-
-
-
-<!-- =====================================================
-     TRADE IN
-===================================================== -->
-
-<section class="trade"
-         id="trade">
-
-    <div>
-
-        <div class="section-label">
-            TRADE-IN
-        </div>
-
-        <h2>
-            Your old phone
-            <span>has value.</span>
-        </h2>
-
-        <p>
-            Upgrade to the latest flagship while getting the best possible market value for your existing device with instant UPI payout.
-        </p>
-
-        <button onclick="openCallback()">
-            Check Exchange Value →
-        </button>
-
-    </div>
+  </div>
 
 </section>
 
 
-
-<!-- =====================================================
-     SHOWROOM
-===================================================== -->
-
-<section class="showrooms"
-         id="showrooms">
-
-    <div class="section-label">
-        VISIT US
-    </div>
-
-    <h2>
-        Experience it
-        <span>in person.</span>
-    </h2>
-
-
-    <div class="showroom-grid">
-
-        <article>
-
-            <h3>
-                Mobile Station Flagship
-            </h3>
-
-            <p>
-                Garud Complex, In Front of Sony Novelty.<br>
-                Open all 7 days from 10:00 AM to 9:30 PM.
-            </p>
-
-            <a href="https://maps.google.com/?q=Garud+Complex+Amravati" target="_blank" class="direction-link">
-                Get Directions →
-            </a>
-
-        </article>
-
-
-        <article>
-
-            <h3>
-                Need help choosing?
-            </h3>
-
-            <p>
-                Talk directly with our showroom smartphone concierges on WhatsApp for instant pricing.
-            </p>
-
-            <button id="showroomWhatsapp">
-                WhatsApp Us →
-            </button>
-
-        </article>
-
-    </div>
-
-</section>
-
-
-
-<!-- =====================================================
-     CONTACT
-===================================================== -->
+<!-- ================= CONTACT ================= -->
 
 <section class="contact">
 
+  <div>
+
     <div>
-
-        <span>
-            MOBILE STATION CONCIERGE
-        </span>
-
-        <h2>
-            Your next phone
-            is one conversation away.
-        </h2>
-
+      MOBILE STATION CONCIERGE
     </div>
 
+    <h2>
+      Your next phone is one
+      conversation away.
+    </h2>
 
-    <button id="contactWhatsapp">
-        Chat on WhatsApp →
-    </button>
+  </div>
+
+  <button onclick="openWhatsApp()">
+    Chat on WhatsApp →
+  </button>
 
 </section>
 
 
-</main>
+<!-- ================= BAG ================= -->
 
+<div class="overlay" id="overlay"></div>
 
+<aside class="cart" id="cart">
 
-<!-- =====================================================
-     CART DRAWER
-===================================================== -->
+  <div class="cart-header">
 
-<div class="overlay"
-     id="overlay">
-</div>
+    <h2>Your Bag</h2>
 
+    <button id="closeBag" aria-label="Close Bag">
+      ×
+    </button>
 
-<aside class="cart-drawer"
-       id="cartDrawer">
+  </div>
 
-    <div class="drawer-header">
+  <div id="cartItems">
+    <div class="empty">
+      Your bag is empty.
+    </div>
+  </div>
 
-        <h2>
-            Your Showroom Bag
-        </h2>
+  <div class="cart-footer">
 
-        <button id="closeCart">
-            ×
-        </button>
-
+    <div>
+      <span>Total</span>
+      <strong id="cartTotal">₹0</strong>
     </div>
 
+    <button onclick="checkoutWhatsApp()">
+      Continue on WhatsApp
+    </button>
 
-    <div id="cartItems">
-
-        <div class="empty-cart">
-            Your bag is empty.
-        </div>
-
-    </div>
-
-
-    <div class="cart-bottom">
-
-        <div>
-            <span>
-                Total Amount
-            </span>
-
-            <strong id="cartTotal">
-                ₹0
-            </strong>
-        </div>
-
-
-        <button id="checkoutWhatsapp">
-            Order on WhatsApp →
-        </button>
-
-    </div>
+  </div>
 
 </aside>
 
 
+<!-- ================= CALLBACK ================= -->
 
-<!-- =====================================================
-     CALLBACK MODAL
-===================================================== -->
+<div class="modal" id="callbackModal">
 
-<div class="modal"
-     id="callbackModal">
+  <div class="modal-box">
 
-    <div class="modal-box">
+    <button class="close-modal" id="closeModal" aria-label="Close Modal">
+      ×
+    </button>
 
-        <button
-            class="modal-close"
-            id="closeModal">
-            ×
-        </button>
-
-
-        <div class="section-label">
-            MOBILE STATION VIP DESK
-        </div>
-
-
-        <h3>
-            Request a Callback
-        </h3>
-
-
-        <p>
-            Leave your details and our Garud Complex showroom specialist will get in touch with you.
-        </p>
-
-
-        <form id="callbackForm">
-
-            <input
-                type="text"
-                id="cbName"
-                placeholder="Your Name"
-                required
-            >
-
-
-            <input
-                type="tel"
-                id="cbPhone"
-                placeholder="Phone Number"
-                required
-            >
-
-
-            <select id="cbInterest">
-
-                <option value="iPhone 18 Pro Max">
-                    iPhone 18 Pro Max
-                </option>
-
-                <option value="Galaxy S26 Ultra">
-                    Galaxy S26 Ultra
-                </option>
-
-                <option value="Pixel 11 Pro XL">
-                    Pixel 11 Pro XL
-                </option>
-
-                <option value="Exchange / Trade-In">
-                    Exchange / Trade-In
-                </option>
-
-                <option value="Repair Lab Diagnostics">
-                    30-Min Repair Lab
-                </option>
-
-                <option value="0% EMI Schemes">
-                    0% EMI Schemes
-                </option>
-
-            </select>
-
-
-            <button type="submit">
-                Request Showroom Callback
-            </button>
-
-        </form>
-
-
-        <div class="success"
-             id="callbackSuccess">
-
-            ✓ Request received. Our Mobile Station team will contact you shortly.
-
-        </div>
-
+    <div class="section-label">
+      MOBILE STATION
     </div>
 
+    <h2>Request a Callback</h2>
+
+    <p>
+      Enter your details and our team
+      will contact you.
+    </p>
+
+    <form id="callbackForm">
+
+      <input
+        type="text"
+        placeholder="Your Name"
+        required
+      />
+
+      <input
+        type="tel"
+        placeholder="Phone Number"
+        required
+      />
+
+      <select>
+
+        <option>Interested in a phone</option>
+        <option>Exchange</option>
+        <option>Repair</option>
+        <option>EMI / Schemes</option>
+
+      </select>
+
+      <button type="submit">
+        Request Callback
+      </button>
+
+    </form>
+
+    <div class="success" id="success">
+      ✓ Request submitted successfully.
+    </div>
+
+  </div>
+
 </div>
 
 
-
-<div class="toast"
-     id="toast">
-</div>
+<div class="toast" id="toast"></div>
 
 
 <script src="script.js"></script>
