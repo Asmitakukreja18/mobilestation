@@ -65,12 +65,12 @@ const PRODUCTS = [
     display: "6.9\" Super Retina XDR ProMotion 120Hz (3000 nits)",
     camera: "48MP Fusion Triple Camera + 10x Optical Periscope Zoom",
     battery: "Up to 38 hrs video playback, MagSafe 45W Ultra Charge",
-    image: "assets/phone.png",
+    image: "assets/iphone-18-pro-max.png",
     colors: [
-      { name: "Deep Red Titanium", hex: "#7a1120", image: "assets/phone.png" },
-      { name: "Champagne Gold", hex: "#d8c49e", image: "assets/phone.png" },
-      { name: "Natural Titanium", hex: "#9e9d99", image: "assets/phone.png" },
-      { name: "Space Graphite", hex: "#1d1d1f", image: "assets/phone.png" }
+      { name: "Deep Red Titanium", hex: "#7a1120", image: "assets/iphone-18-pro-max.png" },
+      { name: "Champagne Gold", hex: "#d8c49e", image: "assets/iphone-18-pro-max.png" },
+      { name: "Natural Titanium", hex: "#9e9d99", image: "assets/iphone-18-pro-max.png" },
+      { name: "Space Graphite", hex: "#1d1d1f", image: "assets/iphone-18-pro-max.png" }
     ],
     storage: ["256GB", "512GB", "1TB", "2TB"],
     emi: "₹7,990/mo"
@@ -91,11 +91,11 @@ const PRODUCTS = [
     display: "6.3\" Super Retina XDR 120Hz ProMotion",
     camera: "48MP Fusion + 48MP Ultra-Wide + 5x Tetraprism Telephoto",
     battery: "All-Day Pro Battery with MagSafe Charging",
-    image: "assets/phone.png",
+    image: "assets/iphone-18-pro.png",
     colors: [
-      { name: "Deep Red Titanium", hex: "#7a1120", image: "assets/phone.png" },
-      { name: "Natural Titanium", hex: "#9e9d99", image: "assets/phone.png" },
-      { name: "Space Graphite", hex: "#1d1d1f", image: "assets/phone.png" }
+      { name: "Deep Red Titanium", hex: "#7a1120", image: "assets/iphone-18-pro.png" },
+      { name: "Natural Titanium", hex: "#9e9d99", image: "assets/iphone-18-pro.png" },
+      { name: "Space Graphite", hex: "#1d1d1f", image: "assets/iphone-18-pro.png" }
     ],
     storage: ["128GB", "256GB", "512GB", "1TB"],
     emi: "₹6,210/mo"
@@ -116,11 +116,11 @@ const PRODUCTS = [
     display: "6.9\" Super Retina XDR OLED (120Hz)",
     camera: "48MP Triple Lens with 5x Telephoto & 4K 120fps Dolby Vision",
     battery: "33 hrs video playback, MagSafe Fast Charging",
-    image: "assets/phone.png",
+    image: "assets/iphone-17-pro-max.png",
     colors: [
-      { name: "Desert Titanium", hex: "#c7b29a", image: "assets/phone.png" },
-      { name: "Black Titanium", hex: "#1e1e20", image: "assets/phone.png" },
-      { name: "White Titanium", hex: "#e5e5ea", image: "assets/phone.png" }
+      { name: "Desert Titanium", hex: "#c7b29a", image: "assets/iphone-17-pro-max.png" },
+      { name: "Black Titanium", hex: "#1e1e20", image: "assets/iphone-17-pro-max.png" },
+      { name: "White Titanium", hex: "#e5e5ea", image: "assets/iphone-17-pro-max.png" }
     ],
     storage: ["256GB", "512GB", "1TB"],
     emi: "₹6,450/mo"
@@ -141,10 +141,10 @@ const PRODUCTS = [
     display: "6.3\" ProMotion 120Hz Super Retina XDR",
     camera: "48MP Main + 48MP Ultra-Wide + 5x Telephoto",
     battery: "Full Day Pro Life with Smart Battery Intelligence",
-    image: "assets/phone.png",
+    image: "assets/iphone-17-pro.png",
     colors: [
-      { name: "Natural Titanium", hex: "#9e9d99", image: "assets/phone.png" },
-      { name: "Black Titanium", hex: "#1e1e20", image: "assets/phone.png" }
+      { name: "Natural Titanium", hex: "#9e9d99", image: "assets/iphone-17-pro.png" },
+      { name: "Black Titanium", hex: "#1e1e20", image: "assets/iphone-17-pro.png" }
     ],
     storage: ["128GB", "256GB", "512GB"],
     emi: "₹5,330/mo"
@@ -165,11 +165,11 @@ const PRODUCTS = [
     display: "6.6\" OLED 120Hz Edge-to-Edge Fluid Display",
     camera: "48MP Dual Fusion Optical Engine",
     battery: "Next-Gen Solid State Battery (26 hrs)",
-    image: "assets/phone.png",
+    image: "assets/iphone-air.png",
     colors: [
-      { name: "Cloud White", hex: "#f5f5f7", image: "assets/phone.png" },
-      { name: "Crimson Red", hex: "#871024", image: "assets/phone.png" },
-      { name: "Obsidian", hex: "#18181a", image: "assets/phone.png" }
+      { name: "Cloud White", hex: "#f5f5f7", image: "assets/iphone-air.png" },
+      { name: "Crimson Red", hex: "#871024", image: "assets/iphone-air.png" },
+      { name: "Obsidian", hex: "#18181a", image: "assets/iphone-air.png" }
     ],
     storage: ["256GB", "512GB"],
     emi: "₹4,440/mo"
@@ -190,11 +190,11 @@ const PRODUCTS = [
     display: "6.1\" 120Hz OLED with Dynamic Island & Camera Control",
     camera: "48MP Fusion Camera + 2x Telephoto Sensor-Crop",
     battery: "24 hrs video playback, USB-C Fast Charge",
-    image: "assets/phone.png",
+    image: "assets/iphone-17.png",
     colors: [
-      { name: "Ultramarine", hex: "#2b4c8a", image: "assets/phone.png" },
-      { name: "Starlight Red", hex: "#9e1529", image: "assets/phone.png" },
-      { name: "Teal", hex: "#43827d", image: "assets/phone.png" }
+      { name: "Ultramarine", hex: "#2b4c8a", image: "assets/iphone-17.png" },
+      { name: "Starlight Red", hex: "#9e1529", image: "assets/iphone-17.png" },
+      { name: "Teal", hex: "#43827d", image: "assets/iphone-17.png" }
     ],
     storage: ["128GB", "256GB", "512GB"],
     emi: "₹3,550/mo"
@@ -219,11 +219,11 @@ const PRODUCTS = [
     display: "6.8\" Dynamic AMOLED 2X (3200 nits, Anti-Reflective Armor)",
     camera: "200MP Main + 50MP 5x Periscope + 50MP 3x + 50MP Ultra-Wide",
     battery: "5000 mAh + 65W Super Fast Charge 2.0 & Built-in S-Pen",
-    image: "assets/phone.png",
+    image: "assets/samsung-s26-ultra.png",
     colors: [
-      { name: "Titanium Wine Red", hex: "#63101b", image: "assets/phone.png" },
-      { name: "Titanium Black", hex: "#1c1c1e", image: "assets/phone.png" },
-      { name: "Titanium Silver", hex: "#c4c6cb", image: "assets/phone.png" }
+      { name: "Titanium Wine Red", hex: "#63101b", image: "assets/samsung-s26-ultra.png" },
+      { name: "Titanium Black", hex: "#1c1c1e", image: "assets/samsung-s26-ultra.png" },
+      { name: "Titanium Silver", hex: "#c4c6cb", image: "assets/samsung-s26-ultra.png" }
     ],
     storage: ["256GB", "512GB", "1TB"],
     emi: "₹6,220/mo"
