@@ -371,11 +371,11 @@ const PRODUCTS = [
     display: "6.82\" 2K 165Hz 10-bit LTPO 4.0 Oriental Display",
     camera: "50MP LYT-900 Main + 50MP Periscope + Hasselblad Color 6.0",
     battery: "6500 mAh Glacier Battery + 150W SuperVOOC & 50W Wireless",
-    image: "assets/phone.png",
+    image: "assets/oneplus-15.png",
     colors: [
-      { name: "Emerald Flow", hex: "#1c3c33", image: "assets/phone.png" },
-      { name: "Crimson Silk", hex: "#7a1622", image: "assets/phone.png" },
-      { name: "Silky Black", hex: "#171718", image: "assets/phone.png" }
+      { name: "Sandstone Gold", hex: "#d5c9b1", image: "assets/oneplus-15.png" },
+      { name: "Emerald Flow", hex: "#1c3c33", image: "assets/oneplus-15.png" },
+      { name: "Silky Black", hex: "#171718", image: "assets/oneplus-15.png" }
     ],
     storage: ["256GB", "512GB", "1TB"],
     emi: "₹3,330/mo"
@@ -396,10 +396,10 @@ const PRODUCTS = [
     display: "6.78\" 1.5K 144Hz Super Fluid AMOLED",
     camera: "50MP Sony IMX906 OIS Main + 8MP Ultra-Wide",
     battery: "6500 mAh + 100W SUPERVOOC Fast Charge",
-    image: "assets/phone.png",
+    image: "assets/oneplus-15.png",
     colors: [
-      { name: "Cool Blue", hex: "#35597a", image: "assets/phone.png" },
-      { name: "Iron Gray", hex: "#2b2c2f", image: "assets/phone.png" }
+      { name: "Cool Blue", hex: "#35597a", image: "assets/oneplus-15.png" },
+      { name: "Iron Gray", hex: "#2b2c2f", image: "assets/oneplus-15.png" }
     ],
     storage: ["128GB", "256GB"],
     emi: "₹2,220/mo"
@@ -420,10 +420,11 @@ const PRODUCTS = [
     display: "6.72\" 120Hz FHD+ Super AMOLED",
     camera: "64MP Ultra-Clear Camera with OIS",
     battery: "5500 mAh + 80W SUPERVOOC",
-    image: "assets/phone.png",
+    image: "assets/oneplus-n6.png",
     colors: [
-      { name: "Misty Green", hex: "#638977", image: "assets/phone.png" },
-      { name: "Chromatic Gray", hex: "#3a3c3e", image: "assets/phone.png" }
+      { name: "Champagne Silver", hex: "#d8d0c5", image: "assets/oneplus-n6.png" },
+      { name: "Misty Green", hex: "#638977", image: "assets/oneplus-n6.png" },
+      { name: "Chromatic Gray", hex: "#3a3c3e", image: "assets/oneplus-n6.png" }
     ],
     storage: ["128GB", "256GB"],
     emi: "₹1,110/mo"
@@ -444,10 +445,10 @@ const PRODUCTS = [
     display: "6.67\" 120Hz Eye-Care Display",
     camera: "50MP AI Portrait Dual Camera",
     battery: "5200 mAh + 67W SuperVOOC",
-    image: "assets/phone.png",
+    image: "assets/oneplus-n6.png",
     colors: [
-      { name: "Sky Cyan", hex: "#4b8da1", image: "assets/phone.png" },
-      { name: "Dark Shadow", hex: "#202124", image: "assets/phone.png" }
+      { name: "Sky Cyan", hex: "#4b8da1", image: "assets/oneplus-n6.png" },
+      { name: "Dark Shadow", hex: "#202124", image: "assets/oneplus-n6.png" }
     ],
     storage: ["128GB"],
     emi: "₹890/mo"
