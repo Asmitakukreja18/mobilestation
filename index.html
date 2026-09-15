@@ -55,6 +55,7 @@
           <li><a href="#hero" class="nav-link-item active">Home</a></li>
           <li><a href="#story" class="nav-link-item">Story</a></li>
           <li><a href="#flagships" class="nav-link-item">Flagships</a></li>
+          <li><a href="#schemes" class="nav-link-item">Schemes</a></li>
           <li><a href="#repair" class="nav-link-item">Repair Lab</a></li>
           <li><a href="#trade" class="nav-link-item">Trade-In</a></li>
           <li><a href="#showroom" class="nav-link-item">Showrooms</a></li>
@@ -104,6 +105,7 @@
         <li><a href="#hero" class="mob-link active" onclick="toggleMobileMenu()">Home</a></li>
         <li><a href="#story" class="mob-link" onclick="toggleMobileMenu()">Story</a></li>
         <li><a href="#flagships" class="mob-link" onclick="toggleMobileMenu()">Flagships</a></li>
+        <li><a href="#schemes" class="mob-link" onclick="toggleMobileMenu()">Schemes</a></li>
         <li><a href="#repair" class="mob-link" onclick="toggleMobileMenu()">Repair Lab</a></li>
         <li><a href="#trade" class="mob-link" onclick="toggleMobileMenu()">Trade-In</a></li>
         <li><a href="#showroom" class="mob-link" onclick="toggleMobileMenu()">Showrooms</a></li>
@@ -318,60 +320,104 @@
   </section>
 
   <!-- ========================================================================= -->
-  <!-- 4. FLAGSHIPS SHOWCASE -->
+  <!-- 4. LATEST 2025/2026 FLAGSHIPS SHOWCASE -->
   <!-- ========================================================================= -->
   <section class="world-showcase-section" id="flagships">
     <div class="container-editorial">
       <div class="section-editorial-header">
-        <span class="editorial-kicker">CURATED FLAGSHIP SHOWCASE</span>
+        <span class="editorial-kicker">CURATED LATEST FLAGSHIP SHOWCASE</span>
         <h2 class="editorial-title">CHOOSE YOUR WORLD.</h2>
         <p style="color:var(--text-body); font-size:1.15rem; margin-top:0.75rem;">
-          Tap any device to order with instant stock confirmation and VIP WhatsApp booking at Mobile Station.
+          Sealed box brand new 2025/2026 flagships with official brand warranty & instant VIP WhatsApp booking at Mobile Station.
         </p>
+
+        <!-- Category Filter Pills -->
+        <div class="flagship-filter-track">
+          <button class="filter-pill-btn active" onclick="filterFlagshipCards('all', this)">All Flagships</button>
+          <button class="filter-pill-btn" onclick="filterFlagshipCards('apple', this)">🍏 Apple iPhones</button>
+          <button class="filter-pill-btn" onclick="filterFlagshipCards('samsung', this)">⭐ Samsung Galaxy AI</button>
+          <button class="filter-pill-btn" onclick="filterFlagshipCards('oneplus', this)">🔴 OnePlus Series</button>
+          <button class="filter-pill-btn" onclick="filterFlagshipCards('camera', this)">📸 Ultra Optics</button>
+          <button class="filter-pill-btn" onclick="filterFlagshipCards('fold', this)">📱 Foldables</button>
+        </div>
       </div>
 
-      <div class="quad-cards-grid">
+      <div class="quad-cards-grid" id="flagshipCardsGrid">
         <!-- Phone 1: iPhone 16 Pro Max -->
-        <div class="quad-phone-card" onclick="orderWhatsAppDirect('prod-001')">
+        <div class="quad-phone-card" data-cat="apple" onclick="orderWhatsAppDirect('prod-001')">
+          <div class="quad-badge-tag">🔥 Latest Flagship</div>
           <div class="quad-img-box">
             <img src="https://images.unsplash.com/photo-1695048133142-1a20484d2569?auto=format&fit=crop&w=600&q=80" alt="iPhone 16 Pro Max">
           </div>
           <span class="quad-brand-tag">Apple Flagship</span>
           <h3 class="quad-device-title">iPhone 16 Pro Max</h3>
-          <div class="quad-price-tag">₹1,44,900</div>
+          <p class="quad-spec-highlight">6.9" ProMotion • A18 Pro 3nm • 48MP Optics</p>
+          <div class="quad-price-tag">From ₹1,44,900</div>
           <button class="btn-quad-whatsapp">Explore on WhatsApp →</button>
         </div>
 
         <!-- Phone 2: Samsung Galaxy S24 Ultra -->
-        <div class="quad-phone-card" onclick="orderWhatsAppDirect('prod-002')">
+        <div class="quad-phone-card" data-cat="samsung camera" onclick="orderWhatsAppDirect('prod-002')">
+          <div class="quad-badge-tag">⭐ Galaxy AI</div>
           <div class="quad-img-box">
             <img src="https://images.unsplash.com/photo-1610945265064-0e34e5519bbf?auto=format&fit=crop&w=600&q=80" alt="Galaxy S24 Ultra">
           </div>
-          <span class="quad-brand-tag">Galaxy AI</span>
+          <span class="quad-brand-tag">Galaxy AI Titanium</span>
           <h3 class="quad-device-title">Galaxy S24 Ultra 5G</h3>
-          <div class="quad-price-tag">₹1,19,999</div>
+          <p class="quad-spec-highlight">200MP Quad Zoom • Snapdragon 8 Gen 3 • S-Pen</p>
+          <div class="quad-price-tag">From ₹1,19,999</div>
           <button class="btn-quad-whatsapp">Explore on WhatsApp →</button>
         </div>
 
-        <!-- Phone 3: OnePlus 12 5G -->
-        <div class="quad-phone-card" onclick="orderWhatsAppDirect('prod-003')">
+        <!-- Phone 3: Samsung Galaxy Z Fold 6 -->
+        <div class="quad-phone-card" data-cat="samsung fold" onclick="orderWhatsAppDirect('prod-005')">
+          <div class="quad-badge-tag">📱 Ultra Foldable</div>
+          <div class="quad-img-box">
+            <img src="https://images.unsplash.com/photo-1598327105666-5b89351aff97?auto=format&fit=crop&w=600&q=80" alt="Galaxy Z Fold 6">
+          </div>
+          <span class="quad-brand-tag">Dual Screen AI</span>
+          <h3 class="quad-device-title">Galaxy Z Fold 6 5G</h3>
+          <p class="quad-spec-highlight">7.6" Main Dynamic Display • Armor Aluminum</p>
+          <div class="quad-price-tag">From ₹1,64,999</div>
+          <button class="btn-quad-whatsapp">Explore on WhatsApp →</button>
+        </div>
+
+        <!-- Phone 4: OnePlus 12 / 13 5G -->
+        <div class="quad-phone-card" data-cat="oneplus" onclick="orderWhatsAppDirect('prod-003')">
+          <div class="quad-badge-tag">⚡ Performance King</div>
           <div class="quad-img-box">
             <img src="https://images.unsplash.com/photo-1598327105666-5b89351aff97?auto=format&fit=crop&w=600&q=80" alt="OnePlus 12">
           </div>
           <span class="quad-brand-tag">Hasselblad Optics</span>
           <h3 class="quad-device-title">OnePlus 12 5G</h3>
-          <div class="quad-price-tag">₹64,999</div>
+          <p class="quad-spec-highlight">2K 120Hz ProXDR • 5400mAh • 100W SUPERVOOC</p>
+          <div class="quad-price-tag">From ₹64,999</div>
           <button class="btn-quad-whatsapp">Explore on WhatsApp →</button>
         </div>
 
-        <!-- Phone 4: Vivo V40 Pro 5G -->
-        <div class="quad-phone-card" onclick="orderWhatsAppDirect('prod-004')">
+        <!-- Phone 5: Vivo X200 / X100 Ultra -->
+        <div class="quad-phone-card" data-cat="camera" onclick="orderWhatsAppDirect('prod-004')">
+          <div class="quad-badge-tag">📸 200MP ZEISS APO</div>
           <div class="quad-img-box">
-            <img src="https://images.unsplash.com/photo-1511707171634-5f897ff02aa9?auto=format&fit=crop&w=600&q=80" alt="Vivo V40 Pro">
+            <img src="https://images.unsplash.com/photo-1511707171634-5f897ff02aa9?auto=format&fit=crop&w=600&q=80" alt="Vivo X100 Ultra">
           </div>
-          <span class="quad-brand-tag">ZEISS Portrait</span>
-          <h3 class="quad-device-title">Vivo V40 Pro 5G</h3>
-          <div class="quad-price-tag">₹49,999</div>
+          <span class="quad-brand-tag">ZEISS Master Optics</span>
+          <h3 class="quad-device-title">Vivo X100 / X200 Pro</h3>
+          <p class="quad-spec-highlight">1-Inch Sony Sensor • V3+ Imaging Chip • 4K Cinema</p>
+          <div class="quad-price-tag">From ₹89,999</div>
+          <button class="btn-quad-whatsapp">Explore on WhatsApp →</button>
+        </div>
+
+        <!-- Phone 6: iPhone 16 -->
+        <div class="quad-phone-card" data-cat="apple" onclick="orderWhatsAppDirect('prod-006')">
+          <div class="quad-badge-tag">✨ Apple Intelligence</div>
+          <div class="quad-img-box">
+            <img src="https://images.unsplash.com/photo-1592750475338-74b7b21085ab?auto=format&fit=crop&w=600&q=80" alt="iPhone 16">
+          </div>
+          <span class="quad-brand-tag">Apple Sealed Box</span>
+          <h3 class="quad-device-title">iPhone 16 (Teal/Pink/Black)</h3>
+          <p class="quad-spec-highlight">Camera Control Button • A18 Silicon • Action Button</p>
+          <div class="quad-price-tag">From ₹79,900</div>
           <button class="btn-quad-whatsapp">Explore on WhatsApp →</button>
         </div>
       </div>
@@ -379,7 +425,75 @@
   </section>
 
   <!-- ========================================================================= -->
-  <!-- 5. 30-MINUTE PRECISION REPAIR LAB -->
+  <!-- 5. UPCOMING FLAGSHIPS & FESTIVE SCHEMES (NEW) -->
+  <!-- ========================================================================= -->
+  <section class="upcoming-schemes-section" id="schemes">
+    <div class="container-editorial">
+      <div class="section-editorial-header">
+        <span class="editorial-kicker">UPCOMING LAUNCHES & EXCLUSIVE OFFERS</span>
+        <h2 class="editorial-title">FESTIVE SCHEMES & VIP PRE-BOOKING.</h2>
+        <p style="color:var(--text-body); font-size:1.15rem; margin-top:0.75rem;">
+          Lock in exclusive launch-day priority stock, zero-down-payment EMI schemes, and guaranteed trade-in bonuses at Mobile Station.
+        </p>
+      </div>
+
+      <!-- Schemes Cards Grid -->
+      <div class="schemes-highlight-grid">
+        <!-- Scheme 1: Extra Exchange Bonus -->
+        <div class="scheme-feature-card">
+          <div class="scheme-icon-badge">🎁</div>
+          <span class="scheme-kicker">FESTIVE TRADE-IN BOOST</span>
+          <h3 class="scheme-title">Extra ₹3,000 – ₹7,000 Exchange Bonus</h3>
+          <p class="scheme-desc">
+            Trade in any old 4G/5G smartphone and get an instant extra exchange booster over market value towards sealed flagships.
+          </p>
+          <div class="scheme-perk-pill">✓ Instant Spot Evaluation at Garud Complex</div>
+        </div>
+
+        <!-- Scheme 2: 0% EMI & Zero Down Payment -->
+        <div class="scheme-feature-card featured-scheme">
+          <div class="scheme-icon-badge">💳</div>
+          <span class="scheme-kicker">FINANCE DESK</span>
+          <h3 class="scheme-title">0% Down Payment & No-Cost EMI</h3>
+          <p class="scheme-desc">
+            Instant on-spot finance approval in 10 minutes through Bajaj Finserv, HDFC Bank, ICICI Bank, and TVS Credit.
+          </p>
+          <div class="scheme-perk-pill">✓ Easy ₹0 Down Payment Options Available</div>
+        </div>
+
+        <!-- Scheme 3: VIP Priority Pre-Booking -->
+        <div class="scheme-feature-card">
+          <div class="scheme-icon-badge">🚀</div>
+          <span class="scheme-kicker">UPCOMING FLAGSHIP QUEUE</span>
+          <h3 class="scheme-title">VIP Priority Launch Token</h3>
+          <p class="scheme-desc">
+            Pre-book upcoming flagships (iPhone SE 4 / S25 Ultra / OnePlus 13) via WhatsApp with ₹0 waiting time on launch day.
+          </p>
+          <div class="scheme-perk-pill">✓ Guaranteed Day-1 Stock Allocation</div>
+        </div>
+
+        <!-- Scheme 4: Mobile Station VIP Shield -->
+        <div class="scheme-feature-card">
+          <div class="scheme-icon-badge">🛡️</div>
+          <span class="scheme-kicker">EXCLUSIVE SHOWROOM PERK</span>
+          <h3 class="scheme-title">Mobile Station VIP Shield & Kit</h3>
+          <p class="scheme-desc">
+            Get complimentary OEM-grade tempered glass, luxury protective case, and 1-year express service priority with every flagship purchase.
+          </p>
+          <div class="scheme-perk-pill">✓ Free 30-Min Priority Repair Desk</div>
+        </div>
+      </div>
+
+      <div style="text-align:center; margin-top:3rem;">
+        <a href="https://wa.me/919876543210?text=Hello%20Mobile%20Station!%20Please%20share%20today's%20festive%20schemes,%20EMI%20offers%20and%20upcoming%20pre-booking%20details." target="_blank" rel="noopener noreferrer" class="btn-primary-pink" style="padding:1rem 2.5rem;">
+          <span>Inquire All Active Schemes on WhatsApp →</span>
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <!-- ========================================================================= -->
+  <!-- 6. 30-MINUTE PRECISION REPAIR LAB -->
   <!-- ========================================================================= -->
   <section class="repair-lab-section" id="repair">
     <div class="container-editorial">
@@ -415,37 +529,91 @@
   </section>
 
   <!-- ========================================================================= -->
-  <!-- 6. HARDWARE TRADE-IN DIAGNOSTIC SCANNER -->
+  <!-- 7. ADVANCED HARDWARE TRADE-IN DIAGNOSTIC EVALUATOR -->
   <!-- ========================================================================= -->
   <section class="trade-scanner-section" id="trade">
     <div class="container-editorial">
       <div class="scanner-monolith-box">
-        <div style="text-align:center; max-width:620px; margin:0 auto 2.5rem;">
-          <span class="editorial-kicker">INSTANT TRADE-IN VALUATION</span>
-          <h2 class="editorial-title" style="font-size:2.8rem;">PLACE YOUR PHONE.</h2>
+        <div style="text-align:center; max-width:680px; margin:0 auto 2.5rem;">
+          <span class="editorial-kicker">REALISTIC HARDWARE TRADE-IN EVALUATOR</span>
+          <h2 class="editorial-title" style="font-size:2.8rem;">GET YOUR EXCHANGE VALUE.</h2>
           <p style="color:var(--text-body); font-size:1.05rem; margin-top:0.5rem;">
-            Select your current smartphone model to trigger the live hardware diagnostic evaluation at Mobile Station:
+            Provide exact device specifications for a realistic indicative value range. Final valuation is confirmed on-spot after physical inspection at Garud Complex.
           </p>
         </div>
 
-        <div style="display:grid; grid-template-columns:1fr 1fr; gap:1.5rem;">
-          <div>
-            <label style="font-size:0.8rem; font-weight:800; color:var(--text-muted); display:block; margin-bottom:0.4rem; text-transform:uppercase;">Select Existing Brand</label>
-            <select id="tradeScanBrand" class="finish-btn" style="width:100%; border:1px solid var(--border-light); background:#ffffff; color:var(--text-headline); padding:0.8rem 1.2rem;" onchange="triggerScannerSequence()">
-              <option value="Apple">Apple iPhone (11 / 12 / 13 / 14 / 15 / 16 Series)</option>
-              <option value="Samsung">Samsung Galaxy (S Series / Note / Ultra / Fold)</option>
-              <option value="OnePlus">OnePlus (9 / 10 / 11 / 12 Series / Open)</option>
-              <option value="Vivo">Vivo / Oppo Flagship Series</option>
-              <option value="Xiaomi">Xiaomi / Redmi Note Series</option>
+        <!-- Detailed Input Selectors -->
+        <div class="trade-evaluator-grid">
+          <!-- 1. Brand -->
+          <div class="trade-input-field">
+            <label>1. Select Brand</label>
+            <select id="tradeScanBrand" class="trade-select-control" onchange="onTradeBrandChange()">
+              <option value="Apple">Apple iPhone</option>
+              <option value="Samsung">Samsung Galaxy</option>
+              <option value="OnePlus">OnePlus</option>
+              <option value="Vivo">Vivo / iQOO</option>
+              <option value="Xiaomi">Xiaomi / Redmi</option>
+              <option value="Google">Google Pixel</option>
             </select>
           </div>
 
-          <div>
-            <label style="font-size:0.8rem; font-weight:800; color:var(--text-muted); display:block; margin-bottom:0.4rem; text-transform:uppercase;">Device Condition</label>
-            <select id="tradeScanCondition" class="finish-btn" style="width:100%; border:1px solid var(--border-light); background:#ffffff; color:var(--text-headline); padding:0.8rem 1.2rem;" onchange="triggerScannerSequence()">
-              <option value="flawless">Flawless (Scratchless, 100% Functional)</option>
-              <option value="good">Good (Light signs of daily use, fully working)</option>
-              <option value="cracked">Screen Glass Crack (Touch screen working)</option>
+          <!-- 2. Exact Model Series -->
+          <div class="trade-input-field">
+            <label>2. Exact Model Series</label>
+            <select id="tradeScanModel" class="trade-select-control" onchange="triggerScannerSequence()">
+              <option value="15-promax">iPhone 15 Pro Max</option>
+              <option value="15-pro">iPhone 15 Pro</option>
+              <option value="15">iPhone 15 / 15 Plus</option>
+              <option value="14-promax">iPhone 14 Pro Max</option>
+              <option value="14-pro">iPhone 14 Pro</option>
+              <option value="14">iPhone 14 / 14 Plus</option>
+              <option value="13">iPhone 13 / 13 Pro</option>
+              <option value="12">iPhone 12 / 12 Pro</option>
+              <option value="11">iPhone 11 Series</option>
+            </select>
+          </div>
+
+          <!-- 3. Storage Variant -->
+          <div class="trade-input-field">
+            <label>3. Storage Capacity</label>
+            <select id="tradeScanStorage" class="trade-select-control" onchange="triggerScannerSequence()">
+              <option value="128">128 GB</option>
+              <option value="256" selected>256 GB</option>
+              <option value="512">512 GB</option>
+              <option value="1024">1 TB</option>
+            </select>
+          </div>
+
+          <!-- 4. Physical Screen & Body Condition -->
+          <div class="trade-input-field">
+            <label>4. Physical Condition</label>
+            <select id="tradeScanCondition" class="trade-select-control" onchange="triggerScannerSequence()">
+              <option value="flawless">Flawless (Like New, Scratchless)</option>
+              <option value="good" selected>Good (Light signs of normal daily use)</option>
+              <option value="cracked-glass">Outer Glass Crack (Touch screen working 100%)</option>
+              <option value="heavy-dent">Heavy Dents / Scratches on Housing</option>
+              <option value="display-line">Display Line / Touch Problem</option>
+            </select>
+          </div>
+
+          <!-- 5. Functional Integrity -->
+          <div class="trade-input-field">
+            <label>5. Functional & Battery Check</label>
+            <select id="tradeScanFunction" class="trade-select-control" onchange="triggerScannerSequence()">
+              <option value="perfect" selected>Camera, FaceID/Fingerprint & Battery >85% OK</option>
+              <option value="batt-service">Battery Health Below 80% (Service Required)</option>
+              <option value="camera-issue">Camera Glass or Sensor Blur</option>
+              <option value="minor-fault">Minor Speaker / Mic Issue</option>
+            </select>
+          </div>
+
+          <!-- 6. Original Bill & Box -->
+          <div class="trade-input-field">
+            <label>6. Box & Original Bill</label>
+            <select id="tradeScanBox" class="trade-select-control" onchange="triggerScannerSequence()">
+              <option value="box-bill" selected>Original Box + Invoice Available (+₹1,500 Bonus)</option>
+              <option value="box-only">Original Box Only</option>
+              <option value="handset-only">Device Handset Only</option>
             </select>
           </div>
         </div>
@@ -455,22 +623,30 @@
           <div class="laser-beam-line"></div>
           
           <div class="scanner-checks-grid">
-            <div class="check-node"><span class="checkmark">✓</span> Display & Touch Panel</div>
-            <div class="check-node"><span class="checkmark">✓</span> Camera & Sensor Array</div>
-            <div class="check-node"><span class="checkmark">✓</span> Battery Health Integrity</div>
-            <div class="check-node"><span class="checkmark">✓</span> Chassis & Housing</div>
-            <div class="check-node"><span class="checkmark">✓</span> Biometrics / FaceID</div>
-            <div class="check-node"><span class="checkmark">✓</span> IMEI Verification</div>
+            <div class="check-node"><span class="checkmark">✓</span> Brand & Storage Tier</div>
+            <div class="check-node"><span class="checkmark">✓</span> Touch Glass & Housing Matrix</div>
+            <div class="check-node"><span class="checkmark">✓</span> Optical & Sensor Array</div>
+            <div class="check-node"><span class="checkmark">✓</span> Battery Degradation Factor</div>
+            <div class="check-node"><span class="checkmark">✓</span> OEM Box & Invoice Bonus</div>
+            <div class="check-node"><span class="checkmark">✓</span> Instant Showroom Cashout</div>
           </div>
 
-          <div style="font-size:0.8rem; font-weight:800; letter-spacing:0.2em; text-transform:uppercase; color:rgba(255,255,255,0.6); text-align:center; margin-bottom:0.5rem;">YOUR ESTIMATED TRADE-IN VALUE</div>
-          <div class="scanner-value-ticker" id="scannerValTicker">₹42,500</div>
+          <div style="font-size:0.8rem; font-weight:800; letter-spacing:0.2em; text-transform:uppercase; color:rgba(255,255,255,0.6); text-align:center; margin-bottom:0.5rem;">ESTIMATED INDICATIVE VALUE RANGE</div>
+          <div class="scanner-value-ticker" id="scannerValTicker">₹48,000 – ₹53,000</div>
         </div>
 
-        <div style="text-align:center;">
-          <a href="https://wa.me/919876543210?text=Hello%20Mobile%20Station!%20I%20want%20to%20claim%20my%20device%20trade-in%20quote." target="_blank" rel="noopener noreferrer" class="btn-crimson-solid">
-            <span>Lock In Value on WhatsApp</span>
-          </a>
+        <!-- Transparent Valuation Disclaimer Note -->
+        <div class="trade-disclaimer-card">
+          <div class="disclaimer-badge">⚠️ Transparent Valuation Note</div>
+          <p>
+            Yeh ek <strong>indicative online estimate</strong> hai. Phone ki accurate aur final cash price hamare Garud Complex showroom pe 5-minute live diagnostic inspection (motherboard, screen authenticity & battery health check) ke baad spot pe confirm hoti hai with Instant UPI / Cash Payment.
+          </p>
+        </div>
+
+        <div style="text-align:center; margin-top:2rem;">
+          <button class="btn-crimson-solid" style="padding:1rem 2.5rem;" onclick="sendTradeInWhatsApp()">
+            <span>Send Details & Book On-Spot Evaluation on WhatsApp →</span>
+          </button>
         </div>
       </div>
     </div>

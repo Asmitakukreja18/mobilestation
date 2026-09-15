@@ -499,57 +499,171 @@ function simulateRepairAnimation(type) {
 }
 
 // =========================================================================
-// 4. HARDWARE TRADE-IN SCANNER SIMULATION
+// 4. FLAGSHIP CARDS FILTER SYSTEM
 // =========================================================================
-function triggerScannerSequence() {
-  const brand = document.getElementById("tradeScanBrand")?.value || "Apple";
-  const condition = document.getElementById("tradeScanCondition")?.value || "flawless";
-  const ticker = document.getElementById("scannerValTicker");
+function filterFlagshipCards(category, btnElement) {
+  const pills = document.querySelectorAll(".filter-pill-btn");
+  pills.forEach(p => p.classList.remove("active"));
+  if (btnElement) btnElement.classList.add("active");
 
-  const baseValues = {
-    "Apple": 48000,
-    "Samsung": 38000,
-    "OnePlus": 26000,
-    "Vivo": 18000,
-    "Xiaomi": 14000
-  };
-
-  const conditionMultiplier = {
-    "flawless": 1.0,
-    "good": 0.82,
-    "cracked": 0.65
-  };
-
-  const targetVal = Math.round((baseValues[brand] || 35000) * (conditionMultiplier[condition] || 1.0));
-
-  let current = Math.round(targetVal * 0.4);
-  const step = Math.round((targetVal - current) / 15);
-
-  const interval = setInterval(() => {
-    current += step;
-    if (current >= targetVal) {
-      current = targetVal;
-      clearInterval(interval);
+  const cards = document.querySelectorAll(".quad-phone-card");
+  cards.forEach(card => {
+    const cardCat = card.getAttribute("data-cat") || "";
+    if (category === "all" || cardCat.includes(category)) {
+      card.style.display = "flex";
+      card.style.opacity = "0";
+      setTimeout(() => {
+        card.style.opacity = "1";
+      }, 50);
+    } else {
+      card.style.display = "none";
     }
-    if (ticker) {
-      ticker.innerText = "₹" + current.toLocaleString('en-IN');
-    }
-  }, 40);
+  });
 }
 
 // =========================================================================
-// 5. DIRECT WHATSAPP ORDERING (MOBILE STATION ONLY)
+// 5. ADVANCED TRADE-IN SCANNER & DYNAMIC EVALUATION
+// =========================================================================
+const TRADE_MODELS = {
+  "Apple": [
+    { id: "15-promax", name: "iPhone 15 Pro Max", base: 68000 },
+    { id: "15-pro", name: "iPhone 15 Pro", base: 58000 },
+    { id: "15", name: "iPhone 15 / 15 Plus", base: 45000 },
+    { id: "14-promax", name: "iPhone 14 Pro Max", base: 52000 },
+    { id: "14-pro", name: "iPhone 14 Pro", base: 46000 },
+    { id: "14", name: "iPhone 14 / 14 Plus", base: 36000 },
+    { id: "13", name: "iPhone 13 / 13 Pro", base: 31000 },
+    { id: "12", name: "iPhone 12 / 12 Pro", base: 22000 },
+    { id: "11", name: "iPhone 11 Series", base: 16000 }
+  ],
+  "Samsung": [
+    { id: "s24-ultra", name: "Galaxy S24 Ultra 5G", base: 72000 },
+    { id: "s23-ultra", name: "Galaxy S23 Ultra 5G", base: 48000 },
+    { id: "z-fold5", name: "Galaxy Z Fold 5", base: 56000 },
+    { id: "s23", name: "Galaxy S23 / S23 Plus", base: 34000 },
+    { id: "s22-ultra", name: "Galaxy S22 Ultra", base: 32000 },
+    { id: "s21-series", name: "Galaxy S21 Series / FE", base: 18000 }
+  ],
+  "OnePlus": [
+    { id: "op-12", name: "OnePlus 12 5G", base: 44000 },
+    { id: "op-open", name: "OnePlus Open Foldable", base: 62000 },
+    { id: "op-11", name: "OnePlus 11 5G", base: 28000 },
+    { id: "op-10pro", name: "OnePlus 10 Pro / 10T", base: 19000 },
+    { id: "op-9pro", name: "OnePlus 9 Pro / 9 Series", base: 14000 }
+  ],
+  "Vivo": [
+    { id: "vivo-x100", name: "Vivo X100 / X100 Pro", base: 42000 },
+    { id: "vivo-x90", name: "Vivo X90 Pro / Series", base: 27000 },
+    { id: "vivo-v30", name: "Vivo V30 Pro / V29 Pro", base: 21000 }
+  ],
+  "Xiaomi": [
+    { id: "mi-14", name: "Xiaomi 14 / 14 Ultra", base: 46000 },
+    { id: "mi-13pro", name: "Xiaomi 13 Pro (Leica)", base: 29000 },
+    { id: "redmi-note", name: "Redmi Note 13 / 12 Pro+", base: 13000 }
+  ],
+  "Google": [
+    { id: "pixel-8pro", name: "Google Pixel 8 Pro", base: 45000 },
+    { id: "pixel-7pro", name: "Google Pixel 7 Pro", base: 26000 },
+    { id: "pixel-7a", name: "Google Pixel 7a / 6a", base: 16000 }
+  ]
+};
+
+function onTradeBrandChange() {
+  const brand = document.getElementById("tradeScanBrand")?.value || "Apple";
+  const modelSelect = document.getElementById("tradeScanModel");
+  if (!modelSelect) return;
+
+  const models = TRADE_MODELS[brand] || TRADE_MODELS["Apple"];
+  modelSelect.innerHTML = models.map(m => `<option value="${m.id}">${m.name}</option>`).join("");
+  triggerScannerSequence();
+}
+
+function triggerScannerSequence() {
+  const brand = document.getElementById("tradeScanBrand")?.value || "Apple";
+  const modelId = document.getElementById("tradeScanModel")?.value;
+  const storage = parseInt(document.getElementById("tradeScanStorage")?.value || "256", 10);
+  const condition = document.getElementById("tradeScanCondition")?.value || "good";
+  const func = document.getElementById("tradeScanFunction")?.value || "perfect";
+  const box = document.getElementById("tradeScanBox")?.value || "box-bill";
+  const ticker = document.getElementById("scannerValTicker");
+
+  const models = TRADE_MODELS[brand] || TRADE_MODELS["Apple"];
+  const matched = models.find(m => m.id === modelId) || models[0];
+  let basePrice = matched ? matched.base : 35000;
+
+  // Storage multiplier
+  if (storage === 128) basePrice *= 0.92;
+  else if (storage === 512) basePrice *= 1.10;
+  else if (storage === 1024) basePrice *= 1.20;
+
+  // Condition Multiplier
+  const conditionMult = {
+    "flawless": 1.05,
+    "good": 0.95,
+    "cracked-glass": 0.72,
+    "heavy-dent": 0.78,
+    "display-line": 0.55
+  };
+  basePrice *= (conditionMult[condition] || 0.95);
+
+  // Functional Multiplier
+  const funcMult = {
+    "perfect": 1.0,
+    "batt-service": 0.88,
+    "camera-issue": 0.82,
+    "minor-fault": 0.85
+  };
+  basePrice *= (funcMult[func] || 1.0);
+
+  // Box & Bill Bonus
+  if (box === "box-bill") basePrice += 1500;
+  else if (box === "handset-only") basePrice -= 800;
+
+  const minVal = Math.round((basePrice * 0.96) / 500) * 500;
+  const maxVal = Math.round((basePrice * 1.05) / 500) * 500;
+
+  if (ticker) {
+    ticker.innerText = `₹${minVal.toLocaleString('en-IN')} – ₹${maxVal.toLocaleString('en-IN')}`;
+  }
+}
+
+function sendTradeInWhatsApp() {
+  const brand = document.getElementById("tradeScanBrand")?.value || "Apple";
+  const modelText = document.getElementById("tradeScanModel")?.selectedOptions[0]?.text || "Smartphone";
+  const storageText = document.getElementById("tradeScanStorage")?.selectedOptions[0]?.text || "256 GB";
+  const conditionText = document.getElementById("tradeScanCondition")?.selectedOptions[0]?.text || "Good";
+  const funcText = document.getElementById("tradeScanFunction")?.selectedOptions[0]?.text || "All Working";
+  const boxText = document.getElementById("tradeScanBox")?.selectedOptions[0]?.text || "Box Available";
+  const tickerText = document.getElementById("scannerValTicker")?.innerText || "Indicative Estimate";
+
+  const message = `Hello Mobile Station (Garud Complex)! I evaluated my phone for Exchange/Trade-In:
+• Brand & Model: ${brand} ${modelText} (${storageText})
+• Physical Condition: ${conditionText}
+• Functional Status: ${funcText}
+• Box/Invoice: ${boxText}
+• Indicative Online Estimate: ${tickerText}
+
+Please confirm the spot valuation and best exchange upgrade offer at Garud Complex showroom.`;
+
+  const url = `https://wa.me/919876543210?text=${encodeURIComponent(message)}`;
+  window.open(url, "_blank");
+}
+
+// =========================================================================
+// 6. DIRECT WHATSAPP ORDERING (MOBILE STATION ONLY)
 // =========================================================================
 function orderWhatsAppDirect(productId) {
   const productMap = {
     "prod-001": { title: "iPhone 16 Pro Max", price: "₹1,44,900" },
     "prod-002": { title: "Samsung Galaxy S24 Ultra 5G", price: "₹1,19,999" },
     "prod-003": { title: "OnePlus 12 5G", price: "₹64,999" },
-    "prod-004": { title: "Vivo V40 Pro 5G", price: "₹49,999" }
+    "prod-004": { title: "Vivo X100 / X200 Pro 5G", price: "₹89,999" },
+    "prod-005": { title: "Samsung Galaxy Z Fold 6 5G", price: "₹1,64,999" },
+    "prod-006": { title: "Apple iPhone 16", price: "₹79,900" }
   };
 
   const item = productMap[productId] || { title: "Smartphone Flagship", price: "Best Price" };
-  const message = `Hello Mobile Station (Garud Complex)! I want to purchase the ${item.title} (${item.price}). Please confirm availability, color options, and billing offer.`;
+  const message = `Hello Mobile Station (Garud Complex)! I want to purchase the sealed ${item.title} (${item.price}). Please confirm available colors, 0% EMI scheme, and billing offer.`;
   const url = `https://wa.me/919876543210?text=${encodeURIComponent(message)}`;
   window.open(url, "_blank");
 }
@@ -566,3 +680,4 @@ function initScrollHeader() {
     }
   });
 }
+

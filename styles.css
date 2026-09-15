@@ -1408,15 +1408,200 @@ img {
   transition: left 0.75s ease;
 }
 
-.btn-crimson-solid:hover::after, .btn-primary-pink:hover::after {
-  left: 140%;
+/* Filter Pills Track */
+.flagship-filter-track {
+  display: flex;
+  justify-content: center;
+  gap: 0.6rem;
+  flex-wrap: wrap;
+  margin-top: 1.5rem;
 }
 
-.trust-item-node {
-  transition: transform 0.25s ease;
+.filter-pill-btn {
+  background: #ffffff;
+  border: 1px solid var(--border-light);
+  padding: 0.55rem 1.25rem;
+  border-radius: var(--radius-full);
+  font-size: 0.85rem;
+  font-weight: 700;
+  color: var(--text-body);
+  transition: all 0.25s ease;
 }
 
-.trust-item-node:hover {
-  transform: translateY(-2px);
+.filter-pill-btn.active, .filter-pill-btn:hover {
+  background: #0b0f19;
+  color: #ffffff;
+  border-color: #0b0f19;
 }
+
+.quad-badge-tag {
+  position: absolute;
+  top: 14px;
+  left: 14px;
+  background: rgba(225, 20, 86, 0.08);
+  color: var(--crimson-pink);
+  border: 1px solid rgba(225, 20, 86, 0.2);
+  font-size: 0.7rem;
+  font-weight: 800;
+  padding: 0.25rem 0.65rem;
+  border-radius: var(--radius-full);
+}
+
+.quad-spec-highlight {
+  font-size: 0.8rem;
+  color: var(--text-muted);
+  margin-bottom: 0.85rem;
+  line-height: 1.4;
+}
+
+/* ========================================================================= */
+/* UPCOMING SCHEMES & VIP PRE-BOOKING SECTION */
+/* ========================================================================= */
+.upcoming-schemes-section {
+  padding: 6.5rem 0;
+  background: var(--bg-pure);
+  border-top: 1px solid var(--border-light);
+  border-bottom: 1px solid var(--border-light);
+}
+
+.schemes-highlight-grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 1.75rem;
+}
+
+@media (max-width: 1200px) {
+  .schemes-highlight-grid { grid-template-columns: repeat(2, 1fr); }
+}
+
+@media (max-width: 640px) {
+  .schemes-highlight-grid { grid-template-columns: 1fr; }
+}
+
+.scheme-feature-card {
+  background: var(--bg-warm-tint);
+  border: 1px solid var(--border-subtle);
+  border-radius: var(--radius-xl);
+  padding: 2.5rem 2rem;
+  display: flex;
+  flex-direction: column;
+  box-shadow: var(--shadow-subtle);
+  transition: all 0.35s var(--ease-cinematic);
+  position: relative;
+}
+
+.scheme-feature-card:hover {
+  transform: translateY(-6px);
+  box-shadow: var(--shadow-card);
+  border-color: rgba(225, 20, 86, 0.25);
+}
+
+.scheme-feature-card.featured-scheme {
+  background: #ffffff;
+  border: 1.5px solid rgba(225, 20, 86, 0.35);
+  box-shadow: 0 10px 30px rgba(225, 20, 86, 0.08);
+}
+
+.scheme-icon-badge {
+  font-size: 2.2rem;
+  margin-bottom: 1.25rem;
+}
+
+.scheme-kicker {
+  font-size: 0.72rem;
+  font-weight: 800;
+  letter-spacing: 0.15em;
+  text-transform: uppercase;
+  color: var(--crimson-pink);
+  margin-bottom: 0.5rem;
+}
+
+.scheme-title {
+  font-family: var(--font-display);
+  font-size: 1.35rem;
+  font-weight: 800;
+  color: var(--text-headline);
+  line-height: 1.25;
+  margin-bottom: 0.85rem;
+}
+
+.scheme-desc {
+  font-size: 0.92rem;
+  color: var(--text-body);
+  line-height: 1.6;
+  margin-bottom: 1.5rem;
+}
+
+.scheme-perk-pill {
+  margin-top: auto;
+  font-size: 0.78rem;
+  font-weight: 700;
+  color: #0b0f19;
+  background: rgba(11, 15, 25, 0.04);
+  padding: 0.45rem 0.85rem;
+  border-radius: var(--radius-full);
+}
+
+/* ========================================================================= */
+/* ADVANCED TRADE-IN EVALUATOR STYLES */
+/* ========================================================================= */
+.trade-evaluator-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 1.25rem;
+  margin-bottom: 2rem;
+}
+
+@media (max-width: 992px) {
+  .trade-evaluator-grid { grid-template-columns: repeat(2, 1fr); }
+}
+
+@media (max-width: 640px) {
+  .trade-evaluator-grid { grid-template-columns: 1fr; }
+}
+
+.trade-input-field label {
+  display: block;
+  font-size: 0.78rem;
+  font-weight: 800;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--text-muted);
+  margin-bottom: 0.45rem;
+}
+
+.trade-select-control {
+  width: 100%;
+  background: #ffffff;
+  border: 1.5px solid var(--border-light);
+  color: var(--text-headline);
+  font-size: 0.88rem;
+  font-weight: 700;
+  padding: 0.8rem 1rem;
+  border-radius: var(--radius-md);
+  outline: none;
+  transition: border-color 0.2s ease;
+}
+
+.trade-select-control:focus {
+  border-color: var(--crimson-pink);
+}
+
+.trade-disclaimer-card {
+  background: #fff8f0;
+  border: 1px solid #fed7aa;
+  border-radius: var(--radius-md);
+  padding: 1.25rem 1.5rem;
+  margin-top: 1.5rem;
+  font-size: 0.88rem;
+  color: #7c2d12;
+  line-height: 1.6;
+}
+
+.disclaimer-badge {
+  font-weight: 800;
+  color: #c2410c;
+  margin-bottom: 0.35rem;
+}
+
 
