@@ -32,7 +32,7 @@ let heroSelectedState = {
   storage: "256GB",
   price: 179900,
   color: "Deep Burgundy Titanium",
-  image: "iphone-18-pro-finish-select-202609-6-9inch-burgundy.webp"
+  image: "assets/phone.png"
 };
 
 let currentViewerProduct = null;

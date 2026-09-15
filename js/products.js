@@ -117,6 +117,344 @@ const BRANDS_CONFIG = [
 ];
 
 const PRODUCTS = [
+{
+    "id": "apple-18-pro-max-burgundy",
+    "name": "iPhone 18 Pro Max (Burgundy Special)",
+    "brand": "Apple",
+    "category": "apple",
+    "tagline": "Exclusive Deep Burgundy Titanium Edition with 2nm A20 Pro",
+    "price": 189900,
+    "originalPrice": 199900,
+    "badge": "\ud83d\udc51 Special Edition",
+    "isFeaturedHero": true,
+    "isHero": true,
+    "rating": 5.0,
+    "reviewsCount": 710,
+    "chip": "A20 Pro (2nm Silicon)",
+    "display": "6.9\" Super Retina XDR ProMotion 120Hz (3000 nits)",
+    "camera": "48MP Fusion Triple Camera + 10x Optical Periscope Zoom",
+    "battery": "38 hrs video playback, MagSafe 45W Ultra Charge",
+    "image": "assets/user_phone_1.jpg",
+    "fallbackImage": "assets/phone.png",
+    "colors": [
+        {
+            "name": "Deep Burgundy Titanium",
+            "hex": "#7a1120",
+            "image": "assets/user_phone_1.jpg"
+        },
+        {
+            "name": "Champagne Gold",
+            "hex": "#d8c49e",
+            "image": "assets/user_phone_1.jpg"
+        }
+    ],
+    "storage": [
+        "256GB",
+        "512GB",
+        "1TB",
+        "2TB"
+    ],
+    "emi": "\u20b98,440/mo"
+},
+{
+    "id": "samsung-s26-ultra-sapphire",
+    "name": "Samsung Galaxy S26 Ultra (Sapphire)",
+    "brand": "Samsung",
+    "category": "samsung",
+    "tagline": "200MP Quad Camera, S-Pen & Galaxy AI 3.0",
+    "price": 149999,
+    "originalPrice": 164999,
+    "badge": "\ud83e\ude90 Sapphire AI Master",
+    "isFeaturedHero": false,
+    "isHero": false,
+    "rating": 5.0,
+    "reviewsCount": 420,
+    "chip": "Snapdragon 8 Elite Gen 2 for Galaxy",
+    "display": "6.8\" Dynamic AMOLED 2X (3200 nits, Anti-Reflective)",
+    "camera": "200MP Main + 50MP 5x Periscope + 50MP 3x + 50MP Ultra-Wide",
+    "battery": "5000 mAh + 65W Super Fast Charge 2.0",
+    "image": "assets/user_phone_2.jpg",
+    "fallbackImage": "assets/phone.png",
+    "colors": [
+        {
+            "name": "Sapphire Blue Titanium",
+            "hex": "#1e3a5f",
+            "image": "assets/user_phone_2.jpg"
+        },
+        {
+            "name": "Titanium Black",
+            "hex": "#1c1c1e",
+            "image": "assets/user_phone_2.jpg"
+        }
+    ],
+    "storage": [
+        "256GB",
+        "512GB",
+        "1TB"
+    ],
+    "emi": "\u20b96,660/mo"
+},
+{
+    "id": "pixel-10-pro-fold",
+    "name": "Google Pixel 10 Pro Fold",
+    "brand": "Google",
+    "category": "google",
+    "tagline": "Gemini AI Built-In \u2014 Ultra-Thin Dual Screen Foldable",
+    "price": 159999,
+    "originalPrice": 172999,
+    "badge": "\ud83e\udd16 Gemini Pro Fold",
+    "isFeaturedHero": false,
+    "isHero": false,
+    "rating": 4.9,
+    "reviewsCount": 290,
+    "chip": "Google Tensor G6 AI Chip",
+    "display": "8.0\" Super Actua Flex OLED 120Hz + 6.3\" Outer Display",
+    "camera": "48MP Triple Rear Camera + Magic Editor 2.0",
+    "battery": "4650 mAh + Wireless Charging",
+    "image": "assets/user_phone_3.jpg",
+    "fallbackImage": "assets/phone.png",
+    "colors": [
+        {
+            "name": "Obsidian Black",
+            "hex": "#191919",
+            "image": "assets/user_phone_3.jpg"
+        },
+        {
+            "name": "Porcelain White",
+            "hex": "#f0f0ed",
+            "image": "assets/user_phone_3.jpg"
+        }
+    ],
+    "storage": [
+        "256GB",
+        "512GB"
+    ],
+    "emi": "\u20b97,110/mo"
+},
+{
+    "id": "oneplus-15-pro-hasselblad",
+    "name": "OnePlus 15 Pro Hasselblad",
+    "brand": "OnePlus",
+    "category": "oneplus",
+    "tagline": "Never Settle \u2014 150W SuperVOOC & Hasselblad Color Engine",
+    "price": 89999,
+    "originalPrice": 97999,
+    "badge": "\u26a1 150W Hyper Charge",
+    "isFeaturedHero": false,
+    "isHero": false,
+    "rating": 4.9,
+    "reviewsCount": 380,
+    "chip": "Snapdragon 8 Elite Gen 2",
+    "display": "6.82\" QHD+ 165Hz ProXDR AMOLED",
+    "camera": "50MP Sony LYT-900 + 64MP 3x Periscope Telephoto",
+    "battery": "5800 mAh + 150W SuperVOOC Charge",
+    "image": "assets/user_phone_4.jpg",
+    "fallbackImage": "assets/phone.png",
+    "colors": [
+        {
+            "name": "Emerald Green",
+            "hex": "#1f4a38",
+            "image": "assets/user_phone_4.jpg"
+        },
+        {
+            "name": "Silky Black",
+            "hex": "#1a1a1b",
+            "image": "assets/user_phone_4.jpg"
+        }
+    ],
+    "storage": [
+        "256GB",
+        "512GB",
+        "1TB"
+    ],
+    "emi": "\u20b94,000/mo"
+},
+{
+    "id": "xiaomi-16-ultra-leica",
+    "name": "Xiaomi 16 Ultra Leica Edition",
+    "brand": "Xiaomi",
+    "category": "xiaomi",
+    "tagline": "1-inch Leica Summicron Quad-Camera Mechanical Aperture",
+    "price": 109999,
+    "originalPrice": 119999,
+    "badge": "\ud83d\udd25 1-Inch Leica Sensor",
+    "isFeaturedHero": false,
+    "isHero": false,
+    "rating": 4.9,
+    "reviewsCount": 410,
+    "chip": "Snapdragon 8 Elite Gen 2",
+    "display": "6.73\" WQHD+ 120Hz AMOLED 3000 nits",
+    "camera": "50MP 1-inch Main + 50MP 5x Periscope + 50MP 3.2x Telephoto",
+    "battery": "5300 mAh + 90W HyperCharge",
+    "image": "assets/user_phone_5.jpg",
+    "fallbackImage": "assets/phone.png",
+    "colors": [
+        {
+            "name": "Black Leather",
+            "hex": "#222224",
+            "image": "assets/user_phone_5.jpg"
+        },
+        {
+            "name": "White Ceramic",
+            "hex": "#f4f4f6",
+            "image": "assets/user_phone_5.jpg"
+        }
+    ],
+    "storage": [
+        "512GB",
+        "1TB"
+    ],
+    "emi": "\u20b94,880/mo"
+},
+{
+    "id": "vivo-x200-pro-zeiss",
+    "name": "vivo X200 Pro ZEISS Edition",
+    "brand": "vivo",
+    "category": "vivo",
+    "tagline": "ZEISS Master Optics & APO Telephoto Portrait Vanguard",
+    "price": 94999,
+    "originalPrice": 102999,
+    "badge": "\ud83d\udcf8 ZEISS APO Telephoto",
+    "isFeaturedHero": false,
+    "isHero": false,
+    "rating": 5.0,
+    "reviewsCount": 350,
+    "chip": "MediaTek Dimensity 9500 / V4 ISP",
+    "display": "6.78\" 1.5K 120Hz Micro-Quad Curved AMOLED",
+    "camera": "200MP ZEISS APO Periscope + 50MP Main Sony LYT-808",
+    "battery": "6000 mAh Blue-Ocean Silicon + 90W FlashCharge",
+    "image": "assets/user_phone_6.jpg",
+    "fallbackImage": "assets/phone.png",
+    "colors": [
+        {
+            "name": "Titanium Blue",
+            "hex": "#3a536b",
+            "image": "assets/user_phone_6.jpg"
+        },
+        {
+            "name": "Midnight Black",
+            "hex": "#17181c",
+            "image": "assets/user_phone_6.jpg"
+        }
+    ],
+    "storage": [
+        "256GB",
+        "512GB"
+    ],
+    "emi": "\u20b94,220/mo"
+},
+{
+    "id": "oppo-find-x9-pro-hasselblad",
+    "name": "OPPO Find X9 Pro Hasselblad",
+    "brand": "OPPO",
+    "category": "oppo",
+    "tagline": "Dual Periscope Telephoto Master & 5000 nits Hyper Display",
+    "price": 89999,
+    "originalPrice": 97999,
+    "badge": "\u2728 Dual Periscope Master",
+    "isFeaturedHero": false,
+    "isHero": false,
+    "rating": 4.8,
+    "reviewsCount": 310,
+    "chip": "MediaTek Dimensity 9500 / Snapdragon 8 Elite",
+    "display": "6.82\" QHD+ 120Hz Curved AMOLED",
+    "camera": "50MP Dual Periscope Hasselblad Camera System",
+    "battery": "5910 mAh + 80W SUPERVOOC",
+    "image": "assets/user_phone_7.jpg",
+    "fallbackImage": "assets/phone.png",
+    "colors": [
+        {
+            "name": "Silk Gold",
+            "hex": "#dfc7a1",
+            "image": "assets/user_phone_7.jpg"
+        },
+        {
+            "name": "Ocean Blue",
+            "hex": "#2b547e",
+            "image": "assets/user_phone_7.jpg"
+        }
+    ],
+    "storage": [
+        "256GB",
+        "512GB"
+    ],
+    "emi": "\u20b94,000/mo"
+},
+{
+    "id": "apple-iphone-air-slim",
+    "name": "iPhone Air Titanium Slim",
+    "brand": "Apple",
+    "category": "apple",
+    "tagline": "Ultra-Thin 5mm Grade-5 Titanium Body",
+    "price": 109900,
+    "originalPrice": 119900,
+    "badge": "\ud83e\udeb6 5mm Titanium Slim",
+    "isFeaturedHero": false,
+    "isHero": false,
+    "rating": 4.9,
+    "reviewsCount": 280,
+    "chip": "A19 Pro Bionic",
+    "display": "6.6\" OLED 120Hz Edge-to-Edge Fluid Display",
+    "camera": "48MP Dual Fusion Optical Engine",
+    "battery": "Solid State Battery (26 hrs playback)",
+    "image": "assets/user_phone_8.jpg",
+    "fallbackImage": "assets/phone.png",
+    "colors": [
+        {
+            "name": "Titanium White",
+            "hex": "#f0f0ed",
+            "image": "assets/user_phone_8.jpg"
+        },
+        {
+            "name": "Titanium Space Gray",
+            "hex": "#2a2a2c",
+            "image": "assets/user_phone_8.jpg"
+        }
+    ],
+    "storage": [
+        "256GB",
+        "512GB"
+    ],
+    "emi": "\u20b94,880/mo"
+},
+{
+    "id": "samsung-galaxy-zfold8-luxe",
+    "name": "Samsung Galaxy Z Fold 8 Luxe",
+    "brand": "Samsung",
+    "category": "samsung",
+    "tagline": "Zero-Crease Dual 120Hz AMOLED Displays with S-Pen",
+    "price": 169999,
+    "originalPrice": 184999,
+    "badge": "\ud83e\ude90 Ultra Flex Glass",
+    "isFeaturedHero": false,
+    "isHero": false,
+    "rating": 5.0,
+    "reviewsCount": 390,
+    "chip": "Snapdragon 8 Elite Gen 2 for Galaxy",
+    "display": "7.6\" Dynamic AMOLED 2X Inner + 6.3\" Outer Display",
+    "camera": "200MP Main + 50MP Telephoto + 12MP Ultra-Wide",
+    "battery": "4600 mAh + 45W Fast Charging",
+    "image": "assets/user_phone_9.jpg",
+    "fallbackImage": "assets/phone.png",
+    "colors": [
+        {
+            "name": "Crafted Black",
+            "hex": "#171718",
+            "image": "assets/user_phone_9.jpg"
+        },
+        {
+            "name": "Silver Shadow",
+            "hex": "#c9cbcf",
+            "image": "assets/user_phone_9.jpg"
+        }
+    ],
+    "storage": [
+        "256GB",
+        "512GB",
+        "1TB"
+    ],
+    "emi": "\u20b97,550/mo"
+},
   // ==========================================
   // APPLE COLLECTION (6 MODELS)
   // ==========================================

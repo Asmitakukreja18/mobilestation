@@ -42,6 +42,11 @@
     </nav>
 
     <div class="nav-actions">
+      <!-- Add Phone Button -->
+      <button class="add-phone-trigger-btn" onclick="openAddPhoneModal()" title="Add New Phone to Store Catalog">
+        <span>📱 + Add Phone</span>
+      </button>
+
       <!-- Search Trigger Button -->
       <button class="icon-btn search-trigger-btn" id="openSearchBtn" aria-label="Search Smartphones">
         <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
@@ -203,7 +208,7 @@
         <div class="phone-container" id="phoneContainer" title="Drag to rotate 3D view">
           <div class="phone-3d-wrapper" id="phone3dWrapper">
             <img
-              src="assets/iphone-18-pro-max.png"
+              src="assets/phone.png"
               class="phone-image"
               id="phoneImage"
               alt="iPhone 18 Pro Max Titanium Showroom Centerpiece"
@@ -225,7 +230,7 @@
           <div class="pedestal-glow-ring"></div>
           <div class="phone-pedestal-shadow"></div>
           <div class="phone-mirror-reflection">
-            <img src="assets/iphone-18-pro-max.png" id="phoneReflectionImg" alt="Floor Reflection" />
+            <img src="assets/phone.png" id="phoneReflectionImg" alt="Floor Reflection" />
           </div>
         </div>
 
@@ -1070,8 +1075,14 @@
   </div>
 
 
+  <!-- Floating Action Button: Add Phone -->
+  <button class="add-phone-fab" onclick="openAddPhoneModal()" title="Add New Phone to Store Catalog">
+    <span>📱 + Add Phone</span>
+  </button>
+
   <!-- SCRIPTS -->
   <script src="products-data.js"></script>
+  <script src="js/add-phone.js"></script>
   <script src="script.js"></script>
 </body>
 </html>

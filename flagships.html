@@ -41,6 +41,11 @@
     </nav>
 
     <div class="nav-actions">
+      <!-- Add Phone Button -->
+      <button class="add-phone-trigger-btn" onclick="openAddPhoneModal()" title="Add New Phone to Store Catalog">
+        <span>📱 + Add Phone</span>
+      </button>
+
       <button class="icon-btn search-trigger-btn" id="openSearchBtn" aria-label="Search">
         <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="8"></circle><line x1="21" y1="21" x2="16.65" y2="16.65"></line></svg>
       </button>
@@ -99,6 +104,12 @@
           <a href="#section-xiaomi" class="brand-nav-pill">🔥 Xiaomi / Redmi</a>
           <a href="#section-vivo" class="brand-nav-pill">📸 vivo ZEISS</a>
           <a href="#section-oppo" class="brand-nav-pill">✨ OPPO Find</a>
+        </div>
+
+        <div style="margin-top: 20px;">
+          <button class="btn btn-crimson btn-large" onclick="openAddPhoneModal()">
+            📱 + Add New Phone to Showroom Catalog
+          </button>
         </div>
       </div>
     </div>
