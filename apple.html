@@ -3,8 +3,8 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Flagship Smartphones 2026 | Mobile Station Multi-Brand Showroom</title>
-  <meta name="description" content="Explore official 2026 flagships from Apple, Samsung, OnePlus, Google Pixel, Xiaomi, vivo and OPPO with 0% EMI at Mobile Station." />
+  <title>Apple iPhone 2026 Flagship Showcase | Mobile Station</title>
+  <meta name="description" content="Explore official Apple iPhone flagships: iPhone 18 Pro Max, iPhone 18 Pro, iPhone 17 Pro Max, iPhone 17 Pro, iPhone Air and iPhone 17 with 0% EMI at Mobile Station." />
 
   <!-- Google Fonts -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -13,6 +13,7 @@
 
   <link rel="stylesheet" href="css/global.css" />
   <link rel="stylesheet" href="css/flagships.css" />
+  <link rel="stylesheet" href="css/brand.css" />
 </head>
 
 <body>
@@ -51,7 +52,7 @@
         <span class="bag-badge" id="bagCount">0</span>
       </button>
 
-      <button class="whatsapp-concierge-btn" onclick="openWhatsApp('Hi Mobile Station! I am exploring your Flagship Collection catalog.')">
+      <button class="whatsapp-concierge-btn" onclick="openWhatsApp('Hi Mobile Station! I am interested in exploring your Apple iPhone 2026 Collection.')">
         <span class="online-indicator"></span>
         <div class="btn-text-block">
           <strong>WhatsApp</strong>
@@ -78,36 +79,76 @@
     </div>
   </div>
 
-  <!-- ================= FLAGSHIPS HERO BANNER ================= -->
-  <section class="section flagships-hero-banner">
+  <!-- ================= BRAND HERO ================= -->
+  <section class="section brand-hero-section">
     <div class="section-container">
-      <div class="flagships-hero-content">
-        <div class="section-kicker">FLAGSHIPS SHOWROOM</div>
-        <h1 class="section-main-title">
-          Explore Our <span>Latest Smartphones</span>
-        </h1>
-        <p class="section-subtitle">
-          Discover central India's finest collection of official 2026 flagship devices across all iconic brands with 0% No-Cost EMI and express concierge delivery.
-        </p>
+      <div class="brand-hero-layout">
+        <div class="brand-hero-left">
+          <div class="brand-hero-badge" id="brandHeroBadge">👑 2026 Apple Flagship Showcase</div>
+          <h1 class="brand-hero-title" id="brandHeroTitle">
+            Apple <span>iPhone 18 Pro Max</span>
+          </h1>
+          <p class="brand-hero-desc" id="brandHeroDesc">
+            Aerospace-grade titanium, custom 2nm Apple Silicon, and breakthrough Apple Intelligence pro camera systems.
+          </p>
 
-        <!-- Brand Quick Navigation Pills -->
-        <div class="brand-nav-pills">
-          <a href="#section-apple" class="brand-nav-pill">🍎 Apple</a>
-          <a href="#section-samsung" class="brand-nav-pill">🪐 Samsung</a>
-          <a href="#section-oneplus" class="brand-nav-pill">⚡ OnePlus</a>
-          <a href="#section-google" class="brand-nav-pill">🤖 Google Pixel</a>
-          <a href="#section-xiaomi" class="brand-nav-pill">🔥 Xiaomi / Redmi</a>
-          <a href="#section-vivo" class="brand-nav-pill">📸 vivo ZEISS</a>
-          <a href="#section-oppo" class="brand-nav-pill">✨ OPPO Find</a>
+          <div class="brand-hero-perks">
+            <div class="brand-perk-item">
+              <span class="brand-perk-icon">🛡️</span>
+              <span>100% Apple India Warranty</span>
+            </div>
+            <div class="brand-perk-item">
+              <span class="brand-perk-icon">💳</span>
+              <span>Instant 0% No-Cost EMI</span>
+            </div>
+            <div class="brand-perk-item">
+              <span class="brand-perk-icon">🔄</span>
+              <span>Best Old Phone Exchange Bonus</span>
+            </div>
+          </div>
+
+          <div class="brand-hero-actions">
+            <button class="btn btn-crimson btn-large" onclick="handleAddCardToBag('apple-18-pro-max')">
+              🛍️ Add iPhone 18 Pro Max to Bag
+            </button>
+            <button class="btn btn-outline-hero btn-large" onclick="enquireWhatsApp('iPhone 18 Pro Max', '179900')">
+              💬 Instant WhatsApp Enquiry
+            </button>
+          </div>
+        </div>
+
+        <div class="brand-hero-stage">
+          <div class="brand-stage-glow"></div>
+          <div class="brand-stage-orbit"></div>
+          <img src="assets/iphone-18-pro-max.png" alt="iPhone 18 Pro Max" id="brandHeroPhoneImg" class="brand-stage-phone" onerror="this.src='assets/phone.png';" />
+          <div class="brand-stage-pedestal"></div>
+          <div class="brand-price-tag">
+            <small>Showroom Price</small>
+            <strong id="brandHeroPrice">₹1,79,900</strong>
+          </div>
         </div>
       </div>
     </div>
   </section>
 
-  <!-- ================= DYNAMIC BRAND SHOWCASE SECTIONS ================= -->
-  <main id="brandsShowcaseContainer">
-    <!-- Brand sections populated dynamically via JS (Apple, Samsung, OnePlus, Google, Xiaomi, vivo, OPPO) -->
-  </main>
+  <!-- ================= ALL APPLE MODELS ================= -->
+  <section class="section brand-models-section">
+    <div class="section-container">
+      <div class="section-header-center">
+        <div class="section-kicker">THE COMPLETE APPLE LINEUP</div>
+        <h2 class="section-main-title">
+          Explore All <span>iPhone Models</span>
+        </h2>
+        <p class="section-subtitle">
+          From the pinnacle iPhone 18 Pro Max to the impossibly sleek iPhone Air and value-packed iPhone 17.
+        </p>
+      </div>
+
+      <div class="products-grid" id="brandProductsGrid">
+        <!-- Rendered dynamically by js/brand.js -->
+      </div>
+    </div>
+  </section>
 
   <!-- ================= FOOTER ================= -->
   <footer class="site-footer">
@@ -167,7 +208,7 @@
 
       <div class="footer-bottom-row">
         <div>© 2026 Mobile Station. All rights reserved.</div>
-        <div>Authorized Multi-Brand Retail Showroom</div>
+        <div>Authorized Multi-Brand Retail Destination</div>
       </div>
     </div>
   </footer>
@@ -216,91 +257,7 @@
   <script src="js/brand.js"></script>
   <script>
     document.addEventListener("DOMContentLoaded", () => {
-      const container = document.getElementById("brandsShowcaseContainer");
-      if (!container || typeof BRANDS_CONFIG === "undefined" || typeof PRODUCTS === "undefined") return;
-
-      container.innerHTML = BRANDS_CONFIG.map(brand => {
-        const brandProducts = getProductsByBrand(brand.id);
-
-        return `
-          <section class="section brand-showcase-section" id="section-${brand.id}">
-            <div class="section-container">
-              <div class="brand-section-header">
-                <div class="brand-header-left">
-                  <h2 class="brand-name-title">
-                    ${brand.name.toUpperCase()}
-                    <span>${brand.count} Models</span>
-                  </h2>
-                  <p class="brand-tagline-text">${brand.tagline}</p>
-                </div>
-
-                <a href="${brand.pageUrl}" class="brand-view-all-btn">
-                  VIEW ALL ${brand.name.toUpperCase()} →
-                </a>
-              </div>
-
-              <div class="products-grid">
-                ${brandProducts.map(p => `
-                  <div class="product-card glass-card" id="${p.id}">
-                    <div class="product-card-badge">${p.badge}</div>
-
-                    <div class="product-image-container">
-                      <img src="${p.image}" alt="${p.name}" class="product-img" onerror="this.src='${p.fallbackImage}';" />
-                    </div>
-
-                    <div class="product-details">
-                      <div class="product-brand-tag">${p.brand}</div>
-                      <h3 class="product-title">${p.name}</h3>
-                      <p class="product-tagline">${p.tagline}</p>
-
-                      <div class="product-specs-list">
-                        <div class="spec-row">
-                          <span class="spec-label">Chipset:</span>
-                          <span class="spec-value">${p.chip}</span>
-                        </div>
-                        <div class="spec-row">
-                          <span class="spec-label">Display:</span>
-                          <span class="spec-value">${p.display}</span>
-                        </div>
-                        <div class="spec-row">
-                          <span class="spec-label">Camera:</span>
-                          <span class="spec-value">${p.camera}</span>
-                        </div>
-                      </div>
-
-                      <div class="product-price-row">
-                        <div class="price-block">
-                          <div class="current-price">₹${p.price.toLocaleString("en-IN")}</div>
-                          <div class="mrp-price">MRP ₹${p.originalPrice.toLocaleString("en-IN")}</div>
-                        </div>
-                        <div class="emi-pill">
-                          <small>0% EMI</small>
-                          <strong>${p.emi}</strong>
-                        </div>
-                      </div>
-
-                      <div class="product-card-actions">
-                        <button class="btn btn-crimson btn-full" onclick="handleAddCardToBag('${p.id}')">
-                          🛍️ Add to Bag
-                        </button>
-                        <button class="btn btn-whatsapp-secondary btn-full" onclick="enquireWhatsApp('${p.name}', '${p.price}')">
-                          💬 Enquire
-                        </button>
-                      </div>
-                    </div>
-                  </div>
-                `).join("")}
-              </div>
-
-              <div style="text-align: center; margin-top: 40px;">
-                <a href="${brand.pageUrl}" class="btn btn-outline-hero btn-large">
-                  Explore Dedicated ${brand.name} Showroom Experience →
-                </a>
-              </div>
-            </div>
-          </section>
-        `;
-      }).join("");
+      initBrandPage("apple");
     });
   </script>
 </body>

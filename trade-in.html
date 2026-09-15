@@ -1,0 +1,377 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Trade-In & Exchange Estimator | Mobile Station</title>
+  <meta name="description" content="Calculate the exchange value of your old Apple iPhone, Samsung Galaxy, or OnePlus device with instant ₹6,000 upgrade bonuses at Mobile Station." />
+
+  <!-- Google Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&family=Manrope:wght@400;500;600;700;800;900&family=Outfit:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+
+  <link rel="stylesheet" href="css/global.css" />
+  <link rel="stylesheet" href="css/flagships.css" />
+  <style>
+    .trade-hero-banner {
+      padding-top: 140px;
+      padding-bottom: 60px;
+      text-align: center;
+      background: radial-gradient(circle at 50% 30%, rgba(215, 25, 66, 0.08) 0%, transparent 70%);
+    }
+    .trade-hero-content {
+      max-width: 840px;
+      margin: 0 auto;
+    }
+    .trade-calc-card {
+      background: #ffffff;
+      border: 1px solid var(--glass-border);
+      border-radius: 24px;
+      padding: 40px;
+      max-width: 800px;
+      margin: 0 auto 60px;
+      box-shadow: var(--shadow-elevation);
+    }
+    .condition-chips {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 12px;
+      margin-top: 8px;
+    }
+    .cond-btn {
+      padding: 12px;
+      border-radius: 12px;
+      border: 1px solid rgba(215, 175, 155, 0.5);
+      background: #fcf8f5;
+      text-align: center;
+      cursor: pointer;
+      transition: all 0.2s ease;
+    }
+    .cond-btn.active, .cond-btn:hover {
+      background: var(--crimson-primary);
+      color: #ffffff;
+      border-color: var(--crimson-primary);
+    }
+    .cond-btn strong { display: block; font-size: 13px; }
+    .cond-btn small { font-size: 11px; opacity: 0.8; }
+    .valuation-box {
+      background: #f7ede5;
+      border: 1px solid rgba(215, 25, 66, 0.3);
+      border-radius: 16px;
+      padding: 20px;
+      text-align: center;
+      margin: 24px 0;
+    }
+    .val-amount {
+      font-size: 36px;
+      font-weight: 900;
+      color: var(--crimson-primary);
+    }
+  </style>
+</head>
+
+<body>
+
+  <!-- ================= NAVBAR ================= -->
+  <header class="navbar" id="navbar">
+    <a href="index.html" class="brand" aria-label="Mobile Station Home">
+      <div class="brand-mark">
+        <img src="assets/logo.jpeg" alt="Mobile Station Logo" class="brand-logo" onerror="this.style.display='none'; this.nextElementSibling.style.display='grid'" />
+        <span class="brand-fallback-logo" style="display:none;">MS</span>
+      </div>
+      <div class="brand-text">
+        <strong>MOBILE</strong>
+        <span>STATION</span>
+      </div>
+    </a>
+
+    <nav class="navigation" id="navigation">
+      <a href="index.html" class="nav-link">Home</a>
+      <a href="story.html" class="nav-link">Story</a>
+      <a href="flagships.html" class="nav-link">Flagships</a>
+      <a href="schemes.html" class="nav-link">Schemes</a>
+      <a href="repair-lab.html" class="nav-link">Repair Lab</a>
+      <a href="trade-in.html" class="nav-link active">Trade-In</a>
+      <a href="showrooms.html" class="nav-link">Showrooms</a>
+    </nav>
+
+    <div class="nav-actions">
+      <button class="icon-btn search-trigger-btn" id="openSearchBtn" aria-label="Search">
+        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="8"></circle><line x1="21" y1="21" x2="16.65" y2="16.65"></line></svg>
+      </button>
+
+      <button class="bag-button" id="openBagBtn" aria-label="Open Bag">
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M6 2L3 6v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V6l-3-4z"></path><line x1="3" y1="6" x2="21" y2="6"></line><path d="M16 10a4 4 0 0 1-8 0"></path></svg>
+        <span>Bag</span>
+        <span class="bag-badge" id="bagCount">0</span>
+      </button>
+
+      <button class="whatsapp-concierge-btn" onclick="openWhatsApp('Hi Mobile Station! I want to trade in my old phone for a 2026 flagship.')">
+        <span class="online-indicator"></span>
+        <div class="btn-text-block">
+          <strong>WhatsApp</strong>
+          <small>Trade Advisor</small>
+        </div>
+      </button>
+
+      <button class="mobile-menu-toggle" id="mobileMenuToggle" aria-label="Toggle Menu">
+        <span></span><span></span><span></span>
+      </button>
+    </div>
+  </header>
+
+  <!-- Mobile Drawer -->
+  <div class="mobile-nav-drawer" id="mobileNavDrawer">
+    <div class="mobile-nav-links">
+      <a href="index.html">Home</a>
+      <a href="story.html">Brand Story</a>
+      <a href="flagships.html">Flagships Collection</a>
+      <a href="schemes.html">EMI & Schemes</a>
+      <a href="repair-lab.html">Repair Lab</a>
+      <a href="trade-in.html" class="active">Trade-In Calculator</a>
+      <a href="showrooms.html">Showrooms</a>
+    </div>
+  </div>
+
+  <!-- ================= TRADE HERO ================= -->
+  <section class="section trade-hero-banner">
+    <div class="section-container">
+      <div class="trade-hero-content">
+        <div class="section-kicker">MAXIMUM RESALE VALUE GUARANTEED</div>
+        <h1 class="section-main-title">
+          Trade Your Old Phone. <span>Upgrade in Style.</span>
+        </h1>
+        <p class="section-subtitle">
+          Turn your current smartphone into instant cash discount toward any 2026 flagship. 3-minute diagnostic test, zero paperwork & guaranteed top-tier market price.
+        </p>
+      </div>
+    </div>
+  </section>
+
+  <!-- ================= CALCULATOR ================= -->
+  <section class="section" style="padding-top: 0;">
+    <div class="section-container">
+      <div class="trade-calc-card">
+        <div class="section-kicker" style="text-align: center; display: block;">EXCHANGE VALUATION ESTIMATOR</div>
+        <h2 style="text-align: center; font-size: 28px; margin-bottom: 24px; color: #170d10;">Calculate Your Device Value</h2>
+
+        <div style="margin-bottom: 18px;">
+          <label style="display:block; font-weight:700; font-size:13px; margin-bottom:6px;">Current Smartphone Brand</label>
+          <select id="tradeBrand" onchange="updateModels()" style="width:100%; padding:12px 16px; border-radius:12px; border:1px solid rgba(215,175,155,0.6); font-size:14px; background:#fdfaf7;">
+            <option value="apple">Apple iPhone</option>
+            <option value="samsung">Samsung Galaxy</option>
+            <option value="oneplus">OnePlus</option>
+            <option value="google">Google Pixel</option>
+            <option value="xiaomi">Xiaomi / Redmi</option>
+            <option value="vivo">vivo</option>
+          </select>
+        </div>
+
+        <div style="margin-bottom: 18px;">
+          <label style="display:block; font-weight:700; font-size:13px; margin-bottom:6px;">Current Model</label>
+          <select id="tradeModel" onchange="computeValuation()" style="width:100%; padding:12px 16px; border-radius:12px; border:1px solid rgba(215,175,155,0.6); font-size:14px; background:#fdfaf7;"></select>
+        </div>
+
+        <div style="margin-bottom: 18px;">
+          <label style="display:block; font-weight:700; font-size:13px; margin-bottom:6px;">Physical Condition</label>
+          <div class="condition-chips">
+            <button class="cond-btn active" onclick="setCondition('flawless', 1.0, this)">
+              <strong>Flawless</strong>
+              <small>Like new, no scratches</small>
+            </button>
+            <button class="cond-btn" onclick="setCondition('good', 0.85, this)">
+              <strong>Good</strong>
+              <small>Minor wear & tear</small>
+            </button>
+            <button class="cond-btn" onclick="setCondition('average', 0.70, this)">
+              <strong>Average</strong>
+              <small>Noticeable body scratches</small>
+            </button>
+          </div>
+        </div>
+
+        <div class="valuation-box">
+          <div style="font-size: 13px; font-weight: 700; color: #584147;">Estimated Trade-In Value:</div>
+          <div class="val-amount" id="valAmount">₹85,000</div>
+          <div style="font-size: 12px; color: var(--crimson-primary); font-weight: 800; margin-top: 4px;">
+            + Extra ₹6,000 Mobile Station Upgrade Bonus Included!
+          </div>
+        </div>
+
+        <button class="btn btn-crimson btn-full btn-large" onclick="claimTradeIn()">
+          Claim Trade-In Voucher on WhatsApp →
+        </button>
+      </div>
+    </div>
+  </section>
+
+  <!-- ================= FOOTER ================= -->
+  <footer class="site-footer">
+    <div class="section-container">
+      <div class="footer-top-row">
+        <div class="footer-brand-col">
+          <div class="brand">
+            <div class="brand-mark">
+              <img src="assets/logo.jpeg" alt="Mobile Station" class="brand-logo" onerror="this.style.display='none';" />
+            </div>
+            <div class="brand-text">
+              <strong>MOBILE</strong>
+              <span>STATION</span>
+            </div>
+          </div>
+          <p class="footer-bio">
+            Mobile Station is central India's premier luxury multi-brand smartphone showroom.
+          </p>
+        </div>
+
+        <div class="footer-links-col">
+          <h4>Showrooms</h4>
+          <ul>
+            <li><a href="apple.html">Apple iPhone</a></li>
+            <li><a href="samsung.html">Samsung Galaxy</a></li>
+            <li><a href="oneplus.html">OnePlus</a></li>
+            <li><a href="google.html">Google Pixel</a></li>
+            <li><a href="xiaomi.html">Xiaomi / Redmi</a></li>
+            <li><a href="vivo.html">vivo ZEISS</a></li>
+            <li><a href="oppo.html">OPPO Find</a></li>
+          </ul>
+        </div>
+
+        <div class="footer-links-col">
+          <h4>Showroom Services</h4>
+          <ul>
+            <li><a href="schemes.html">0% No-Cost EMI</a></li>
+            <li><a href="trade-in.html">Trade-In Calculator</a></li>
+            <li><a href="repair-lab.html">30-Min Express Lab</a></li>
+            <li><a href="showrooms.html">Store Locator</a></li>
+          </ul>
+        </div>
+
+        <div class="footer-links-col">
+          <h4>Trade Helpline</h4>
+          <p style="font-size: 13px; color: #584147;">
+            WhatsApp: +91 93221 60461<br>
+            Open 7 Days: 10AM - 10PM
+          </p>
+        </div>
+      </div>
+    </div>
+  </footer>
+
+  <!-- Search Modal -->
+  <div class="search-modal" id="searchModal">
+    <div class="search-container">
+      <div class="search-input-wrap">
+        <input type="text" id="globalSearchInput" placeholder="Search iPhone 18, S26 Ultra, OnePlus 15..." />
+        <button id="closeSearchBtn" style="font-size: 20px;">✕</button>
+      </div>
+      <div class="search-results-list" id="searchResults"></div>
+    </div>
+  </div>
+
+  <!-- Cart Drawer -->
+  <div class="cart-overlay" id="cartOverlay"></div>
+  <div class="cart-drawer" id="cartDrawer">
+    <div class="cart-header">
+      <h3>Your Showroom Bag</h3>
+      <button class="cart-close-btn" id="closeCartBtn">✕</button>
+    </div>
+    <div class="cart-body">
+      <div id="cartEmptyState" style="text-align: center; padding: 40px 0; color: #7a6167;">
+        <div style="font-size: 40px; margin-bottom: 12px;">🛍️</div>
+        <h4>Your bag is currently empty</h4>
+      </div>
+      <div id="cartItemsContainer"></div>
+    </div>
+    <div class="cart-footer">
+      <div class="cart-total-row">
+        <span>Estimated Total:</span>
+        <span id="cartSubtotal">₹0</span>
+      </div>
+      <button class="btn btn-crimson btn-full btn-large" id="cartCheckoutBtn">
+        💬 Order via WhatsApp Concierge
+      </button>
+    </div>
+  </div>
+
+  <!-- Scripts -->
+  <script src="js/products.js"></script>
+  <script src="js/cart.js"></script>
+  <script src="js/global.js"></script>
+  <script>
+    const TRADE_DATA = {
+      apple: [
+        { name: "iPhone 16 Pro Max", base: 85000 },
+        { name: "iPhone 16 Pro", base: 72000 },
+        { name: "iPhone 15 Pro Max", base: 64000 },
+        { name: "iPhone 15 Pro", base: 54000 },
+        { name: "iPhone 15", base: 42000 },
+        { name: "iPhone 14 Pro Max", base: 48000 }
+      ],
+      samsung: [
+        { name: "Galaxy S25 Ultra", base: 72000 },
+        { name: "Galaxy S25+", base: 52000 },
+        { name: "Galaxy S24 Ultra", base: 56000 },
+        { name: "Galaxy Z Fold6", base: 68000 }
+      ],
+      oneplus: [
+        { name: "OnePlus 13", base: 42000 },
+        { name: "OnePlus 12", base: 34000 },
+        { name: "OnePlus 11", base: 26000 }
+      ],
+      google: [
+        { name: "Pixel 9 Pro XL", base: 54000 },
+        { name: "Pixel 9 Pro", base: 46000 },
+        { name: "Pixel 8 Pro", base: 36000 }
+      ],
+      xiaomi: [
+        { name: "Xiaomi 14 Ultra", base: 48000 },
+        { name: "Xiaomi 14", base: 34000 },
+        { name: "Redmi Note 13 Pro+", base: 16000 }
+      ],
+      vivo: [
+        { name: "vivo X100 Ultra", base: 52000 },
+        { name: "vivo X100 Pro", base: 42000 }
+      ]
+    };
+
+    let currentMultiplier = 1.0;
+
+    function updateModels() {
+      const brand = document.getElementById("tradeBrand").value;
+      const select = document.getElementById("tradeModel");
+      const models = TRADE_DATA[brand] || [];
+      select.innerHTML = models.map(m => `<option value="${m.base}">${m.name}</option>`).join("");
+      computeValuation();
+    }
+
+    function setCondition(cond, mult, btn) {
+      currentMultiplier = mult;
+      document.querySelectorAll(".cond-btn").forEach(b => b.classList.remove("active"));
+      btn.classList.add("active");
+      computeValuation();
+    }
+
+    function computeValuation() {
+      const select = document.getElementById("tradeModel");
+      const base = Number(select.value) || 50000;
+      const total = Math.round(base * currentMultiplier);
+      document.getElementById("valAmount").textContent = "₹" + total.toLocaleString("en-IN");
+    }
+
+    function claimTradeIn() {
+      const select = document.getElementById("tradeModel");
+      const modelName = select.options[select.selectedIndex].text;
+      const val = document.getElementById("valAmount").textContent;
+
+      const msg = `Hi Mobile Station! 📱\n\nI want to trade in my *${modelName}* for a new 2026 flagship smartphone.\n• Estimated Exchange Value: ${val}\n• Upgrade Voucher: Extra ₹6,000 applicable\n\nPlease verify device eligibility and share final quotation.`;
+      openWhatsApp(msg);
+    }
+
+    document.addEventListener("DOMContentLoaded", () => {
+      updateModels();
+    });
+  </script>
+</body>
+</html>
