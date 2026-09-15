@@ -794,6 +794,7 @@ img {
   border-color: var(--text-headline);
 }
 
+.circle-burgundy { background: #5a202d; }
 .circle-desert { background: #cbb799; }
 .circle-natural { background: #a8a6a0; }
 .circle-black { background: #242528; }

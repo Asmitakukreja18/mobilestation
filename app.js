@@ -260,6 +260,7 @@ let storyScene, storyCamera, storyRenderer, storyPhoneGroup;
 let storyChassisMesh, storyBackMesh;
 
 const FINISH_COLORS = {
+  burgundy: { chassis: 0x5a202d, back: 0x471520, rim: 0x8a2d42 },
   desert: { chassis: 0xcbb799, back: 0xdecbb4, rim: 0xf5dfc6 },
   natural: { chassis: 0xa8a6a0, back: 0xc4c2bb, rim: 0xe8e6df },
   black: { chassis: 0x242528, back: 0x1a1b1d, rim: 0x5a5d66 }
