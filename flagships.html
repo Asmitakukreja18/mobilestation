@@ -1,0 +1,322 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Flagship Smartphones 2026 | Mobile Station Luxury Collection</title>
+  <meta name="description" content="Browse and buy latest 2026 flagship smartphones: Apple iPhone 18 Pro Max, Samsung Galaxy S26 Ultra, OnePlus 15, Pixel 11 Pro, Xiaomi 17 Ultra, vivo X300 and OPPO Find X9 at Mobile Station." />
+
+  <!-- Google Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&family=Manrope:wght@400;500;600;700;800;900&family=Outfit:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+
+  <link rel="stylesheet" href="styles.css" />
+</head>
+
+<body>
+
+  <!-- ================= NAVBAR ================= -->
+  <header class="navbar" id="navbar">
+    <a href="index.html" class="brand" aria-label="Mobile Station Home">
+      <div class="brand-mark">
+        <img src="assets/logo.jpeg" alt="Mobile Station Logo" class="brand-logo" onerror="this.style.display='none'; this.nextElementSibling.style.display='grid'" />
+        <span class="brand-fallback-logo" style="display:none;">MS</span>
+      </div>
+      <div class="brand-text">
+        <strong>MOBILE</strong>
+        <span>STATION</span>
+      </div>
+    </a>
+
+    <nav class="navigation" id="navigation">
+      <a href="index.html" class="nav-link">Home</a>
+      <a href="story.html" class="nav-link">Story</a>
+      <a href="flagships.html" class="nav-link active">Flagships</a>
+      <a href="schemes.html" class="nav-link">Schemes</a>
+      <a href="repair.html" class="nav-link">Repair Lab</a>
+      <a href="trade.html" class="nav-link">Trade-In</a>
+      <a href="showrooms.html" class="nav-link">Showrooms</a>
+    </nav>
+
+    <div class="nav-actions">
+      <button class="icon-btn search-trigger-btn" id="openSearchBtn" aria-label="Search">
+        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="8"></circle><line x1="21" y1="21" x2="16.65" y2="16.65"></line></svg>
+      </button>
+
+      <button class="bag-button" id="openBagBtn" aria-label="Open Bag">
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M6 2L3 6v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V6l-3-4z"></path><line x1="3" y1="6" x2="21" y2="6"></line><path d="M16 10a4 4 0 0 1-8 0"></path></svg>
+        <span>Bag</span>
+        <span class="bag-badge" id="bagCount">0</span>
+      </button>
+
+      <button class="whatsapp-concierge-btn" onclick="openWhatsApp('Hi Mobile Station! I am exploring your Flagship Collection catalog.')">
+        <span class="online-indicator"></span>
+        <div class="btn-text-block">
+          <strong>WhatsApp</strong>
+          <small>VIP Concierge</small>
+        </div>
+      </button>
+
+      <button class="mobile-menu-toggle" id="mobileMenuToggle" aria-label="Toggle Menu">
+        <span></span><span></span><span></span>
+      </button>
+    </div>
+  </header>
+
+  <!-- Mobile Navigation Drawer -->
+  <div class="mobile-nav-drawer" id="mobileNavDrawer">
+    <div class="mobile-nav-links">
+      <a href="index.html">Home</a>
+      <a href="story.html">Brand Story</a>
+      <a href="flagships.html" class="active">Flagships Collection</a>
+      <a href="schemes.html">EMI & Schemes</a>
+      <a href="repair.html">Repair Lab</a>
+      <a href="trade.html">Trade-In Calculator</a>
+      <a href="showrooms.html">Showroom Locations</a>
+    </div>
+    <div class="mobile-nav-footer">
+      <button class="btn btn-crimson btn-full" onclick="openWhatsApp(); closeMobileMenu();">
+        💬 Chat with Showroom Concierge
+      </button>
+    </div>
+  </div>
+
+
+  <!-- ================= FLAGSHIPS HEADER BANNER ================= -->
+  <section class="section flagships-hero-banner">
+    <div class="section-container">
+      <div class="flagships-hero-content">
+        <div class="section-kicker">THE 2026 FLAGSHIP SHOWROOM</div>
+        <h1 class="section-main-title">
+          The Pinnacle of <span>Smartphone Innovation.</span>
+        </h1>
+        <p class="section-subtitle">
+          Explore all official 2026 flagships from Apple, Samsung, OnePlus, Google, Xiaomi, vivo & OPPO with instant 0% EMI and official manufacturer warranties.
+        </p>
+      </div>
+    </div>
+  </section>
+
+
+  <!-- ================= FLAGSHIP CATALOG SECTION ================= -->
+  <section class="section flagships-section" style="padding-top: 0;">
+    <div class="section-container">
+
+      <!-- Search & Sorting Controls -->
+      <div class="section-header-row">
+        <div>
+          <div class="section-kicker">CURATED SHOWROOM CATALOG</div>
+          <h2 style="font-size: 28px; color: #fff;">Select Brand or Model</h2>
+        </div>
+
+        <div class="filter-controls-right">
+          <div class="inline-search-box">
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="8"></circle><line x1="21" y1="21" x2="16.65" y2="16.65"></line></svg>
+            <input type="text" id="flagshipSearchInput" placeholder="Search iPhone 18, S26 Ultra, OnePlus 15, Pixel 11..." />
+          </div>
+        </div>
+      </div>
+
+      <!-- Brand Filter Tabs -->
+      <div class="brand-filter-tabs" id="brandFilterTabs">
+        <button class="brand-tab active" data-brand="all">All Brands (32)</button>
+        <button class="brand-tab" data-brand="apple">🍎 Apple (6)</button>
+        <button class="brand-tab" data-brand="samsung">🪐 Samsung (6)</button>
+        <button class="brand-tab" data-brand="oneplus">⚡ OnePlus (4)</button>
+        <button class="brand-tab" data-brand="google">🤖 Google Pixel (5)</button>
+        <button class="brand-tab" data-brand="xiaomi">🔥 Xiaomi / Redmi (5)</button>
+        <button class="brand-tab" data-brand="vivo">📸 vivo (4)</button>
+        <button class="brand-tab" data-brand="oppo">✨ OPPO (3)</button>
+      </div>
+
+      <!-- Dynamic Product Cards Grid -->
+      <div class="products-showroom-grid" id="productsShowroomGrid">
+        <!-- Injected via JavaScript from products-data.js -->
+      </div>
+
+    </div>
+  </section>
+
+
+  <!-- ================= BRAND QUICK HIGHLIGHTS ================= -->
+  <section class="section brand-grid-highlights">
+    <div class="section-container">
+      <div class="section-header-center">
+        <div class="section-kicker">AUTHORIZED ECOSYSTEMS</div>
+        <h2 class="section-main-title">Official Brand <span>Showcase Stations.</span></h2>
+      </div>
+
+      <div class="showrooms-grid">
+        <div class="showroom-card glass-card" onclick="filterByBrand('apple')" style="cursor:pointer;">
+          <div class="showroom-badge">🍎 APPLE PRO STATION</div>
+          <h3>Apple iPhone Lineup</h3>
+          <p class="showroom-address">Grade-5 Titanium, A20 Pro 2nm Silicon, 48MP Periscope Triple Camera & Apple Intelligence.</p>
+          <div class="showroom-actions">
+            <button class="btn btn-crimson btn-full">View Apple Series →</button>
+          </div>
+        </div>
+
+        <div class="showroom-card glass-card" onclick="filterByBrand('samsung')" style="cursor:pointer;">
+          <div class="showroom-badge" style="color: #54a0ff;">🪐 SAMSUNG GALAXY AI</div>
+          <h3>Samsung Galaxy Series</h3>
+          <p class="showroom-address">200MP Quad Cameras, Integrated S-Pen, Anti-Reflective Armor OLED & Ultra-Slim Z Fold8.</p>
+          <div class="showroom-actions">
+            <button class="btn btn-crimson btn-full">View Samsung Series →</button>
+          </div>
+        </div>
+
+        <div class="showroom-card glass-card" onclick="filterByBrand('oneplus')" style="cursor:pointer;">
+          <div class="showroom-badge" style="color: #ff5c7f;">⚡ ONEPLUS PERFORMANCE</div>
+          <h3>OnePlus 15 & 15R</h3>
+          <p class="showroom-address">2K 165Hz Oriental Screen, Snapdragon 8 Elite, 6500mAh Glacier Battery & 150W SuperVOOC.</p>
+          <div class="showroom-actions">
+            <button class="btn btn-crimson btn-full">View OnePlus Series →</button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+
+  <!-- ================= SEARCH OVERLAY ================= -->
+  <div class="search-overlay" id="searchOverlay">
+    <div class="search-box-container">
+      <div class="search-input-wrapper">
+        <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="8"></circle><line x1="21" y1="21" x2="16.65" y2="16.65"></line></svg>
+        <input type="text" id="globalSearchInput" placeholder="Search iPhone 18 Pro Max, Galaxy S26 Ultra, OnePlus 15..." />
+        <button class="search-close-btn" id="closeSearchBtn">✕</button>
+      </div>
+      <div class="search-results-container" id="searchResultsContainer"></div>
+    </div>
+  </div>
+
+
+  <!-- ================= PRODUCT DETAILS MODAL ================= -->
+  <div class="modal-backdrop" id="productModalBackdrop">
+    <div class="product-detail-modal glass-card">
+      <button class="modal-close-btn" onclick="closeProductModal()">✕</button>
+      <div class="modal-grid">
+        <div class="modal-phone-preview">
+          <div class="modal-img-wrapper">
+            <img src="assets/phone.png" id="modalProductImg" alt="Product Preview" />
+          </div>
+          <div class="modal-color-swatches" id="modalColorSwatches"></div>
+        </div>
+        <div class="modal-details-col">
+          <span class="modal-badge" id="modalBadge">👑 2026 Flagship</span>
+          <h2 class="modal-title" id="modalTitle">Smartphone Name</h2>
+          <p class="modal-tagline" id="modalTagline"></p>
+          <div class="modal-price-box">
+            <div class="modal-price" id="modalPrice">₹0</div>
+            <div class="modal-emi" id="modalEmi"></div>
+          </div>
+          <div class="modal-storage-section">
+            <label>Choose Storage Capacity:</label>
+            <div class="modal-storage-grid" id="modalStorageGrid"></div>
+          </div>
+          <div class="modal-specs-table">
+            <div class="spec-row"><span>Processor</span><strong id="modalSpecChip">-</strong></div>
+            <div class="spec-row"><span>Display</span><strong id="modalSpecDisplay">-</strong></div>
+            <div class="spec-row"><span>Camera</span><strong id="modalSpecCamera">-</strong></div>
+            <div class="spec-row"><span>Battery</span><strong id="modalSpecBattery">-</strong></div>
+          </div>
+          <div class="modal-actions-stack">
+            <button class="btn btn-crimson btn-full" id="modalAddBagBtn">ADD TO BAG</button>
+            <div class="modal-sub-actions">
+              <button class="btn btn-whatsapp-secondary" id="modalWhatsAppBtn">💬 WhatsApp</button>
+              <button class="btn btn-callback-secondary" id="modalCallbackBtn">📞 Request Callback</button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+
+  <!-- ================= SHOPPING BAG DRAWER ================= -->
+  <div class="bag-overlay" id="bagOverlay" onclick="closeBagDrawer()"></div>
+  <aside class="bag-drawer" id="bagDrawer" aria-label="Shopping Bag">
+    <div class="bag-drawer-header">
+      <div class="bag-header-title">
+        <h3>Your Shopping Bag</h3>
+        <span class="drawer-count" id="drawerItemCount">(0 items)</span>
+      </div>
+      <button class="drawer-close-btn" onclick="closeBagDrawer()">✕</button>
+    </div>
+    <div class="bag-items-list" id="bagItemsList"></div>
+    <div class="bag-drawer-footer">
+      <div class="bag-summary-row">
+        <span>Showroom Subtotal</span>
+        <strong id="bagSubtotalAmount">₹0</strong>
+      </div>
+      <button class="btn btn-crimson btn-full" onclick="checkoutBagWhatsApp()">
+        <span>💬</span> Complete Order on WhatsApp →
+      </button>
+    </div>
+  </aside>
+
+  <!-- Toast -->
+  <div class="toast-notification" id="toastNotification">
+    <span class="toast-icon">✓</span>
+    <span class="toast-message" id="toastMessage">Item added</span>
+  </div>
+
+  <!-- Callback Modal -->
+  <div class="modal-backdrop" id="callbackModalBackdrop">
+    <div class="callback-modal-box glass-card">
+      <button class="modal-close-btn" onclick="closeCallbackModal()">✕</button>
+      <div class="section-kicker">MOBILE STATION CONCIERGE</div>
+      <h3>Request a Callback</h3>
+      <p>Enter your details and our flagship advisor will call you within 15 minutes.</p>
+      <form id="callbackRequestForm" onsubmit="handleCallbackSubmit(event)">
+        <div class="form-group"><label>Your Name</label><input type="text" id="cbName" required /></div>
+        <div class="form-group"><label>Phone / WhatsApp</label><input type="tel" id="cbPhone" required /></div>
+        <div class="form-group"><label>Smartphone Model</label><input type="text" id="cbSubject" /></div>
+        <button type="submit" class="btn btn-crimson btn-full">Submit Request →</button>
+      </form>
+      <div class="form-success-banner" id="callbackSuccessMsg" style="display:none;">
+        ✓ Request submitted successfully!
+      </div>
+    </div>
+  </div>
+
+  <!-- Footer -->
+  <footer class="site-footer">
+    <div class="section-container">
+      <div class="footer-top-row">
+        <div class="footer-brand-col">
+          <div class="brand"><div class="brand-text"><strong>MOBILE</strong><span>STATION</span></div></div>
+          <p class="footer-bio">Central India's premier luxury multi-brand smartphone showroom.</p>
+        </div>
+        <div class="footer-links-col">
+          <h4>Pages</h4>
+          <ul>
+            <li><a href="index.html">Home</a></li>
+            <li><a href="story.html">Brand Story</a></li>
+            <li><a href="flagships.html">Flagship Collection</a></li>
+            <li><a href="schemes.html">Schemes & EMI</a></li>
+            <li><a href="repair.html">Repair Lab</a></li>
+            <li><a href="trade.html">Trade-In</a></li>
+            <li><a href="showrooms.html">Showrooms</a></li>
+          </ul>
+        </div>
+        <div class="footer-links-col">
+          <h4>Showroom Help</h4>
+          <p style="color:#aaa; font-size:13px; line-height:1.6;">WhatsApp: +91 93221 60461<br/>Open 7 Days: 10AM - 10PM</p>
+        </div>
+        <div class="footer-links-col">
+          <div class="footer-trust-pill">✓ 100% Sealed Box Pack Guaranteed</div>
+        </div>
+      </div>
+      <div class="footer-bottom-bar">
+        <div>© 2026 MOBILE STATION. All Rights Reserved.</div>
+        <div class="footer-bottom-links"><a href="index.html">Home</a><a href="javascript:void(0)" onclick="openWhatsApp()">WhatsApp Concierge</a></div>
+      </div>
+    </div>
+  </footer>
+
+  <script src="products-data.js"></script>
+  <script src="script.js"></script>
+</body>
+</html>

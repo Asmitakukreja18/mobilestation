@@ -1,0 +1,313 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Repair Lab & Diagnostics | Mobile Station 30-Min Express Care</title>
+  <meta name="description" content="30-minute express screen replacement, battery health restoration, camera repair, and motherboard chip-level diagnostics with 100% OEM parts at Mobile Station." />
+
+  <!-- Google Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&family=Manrope:wght@400;500;600;700;800;900&family=Outfit:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+
+  <link rel="stylesheet" href="styles.css" />
+</head>
+
+<body>
+
+  <!-- ================= NAVBAR ================= -->
+  <header class="navbar" id="navbar">
+    <a href="index.html" class="brand" aria-label="Mobile Station Home">
+      <div class="brand-mark">
+        <img src="assets/logo.jpeg" alt="Mobile Station Logo" class="brand-logo" onerror="this.style.display='none'; this.nextElementSibling.style.display='grid'" />
+        <span class="brand-fallback-logo" style="display:none;">MS</span>
+      </div>
+      <div class="brand-text">
+        <strong>MOBILE</strong>
+        <span>STATION</span>
+      </div>
+    </a>
+
+    <nav class="navigation" id="navigation">
+      <a href="index.html" class="nav-link">Home</a>
+      <a href="story.html" class="nav-link">Story</a>
+      <a href="flagships.html" class="nav-link">Flagships</a>
+      <a href="schemes.html" class="nav-link">Schemes</a>
+      <a href="repair.html" class="nav-link active">Repair Lab</a>
+      <a href="trade.html" class="nav-link">Trade-In</a>
+      <a href="showrooms.html" class="nav-link">Showrooms</a>
+    </nav>
+
+    <div class="nav-actions">
+      <button class="icon-btn search-trigger-btn" id="openSearchBtn" aria-label="Search">
+        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="8"></circle><line x1="21" y1="21" x2="16.65" y2="16.65"></line></svg>
+      </button>
+
+      <button class="bag-button" id="openBagBtn" aria-label="Open Bag">
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M6 2L3 6v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V6l-3-4z"></path><line x1="3" y1="6" x2="21" y2="6"></line><path d="M16 10a4 4 0 0 1-8 0"></path></svg>
+        <span>Bag</span>
+        <span class="bag-badge" id="bagCount">0</span>
+      </button>
+
+      <button class="whatsapp-concierge-btn" onclick="openWhatsApp('Hi Mobile Station Repair Lab! I need immediate assistance with my phone repair.')">
+        <span class="online-indicator"></span>
+        <div class="btn-text-block">
+          <strong>WhatsApp</strong>
+          <small>Repair Tech</small>
+        </div>
+      </button>
+
+      <button class="mobile-menu-toggle" id="mobileMenuToggle" aria-label="Toggle Menu">
+        <span></span><span></span><span></span>
+      </button>
+    </div>
+  </header>
+
+  <!-- Mobile Navigation Drawer -->
+  <div class="mobile-nav-drawer" id="mobileNavDrawer">
+    <div class="mobile-nav-links">
+      <a href="index.html">Home</a>
+      <a href="story.html">Brand Story</a>
+      <a href="flagships.html">Flagships Collection</a>
+      <a href="schemes.html">EMI & Schemes</a>
+      <a href="repair.html" class="active">Repair Lab</a>
+      <a href="trade.html">Trade-In Calculator</a>
+      <a href="showrooms.html">Showroom Locations</a>
+    </div>
+    <div class="mobile-nav-footer">
+      <button class="btn btn-crimson btn-full" onclick="openWhatsApp(); closeMobileMenu();">
+        💬 Chat with Showroom Concierge
+      </button>
+    </div>
+  </div>
+
+
+  <!-- ================= REPAIR LAB HERO BANNER ================= -->
+  <section class="section repair-hero-banner">
+    <div class="section-container">
+      <div class="repair-hero-content">
+        <div class="section-kicker">30-MINUTE FAST REPAIR LAB</div>
+        <h1 class="section-main-title">
+          Precision Engineering. <span>100% Genuine Care.</span>
+        </h1>
+        <p class="section-subtitle">
+          Cleanroom optical repair stations, OEM display calibration, genuine battery health restoration, and chip-level micro-soldering backed by official Mobile Station warranties.
+        </p>
+      </div>
+    </div>
+  </section>
+
+
+  <!-- ================= REPAIR SERVICES CARDS ================= -->
+  <section class="section" style="padding-top: 0;">
+    <div class="section-container">
+      <div class="section-header-row">
+        <div>
+          <div class="section-kicker">SERVICES & DIAGNOSTICS</div>
+          <h2 style="font-size: 28px; color: #fff;">Specialized Lab Solutions</h2>
+        </div>
+        <button class="btn btn-crimson" onclick="scrollToSection('repairBookingSection')">
+          Book Instant Slot ↓
+        </button>
+      </div>
+
+      <div class="repair-services-grid" id="repairServicesGrid">
+        <!-- Rendered dynamically from REPAIR_SERVICES in products-data.js -->
+      </div>
+    </div>
+  </section>
+
+
+  <!-- ================= INTERACTIVE BOOKING FORM ================= -->
+  <section class="section repair-booking-section" id="repairBookingSection">
+    <div class="section-container">
+      <div class="trade-in-wrapper glass-card">
+        <div class="trade-left">
+          <div class="section-kicker">BOOK YOUR EXPRESS LAB SLOT</div>
+          <h2>Zero-Wait <span>Counter Service.</span></h2>
+          <p>Schedule your repair before arriving to have OEM replacement screens and certified battery packs reserved on-spot for your device.</p>
+
+          <div class="trade-steps-list">
+            <div class="trade-step">
+              <span class="step-num">1</span>
+              <div><strong>Free 22-Point Pre-Diagnostic</strong><span>Full test of TrueTone, Face ID, Sensors & Battery</span></div>
+            </div>
+            <div class="trade-step">
+              <span class="step-num">2</span>
+              <div><strong>Cleanroom Dust-Free Assembly</strong><span>Optical laminator with OEM IP68 water sealing</span></div>
+            </div>
+            <div class="trade-step">
+              <span class="step-num">3</span>
+              <div><strong>Up to 6 Months Warranty</strong><span>Instant digital warranty card sent to WhatsApp</span></div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Booking Form Card -->
+        <div class="trade-right-card">
+          <h3 class="trade-card-heading">Schedule Repair Appointment</h3>
+
+          <form id="expressRepairForm" onsubmit="handleRepairFormSubmit(event)">
+            <div class="trade-form-field">
+              <label>Your Name</label>
+              <input type="text" id="rName" placeholder="e.g. Anand Deshmukh" required />
+            </div>
+
+            <div class="trade-form-field">
+              <label>Phone / WhatsApp Number</label>
+              <input type="tel" id="rPhone" placeholder="e.g. +91 98220 12345" required />
+            </div>
+
+            <div class="trade-form-field">
+              <label>Phone Brand & Model</label>
+              <input type="text" id="rModel" placeholder="e.g. iPhone 16 Pro Max / Galaxy S24 Ultra" required />
+            </div>
+
+            <div class="trade-form-field">
+              <label>Required Service</label>
+              <select id="rService">
+                <option value="Screen Replacement">100% Original Screen Replacement</option>
+                <option value="Battery Health Restoration">High-Capacity Battery Replacement</option>
+                <option value="Camera Lens Repair">Pro Camera Lens / Autofocus Sensor</option>
+                <option value="USB-C Charging Port">Fast Charging Port & Mic Repair</option>
+                <option value="Water Damage Treatment">Ultrasonic Water Damage Wash</option>
+                <option value="Motherboard IC Repair">Motherboard IC / Dead Phone Revival</option>
+                <option value="Speaker & Audio">Earpiece / Speaker / Audio IC</option>
+              </select>
+            </div>
+
+            <div class="trade-form-field">
+              <label>Preferred Showroom Lab</label>
+              <select id="rLocation">
+                <option value="Amravati (Garud Complex)">Amravati Flagship Lab (Garud Complex)</option>
+                <option value="Nagpur (Civil Lines)">Nagpur Experience Lab (Civil Lines)</option>
+                <option value="Mumbai (BKC)">Mumbai BKC Studio Lab</option>
+                <option value="Doorstep Pickup Service">Doorstep Pickup Service (Amravati / Nagpur)</option>
+              </select>
+            </div>
+
+            <button type="submit" class="btn btn-crimson btn-full" style="margin-top: 10px;">
+              Confirm Express Repair Booking →
+            </button>
+          </form>
+
+          <div class="form-success-banner" id="repairBookingSuccess" style="display:none;">
+            ✓ Your repair slot is confirmed! Our head technician will reach out on WhatsApp with quote and timing.
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+
+  <!-- ================= WHY OUR LAB IS SUPERIOR ================= -->
+  <section class="section why-ms-section">
+    <div class="section-container">
+      <div class="section-header-center">
+        <div class="section-kicker">LAB ADVANTAGES</div>
+        <h2 class="section-main-title">Why Trust <span>Mobile Station Lab?</span></h2>
+      </div>
+
+      <div class="why-grid">
+        <div class="why-card glass-card">
+          <div class="why-icon">🔬</div>
+          <h3>Cleanroom Optical Laminators</h3>
+          <p>Zero bubble, zero dust OCA lamination restoring factory display crispness and TrueTone fidelity.</p>
+        </div>
+        <div class="why-card glass-card">
+          <div class="why-icon">🔋</div>
+          <h3>Original BMS Battery Transfer</h3>
+          <p>Preserves native iOS battery health percentage without 'Unknown Part' warnings on Apple iPhones.</p>
+        </div>
+        <div class="why-card glass-card">
+          <div class="why-icon">💧</div>
+          <h3>Factory Waterproof Gasketing</h3>
+          <p>Every opened device is resealed with pre-cut OEM waterproof adhesive gaskets to retain water resistance.</p>
+        </div>
+        <div class="why-card glass-card">
+          <div class="why-icon">🔒</div>
+          <h3>100% Data Privacy Guarantee</h3>
+          <p>Repairs conducted with zero requirement for lock screen passcodes, keeping your private data 100% secure.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+
+  <!-- ================= FOOTER ================= -->
+  <footer class="site-footer">
+    <div class="section-container">
+      <div class="footer-top-row">
+        <div class="footer-brand-col">
+          <div class="brand"><div class="brand-text"><strong>MOBILE</strong><span>STATION</span></div></div>
+          <p class="footer-bio">Central India's premier luxury multi-brand smartphone showroom & express repair lab.</p>
+        </div>
+        <div class="footer-links-col">
+          <h4>Pages</h4>
+          <ul>
+            <li><a href="index.html">Home</a></li>
+            <li><a href="story.html">Story</a></li>
+            <li><a href="flagships.html">Flagships</a></li>
+            <li><a href="schemes.html">Schemes</a></li>
+            <li><a href="repair.html">Repair Lab</a></li>
+            <li><a href="trade.html">Trade-In</a></li>
+            <li><a href="showrooms.html">Showrooms</a></li>
+          </ul>
+        </div>
+        <div class="footer-links-col">
+          <h4>Lab Helpline</h4>
+          <p style="color:#aaa; font-size:13px; line-height:1.6;">WhatsApp: +91 93221 60461<br/>Open 7 Days: 10AM - 10PM</p>
+        </div>
+        <div class="footer-links-col">
+          <div class="footer-trust-pill">✓ Genuine Parts & Data Privacy Assured</div>
+        </div>
+      </div>
+      <div class="footer-bottom-bar">
+        <div>© 2026 MOBILE STATION. All Rights Reserved.</div>
+        <div class="footer-bottom-links"><a href="index.html">Home</a><a href="javascript:void(0)" onclick="openWhatsApp()">WhatsApp Concierge</a></div>
+      </div>
+    </div>
+  </footer>
+
+  <!-- Search & Bag Modals -->
+  <div class="bag-overlay" id="bagOverlay" onclick="closeBagDrawer()"></div>
+  <aside class="bag-drawer" id="bagDrawer" aria-label="Shopping Bag">
+    <div class="bag-drawer-header">
+      <div class="bag-header-title"><h3>Your Shopping Bag</h3><span class="drawer-count" id="drawerItemCount">(0 items)</span></div>
+      <button class="drawer-close-btn" onclick="closeBagDrawer()">✕</button>
+    </div>
+    <div class="bag-items-list" id="bagItemsList"></div>
+    <div class="bag-drawer-footer">
+      <div class="bag-summary-row"><span>Showroom Subtotal</span><strong id="bagSubtotalAmount">₹0</strong></div>
+      <button class="btn btn-crimson btn-full" onclick="checkoutBagWhatsApp()"><span>💬</span> Complete Order on WhatsApp →</button>
+    </div>
+  </aside>
+
+  <div class="toast-notification" id="toastNotification">
+    <span class="toast-icon">✓</span><span class="toast-message" id="toastMessage">Done</span>
+  </div>
+
+  <script src="products-data.js"></script>
+  <script src="script.js"></script>
+  <script>
+    function handleRepairFormSubmit(e) {
+      e.preventDefault();
+      const name = document.getElementById('rName').value;
+      const phone = document.getElementById('rPhone').value;
+      const model = document.getElementById('rModel').value;
+      const service = document.getElementById('rService').value;
+      const location = document.getElementById('rLocation').value;
+
+      document.getElementById('repairBookingSuccess').style.display = 'block';
+
+      const msg = `Hi Mobile Station Repair Lab! 🔬\n\nI want to book an Express Repair appointment:\n• Name: ${name}\n• Phone: ${phone}\n• Device: ${model}\n• Service Needed: ${service}\n• Lab Location: ${location}\n\nPlease confirm technician availability and estimated turnaround time.`;
+
+      showToast("Repair appointment requested!");
+      setTimeout(() => {
+        openWhatsApp(msg);
+      }, 1000);
+    }
+  </script>
+</body>
+</html>

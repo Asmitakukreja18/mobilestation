@@ -1,0 +1,254 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Showroom Locations | Mobile Station Amravati, Nagpur & Mumbai</title>
+  <meta name="description" content="Visit Mobile Station luxury smartphone showrooms in Amravati (Garud Complex), Nagpur (Civil Lines), and Mumbai (BKC). Interactive demo tables and express repair hubs." />
+
+  <!-- Google Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&family=Manrope:wght@400;500;600;700;800;900&family=Outfit:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+
+  <link rel="stylesheet" href="styles.css" />
+</head>
+
+<body>
+
+  <!-- ================= NAVBAR ================= -->
+  <header class="navbar" id="navbar">
+    <a href="index.html" class="brand" aria-label="Mobile Station Home">
+      <div class="brand-mark">
+        <img src="assets/logo.jpeg" alt="Mobile Station Logo" class="brand-logo" onerror="this.style.display='none'; this.nextElementSibling.style.display='grid'" />
+        <span class="brand-fallback-logo" style="display:none;">MS</span>
+      </div>
+      <div class="brand-text">
+        <strong>MOBILE</strong>
+        <span>STATION</span>
+      </div>
+    </a>
+
+    <nav class="navigation" id="navigation">
+      <a href="index.html" class="nav-link">Home</a>
+      <a href="story.html" class="nav-link">Story</a>
+      <a href="flagships.html" class="nav-link">Flagships</a>
+      <a href="schemes.html" class="nav-link">Schemes</a>
+      <a href="repair.html" class="nav-link">Repair Lab</a>
+      <a href="trade.html" class="nav-link">Trade-In</a>
+      <a href="showrooms.html" class="nav-link active">Showrooms</a>
+    </nav>
+
+    <div class="nav-actions">
+      <button class="icon-btn search-trigger-btn" id="openSearchBtn" aria-label="Search">
+        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="8"></circle><line x1="21" y1="21" x2="16.65" y2="16.65"></line></svg>
+      </button>
+
+      <button class="bag-button" id="openBagBtn" aria-label="Open Bag">
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M6 2L3 6v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V6l-3-4z"></path><line x1="3" y1="6" x2="21" y2="6"></line><path d="M16 10a4 4 0 0 1-8 0"></path></svg>
+        <span>Bag</span>
+        <span class="bag-badge" id="bagCount">0</span>
+      </button>
+
+      <button class="whatsapp-concierge-btn" onclick="openWhatsApp('Hi Mobile Station! I want to visit a showroom today.')">
+        <span class="online-indicator"></span>
+        <div class="btn-text-block">
+          <strong>WhatsApp</strong>
+          <small>Store Help</small>
+        </div>
+      </button>
+
+      <button class="mobile-menu-toggle" id="mobileMenuToggle" aria-label="Toggle Menu">
+        <span></span><span></span><span></span>
+      </button>
+    </div>
+  </header>
+
+  <!-- Mobile Navigation Drawer -->
+  <div class="mobile-nav-drawer" id="mobileNavDrawer">
+    <div class="mobile-nav-links">
+      <a href="index.html">Home</a>
+      <a href="story.html">Brand Story</a>
+      <a href="flagships.html">Flagships Collection</a>
+      <a href="schemes.html">EMI & Schemes</a>
+      <a href="repair.html">Repair Lab</a>
+      <a href="trade.html">Trade-In Calculator</a>
+      <a href="showrooms.html" class="active">Showroom Locations</a>
+    </div>
+    <div class="mobile-nav-footer">
+      <button class="btn btn-crimson btn-full" onclick="openWhatsApp(); closeMobileMenu();">
+        💬 Chat with Showroom Concierge
+      </button>
+    </div>
+  </div>
+
+
+  <!-- ================= SHOWROOMS HERO BANNER ================= -->
+  <section class="section showrooms-hero-banner">
+    <div class="section-container">
+      <div class="showrooms-hero-content">
+        <div class="section-kicker">ARCHITECTURAL RETAIL CENTERS</div>
+        <h1 class="section-main-title">
+          Experience the Flagships <span>In Person.</span>
+        </h1>
+        <p class="section-subtitle">
+          Visit our flagship lounges with live hands-on display tables, 30-minute express repair diagnostic counters, and white-glove smartphone advisors.
+        </p>
+      </div>
+    </div>
+  </section>
+
+
+  <!-- ================= SHOWROOM LOCATIONS GRID ================= -->
+  <section class="section" style="padding-top: 0;">
+    <div class="section-container">
+      <div class="showrooms-grid">
+        <!-- Amravati -->
+        <article class="showroom-card glass-card">
+          <div class="showroom-badge">Main Flagship Showroom & Repair Hub</div>
+          <h3>Amravati Flagship Lounge</h3>
+          <p class="showroom-address">
+            📍 Garud Complex, In front of Sony Novelty, Amravati, Maharashtra – 444601
+          </p>
+          <div class="showroom-meta">
+            <div>⏰ 10:00 AM – 10:00 PM (All 7 Days Open)</div>
+            <div>📞 Direct Helpline: +91 93221 60461</div>
+            <div>⚡ Services: Full Flagship Showcase, 30-Min Screen Lab, 0% EMI Desk</div>
+          </div>
+          <div class="showroom-actions">
+            <a href="https://maps.google.com/?q=Mobile+Station+Amravati+Garud+Complex" target="_blank" class="btn btn-outline-light">
+              Get Directions ↗
+            </a>
+            <button class="btn btn-crimson" onclick="openWhatsApp('Hi Mobile Station Amravati! I am visiting the showroom today.')">
+              Connect Store →
+            </button>
+          </div>
+        </article>
+
+        <!-- Nagpur -->
+        <article class="showroom-card glass-card">
+          <div class="showroom-badge" style="color: #54a0ff;">VIP Experience Center</div>
+          <h3>Nagpur Experience Lounge</h3>
+          <p class="showroom-address">
+            📍 Civil Lines, Near High Court Square, Nagpur, Maharashtra – 440001
+          </p>
+          <div class="showroom-meta">
+            <div>⏰ 10:30 AM – 9:30 PM (Mon – Sun)</div>
+            <div>📞 Direct Helpline: +91 93221 60461</div>
+            <div>⚡ Services: VIP Titanium Lounge, Unboxing Station, Trade-In Lab</div>
+          </div>
+          <div class="showroom-actions">
+            <a href="https://maps.google.com/?q=Nagpur+Civil+Lines" target="_blank" class="btn btn-outline-light">
+              Get Directions ↗
+            </a>
+            <button class="btn btn-crimson" onclick="openWhatsApp('Hi Mobile Station Nagpur! I would like to schedule a private demo.')">
+              Connect Store →
+            </button>
+          </div>
+        </article>
+
+        <!-- Mumbai -->
+        <article class="showroom-card glass-card">
+          <div class="showroom-badge" style="color: #ff5c7f;">Luxury Tech Studio</div>
+          <h3>Mumbai BKC Studio</h3>
+          <p class="showroom-address">
+            📍 Bandra Kurla Complex (BKC), Mumbai, Maharashtra – 400051
+          </p>
+          <div class="showroom-meta">
+            <div>⏰ 11:00 AM – 10:00 PM (All 7 Days)</div>
+            <div>📞 Direct Helpline: +91 93221 60461</div>
+            <div>⚡ Services: Day-1 Allotment Desk, Corporate Billing, Express Diagnostics</div>
+          </div>
+          <div class="showroom-actions">
+            <a href="https://maps.google.com/?q=BKC+Mumbai" target="_blank" class="btn btn-outline-light">
+              Get Directions ↗
+            </a>
+            <button class="btn btn-crimson" onclick="openWhatsApp('Hi Mobile Station Mumbai! I want to enquire about VIP flagship allotment.')">
+              Connect Store →
+            </button>
+          </div>
+        </article>
+      </div>
+    </div>
+  </section>
+
+
+  <!-- ================= VIP PRIVATE APPOINTMENT CTA ================= -->
+  <section class="section concierge-cta-section">
+    <div class="section-container">
+      <div class="concierge-banner glass-card">
+        <div class="concierge-content">
+          <div class="section-kicker" style="color: #54d68a;">BESPOKE SERVICE</div>
+          <h2>Book a Private Showroom Consultation</h2>
+          <p>Prefer an exclusive one-on-one session with our senior smartphone technician? Schedule a private appointment at any of our lounges.</p>
+          <div class="concierge-buttons">
+            <button class="btn btn-whatsapp-large" onclick="openWhatsApp('Hi Mobile Station! I want to book a private VIP appointment at the showroom.')">
+              <span>💬</span> Schedule on WhatsApp
+            </button>
+            <a href="flagships.html" class="btn btn-outline-hero">
+              View Flagship Models →
+            </a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+
+  <!-- ================= FOOTER ================= -->
+  <footer class="site-footer">
+    <div class="section-container">
+      <div class="footer-top-row">
+        <div class="footer-brand-col">
+          <div class="brand"><div class="brand-text"><strong>MOBILE</strong><span>STATION</span></div></div>
+          <p class="footer-bio">Central India's premier luxury multi-brand smartphone showroom.</p>
+        </div>
+        <div class="footer-links-col">
+          <h4>Pages</h4>
+          <ul>
+            <li><a href="index.html">Home</a></li>
+            <li><a href="story.html">Story</a></li>
+            <li><a href="flagships.html">Flagships</a></li>
+            <li><a href="schemes.html">Schemes</a></li>
+            <li><a href="repair.html">Repair Lab</a></li>
+            <li><a href="trade.html">Trade-In</a></li>
+            <li><a href="showrooms.html">Showrooms</a></li>
+          </ul>
+        </div>
+        <div class="footer-links-col">
+          <h4>Showroom Help</h4>
+          <p style="color:#aaa; font-size:13px; line-height:1.6;">WhatsApp: +91 93221 60461<br/>Open 7 Days: 10AM - 10PM</p>
+        </div>
+        <div class="footer-links-col">
+          <div class="footer-trust-pill">✓ Amravati • Nagpur • Mumbai</div>
+        </div>
+      </div>
+      <div class="footer-bottom-bar">
+        <div>© 2026 MOBILE STATION. All Rights Reserved.</div>
+        <div class="footer-bottom-links"><a href="index.html">Home</a><a href="javascript:void(0)" onclick="openWhatsApp()">WhatsApp Concierge</a></div>
+      </div>
+    </div>
+  </footer>
+
+  <!-- Search & Bag Modals -->
+  <div class="bag-overlay" id="bagOverlay" onclick="closeBagDrawer()"></div>
+  <aside class="bag-drawer" id="bagDrawer" aria-label="Shopping Bag">
+    <div class="bag-drawer-header">
+      <div class="bag-header-title"><h3>Your Shopping Bag</h3><span class="drawer-count" id="drawerItemCount">(0 items)</span></div>
+      <button class="drawer-close-btn" onclick="closeBagDrawer()">✕</button>
+    </div>
+    <div class="bag-items-list" id="bagItemsList"></div>
+    <div class="bag-drawer-footer">
+      <div class="bag-summary-row"><span>Showroom Subtotal</span><strong id="bagSubtotalAmount">₹0</strong></div>
+      <button class="btn btn-crimson btn-full" onclick="checkoutBagWhatsApp()"><span>💬</span> Complete Order on WhatsApp →</button>
+    </div>
+  </aside>
+
+  <div class="toast-notification" id="toastNotification">
+    <span class="toast-icon">✓</span><span class="toast-message" id="toastMessage">Done</span>
+  </div>
+
+  <script src="products-data.js"></script>
+  <script src="script.js"></script>
+</body>
+</html>
