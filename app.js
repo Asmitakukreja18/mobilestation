@@ -66,90 +66,177 @@ function triggerHeroEntrance() {
   if (typeof gsap !== 'undefined') {
     const tl = gsap.timeline({ defaults: { ease: "power3.out", duration: 0.9 } });
     tl.fromTo(".site-header-clean", { y: -25, opacity: 0 }, { y: 0, opacity: 1, duration: 0.7 }, 0.05)
-      .fromTo(".hero-kicker-tag", { y: 15, opacity: 0 }, { y: 0, opacity: 1, duration: 0.6 }, 0.15)
-      .fromTo(".hero-oversized-title", { y: 30, opacity: 0 }, { y: 0, opacity: 1, duration: 0.8 }, 0.25)
-      .fromTo(".hero-editorial-subtext", { y: 18, opacity: 0 }, { y: 0, opacity: 1, duration: 0.65 }, 0.38)
+      .fromTo(".cinematic-intro-overlay .hero-kicker-tag", { y: 15, opacity: 0 }, { y: 0, opacity: 1, duration: 0.6 }, 0.15)
+      .fromTo(".cinematic-hero-title", { y: 30, opacity: 0 }, { y: 0, opacity: 1, duration: 0.8 }, 0.25)
+      .fromTo(".cinematic-hero-subtext", { y: 18, opacity: 0 }, { y: 0, opacity: 1, duration: 0.65 }, 0.38)
       .fromTo(".hero-cta-buttons-row", { y: 18, opacity: 0 }, { y: 0, opacity: 1, duration: 0.65 }, 0.48)
-      .fromTo(".trust-item-node", { y: 12, opacity: 0 }, { y: 0, opacity: 1, stagger: 0.07, duration: 0.55 }, 0.58)
-      .fromTo(".hero-master-phone-render-box", { scale: 0.92, opacity: 0, y: 25 }, { scale: 1, opacity: 1, y: 0, duration: 1.0, ease: "expo.out" }, 0.25)
-      .fromTo(".hero-integrated-spec-panel", { x: 25, opacity: 0 }, { x: 0, opacity: 1, duration: 0.8, ease: "power2.out" }, 0.5)
-      .fromTo(".hero-vertical-index-markers", { opacity: 0, x: 10 }, { opacity: 1, x: 0, duration: 0.5 }, 0.6)
-      .fromTo(".hero-scroll-explore-anchor", { opacity: 0, y: 10 }, { opacity: 1, y: 0, duration: 0.5 }, 0.7);
+      .fromTo("#cinematicPhoneWrapper", { scale: 0.88, opacity: 0, x: 60 }, { scale: 1, opacity: 1, x: 0, duration: 1.1, ease: "expo.out" }, 0.25)
+      .fromTo(".cinematic-bottom-bar", { opacity: 0, y: 15 }, { opacity: 1, y: 0, duration: 0.6 }, 0.6);
   }
 }
 
 // =========================================================================
-// 1. HERO 360° SCROLL ROTATION & INTERACTIVE DRAG-TO-SPIN
+// 1. APPLE-GRADE CINEMATIC SCROLL-LINKED 3D SMARTPHONE TIMELINE
 // =========================================================================
 function initHeroMouseParallax() {
-  const visual = document.getElementById("heroStudioCenter");
-  if (!visual) return;
+  const phoneWrapper = document.getElementById("cinematicPhoneWrapper");
+  const phone3D = document.getElementById("cinematicPhone3D");
+  const introOverlay = document.getElementById("heroIntroOverlay");
+  const callout1 = document.getElementById("calloutTitanium");
+  const callout2 = document.getElementById("calloutCamera");
+  const callout3 = document.getElementById("calloutDisplay");
+  const shimmer = document.querySelector(".cinematic-glass-shimmer");
 
-  // 1. Register GSAP ScrollTrigger for 360° Scroll-Driven Flip & Elevation
+  if (!phoneWrapper || !phone3D) return;
+
+  // 1. MASTER PINNED SCROLL TIMELINE (Scroll directly drives 360° phone transformations)
   if (typeof gsap !== 'undefined' && typeof ScrollTrigger !== 'undefined') {
     gsap.registerPlugin(ScrollTrigger);
 
-    // Smooth 360° rotation and levitation as user scrolls down through hero and story
-    gsap.to(".hero-master-phone-render-box", {
+    const masterTimeline = gsap.timeline({
       scrollTrigger: {
-        trigger: "#hero",
+        trigger: "#heroTrack",
         start: "top top",
-        end: "bottom+=400 top",
-        scrub: 1.2,
+        end: "bottom bottom",
+        scrub: 1.0,
+        pin: "#heroStickyStage",
+        anticipatePin: 1,
         invalidateOnRefresh: true
-      },
-      rotationY: 360,
-      rotationX: -12,
-      y: -90,
-      scale: 1.06,
-      ease: "none"
+      }
     });
 
-    // Floating spec widget parallax
-    gsap.to(".hero-integrated-spec-panel", {
-      scrollTrigger: {
-        trigger: "#hero",
-        start: "top top",
-        end: "bottom top",
-        scrub: 1.5
-      },
-      y: -60,
-      opacity: 0.85,
-      ease: "none"
-    });
+    // SCROLL PHASE 1 (0% -> 22%): Intro Fades, Phone Moves Center & Zooms In
+    masterTimeline
+      .to(introOverlay, {
+        opacity: 0,
+        y: -50,
+        scale: 0.94,
+        ease: "power2.inOut",
+        duration: 0.2
+      }, 0)
+      .to(phoneWrapper, {
+        xPercent: -22, // Center alignment
+        yPercent: -2,
+        scale: 1.2,
+        ease: "power1.inOut",
+        duration: 0.25
+      }, 0)
+      .to(phone3D, {
+        rotationY: 75,
+        rotationX: -6,
+        ease: "power1.inOut",
+        duration: 0.25
+      }, 0);
+
+    // SCROLL PHASE 2 (22% -> 50%): 180° Spin to Back, Titanium Architecture Callout
+    masterTimeline
+      .to(phone3D, {
+        rotationY: 180,
+        rotationX: 10,
+        scale: 1.28,
+        ease: "power1.inOut",
+        duration: 0.28
+      }, 0.22)
+      .to(callout1, {
+        opacity: 1,
+        y: 0,
+        scale: 1,
+        ease: "back.out(1.4)",
+        duration: 0.12
+      }, 0.25)
+      .to(callout1, {
+        opacity: 0,
+        y: -25,
+        scale: 0.95,
+        ease: "power2.in",
+        duration: 0.1
+      }, 0.45);
+
+    // SCROLL PHASE 3 (50% -> 75%): Zoom into Quad-Optics Visor, Camera Callout
+    masterTimeline
+      .to(phone3D, {
+        rotationY: 235,
+        rotationX: 15,
+        scale: 1.42,
+        y: -20,
+        ease: "power1.inOut",
+        duration: 0.25
+      }, 0.50)
+      .to(callout2, {
+        opacity: 1,
+        y: 0,
+        scale: 1,
+        ease: "back.out(1.4)",
+        duration: 0.12
+      }, 0.52)
+      .to(callout2, {
+        opacity: 0,
+        y: -25,
+        scale: 0.95,
+        ease: "power2.in",
+        duration: 0.1
+      }, 0.70);
+
+    // SCROLL PHASE 4 (75% -> 92%): Front Face Rotation, ProMotion Display Callout
+    masterTimeline
+      .to(phone3D, {
+        rotationY: 360,
+        rotationX: 0,
+        scale: 1.26,
+        y: 0,
+        ease: "power1.inOut",
+        duration: 0.22
+      }, 0.72)
+      .to(callout3, {
+        opacity: 1,
+        y: 0,
+        scale: 1,
+        ease: "back.out(1.4)",
+        duration: 0.12
+      }, 0.75)
+      .to(callout3, {
+        opacity: 0,
+        y: 30,
+        scale: 0.95,
+        ease: "power2.in",
+        duration: 0.08
+      }, 0.90);
+
+    // SCROLL PHASE 5 (92% -> 100%): Majestic Out-Transition into Showroom Hub
+    masterTimeline
+      .to(phoneWrapper, {
+        scale: 0.86,
+        yPercent: -50,
+        opacity: 0,
+        ease: "power2.in",
+        duration: 0.1
+      }, 0.90);
   }
 
-  // 2. Interactive Drag / Mouse / Touch 360° Spin
+  // 2. INTERACTIVE 360° DRAG / SWIPE PHYSICS
   let isDragging = false;
   let previousX = 0;
-  let dragRotationY = 0;
+  let manualSpinY = 0;
   let velocityY = 0;
-  let targetParallaxX = 0, targetParallaxY = 0;
-  let currentParallaxX = 0, currentParallaxY = 0;
-  let animFrameId = null;
+  let ambientTiltX = 0, ambientTiltY = 0;
+  let curTiltX = 0, curTiltY = 0;
+  let loopId = null;
 
-  // Mouse Move Ambient Parallax
   window.addEventListener("mousemove", (e) => {
-    if (isDragging || window.scrollY > 800) return;
-    targetParallaxX = (e.clientX / window.innerWidth - 0.5) * 20;
-    targetParallaxY = (e.clientY / window.innerHeight - 0.5) * 14;
-    startRenderLoop();
+    if (isDragging || window.scrollY > 1200) return;
+    ambientTiltX = (e.clientX / window.innerWidth - 0.5) * 16;
+    ambientTiltY = (e.clientY / window.innerHeight - 0.5) * 12;
+    startPhysicsLoop();
   });
 
-  // Mouse Down Drag
-  visual.style.cursor = "grab";
-  visual.addEventListener("mousedown", (e) => {
+  phone3D.addEventListener("mousedown", (e) => {
     isDragging = true;
     previousX = e.clientX;
-    visual.style.cursor = "grabbing";
-    startRenderLoop();
+    startPhysicsLoop();
   });
 
   window.addEventListener("mouseup", () => {
-    if (isDragging) {
-      isDragging = false;
-      visual.style.cursor = "grab";
-    }
+    isDragging = false;
   });
 
   window.addEventListener("mousemove", (e) => {
@@ -157,12 +244,11 @@ function initHeroMouseParallax() {
     const deltaX = e.clientX - previousX;
     previousX = e.clientX;
     velocityY = deltaX * 0.75;
-    dragRotationY += velocityY;
-    startRenderLoop();
+    manualSpinY += velocityY;
+    startPhysicsLoop();
   });
 
-  // Touch Support for Mobile
-  visual.addEventListener("touchstart", (e) => {
+  phone3D.addEventListener("touchstart", (e) => {
     if (e.touches.length === 1) {
       isDragging = true;
       previousX = e.touches[0].clientX;
@@ -177,37 +263,34 @@ function initHeroMouseParallax() {
     if (!isDragging || e.touches.length !== 1) return;
     const deltaX = e.touches[0].clientX - previousX;
     previousX = e.touches[0].clientX;
-    velocityY = deltaX * 0.9;
-    dragRotationY += velocityY;
-    startRenderLoop();
+    velocityY = deltaX * 0.85;
+    manualSpinY += velocityY;
+    startPhysicsLoop();
   }, { passive: true });
 
-  function startRenderLoop() {
-    if (!animFrameId) {
-      animFrameId = requestAnimationFrame(renderPhysics);
+  function startPhysicsLoop() {
+    if (!loopId) {
+      loopId = requestAnimationFrame(updateDragPhysics);
     }
   }
 
-  function renderPhysics() {
-    // Apply inertia damping
+  function updateDragPhysics() {
     if (!isDragging && Math.abs(velocityY) > 0.05) {
       velocityY *= 0.92;
-      dragRotationY += velocityY;
+      manualSpinY += velocityY;
     }
 
-    currentParallaxX += (targetParallaxX - currentParallaxX) * 0.08;
-    currentParallaxY += (targetParallaxY - currentParallaxY) * 0.08;
+    curTiltX += (ambientTiltX - curTiltX) * 0.08;
+    curTiltY += (ambientTiltY - curTiltY) * 0.08;
 
-    const totalRotY = dragRotationY + (currentParallaxX * 0.4);
-    const totalRotX = -currentParallaxY * 0.4;
-    const totalTransY = currentParallaxY * 0.3;
+    if (Math.abs(manualSpinY) > 0.01) {
+      phone3D.style.transform = `rotateY(${manualSpinY + curTiltX * 0.3}deg) rotateX(${-curTiltY * 0.3}deg)`;
+    }
 
-    visual.style.transform = `perspective(1200px) rotateY(${totalRotY}deg) rotateX(${totalRotX}deg) translateY(${totalTransY}px)`;
-
-    if (isDragging || Math.abs(velocityY) > 0.05 || Math.abs(targetParallaxX - currentParallaxX) > 0.01) {
-      animFrameId = requestAnimationFrame(renderPhysics);
+    if (isDragging || Math.abs(velocityY) > 0.05 || Math.abs(ambientTiltX - curTiltX) > 0.01) {
+      loopId = requestAnimationFrame(updateDragPhysics);
     } else {
-      animFrameId = null;
+      loopId = null;
     }
   }
 }
