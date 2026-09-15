@@ -1,1042 +1,1139 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Mobile Station | Flagship Smartphone Showroom & Express Engineering</title>
-  <meta name="description" content="Official flagship smartphone showroom at Mobile Station (Garud Complex, In Front of Sony Novelty). Sealed brand-new iPhones, Android flagships, grade A+ editions, and on-spot 30-min express repair.">
-  
-  <!-- Studio Fonts: Outfit & Plus Jakarta Sans -->
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+  <title>Mobile Station | Premium Smartphone Showroom</title>
+
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@400;500;600;700;800;900&family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
-  
-  <link rel="stylesheet" href="styles.css">
 
-  <!-- Core 3D & Animation Libraries -->
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>
-  <script src="https://unpkg.com/lenis@1.1.9/dist/lenis.min.js"></script>
+  <link
+    href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Manrope:wght@500;600;700;800&family=Outfit:wght@500;600;700;800;900&display=swap"
+    rel="stylesheet"
+  >
+
+  <link rel="stylesheet" href="styles.css" />
 </head>
+
 <body>
 
-  <!-- ========================================================================= -->
-  <!-- 0. SIMPLE CLEAN PRELOADER -->
-  <!-- ========================================================================= -->
-  <div class="simple-preloader" id="sitePreloader">
-    <div class="simple-preloader-center">
-      <div class="simple-preloader-logo">
-        <img src="WhatsApp Image 2026-09-12 at 8.40.39 PM.jpeg" alt="Mobile Station">
-      </div>
-      <div class="simple-preloader-spinner"></div>
-    </div>
-  </div>
+  <!-- =====================================================
+       BACKGROUND AMBIENCE
+  ====================================================== -->
 
-  <!-- ========================================================================= -->
-  <!-- 1. TOP MINIMAL NAVIGATION BAR (RESPONSIVE) -->
-  <!-- ========================================================================= -->
-  <header class="site-header-clean" id="siteHeader">
-    <div class="container-editorial header-inner">
-      <!-- Brand Logotype -->
-      <a href="#hero" class="brand-logotype">
-        <div class="brand-mark">
-          <img src="WhatsApp Image 2026-09-12 at 8.40.39 PM.jpeg" alt="Mobile Station Logo">
-        </div>
-        <div class="brand-words">
-          MOBILE
-          <span>STATION</span>
-        </div>
+  <div class="ambient ambient-a"></div>
+  <div class="ambient ambient-b"></div>
+
+
+  <!-- =====================================================
+       NAVBAR
+  ====================================================== -->
+
+  <header class="navbar">
+
+    <a href="#home" class="brand">
+
+      <span class="brand-mark">
+        MS
+      </span>
+
+      <span class="brand-text">
+        <b>MOBILE</b>
+        <strong>STATION</strong>
+      </span>
+
+    </a>
+
+
+    <nav>
+
+      <a href="#home" class="active">Home</a>
+
+      <a href="#story">Story</a>
+
+      <a href="#flagships">Flagships</a>
+
+      <a href="#schemes">Schemes</a>
+
+      <a href="#repair">Repair Lab</a>
+
+      <a href="#trade">Trade-In</a>
+
+      <a href="#showrooms">Showrooms</a>
+
+    </nav>
+
+
+    <div class="nav-actions">
+
+      <button
+        class="icon-btn"
+        id="searchBtn"
+        aria-label="Search"
+      >
+        ⌕
+      </button>
+
+
+      <button
+        class="cart-btn"
+        id="cartBtn"
+      >
+        Bag
+
+        <span id="cartCount">
+          0
+        </span>
+
+      </button>
+
+
+      <a
+        href="#"
+        class="wa-top"
+        id="waTop"
+      >
+        ◉ WhatsApp Concierge
       </a>
 
-      <!-- Navigation Links (Desktop) -->
-      <nav class="desktop-nav">
-        <ul class="nav-links-track">
-          <li><a href="#hero" class="nav-link-item active">Home</a></li>
-          <li><a href="#story" class="nav-link-item">Story</a></li>
-          <li><a href="#flagships" class="nav-link-item">Flagships</a></li>
-          <li><a href="#schemes" class="nav-link-item">Schemes</a></li>
-          <li><a href="#repair" class="nav-link-item">Repair Lab</a></li>
-          <li><a href="#trade" class="nav-link-item">Trade-In</a></li>
-          <li><a href="#showroom" class="nav-link-item">Showrooms</a></li>
-        </ul>
-      </nav>
-
-      <!-- Header Actions -->
-      <div class="header-right-actions">
-        <!-- Search Icon -->
-        <button class="header-icon-btn" title="Search Devices" onclick="document.getElementById('flagships').scrollIntoView({behavior:'smooth'})">
-          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2">
-            <circle cx="11" cy="11" r="8"></circle>
-            <line x1="21" y1="21" x2="16.65" y2="16.65"></line>
-          </svg>
-        </button>
-
-        <!-- Cart Bag -->
-        <button class="header-icon-btn" id="cartOpenBtn" title="Showroom Bag" onclick="openCartDrawer()">
-          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2">
-            <path d="M6 2L3 6v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V6l-3-4z"></path>
-            <line x1="3" y1="6" x2="21" y2="6"></line>
-            <path d="M16 10a4 4 0 0 1-8 0"></path>
-          </svg>
-          <span class="header-badge-count" id="cartBadgeCount">0</span>
-        </button>
-
-        <!-- WhatsApp Concierge Button (Desktop) -->
-        <a href="https://wa.me/919876543210?text=Hello%20Mobile%20Station!%20I%20am%20exploring%20your%20showroom%20and%20want%20to%20inquire." target="_blank" rel="noopener noreferrer" class="btn-header-concierge">
-          <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor">
-            <path d="M.057 24l1.687-6.163c-1.041-1.804-1.588-3.849-1.587-5.946.003-6.556 5.338-11.891 11.893-11.891 3.181.001 6.167 1.24 8.413 3.488 2.245 2.248 3.481 5.236 3.48 8.414-.003 6.557-5.338 11.892-11.893 11.892-1.99-.001-3.951-.5-5.688-1.448l-6.305 1.654zm6.597-3.807c1.676.995 3.276 1.591 5.392 1.592 5.448 0 9.886-4.434 9.889-9.885.002-5.462-4.415-9.89-9.881-9.892-5.452 0-9.887 4.434-9.889 9.884-.001 2.225.651 3.891 1.746 5.634l-.999 3.648 3.742-.981zm11.387-5.464c-.074-.124-.272-.198-.57-.347-.297-.149-1.758-.868-2.031-.967-.272-.099-.47-.149-.669.149-.198.297-.768.967-.941 1.165-.173.198-.347.223-.644.074-.297-.149-1.255-.462-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.297-.347.446-.521.151-.172.2-.296.3-.495.099-.198.05-.372-.025-.521-.075-.148-.669-1.611-.916-2.206-.242-.579-.487-.501-.669-.51l-.57-.01c-.198 0-.52.074-.792.372s-1.04 1.016-1.04 2.479 1.065 2.876 1.213 3.074c.149.198 2.095 3.2 5.076 4.487.709.306 1.263.489 1.694.626.712.226 1.36.194 1.872.118.571-.085 1.758-.719 2.006-1.413.248-.695.248-1.29.173-1.414z"/>
-          </svg>
-          <span class="desktop-concierge-label">WhatsApp Concierge</span>
-        </a>
-
-        <!-- Mobile Hamburger Toggle -->
-        <button class="mobile-menu-btn" id="mobileMenuBtn" aria-label="Toggle Navigation Menu" onclick="toggleMobileMenu()">
-          <span></span>
-          <span></span>
-          <span></span>
-        </button>
-      </div>
     </div>
 
-    <!-- Mobile Drawer Menu -->
-    <div class="mobile-nav-drawer" id="mobileNavDrawer">
-      <ul class="mobile-nav-links">
-        <li><a href="#hero" class="mob-link active" onclick="toggleMobileMenu()">Home</a></li>
-        <li><a href="#story" class="mob-link" onclick="toggleMobileMenu()">Story</a></li>
-        <li><a href="#flagships" class="mob-link" onclick="toggleMobileMenu()">Flagships</a></li>
-        <li><a href="#schemes" class="mob-link" onclick="toggleMobileMenu()">Schemes</a></li>
-        <li><a href="#repair" class="mob-link" onclick="toggleMobileMenu()">Repair Lab</a></li>
-        <li><a href="#trade" class="mob-link" onclick="toggleMobileMenu()">Trade-In</a></li>
-        <li><a href="#showroom" class="mob-link" onclick="toggleMobileMenu()">Showrooms</a></li>
-      </ul>
-      <div class="mobile-drawer-footer">
-        <a href="https://wa.me/919876543210" target="_blank" class="btn-primary-pink" style="width:100%; justify-content:center;">
-          💬 WhatsApp Concierge
-        </a>
-      </div>
-    </div>
+
+    <button
+      class="menu-btn"
+      id="menuBtn"
+      aria-label="Menu"
+    >
+      ☰
+    </button>
+
   </header>
 
-  <!-- ========================================================================= -->
-  <!-- 2. SEAMLESS LUXURY HERO SECTION (EXACT REFERENCE 100VH COMPOSITION) -->
-  <!-- ========================================================================= -->
-  <!-- ========================================================================= -->
-  <!-- 2. APPLE-GRADE CINEMATIC 3D SMARTPHONE SCROLL EXPERIENCE -->
-  <!-- ========================================================================= -->
-  <!-- ========================================================================= -->
-  <!-- 2. APPLE-GRADE CINEMATIC 3D SMARTPHONE SCROLL EXPERIENCE -->
-  <!-- ========================================================================= -->
-  <section class="hero-cinematic-scroll-track" id="heroTrack">
-    <div class="hero-cinematic-sticky-stage" id="heroStickyStage">
-      
-      <!-- Ambient Studio Lighting & Luxury Backdrop Glows -->
-      <div class="cinematic-backdrop-glow"></div>
-      <div class="cinematic-ambient-orb orb-1"></div>
-      <div class="cinematic-ambient-orb orb-2"></div>
 
-      <!-- Electric Lightning & Red Energy Trail Particle Canvas -->
-      <canvas id="heroElectricCanvas" class="cinematic-electric-canvas"></canvas>
 
-      <!-- Phase 1: Intro Headline & CTAs (Fades on scroll) -->
-      <div class="cinematic-intro-overlay" id="heroIntroOverlay">
-        <div class="hero-kicker-tag">Flagship Retail & Distribution Hub</div>
-        
-        <h1 class="cinematic-hero-title">
-          THE RIGHT PHONE.<br>
-          <span class="pink-accent">ZERO COMPROMISE.</span>
+  <!-- =====================================================
+       MAIN
+  ====================================================== -->
+
+  <main>
+
+
+    <!-- ===================================================
+         HERO
+    ==================================================== -->
+
+    <section
+      class="hero"
+      id="home"
+    >
+
+      <!-- Architectural background -->
+
+      <div class="architecture arch-left"></div>
+
+      <div class="architecture arch-right"></div>
+
+
+      <!-- Large circular showroom halo -->
+
+      <div class="hero-halo"></div>
+
+
+      <!-- Subtle architectural grid -->
+
+      <div class="hero-grid"></div>
+
+
+
+      <!-- ================================================
+           LEFT HERO CONTENT
+      ================================================= -->
+
+      <div class="hero-copy">
+
+        <span class="eyebrow">
+          THE ALL NEW
+        </span>
+
+
+        <h1 id="heroTitle">
+          iPhone 18 Pro Max
         </h1>
 
-        <p class="cinematic-hero-subtext">
-          Pristine sealed smartphones, Grade A+ certified editions, and on-spot 30-minute component engineering at Mobile Station.
+
+        <p>
+          Power. Beauty. Beyond.
         </p>
 
-        <div class="hero-cta-buttons-row">
-          <a href="#flagships" class="btn-primary-pink">
-            <span>Explore Flagships</span>
-            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
-              <line x1="5" y1="12" x2="19" y2="12"></line>
-              <polyline points="12 5 19 12 12 19"></polyline>
-            </svg>
-          </a>
 
-          <a href="https://wa.me/919876543210?text=Hello%20Mobile%20Station,%20please%20send%20today's%20iPhone%20and%20flagship%20price%20sheet." target="_blank" rel="noopener noreferrer" class="btn-secondary-white">
-            <svg width="18" height="18" viewBox="0 0 24 24" fill="#25d366">
-              <path d="M.057 24l1.687-6.163c-1.041-1.804-1.588-3.849-1.587-5.946.003-6.556 5.338-11.891 11.893-11.891 3.181.001 6.167 1.24 8.413 3.488 2.245 2.248 3.481 5.236 3.48 8.414-.003 6.557-5.338 11.892-11.893 11.892-1.99-.001-3.951-.5-5.688-1.448l-6.305 1.654zm6.597-3.807c1.676.995 3.276 1.591 5.392 1.592 5.448 0 9.886-4.434 9.889-9.885.002-5.462-4.415-9.89-9.881-9.892-5.452 0-9.887 4.434-9.889 9.884-.001 2.225.651 3.891 1.746 5.634l-.999 3.648 3.742-.981zm11.387-5.464c-.074-.124-.272-.198-.57-.347-.297-.149-1.758-.868-2.031-.967-.272-.099-.47-.149-.669.149-.198.297-.768.967-.941 1.165-.173.198-.347.223-.644.074-.297-.149-1.255-.462-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.297-.347.446-.521.151-.172.2-.296.3-.495.099-.198.05-.372-.025-.521-.075-.148-.669-1.611-.916-2.206-.242-.579-.487-.501-.669-.51l-.57-.01c-.198 0-.52.074-.792.372s-1.04 1.016-1.04 2.479 1.065 2.876 1.213 3.074c.149.198 2.095 3.2 5.076 4.487.709.306 1.263.489 1.694.626.712.226 1.36.194 1.872.118.571-.085 1.758-.719 2.006-1.413.248-.695.248-1.29.173-1.414z"/>
-            </svg>
-            <span>Direct WhatsApp Quote</span>
-          </a>
+        <div class="hero-tag">
+
+          <i></i>
+
+          Latest Flagship
+
         </div>
+
       </div>
 
-      <!-- Main Cinematic 3D Floating Phone (Apple-grade interactive focal point) -->
-      <div class="cinematic-phone-anchor-wrapper" id="cinematicPhoneWrapper">
-        <div class="cinematic-phone-3d-box" id="cinematicPhone3D">
-          <!-- Glossy Reflected Marble Shadow Base -->
-          <div class="cinematic-phone-shadow"></div>
-          
-          <!-- Master High-Res Smartphone Render -->
-          <img src="iphone-18-pro-finish-select-202609-6-9inch-burgundy.webp" 
-               alt="Apple iPhone 18 Pro Max in Deep Burgundy Titanium" 
-               class="cinematic-phone-render-img" 
-               id="cinematicPhoneImg">
-               
-          <!-- Glass Light Sweep Overlay -->
-          <div class="cinematic-glass-shimmer"></div>
+
+
+      <!-- ================================================
+           CENTRAL PHONE SHOWCASE
+      ================================================= -->
+
+      <div
+        class="product-stage"
+        id="productStage"
+      >
+
+        <!-- Circular energy rings -->
+
+        <div class="energy-ring ring-one"></div>
+
+        <div class="energy-ring ring-two"></div>
+
+        <div class="energy-ring ring-three"></div>
+
+
+
+        <!-- Phone shadow -->
+
+        <div class="phone-shadow"></div>
+
+
+
+        <!-- Floating phone -->
+
+        <div
+          class="phone"
+          id="heroPhone"
+        >
+
+          <div class="phone-camera">
+
+            <span></span>
+            <span></span>
+            <span></span>
+
+          </div>
+
+
+          <div class="phone-logo">
+            
+          </div>
+
+
+          <div class="phone-edge"></div>
+
         </div>
+
+
+
+        <!-- Product platform -->
+
+        <div class="platform">
+
+          <div class="platform-inner"></div>
+
+        </div>
+
       </div>
 
-      <!-- Floating Hero Product Card (Interactive Customizer) -->
-      <div class="hero-floating-product-card" id="heroFloatingCard">
-        <div class="hero-card-badge">👑 2026 Flagship Hero</div>
-        <div class="hero-card-model">iPhone 18 Pro Max</div>
-        <div class="hero-card-sub" id="heroSelectedFinishLabel">Deep Burgundy Titanium</div>
-        <div class="hero-card-price" id="heroDisplayPrice">₹1,79,900 <span class="onwards-text">onwards</span></div>
-        
-        <!-- Storage Options -->
-        <div class="hero-card-storage-row">
-          <button class="hero-storage-pill active" onclick="selectHeroStorage('256GB', 179900, this)">256GB</button>
-          <button class="hero-storage-pill" onclick="selectHeroStorage('512GB', 199900, this)">512GB</button>
-          <button class="hero-storage-pill" onclick="selectHeroStorage('1TB', 224900, this)">1TB</button>
-          <button class="hero-storage-pill" onclick="selectHeroStorage('2TB', 249900, this)">2TB</button>
+
+
+      <!-- ================================================
+           RIGHT PRODUCT CARD
+      ================================================= -->
+
+      <aside class="hero-card">
+
+
+        <div class="card-top">
+
+          <span>
+            
+          </span>
+
+          <b id="cardTitle">
+            iPhone 18 Pro Max
+          </b>
+
         </div>
 
-        <!-- Color Swatches -->
-        <div class="hero-card-color-row">
-          <span class="color-swatch-dot active swatch-burgundy" onclick="selectHeroColor('Deep Burgundy Titanium', this)" title="Deep Burgundy"></span>
-          <span class="color-swatch-dot swatch-desert" onclick="selectHeroColor('Desert Titanium', this)" title="Desert Titanium"></span>
-          <span class="color-swatch-dot swatch-natural" onclick="selectHeroColor('Natural Titanium', this)" title="Natural Titanium"></span>
-          <span class="color-swatch-dot swatch-black" onclick="selectHeroColor('Space Black Titanium', this)" title="Space Black"></span>
+
+
+        <span class="pill">
+          Latest Flagship
+        </span>
+
+
+
+        <div class="price">
+
+          <span id="cardPrice">
+            ₹1,79,900
+          </span>
+
+          <small>
+            onwards
+          </small>
+
         </div>
 
-        <!-- Action Buttons -->
-        <div class="hero-card-actions">
-          <button class="btn-card-add-bag" onclick="addHeroToBag(event)">
-            <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><path d="M6 2L3 6v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V6l-3-4z"/><line x1="3" y1="6" x2="21" y2="6"/><path d="M16 10a4 4 0 0 1-8 0"/></svg>
-            <span>Add to Bag</span>
+
+
+        <!-- Storage -->
+
+        <div class="choices">
+
+          <button class="choice active">
+            256GB
           </button>
-          <button class="btn-card-whatsapp" onclick="chatWhatsAppForProduct('prod-001')">
-            <svg width="15" height="15" viewBox="0 0 24 24" fill="currentColor"><path d="M.057 24l1.687-6.163c-1.041-1.804-1.588-3.849-1.587-5.946.003-6.556 5.338-11.891 11.893-11.891 3.181.001 6.167 1.24 8.413 3.488 2.245 2.248 3.481 5.236 3.48 8.414-.003 6.557-5.338 11.892-11.893 11.892-1.99-.001-3.951-.5-5.688-1.448l-6.305 1.654zm6.597-3.807c1.676.995 3.276 1.591 5.392 1.592 5.448 0 9.886-4.434 9.889-9.885.002-5.462-4.415-9.89-9.881-9.892-5.452 0-9.887 4.434-9.889 9.884-.001 2.225.651 3.891 1.746 5.634l-.999 3.648 3.742-.981zm11.387-5.464c-.074-.124-.272-.198-.57-.347-.297-.149-1.758-.868-2.031-.967-.272-.099-.47-.149-.669.149-.198.297-.768.967-.941 1.165-.173.198-.347.223-.644.074-.297-.149-1.255-.462-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.297-.347.446-.521.151-.172.2-.296.3-.495.099-.198.05-.372-.025-.521-.075-.148-.669-1.611-.916-2.206-.242-.579-.487-.501-.669-.51l-.57-.01c-.198 0-.52.074-.792.372s-1.04 1.016-1.04 2.479 1.065 2.876 1.213 3.074c.149.198 2.095 3.2 5.076 4.487.709.306 1.263.489 1.694.626.712.226 1.36.194 1.872.118.571-.085 1.758-.719 2.006-1.413.248-.695.248-1.29.173-1.414z"/></svg>
-            <span>WhatsApp</span>
+
+          <button class="choice">
+            512GB
           </button>
-          <button class="btn-card-callback" onclick="openCallbackModal('prod-001')">
-            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"/></svg>
-            <span>Callback</span>
+
+          <button class="choice">
+            1TB
           </button>
-        </div>
-      </div>
 
-      <!-- Progressive Feature Callout Cards (Apple Keynote Style - Revealed on scroll) -->
-      <div class="cinematic-callout-layer" id="cinematicCalloutLayer">
-        <!-- Callout 1: Titanium Architecture (Left) -->
-        <div class="cinematic-feature-callout callout-left" id="calloutTitanium">
-          <div class="callout-glass-card">
-            <span class="callout-kicker-tag">AEROSPACE ARCHITECTURE</span>
-            <h3 class="callout-title">Deep Burgundy Titanium</h3>
-            <p class="callout-desc">Forged with Grade 5 Titanium & 2nm A19 Pro Silicon. Ultra-light, rigid contour chassis with satin micro-blasted finish.</p>
-            <div class="callout-metric-pill">2nm Bionic • Pro Gaming Peak</div>
-          </div>
+          <button class="choice">
+            2TB
+          </button>
+
         </div>
 
-        <!-- Callout 2: Quad Pro Optics (Right) -->
-        <div class="cinematic-feature-callout callout-right" id="calloutCamera">
-          <div class="callout-glass-card">
-            <span class="callout-kicker-tag">PRO STUDIO OPTICS</span>
-            <h3 class="callout-title">48MP Quad-Fusion Camera</h3>
-            <p class="callout-desc">10x Optical Telephoto Prism with anti-reflective nano-coating. Master studio 4K 120fps Dolby Vision recording.</p>
-            <div class="callout-metric-pill">10x Optical • Spatial Audio</div>
-          </div>
+
+
+        <!-- Colours -->
+
+        <div class="colors">
+
+          <button
+            class="swatch red active"
+            data-color="red"
+            aria-label="Deep Red"
+          ></button>
+
+
+          <button
+            class="swatch cream"
+            data-color="cream"
+            aria-label="Titanium"
+          ></button>
+
+
+          <button
+            class="swatch silver"
+            data-color="silver"
+            aria-label="Silver"
+          ></button>
+
+
+          <button
+            class="swatch black"
+            data-color="black"
+            aria-label="Black"
+          ></button>
+
+
+          <span id="colorName">
+            Deep Red
+          </span>
+
         </div>
 
-        <!-- Callout 3: Display & Battery (Bottom Center) -->
-        <div class="cinematic-feature-callout callout-bottom" id="calloutDisplay">
-          <div class="callout-glass-card">
-            <span class="callout-kicker-tag">ALL-DAY ENDURANCE</span>
-            <h3 class="callout-title">6.9" ProMotion OLED • 36h Battery</h3>
-            <p class="callout-desc">Super Retina XDR with 2400 nits outdoor peak brightness & MagSafe Ultra-Fast wireless charging.</p>
-            <div class="callout-metric-pill">120Hz Adaptive • MagSafe 35W</div>
-          </div>
-        </div>
-      </div>
 
-      <!-- Live Interactive Controls & Guidance -->
-      <div class="cinematic-bottom-bar">
-        <div class="cinematic-scroll-pill">
-          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2">
-            <rect x="5" y="2" width="14" height="20" rx="7"></rect>
-            <line x1="12" y1="6" x2="12" y2="10"></line>
-          </svg>
-          <span>Scroll to explore 3D features ↓</span>
-        </div>
 
-        <div class="cinematic-drag-hint">
-          <span>Drag left/right to rotate 360°</span>
-        </div>
-      </div>
+        <!-- Add to bag -->
 
-    </div>
-  </section>
+        <button
+          class="primary-btn add-main"
+          data-product="iPhone 18 Pro Max"
+        >
+          ▢ Add to Bag
+        </button>
 
-  <!-- ========================================================================= -->
-  <!-- 3. 360° HARDWARE STORY STUDIO (MOBILE STATION EXCLUSIVE) -->
-  <!-- ========================================================================= -->
-  <section class="story-studio-section" id="story">
-    <div class="container-editorial">
-      <div class="story-split-grid">
-        <!-- Story Info Card -->
-        <div class="story-info-card">
-          <div class="story-step-badge" id="storyBadge">01</div>
-          <h2 class="story-step-title" id="storyTitle">Super Retina XDR Display</h2>
-          <p class="story-step-desc" id="storyDesc">
-            6.9-inch OLED display with ProMotion 120Hz adaptive refresh rate and 2,000 nits peak outdoor brightness. Scratchless ceramic shield glass engineered for pure visual fidelity.
-          </p>
 
-          <div class="story-tabs-nav">
-            <button class="story-tab-btn active" onclick="switchStoryStage(0, this)">01 Display</button>
-            <button class="story-tab-btn" onclick="switchStoryStage(1, this)">02 Titanium Frame</button>
-            <button class="story-tab-btn" onclick="switchStoryStage(2, this)">03 48MP Optics</button>
-            <button class="story-tab-btn" onclick="switchStoryStage(3, this)">04 Battery & Silicon</button>
-          </div>
+
+        <!-- WhatsApp + Callback -->
+
+        <div class="secondary-actions">
+
+          <button
+            class="wa-btn product-wa"
+            data-product="iPhone 18 Pro Max"
+          >
+            ◉ Chat on WhatsApp
+          </button>
+
+
+          <button
+            class="callback-btn callback-open"
+          >
+            ☎ Request Callback
+          </button>
+
         </div>
 
-        <!-- 3D Story Canvas Stage -->
-        <div class="story-3d-stage-box">
-          <canvas id="storyWebGLCanvas"></canvas>
-        </div>
-      </div>
-    </div>
-  </section>
+      </aside>
 
-  <!-- ========================================================================= -->
-  <!-- 4. LATEST 2025/2026 FLAGSHIPS SHOWCASE -->
-  <!-- ========================================================================= -->
-  <section class="world-showcase-section" id="flagships">
-    <div class="container-editorial">
-      <div class="section-editorial-header">
-        <span class="editorial-kicker">CURATED LATEST FLAGSHIP SHOWCASE</span>
-        <h2 class="editorial-title">CHOOSE YOUR WORLD.</h2>
-        <p style="color:var(--text-body); font-size:1.15rem; margin-top:0.75rem;">
-          Sealed box brand new 2025/2026 flagships with official brand warranty & instant VIP WhatsApp booking at Mobile Station.
-        </p>
 
-        <!-- Category Filter Pills -->
-        <div class="flagship-filter-track">
-          <button class="filter-pill-btn active" onclick="filterFlagshipCards('all', this)">All Flagships</button>
-          <button class="filter-pill-btn" onclick="filterFlagshipCards('apple', this)">🍏 Apple iPhones</button>
-          <button class="filter-pill-btn" onclick="filterFlagshipCards('samsung', this)">⭐ Samsung Galaxy AI</button>
-          <button class="filter-pill-btn" onclick="filterFlagshipCards('oneplus', this)">🔴 OnePlus Series</button>
-          <button class="filter-pill-btn" onclick="filterFlagshipCards('camera', this)">📸 Ultra Optics</button>
-          <button class="filter-pill-btn" onclick="filterFlagshipCards('fold', this)">📱 Foldables</button>
-        </div>
-      </div>
 
-      <div class="quad-cards-grid" id="flagshipCardsGrid">
-        <!-- Phone 1: iPhone 18 Pro Max -->
-        <div class="quad-phone-card" data-cat="apple flagship camera" onclick="openProductDetailViewer('prod-001')">
-          <div class="quad-badge-tag">👑 2026 Flagship Hero</div>
-          <div class="quad-img-box">
-            <img src="iphone-18-pro-finish-select-202609-6-9inch-burgundy.webp" alt="iPhone 18 Pro Max Burgundy Titanium">
-          </div>
-          <span class="quad-brand-tag">Apple • Deep Burgundy Titanium</span>
-          <h3 class="quad-device-title">iPhone 18 Pro Max</h3>
-          <p class="quad-spec-highlight">6.9" ProMotion • A19 Pro 2nm • 48MP 10x Prism Optical</p>
-          <div class="quad-price-tag">₹1,79,900 <span style="font-size:0.8rem; font-weight:600; color:var(--text-muted);">onwards</span></div>
-          
-          <div class="quad-card-actions-row" onclick="event.stopPropagation()">
-            <button class="btn-card-add-bag" onclick="addToBagDirect('prod-001', event)">
-              <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><path d="M6 2L3 6v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V6l-3-4z"/><line x1="3" y1="6" x2="21" y2="6"/><path d="M16 10a4 4 0 0 1-8 0"/></svg>
-              <span>Add Bag</span>
-            </button>
-            <button class="btn-card-whatsapp" onclick="chatWhatsAppForProduct('prod-001')">
-              <svg width="13" height="13" viewBox="0 0 24 24" fill="currentColor"><path d="M.057 24l1.687-6.163c-1.041-1.804-1.588-3.849-1.587-5.946.003-6.556 5.338-11.891 11.893-11.891 3.181.001 6.167 1.24 8.413 3.488 2.245 2.248 3.481 5.236 3.48 8.414-.003 6.557-5.338 11.892-11.893 11.892-1.99-.001-3.951-.5-5.688-1.448l-6.305 1.654zm6.597-3.807c1.676.995 3.276 1.591 5.392 1.592 5.448 0 9.886-4.434 9.889-9.885.002-5.462-4.415-9.89-9.881-9.892-5.452 0-9.887 4.434-9.889 9.884-.001 2.225.651 3.891 1.746 5.634l-.999 3.648 3.742-.981zm11.387-5.464c-.074-.124-.272-.198-.57-.347-.297-.149-1.758-.868-2.031-.967-.272-.099-.47-.149-.669.149-.198.297-.768.967-.941 1.165-.173.198-.347.223-.644.074-.297-.149-1.255-.462-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.297-.347.446-.521.151-.172.2-.296.3-.495.099-.198.05-.372-.025-.521-.075-.148-.669-1.611-.916-2.206-.242-.579-.487-.501-.669-.51l-.57-.01c-.198 0-.52.074-.792.372s-1.04 1.016-1.04 2.479 1.065 2.876 1.213 3.074c.149.198 2.095 3.2 5.076 4.487.709.306 1.263.489 1.694.626.712.226 1.36.194 1.872.118.571-.085 1.758-.719 2.006-1.413.248-.695.248-1.29.173-1.414z"/></svg>
-              <span>WhatsApp</span>
-            </button>
-            <button class="btn-card-callback" onclick="openCallbackModal('prod-001')">
-              <span>Callback</span>
-            </button>
-          </div>
-        </div>
+      <!-- ================================================
+           HERO SPECS
+      ================================================= -->
 
-        <!-- Phone 2: iPhone 18 Pro -->
-        <div class="quad-phone-card" data-cat="apple flagship" onclick="openProductDetailViewer('prod-002')">
-          <div class="quad-badge-tag">🔥 2026 Pro Compact</div>
-          <div class="quad-img-box">
-            <img src="iphone-18-pro-finish-select-202609-6-9inch-burgundy.webp" alt="iPhone 18 Pro">
-          </div>
-          <span class="quad-brand-tag">Apple • 6.3" Pro Series</span>
-          <h3 class="quad-device-title">iPhone 18 Pro</h3>
-          <p class="quad-spec-highlight">6.3" ProMotion • A19 Pro • 48MP Triple Optical</p>
-          <div class="quad-price-tag">₹1,34,900 <span style="font-size:0.8rem; font-weight:600; color:var(--text-muted);">onwards</span></div>
-          
-          <div class="quad-card-actions-row" onclick="event.stopPropagation()">
-            <button class="btn-card-add-bag" onclick="addToBagDirect('prod-002', event)">
-              <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><path d="M6 2L3 6v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V6l-3-4z"/><line x1="3" y1="6" x2="21" y2="6"/><path d="M16 10a4 4 0 0 1-8 0"/></svg>
-              <span>Add Bag</span>
-            </button>
-            <button class="btn-card-whatsapp" onclick="chatWhatsAppForProduct('prod-002')">
-              <svg width="13" height="13" viewBox="0 0 24 24" fill="currentColor"><path d="M.057 24l1.687-6.163c-1.041-1.804-1.588-3.849-1.587-5.946.003-6.556 5.338-11.891 11.893-11.891 3.181.001 6.167 1.24 8.413 3.488 2.245 2.248 3.481 5.236 3.48 8.414-.003 6.557-5.338 11.892-11.893 11.892-1.99-.001-3.951-.5-5.688-1.448l-6.305 1.654zm6.597-3.807c1.676.995 3.276 1.591 5.392 1.592 5.448 0 9.886-4.434 9.889-9.885.002-5.462-4.415-9.89-9.881-9.892-5.452 0-9.887 4.434-9.889 9.884-.001 2.225.651 3.891 1.746 5.634l-.999 3.648 3.742-.981zm11.387-5.464c-.074-.124-.272-.198-.57-.347-.297-.149-1.758-.868-2.031-.967-.272-.099-.47-.149-.669.149-.198.297-.768.967-.941 1.165-.173.198-.347.223-.644.074-.297-.149-1.255-.462-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.297-.347.446-.521.151-.172.2-.296.3-.495.099-.198.05-.372-.025-.521-.075-.148-.669-1.611-.916-2.206-.242-.579-.487-.501-.669-.51l-.57-.01c-.198 0-.52.074-.792.372s-1.04 1.016-1.04 2.479 1.065 2.876 1.213 3.074c.149.198 2.095 3.2 5.076 4.487.709.306 1.263.489 1.694.626.712.226 1.36.194 1.872.118.571-.085 1.758-.719 2.006-1.413.248-.695.248-1.29.173-1.414z"/></svg>
-              <span>WhatsApp</span>
-            </button>
-            <button class="btn-card-callback" onclick="openCallbackModal('prod-002')">
-              <span>Callback</span>
-            </button>
-          </div>
-        </div>
+      <div class="hero-specs">
 
-        <!-- Phone 3: Samsung Galaxy S26 Ultra 5G -->
-        <div class="quad-phone-card" data-cat="samsung flagship camera" onclick="openProductDetailViewer('prod-003')">
-          <div class="quad-badge-tag">⭐ Galaxy AI 2026</div>
-          <div class="quad-img-box">
-            <img src="https://m.media-amazon.com/images/I/71RVuWl+CeL._SL1500_.jpg" alt="Galaxy S26 Ultra">
-          </div>
-          <span class="quad-brand-tag">Samsung • Galaxy AI Titanium</span>
-          <h3 class="quad-device-title">Galaxy S26 Ultra 5G</h3>
-          <p class="quad-spec-highlight">200MP Quad Zoom • Snapdragon 8 Gen 4 • S-Pen Integrated</p>
-          <div class="quad-price-tag">₹1,29,999 <span style="font-size:0.8rem; font-weight:600; color:var(--text-muted);">onwards</span></div>
-          
-          <div class="quad-card-actions-row" onclick="event.stopPropagation()">
-            <button class="btn-card-add-bag" onclick="addToBagDirect('prod-003', event)">
-              <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><path d="M6 2L3 6v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V6l-3-4z"/><line x1="3" y1="6" x2="21" y2="6"/><path d="M16 10a4 4 0 0 1-8 0"/></svg>
-              <span>Add Bag</span>
-            </button>
-            <button class="btn-card-whatsapp" onclick="chatWhatsAppForProduct('prod-003')">
-              <svg width="13" height="13" viewBox="0 0 24 24" fill="currentColor"><path d="M.057 24l1.687-6.163c-1.041-1.804-1.588-3.849-1.587-5.946.003-6.556 5.338-11.891 11.893-11.891 3.181.001 6.167 1.24 8.413 3.488 2.245 2.248 3.481 5.236 3.48 8.414-.003 6.557-5.338 11.892-11.893 11.892-1.99-.001-3.951-.5-5.688-1.448l-6.305 1.654zm6.597-3.807c1.676.995 3.276 1.591 5.392 1.592 5.448 0 9.886-4.434 9.889-9.885.002-5.462-4.415-9.89-9.881-9.892-5.452 0-9.887 4.434-9.889 9.884-.001 2.225.651 3.891 1.746 5.634l-.999 3.648 3.742-.981zm11.387-5.464c-.074-.124-.272-.198-.57-.347-.297-.149-1.758-.868-2.031-.967-.272-.099-.47-.149-.669.149-.198.297-.768.967-.941 1.165-.173.198-.347.223-.644.074-.297-.149-1.255-.462-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.297-.347.446-.521.151-.172.2-.296.3-.495.099-.198.05-.372-.025-.521-.075-.148-.669-1.611-.916-2.206-.242-.579-.487-.501-.669-.51l-.57-.01c-.198 0-.52.074-.792.372s-1.04 1.016-1.04 2.479 1.065 2.876 1.213 3.074c.149.198 2.095 3.2 5.076 4.487.709.306 1.263.489 1.694.626.712.226 1.36.194 1.872.118.571-.085 1.758-.719 2.006-1.413.248-.695.248-1.29.173-1.414z"/></svg>
-              <span>WhatsApp</span>
-            </button>
-            <button class="btn-card-callback" onclick="openCallbackModal('prod-003')">
-              <span>Callback</span>
-            </button>
-          </div>
-        </div>
-
-        <!-- Phone 4: Google Pixel 11 Pro 5G -->
-        <div class="quad-phone-card" data-cat="flagship camera" onclick="openProductDetailViewer('prod-004')">
-          <div class="quad-badge-tag">🤖 Google Gemini AI</div>
-          <div class="quad-img-box">
-            <img src="https://m.media-amazon.com/images/I/71x4xQ7c2GL._SL1500_.jpg" alt="Google Pixel 11 Pro">
-          </div>
-          <span class="quad-brand-tag">Google • Tensor G6 Architecture</span>
-          <h3 class="quad-device-title">Google Pixel 11 Pro 5G</h3>
-          <p class="quad-spec-highlight">6.7" Super Actua 120Hz • Gemini Live AI • 50MP Triple Pro</p>
-          <div class="quad-price-tag">₹1,09,999 <span style="font-size:0.8rem; font-weight:600; color:var(--text-muted);">onwards</span></div>
-          
-          <div class="quad-card-actions-row" onclick="event.stopPropagation()">
-            <button class="btn-card-add-bag" onclick="addToBagDirect('prod-004', event)">
-              <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><path d="M6 2L3 6v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V6l-3-4z"/><line x1="3" y1="6" x2="21" y2="6"/><path d="M16 10a4 4 0 0 1-8 0"/></svg>
-              <span>Add Bag</span>
-            </button>
-            <button class="btn-card-whatsapp" onclick="chatWhatsAppForProduct('prod-004')">
-              <svg width="13" height="13" viewBox="0 0 24 24" fill="currentColor"><path d="M.057 24l1.687-6.163c-1.041-1.804-1.588-3.849-1.587-5.946.003-6.556 5.338-11.891 11.893-11.891 3.181.001 6.167 1.24 8.413 3.488 2.245 2.248 3.481 5.236 3.48 8.414-.003 6.557-5.338 11.892-11.893 11.892-1.99-.001-3.951-.5-5.688-1.448l-6.305 1.654zm6.597-3.807c1.676.995 3.276 1.591 5.392 1.592 5.448 0 9.886-4.434 9.889-9.885.002-5.462-4.415-9.89-9.881-9.892-5.452 0-9.887 4.434-9.889 9.884-.001 2.225.651 3.891 1.746 5.634l-.999 3.648 3.742-.981zm11.387-5.464c-.074-.124-.272-.198-.57-.347-.297-.149-1.758-.868-2.031-.967-.272-.099-.47-.149-.669.149-.198.297-.768.967-.941 1.165-.173.198-.347.223-.644.074-.297-.149-1.255-.462-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.297-.347.446-.521.151-.172.2-.296.3-.495.099-.198.05-.372-.025-.521-.075-.148-.669-1.611-.916-2.206-.242-.579-.487-.501-.669-.51l-.57-.01c-.198 0-.52.074-.792.372s-1.04 1.016-1.04 2.479 1.065 2.876 1.213 3.074c.149.198 2.095 3.2 5.076 4.487.709.306 1.263.489 1.694.626.712.226 1.36.194 1.872.118.571-.085 1.758-.719 2.006-1.413.248-.695.248-1.29.173-1.414z"/></svg>
-              <span>WhatsApp</span>
-            </button>
-            <button class="btn-card-callback" onclick="openCallbackModal('prod-004')">
-              <span>Callback</span>
-            </button>
-          </div>
-        </div>
-
-        <!-- Phone 5: OnePlus 13 5G -->
-        <div class="quad-phone-card" data-cat="oneplus flagship" onclick="openProductDetailViewer('prod-005')">
-          <div class="quad-badge-tag">⚡ 120W SuperVOOC</div>
-          <div class="quad-img-box">
-            <img src="https://m.media-amazon.com/images/I/717Qo4MH97L._SL1500_.jpg" alt="OnePlus 13">
-          </div>
-          <span class="quad-brand-tag">OnePlus • 5th Gen Hasselblad</span>
-          <h3 class="quad-device-title">OnePlus 13 5G</h3>
-          <p class="quad-spec-highlight">2K 120Hz Oriental Screen • 6000mAh Glacier • 120W Flash</p>
-          <div class="quad-price-tag">₹69,999 <span style="font-size:0.8rem; font-weight:600; color:var(--text-muted);">onwards</span></div>
-          
-          <div class="quad-card-actions-row" onclick="event.stopPropagation()">
-            <button class="btn-card-add-bag" onclick="addToBagDirect('prod-005', event)">
-              <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><path d="M6 2L3 6v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V6l-3-4z"/><line x1="3" y1="6" x2="21" y2="6"/><path d="M16 10a4 4 0 0 1-8 0"/></svg>
-              <span>Add Bag</span>
-            </button>
-            <button class="btn-card-whatsapp" onclick="chatWhatsAppForProduct('prod-005')">
-              <svg width="13" height="13" viewBox="0 0 24 24" fill="currentColor"><path d="M.057 24l1.687-6.163c-1.041-1.804-1.588-3.849-1.587-5.946.003-6.556 5.338-11.891 11.893-11.891 3.181.001 6.167 1.24 8.413 3.488 2.245 2.248 3.481 5.236 3.48 8.414-.003 6.557-5.338 11.892-11.893 11.892-1.99-.001-3.951-.5-5.688-1.448l-6.305 1.654zm6.597-3.807c1.676.995 3.276 1.591 5.392 1.592 5.448 0 9.886-4.434 9.889-9.885.002-5.462-4.415-9.89-9.881-9.892-5.452 0-9.887 4.434-9.889 9.884-.001 2.225.651 3.891 1.746 5.634l-.999 3.648 3.742-.981zm11.387-5.464c-.074-.124-.272-.198-.57-.347-.297-.149-1.758-.868-2.031-.967-.272-.099-.47-.149-.669.149-.198.297-.768.967-.941 1.165-.173.198-.347.223-.644.074-.297-.149-1.255-.462-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.297-.347.446-.521.151-.172.2-.296.3-.495.099-.198.05-.372-.025-.521-.075-.148-.669-1.611-.916-2.206-.242-.579-.487-.501-.669-.51l-.57-.01c-.198 0-.52.074-.792.372s-1.04 1.016-1.04 2.479 1.065 2.876 1.213 3.074c.149.198 2.095 3.2 5.076 4.487.709.306 1.263.489 1.694.626.712.226 1.36.194 1.872.118.571-.085 1.758-.719 2.006-1.413.248-.695.248-1.29.173-1.414z"/></svg>
-              <span>WhatsApp</span>
-            </button>
-            <button class="btn-card-callback" onclick="openCallbackModal('prod-005')">
-              <span>Callback</span>
-            </button>
-          </div>
-        </div>
-
-        <!-- Phone 6: Vivo X200 Pro ZEISS -->
-        <div class="quad-phone-card" data-cat="camera flagship" onclick="openProductDetailViewer('prod-006')">
-          <div class="quad-badge-tag">📸 200MP ZEISS APO</div>
-          <div class="quad-img-box">
-            <img src="https://m.media-amazon.com/images/I/71x4xQ7c2GL._SL1500_.jpg" alt="Vivo X200 Pro ZEISS">
-          </div>
-          <span class="quad-brand-tag">Vivo • ZEISS Master Optics</span>
-          <h3 class="quad-device-title">Vivo X200 Pro 5G</h3>
-          <p class="quad-spec-highlight">Dimensity 9400 3nm • 200MP APO Telephoto • 6000mAh</p>
-          <div class="quad-price-tag">₹89,999 <span style="font-size:0.8rem; font-weight:600; color:var(--text-muted);">onwards</span></div>
-          
-          <div class="quad-card-actions-row" onclick="event.stopPropagation()">
-            <button class="btn-card-add-bag" onclick="addToBagDirect('prod-006', event)">
-              <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><path d="M6 2L3 6v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V6l-3-4z"/><line x1="3" y1="6" x2="21" y2="6"/><path d="M16 10a4 4 0 0 1-8 0"/></svg>
-              <span>Add Bag</span>
-            </button>
-            <button class="btn-card-whatsapp" onclick="chatWhatsAppForProduct('prod-006')">
-              <svg width="13" height="13" viewBox="0 0 24 24" fill="currentColor"><path d="M.057 24l1.687-6.163c-1.041-1.804-1.588-3.849-1.587-5.946.003-6.556 5.338-11.891 11.893-11.891 3.181.001 6.167 1.24 8.413 3.488 2.245 2.248 3.481 5.236 3.48 8.414-.003 6.557-5.338 11.892-11.893 11.892-1.99-.001-3.951-.5-5.688-1.448l-6.305 1.654zm6.597-3.807c1.676.995 3.276 1.591 5.392 1.592 5.448 0 9.886-4.434 9.889-9.885.002-5.462-4.415-9.89-9.881-9.892-5.452 0-9.887 4.434-9.889 9.884-.001 2.225.651 3.891 1.746 5.634l-.999 3.648 3.742-.981zm11.387-5.464c-.074-.124-.272-.198-.57-.347-.297-.149-1.758-.868-2.031-.967-.272-.099-.47-.149-.669.149-.198.297-.768.967-.941 1.165-.173.198-.347.223-.644.074-.297-.149-1.255-.462-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.297-.347.446-.521.151-.172.2-.296.3-.495.099-.198.05-.372-.025-.521-.075-.148-.669-1.611-.916-2.206-.242-.579-.487-.501-.669-.51l-.57-.01c-.198 0-.52.074-.792.372s-1.04 1.016-1.04 2.479 1.065 2.876 1.213 3.074c.149.198 2.095 3.2 5.076 4.487.709.306 1.263.489 1.694.626.712.226 1.36.194 1.872.118.571-.085 1.758-.719 2.006-1.413.248-.695.248-1.29.173-1.414z"/></svg>
-              <span>WhatsApp</span>
-            </button>
-            <button class="btn-card-callback" onclick="openCallbackModal('prod-006')">
-              <span>Callback</span>
-            </button>
-          </div>
-        </div>
-
-        <!-- Phone 7: Samsung Galaxy Z Fold 6 5G -->
-        <div class="quad-phone-card" data-cat="samsung fold flagship" onclick="openProductDetailViewer('prod-007')">
-          <div class="quad-badge-tag">📱 Ultra Foldable AI</div>
-          <div class="quad-img-box">
-            <img src="https://m.media-amazon.com/images/I/71f2I83DAhL._SL1500_.jpg" alt="Galaxy Z Fold 6">
-          </div>
-          <span class="quad-brand-tag">Samsung • Dual Screen AI</span>
-          <h3 class="quad-device-title">Galaxy Z Fold 6 5G</h3>
-          <p class="quad-spec-highlight">7.6" Main Foldable Dynamic AMOLED • Armor Aluminum</p>
-          <div class="quad-price-tag">₹1,64,999 <span style="font-size:0.8rem; font-weight:600; color:var(--text-muted);">onwards</span></div>
-          
-          <div class="quad-card-actions-row" onclick="event.stopPropagation()">
-            <button class="btn-card-add-bag" onclick="addToBagDirect('prod-007', event)">
-              <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><path d="M6 2L3 6v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V6l-3-4z"/><line x1="3" y1="6" x2="21" y2="6"/><path d="M16 10a4 4 0 0 1-8 0"/></svg>
-              <span>Add Bag</span>
-            </button>
-            <button class="btn-card-whatsapp" onclick="chatWhatsAppForProduct('prod-007')">
-              <svg width="13" height="13" viewBox="0 0 24 24" fill="currentColor"><path d="M.057 24l1.687-6.163c-1.041-1.804-1.588-3.849-1.587-5.946.003-6.556 5.338-11.891 11.893-11.891 3.181.001 6.167 1.24 8.413 3.488 2.245 2.248 3.481 5.236 3.48 8.414-.003 6.557-5.338 11.892-11.893 11.892-1.99-.001-3.951-.5-5.688-1.448l-6.305 1.654zm6.597-3.807c1.676.995 3.276 1.591 5.392 1.592 5.448 0 9.886-4.434 9.889-9.885.002-5.462-4.415-9.89-9.881-9.892-5.452 0-9.887 4.434-9.889 9.884-.001 2.225.651 3.891 1.746 5.634l-.999 3.648 3.742-.981zm11.387-5.464c-.074-.124-.272-.198-.57-.347-.297-.149-1.758-.868-2.031-.967-.272-.099-.47-.149-.669.149-.198.297-.768.967-.941 1.165-.173.198-.347.223-.644.074-.297-.149-1.255-.462-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.297-.347.446-.521.151-.172.2-.296.3-.495.099-.198.05-.372-.025-.521-.075-.148-.669-1.611-.916-2.206-.242-.579-.487-.501-.669-.51l-.57-.01c-.198 0-.52.074-.792.372s-1.04 1.016-1.04 2.479 1.065 2.876 1.213 3.074c.149.198 2.095 3.2 5.076 4.487.709.306 1.263.489 1.694.626.712.226 1.36.194 1.872.118.571-.085 1.758-.719 2.006-1.413.248-.695.248-1.29.173-1.414z"/></svg>
-              <span>WhatsApp</span>
-            </button>
-            <button class="btn-card-callback" onclick="openCallbackModal('prod-007')">
-              <span>Callback</span>
-            </button>
-          </div>
-        </div>
-
-        <!-- Phone 8: Xiaomi 15 Pro Leica 5G -->
-        <div class="quad-phone-card" data-cat="flagship camera" onclick="openProductDetailViewer('prod-008')">
-          <div class="quad-badge-tag">🔴 Leica Master Quad</div>
-          <div class="quad-img-box">
-            <img src="https://m.media-amazon.com/images/I/71d7rfSl0wL._SL1500_.jpg" alt="Xiaomi 15 Pro Leica">
-          </div>
-          <span class="quad-brand-tag">Xiaomi • Leica Summilux Optics</span>
-          <h3 class="quad-device-title">Xiaomi 15 Pro 5G</h3>
-          <p class="quad-spec-highlight">Snapdragon 8 Gen 4 • 50MP 1-inch Leica Sensor • 6100mAh</p>
-          <div class="quad-price-tag">₹79,999 <span style="font-size:0.8rem; font-weight:600; color:var(--text-muted);">onwards</span></div>
-          
-          <div class="quad-card-actions-row" onclick="event.stopPropagation()">
-            <button class="btn-card-add-bag" onclick="addToBagDirect('prod-008', event)">
-              <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><path d="M6 2L3 6v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V6l-3-4z"/><line x1="3" y1="6" x2="21" y2="6"/><path d="M16 10a4 4 0 0 1-8 0"/></svg>
-              <span>Add Bag</span>
-            </button>
-            <button class="btn-card-whatsapp" onclick="chatWhatsAppForProduct('prod-008')">
-              <svg width="13" height="13" viewBox="0 0 24 24" fill="currentColor"><path d="M.057 24l1.687-6.163c-1.041-1.804-1.588-3.849-1.587-5.946.003-6.556 5.338-11.891 11.893-11.891 3.181.001 6.167 1.24 8.413 3.488 2.245 2.248 3.481 5.236 3.48 8.414-.003 6.557-5.338 11.892-11.893 11.892-1.99-.001-3.951-.5-5.688-1.448l-6.305 1.654zm6.597-3.807c1.676.995 3.276 1.591 5.392 1.592 5.448 0 9.886-4.434 9.889-9.885.002-5.462-4.415-9.89-9.881-9.892-5.452 0-9.887 4.434-9.889 9.884-.001 2.225.651 3.891 1.746 5.634l-.999 3.648 3.742-.981zm11.387-5.464c-.074-.124-.272-.198-.57-.347-.297-.149-1.758-.868-2.031-.967-.272-.099-.47-.149-.669.149-.198.297-.768.967-.941 1.165-.173.198-.347.223-.644.074-.297-.149-1.255-.462-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.297-.347.446-.521.151-.172.2-.296.3-.495.099-.198.05-.372-.025-.521-.075-.148-.669-1.611-.916-2.206-.242-.579-.487-.501-.669-.51l-.57-.01c-.198 0-.52.074-.792.372s-1.04 1.016-1.04 2.479 1.065 2.876 1.213 3.074c.149.198 2.095 3.2 5.076 4.487.709.306 1.263.489 1.694.626.712.226 1.36.194 1.872.118.571-.085 1.758-.719 2.006-1.413.248-.695.248-1.29.173-1.414z"/></svg>
-              <span>WhatsApp</span>
-            </button>
-            <button class="btn-card-callback" onclick="openCallbackModal('prod-008')">
-              <span>Callback</span>
-            </button>
-          </div>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <!-- ========================================================================= -->
-  <!-- 5. UPCOMING FLAGSHIPS & FESTIVE SCHEMES (NEW) -->
-  <!-- ========================================================================= -->
-  <section class="upcoming-schemes-section" id="schemes">
-    <div class="container-editorial">
-      <div class="section-editorial-header">
-        <span class="editorial-kicker">UPCOMING LAUNCHES & EXCLUSIVE OFFERS</span>
-        <h2 class="editorial-title">FESTIVE SCHEMES & VIP PRE-BOOKING.</h2>
-        <p style="color:var(--text-body); font-size:1.15rem; margin-top:0.75rem;">
-          Lock in exclusive launch-day priority stock, zero-down-payment EMI schemes, and guaranteed trade-in bonuses at Mobile Station.
-        </p>
-      </div>
-
-      <!-- Schemes Cards Grid -->
-      <div class="schemes-highlight-grid">
-        <!-- Scheme 1: Extra Exchange Bonus -->
-        <div class="scheme-feature-card">
-          <div class="scheme-icon-badge">🎁</div>
-          <span class="scheme-kicker">FESTIVE TRADE-IN BOOST</span>
-          <h3 class="scheme-title">Extra ₹3,000 – ₹7,000 Exchange Bonus</h3>
-          <p class="scheme-desc">
-            Trade in any old 4G/5G smartphone and get an instant extra exchange booster over market value towards sealed flagships.
-          </p>
-          <div class="scheme-perk-pill">✓ Instant Spot Evaluation at Garud Complex</div>
-        </div>
-
-        <!-- Scheme 2: 0% EMI & Zero Down Payment -->
-        <div class="scheme-feature-card featured-scheme">
-          <div class="scheme-icon-badge">💳</div>
-          <span class="scheme-kicker">FINANCE DESK</span>
-          <h3 class="scheme-title">0% Down Payment & No-Cost EMI</h3>
-          <p class="scheme-desc">
-            Instant on-spot finance approval in 10 minutes through Bajaj Finserv, HDFC Bank, ICICI Bank, and TVS Credit.
-          </p>
-          <div class="scheme-perk-pill">✓ Easy ₹0 Down Payment Options Available</div>
-        </div>
-
-        <!-- Scheme 3: VIP Priority Pre-Booking -->
-        <div class="scheme-feature-card">
-          <div class="scheme-icon-badge">🚀</div>
-          <span class="scheme-kicker">UPCOMING FLAGSHIP QUEUE</span>
-          <h3 class="scheme-title">VIP Priority Launch Token</h3>
-          <p class="scheme-desc">
-            Pre-book upcoming flagships (iPhone SE 4 / S25 Ultra / OnePlus 13) via WhatsApp with ₹0 waiting time on launch day.
-          </p>
-          <div class="scheme-perk-pill">✓ Guaranteed Day-1 Stock Allocation</div>
-        </div>
-
-        <!-- Scheme 4: Mobile Station VIP Shield -->
-        <div class="scheme-feature-card">
-          <div class="scheme-icon-badge">🛡️</div>
-          <span class="scheme-kicker">EXCLUSIVE SHOWROOM PERK</span>
-          <h3 class="scheme-title">Mobile Station VIP Shield & Kit</h3>
-          <p class="scheme-desc">
-            Get complimentary OEM-grade tempered glass, luxury protective case, and 1-year express service priority with every flagship purchase.
-          </p>
-          <div class="scheme-perk-pill">✓ Free 30-Min Priority Repair Desk</div>
-        </div>
-      </div>
-
-      <div style="text-align:center; margin-top:3rem;">
-        <a href="https://wa.me/919876543210?text=Hello%20Mobile%20Station!%20Please%20share%20today's%20festive%20schemes,%20EMI%20offers%20and%20upcoming%20pre-booking%20details." target="_blank" rel="noopener noreferrer" class="btn-primary-pink" style="padding:1rem 2.5rem;">
-          <span>Inquire All Active Schemes on WhatsApp →</span>
-        </a>
-      </div>
-    </div>
-  </section>
-
-  <!-- ========================================================================= -->
-  <!-- 6. 30-MINUTE PRECISION REPAIR LAB -->
-  <!-- ========================================================================= -->
-  <section class="repair-lab-section" id="repair">
-    <div class="container-editorial">
-      <div class="repair-split-box">
-        <!-- Screen Demonstrator -->
-        <div class="repair-screen-demonstrator">
-          <img id="repairScreenImg" src="https://images.unsplash.com/photo-1592750475338-74b7b21085ab?auto=format&fit=crop&w=600&q=80" alt="Restored Smartphone">
-          <div class="crack-overlay-layer" id="crackOverlay"></div>
-          <div class="repair-live-pill" id="batteryBoostPill">
-            🔋 Battery Health: <span id="batteryCounterVal" style="color:#22c55e;">100%</span> (OEM Grade)
-          </div>
-        </div>
-
-        <!-- Copy & Action Controls -->
         <div>
-          <span class="editorial-kicker">ON-SPOT COMPONENT ENGINEERING</span>
-          <h2 class="editorial-title" style="font-size:2.8rem; margin-bottom:1rem;">30 MINUTES.<br>GOOD AS NEW.</h2>
-          <p style="color:var(--text-body); font-size:1.1rem; line-height:1.7; margin-bottom:2.25rem;">
-            Watch cracked glass vanish and degraded batteries surge back to 100% health in under 30 minutes at Mobile Station Garud Complex repair lab. Genuine OEM component warranty included with every service.
-          </p>
 
-          <div style="display:flex; gap:0.75rem; margin-bottom:2.5rem; flex-wrap:wrap;">
-            <button class="finish-btn active" id="btnSimScreen" onclick="simulateRepairAnimation('screen')">📱 Screen Replacement Demo</button>
-            <button class="finish-btn" id="btnSimBatt" onclick="simulateRepairAnimation('battery')">🔋 100% Battery Boost Demo</button>
-          </div>
+          <b>
+            A20 Pro
+          </b>
 
-          <a href="https://wa.me/919876543210?text=Hello%20Mobile%20Station%20Repair%20Lab!%20I%20want%20to%20reserve%20an%20on-spot%2030-min%20repair%20slot." target="_blank" rel="noopener noreferrer" class="btn-crimson-solid">
-            <span>Reserve 30-Min Repair Slot</span>
-          </a>
+          <span>
+            Chip
+          </span>
+
         </div>
+
+
+        <div>
+
+          <b>
+            ProMotion
+          </b>
+
+          <span>
+            120Hz
+          </span>
+
+        </div>
+
+
+        <div>
+
+          <b>
+            48MP
+          </b>
+
+          <span>
+            Camera
+          </span>
+
+        </div>
+
+
+        <div>
+
+          <b>
+            All-Day
+          </b>
+
+          <span>
+            Battery
+          </span>
+
+        </div>
+
       </div>
-    </div>
-  </section>
 
-  <!-- ========================================================================= -->
-  <!-- 7. ADVANCED HARDWARE TRADE-IN DIAGNOSTIC EVALUATOR -->
-  <!-- ========================================================================= -->
-  <section class="trade-scanner-section" id="trade">
-    <div class="container-editorial">
-      <div class="scanner-monolith-box">
-        <div style="text-align:center; max-width:680px; margin:0 auto 2.5rem;">
-          <span class="editorial-kicker">REALISTIC HARDWARE TRADE-IN EVALUATOR</span>
-          <h2 class="editorial-title" style="font-size:2.8rem;">GET YOUR EXCHANGE VALUE.</h2>
-          <p style="color:var(--text-body); font-size:1.05rem; margin-top:0.5rem;">
-            Provide exact device specifications for a realistic indicative value range. Final valuation is confirmed on-spot after physical inspection at Garud Complex.
-          </p>
+
+
+      <!-- Scroll indicator -->
+
+      <div class="scroll-cue">
+
+        ↓
+
+        <span>
+          Scroll to explore
+        </span>
+
+      </div>
+
+
+
+      <!-- Mini product selectors -->
+
+      <div
+        class="mini-products"
+        id="miniProducts"
+      ></div>
+
+    </section>
+
+
+
+    <!-- ===================================================
+         STORY
+    ==================================================== -->
+
+    <section
+      class="section story"
+      id="story"
+    >
+
+      <div class="section-kicker">
+        THE MOBILE STATION EXPERIENCE
+      </div>
+
+
+      <div class="split">
+
+        <div>
+
+          <h2>
+            Phones should feel
+            <br>
+
+            <em>
+              worth touching.
+            </em>
+
+          </h2>
+
         </div>
 
-        <!-- Detailed Input Selectors -->
-        <div class="trade-evaluator-grid">
-          <!-- 1. Brand -->
-          <div class="trade-input-field">
-            <label>1. Select Brand</label>
-            <select id="tradeScanBrand" class="trade-select-control" onchange="onTradeBrandChange()">
-              <option value="Apple">Apple iPhone</option>
-              <option value="Samsung">Samsung Galaxy</option>
-              <option value="OnePlus">OnePlus</option>
-              <option value="Vivo">Vivo / iQOO</option>
-              <option value="Xiaomi">Xiaomi / Redmi</option>
-              <option value="Google">Google Pixel</option>
-            </select>
-          </div>
 
-          <!-- 2. Exact Model Series -->
-          <div class="trade-input-field">
-            <label>2. Exact Model Series</label>
-            <select id="tradeScanModel" class="trade-select-control" onchange="triggerScannerSequence()">
-              <option value="15-promax">iPhone 15 Pro Max</option>
-              <option value="15-pro">iPhone 15 Pro</option>
-              <option value="15">iPhone 15 / 15 Plus</option>
-              <option value="14-promax">iPhone 14 Pro Max</option>
-              <option value="14-pro">iPhone 14 Pro</option>
-              <option value="14">iPhone 14 / 14 Plus</option>
-              <option value="13">iPhone 13 / 13 Pro</option>
-              <option value="12">iPhone 12 / 12 Pro</option>
-              <option value="11">iPhone 11 Series</option>
-            </select>
-          </div>
+        <div>
 
-          <!-- 3. Storage Variant -->
-          <div class="trade-input-field">
-            <label>3. Storage Capacity</label>
-            <select id="tradeScanStorage" class="trade-select-control" onchange="triggerScannerSequence()">
-              <option value="128">128 GB</option>
-              <option value="256" selected>256 GB</option>
-              <option value="512">512 GB</option>
-              <option value="1024">1 TB</option>
-            </select>
-          </div>
-
-          <!-- 4. Physical Screen & Body Condition -->
-          <div class="trade-input-field">
-            <label>4. Physical Condition</label>
-            <select id="tradeScanCondition" class="trade-select-control" onchange="triggerScannerSequence()">
-              <option value="flawless">Flawless (Like New, Scratchless)</option>
-              <option value="good" selected>Good (Light signs of normal daily use)</option>
-              <option value="cracked-glass">Outer Glass Crack (Touch screen working 100%)</option>
-              <option value="heavy-dent">Heavy Dents / Scratches on Housing</option>
-              <option value="display-line">Display Line / Touch Problem</option>
-            </select>
-          </div>
-
-          <!-- 5. Functional Integrity -->
-          <div class="trade-input-field">
-            <label>5. Functional & Battery Check</label>
-            <select id="tradeScanFunction" class="trade-select-control" onchange="triggerScannerSequence()">
-              <option value="perfect" selected>Camera, FaceID/Fingerprint & Battery >85% OK</option>
-              <option value="batt-service">Battery Health Below 80% (Service Required)</option>
-              <option value="camera-issue">Camera Glass or Sensor Blur</option>
-              <option value="minor-fault">Minor Speaker / Mic Issue</option>
-            </select>
-          </div>
-
-          <!-- 6. Original Bill & Box -->
-          <div class="trade-input-field">
-            <label>6. Box & Original Bill</label>
-            <select id="tradeScanBox" class="trade-select-control" onchange="triggerScannerSequence()">
-              <option value="box-bill" selected>Original Box + Invoice Available (+₹1,500 Bonus)</option>
-              <option value="box-only">Original Box Only</option>
-              <option value="handset-only">Device Handset Only</option>
-            </select>
-          </div>
-        </div>
-
-        <!-- Laser Scanning Viewport -->
-        <div class="scanner-laser-viewport">
-          <div class="laser-beam-line"></div>
-          
-          <div class="scanner-checks-grid">
-            <div class="check-node"><span class="checkmark">✓</span> Brand & Storage Tier</div>
-            <div class="check-node"><span class="checkmark">✓</span> Touch Glass & Housing Matrix</div>
-            <div class="check-node"><span class="checkmark">✓</span> Optical & Sensor Array</div>
-            <div class="check-node"><span class="checkmark">✓</span> Battery Degradation Factor</div>
-            <div class="check-node"><span class="checkmark">✓</span> OEM Box & Invoice Bonus</div>
-            <div class="check-node"><span class="checkmark">✓</span> Instant Showroom Cashout</div>
-          </div>
-
-          <div style="font-size:0.8rem; font-weight:800; letter-spacing:0.2em; text-transform:uppercase; color:rgba(255,255,255,0.6); text-align:center; margin-bottom:0.5rem;">ESTIMATED INDICATIVE VALUE RANGE</div>
-          <div class="scanner-value-ticker" id="scannerValTicker">₹48,000 – ₹53,000</div>
-        </div>
-
-        <!-- Transparent Valuation Disclaimer Note -->
-        <div class="trade-disclaimer-card">
-          <div class="disclaimer-badge">⚠️ Transparent Valuation Note</div>
           <p>
-            Yeh ek <strong>indicative online estimate</strong> hai. Phone ki accurate aur final cash price hamare Garud Complex showroom pe 5-minute live diagnostic inspection (motherboard, screen authenticity & battery health check) ke baad spot pe confirm hoti hai with Instant UPI / Cash Payment.
+            Discover flagship phones in a premium,
+            interactive showroom built around the way
+            you actually shop — compare, rotate,
+            choose your finish, add to bag, or talk
+            to a real person on WhatsApp.
           </p>
+
+
+          <a
+            class="text-link"
+            href="#flagships"
+          >
+            Explore flagships →
+          </a>
+
         </div>
 
-        <div style="text-align:center; margin-top:2rem;">
-          <button class="btn-crimson-solid" style="padding:1rem 2.5rem;" onclick="sendTradeInWhatsApp()">
-            <span>Send Details & Book On-Spot Evaluation on WhatsApp →</span>
-          </button>
-        </div>
       </div>
-    </div>
-  </section>
 
-  <!-- ========================================================================= -->
-  <!-- 7. MOBILE STATION EXCLUSIVE SHOWROOM PAVILION -->
-  <!-- ========================================================================= -->
-  <section class="showrooms-section" id="showroom">
-    <div class="container-editorial">
-      <div class="showroom-single-pavilion">
-        <span class="editorial-kicker">FLAGSHIP RETAIL & EXPRESS REPAIR HUB</span>
-        <h3>Mobile Station Showroom</h3>
-        <p style="color:var(--text-body); font-size:1.15rem; line-height:1.7; max-width:650px; margin:0 auto 1.5rem;">
-          Garud Complex, In Front of Sony Novelty.<br>
-          Open all 7 days from 10:00 AM to 9:30 PM.
+    </section>
+
+
+
+    <!-- ===================================================
+         FLAGSHIPS
+    ==================================================== -->
+
+    <section
+      class="section flagships"
+      id="flagships"
+    >
+
+      <div class="section-head">
+
+        <div>
+
+          <div class="section-kicker">
+            LATEST FLAGSHIPS
+          </div>
+
+          <h2>
+            Meet your next phone.
+          </h2>
+
+        </div>
+
+
+        <button
+          class="outline-btn"
+          id="viewAllBtn"
+        >
+          View all
+        </button>
+
+      </div>
+
+
+
+      <div
+        class="product-grid"
+        id="productGrid"
+      ></div>
+
+    </section>
+
+
+
+    <!-- ===================================================
+         SCHEMES
+    ==================================================== -->
+
+    <section
+      class="section schemes"
+      id="schemes"
+    >
+
+      <div class="section-kicker">
+        SMARTER WAYS TO BUY
+      </div>
+
+
+      <h2>
+        Make the upgrade easier.
+      </h2>
+
+
+
+      <div class="scheme-grid">
+
+
+        <article>
+
+          <span>
+            01
+          </span>
+
+          <h3>
+            Easy EMI
+          </h3>
+
+          <p>
+            Flexible monthly plans on selected
+            flagship devices.
+          </p>
+
+          <a href="#contact">
+            Check eligibility →
+          </a>
+
+        </article>
+
+
+
+        <article>
+
+          <span>
+            02
+          </span>
+
+          <h3>
+            Exchange
+          </h3>
+
+          <p>
+            Bring your old phone and get an
+            instant upgrade estimate.
+          </p>
+
+          <a href="#trade">
+            Value my phone →
+          </a>
+
+        </article>
+
+
+
+        <article>
+
+          <span>
+            03
+          </span>
+
+          <h3>
+            Best Price Promise
+          </h3>
+
+          <p>
+            Talk to our team before you buy
+            and find the right deal.
+          </p>
+
+          <a href="#contact">
+            Talk to us →
+          </a>
+
+        </article>
+
+
+      </div>
+
+    </section>
+
+
+
+    <!-- ===================================================
+         REPAIR LAB
+    ==================================================== -->
+
+    <section
+      class="dark-section"
+      id="repair"
+    >
+
+
+      <div class="repair-visual">
+
+        <div class="repair-circle">
+
+          MS
+
+          <small>
+            REPAIR LAB
+          </small>
+
+        </div>
+
+      </div>
+
+
+
+      <div class="repair-copy">
+
+        <div class="section-kicker">
+          REPAIR LAB
+        </div>
+
+
+        <h2>
+          Precision care.
+          <br>
+          Zero guesswork.
+        </h2>
+
+
+        <p>
+          Screen, battery, charging, camera and
+          software support — handled by trained
+          technicians with transparent updates.
         </p>
 
-        <div class="showroom-feature-row">
-          <div>✓ Sealed Brand New iPhones & Flagships</div>
-          <div>✓ Certified Pre-Owned Units with Warranty</div>
-          <div>✓ 30-Minute On-Spot Screen & Battery Engineering</div>
-        </div>
 
-        <div style="display:flex; justify-content:center; gap:1.25rem; margin-top:2rem; flex-wrap:wrap;">
-          <a href="tel:+919876543210" class="btn-crimson-solid" style="padding:0.9rem 2rem;">📞 Call Showroom</a>
-          <a href="https://wa.me/919876543210" target="_blank" class="btn-whatsapp-outline" style="padding:0.9rem 2rem;">💬 WhatsApp Concierge</a>
-        </div>
+        <button
+          class="light-btn callback-open"
+        >
+          Book a Repair
+        </button>
+
       </div>
-    </div>
-  </section>
 
-  <!-- ========================================================================= -->
-  <!-- 8. MINIMAL LUXURY FOOTER (MOBILE STATION ONLY) -->
-  <!-- ========================================================================= -->
-  <footer class="minimal-footer">
-    <div class="container-editorial">
-      <div class="footer-main-grid">
+    </section>
+
+
+
+    <!-- ===================================================
+         TRADE IN
+    ==================================================== -->
+
+    <section
+      class="section trade"
+      id="trade"
+    >
+
+      <div class="trade-card">
+
         <div>
-          <div class="footer-brand-title">MOBILE <span style="color:var(--crimson);">STATION</span></div>
-          <p style="font-size:0.92rem; color:var(--text-body); max-width:340px; line-height:1.7;">
-            The premier smartphone showroom destination. 100% genuine sealed editions, certified devices, and 30-min precision repair engineering. Located at Garud Complex.
+
+          <div class="section-kicker">
+            TRADE-IN
+          </div>
+
+
+          <h2>
+            Your old phone
+            <br>
+            still has value.
+          </h2>
+
+
+          <p>
+            Tell us your model and condition.
+            We'll help you understand the exchange
+            value before you commit.
           </p>
+
+
+          <button
+            class="primary-btn callback-open"
+          >
+            Get an Estimate
+          </button>
+
         </div>
 
-        <div>
-          <div class="footer-col-head">Showroom Location</div>
-          <ul class="footer-links-clean">
-            <li>Garud Complex</li>
-            <li>In Front of Sony Novelty</li>
-            <li>Mon - Sun: 10 AM - 9:30 PM</li>
-          </ul>
+
+        <div class="trade-phone">
+          ↗
         </div>
 
-        <div>
-          <div class="footer-col-head">Explore Hubs</div>
-          <ul class="footer-links-clean">
-            <li><a href="#flagships">Flagship Devices</a></li>
-            <li><a href="#story">360° Studio</a></li>
-            <li><a href="#repair">30-Min Repair Lab</a></li>
-            <li><a href="#trade">Trade-In Valuation</a></li>
-          </ul>
-        </div>
-
-        <div>
-          <div class="footer-col-head">Direct Concierge</div>
-          <ul class="footer-links-clean">
-            <li>Phone: +91 98765 43210</li>
-            <li>WhatsApp: +91 98765 43210</li>
-            <li>Garud Complex Flagship Desk</li>
-          </ul>
-        </div>
       </div>
 
-      <div class="footer-bottom-bar">
-        <div>© 2026 Mobile Station. All rights reserved.</div>
-        <div>Crafted with Warm Champagne Studio Aesthetics.</div>
+    </section>
+
+
+
+    <!-- ===================================================
+         SHOWROOMS
+    ==================================================== -->
+
+    <section
+      class="section showrooms"
+      id="showrooms"
+    >
+
+      <div class="section-kicker">
+        VISIT US
       </div>
+
+
+      <h2>
+        See it. Feel it. Choose it.
+      </h2>
+
+
+
+      <div class="showroom-grid">
+
+
+        <article>
+
+          <span>
+            AMRAVATI
+          </span>
+
+
+          <h3>
+            Mobile Station Flagship
+          </h3>
+
+
+          <p>
+            Garud Complex, In Front of Sony Novelty.
+            Premium devices, accessories and personal assistance.
+          </p>
+
+
+          <a class="outline-btn inline-btn" href="https://maps.google.com/?q=Garud+Complex+Amravati" target="_blank">
+            Get directions
+          </a>
+
+        </article>
+
+
+
+        <article>
+
+          <span>
+            CONCIERGE
+          </span>
+
+
+          <h3>
+            Prefer shopping from home?
+          </h3>
+
+
+          <p>
+            Chat with our team for availability,
+            pricing and recommendations.
+          </p>
+
+
+          <a
+            class="primary-btn inline-btn"
+            href="#"
+            id="waBottom"
+          >
+            Chat on WhatsApp
+          </a>
+
+        </article>
+
+
+      </div>
+
+    </section>
+
+
+
+    <!-- ===================================================
+         CONTACT
+    ==================================================== -->
+
+    <section
+      class="contact-band"
+      id="contact"
+    >
+
+      <div>
+
+        <span>
+          NEED HELP CHOOSING?
+        </span>
+
+
+        <h2>
+          Let's find your perfect phone.
+        </h2>
+
+      </div>
+
+
+      <button
+        class="light-btn callback-open"
+      >
+        Request a Callback
+      </button>
+
+    </section>
+
+  </main>
+
+
+
+  <!-- =====================================================
+       FOOTER
+  ====================================================== -->
+
+  <footer>
+
+    <div class="footer-brand">
+
+      MOBILE
+      <strong>
+        STATION
+      </strong>
+
     </div>
+
+
+    <div>
+      © 2026 Mobile Station.
+      Premium smartphone showroom.
+    </div>
+
+
+    <div class="footer-links">
+
+      <a href="#flagships">
+        Flagships
+      </a>
+
+      <a href="#repair">
+        Repair
+      </a>
+
+      <a href="#trade">
+        Trade-In
+      </a>
+
+      <a href="#contact">
+        Contact
+      </a>
+
+    </div>
+
   </footer>
 
-  <!-- ========================================================================= -->
-  <!-- 9. INTERACTIVE SHOPPING BAG DRAWER -->
-  <!-- ========================================================================= -->
-  <div class="cart-drawer-overlay" id="cartDrawer" onclick="if(event.target===this) closeCartDrawer()">
-    <div class="cart-drawer-panel">
-      <div class="cart-drawer-header">
-        <div class="cart-drawer-title">
-          <span>🛍️ Your Showroom Bag</span>
-        </div>
-        <button class="cart-close-btn" onclick="closeCartDrawer()" title="Close Bag">✕</button>
+
+
+  <!-- =====================================================
+       CART OVERLAY
+  ====================================================== -->
+
+  <div
+    class="overlay"
+    id="overlay"
+  ></div>
+
+
+
+  <!-- =====================================================
+       CART DRAWER
+  ====================================================== -->
+
+  <aside
+    class="cart-drawer"
+    id="cartDrawer"
+  >
+
+    <div class="drawer-head">
+
+      <h3>
+        Your Bag
+      </h3>
+
+
+      <button id="closeCart">
+        ×
+      </button>
+
+    </div>
+
+
+
+    <div
+      id="cartItems"
+      class="cart-items"
+    >
+
+      <div class="empty">
+        Your bag is empty.
       </div>
 
-      <div class="cart-items-scroll-area" id="cartItemsContainer">
-        <!-- Injected via JavaScript -->
+    </div>
+
+
+
+    <div class="cart-footer">
+
+      <div>
+
+        <span>
+          Subtotal
+        </span>
+
+
+        <b id="subtotal">
+          ₹0
+        </b>
+
       </div>
 
-      <div class="cart-drawer-footer">
-        <div class="cart-subtotal-row">
-          <span class="cart-subtotal-label">Subtotal Total:</span>
-          <span class="cart-subtotal-amount" id="cartSubtotalVal">₹0</span>
-        </div>
-        <div class="cart-perk-line">
-          ✓ 100% Sealed Allotment • Free Same-Day Express Delivery
-        </div>
-        <button class="btn-cart-checkout-whatsapp" onclick="checkoutCartWhatsApp()">
-          <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor"><path d="M.057 24l1.687-6.163c-1.041-1.804-1.588-3.849-1.587-5.946.003-6.556 5.338-11.891 11.893-11.891 3.181.001 6.167 1.24 8.413 3.488 2.245 2.248 3.481 5.236 3.48 8.414-.003 6.557-5.338 11.892-11.893 11.892-1.99-.001-3.951-.5-5.688-1.448l-6.305 1.654zm6.597-3.807c1.676.995 3.276 1.591 5.392 1.592 5.448 0 9.886-4.434 9.889-9.885.002-5.462-4.415-9.89-9.881-9.892-5.452 0-9.887 4.434-9.889 9.884-.001 2.225.651 3.891 1.746 5.634l-.999 3.648 3.742-.981zm11.387-5.464c-.074-.124-.272-.198-.57-.347-.297-.149-1.758-.868-2.031-.967-.272-.099-.47-.149-.669.149-.198.297-.768.967-.941 1.165-.173.198-.347.223-.644.074-.297-.149-1.255-.462-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.297-.347.446-.521.151-.172.2-.296.3-.495.099-.198.05-.372-.025-.521-.075-.148-.669-1.611-.916-2.206-.242-.579-.487-.501-.669-.51l-.57-.01c-.198 0-.52.074-.792.372s-1.04 1.016-1.04 2.479 1.065 2.876 1.213 3.074c.149.198 2.095 3.2 5.076 4.487.709.306 1.263.489 1.694.626.712.226 1.36.194 1.872.118.571-.085 1.758-.719 2.006-1.413.248-.695.248-1.29.173-1.414z"/></svg>
-          <span>Order Bag on WhatsApp →</span>
+
+      <button
+        class="primary-btn"
+        id="checkoutWa"
+      >
+        Continue on WhatsApp
+      </button>
+
+    </div>
+
+  </aside>
+
+
+
+  <!-- =====================================================
+       CALLBACK MODAL
+  ====================================================== -->
+
+  <div
+    class="modal"
+    id="callbackModal"
+  >
+
+    <div class="modal-box">
+
+
+      <button
+        class="modal-close"
+        id="closeModal"
+      >
+        ×
+      </button>
+
+
+      <div class="section-kicker">
+        MOBILE STATION CONCIERGE
+      </div>
+
+
+      <h3>
+        We'll call you back.
+      </h3>
+
+
+      <p>
+        Tell us a little about what you're looking for.
+      </p>
+
+
+
+      <form id="callbackForm">
+
+        <input
+          required
+          name="name"
+          placeholder="Your name"
+        />
+
+
+        <input
+          required
+          name="phone"
+          placeholder="Phone number"
+        />
+
+
+        <select name="time">
+
+          <option>
+            Any time
+          </option>
+
+          <option>
+            Morning
+          </option>
+
+          <option>
+            Afternoon
+          </option>
+
+          <option>
+            Evening
+          </option>
+
+        </select>
+
+
+        <button
+          class="primary-btn"
+          type="submit"
+        >
+          Request Callback
         </button>
+
+      </form>
+
+
+
+      <div
+        class="success"
+        id="successMsg"
+      >
+        ✓ Request received.
+        Our team will contact you shortly.
       </div>
+
     </div>
+
   </div>
 
-  <!-- ========================================================================= -->
-  <!-- 10. REQUEST CALLBACK MODAL -->
-  <!-- ========================================================================= -->
-  <div class="modal-overlay-backdrop" id="callbackModal" onclick="if(event.target===this) closeCallbackModal()">
-    <div class="callback-modal-card">
-      <button class="modal-close-corner" onclick="closeCallbackModal()">✕</button>
-      
-      <div id="callbackFormView">
-        <div style="font-size:0.75rem; font-weight:800; letter-spacing:0.12em; text-transform:uppercase; color:var(--crimson-pink); margin-bottom:0.4rem;">
-          VIP SHOWROOM DESK
-        </div>
-        <h3 style="font-family:var(--font-display); font-size:1.45rem; font-weight:800; margin-bottom:0.4rem; color:var(--text-headline);">
-          Request a Showroom Callback
-        </h3>
-        <p style="font-size:0.88rem; color:var(--text-body); margin-bottom:1.4rem;">
-          Our Mobile Station product specialist at Garud Complex will connect with priority stock allocation details.
-        </p>
 
-        <form id="callbackForm" onsubmit="submitCallbackForm(event)">
-          <div class="callback-form-group">
-            <label>Selected Device</label>
-            <input type="text" id="cbDeviceName" class="callback-input" readonly value="iPhone 18 Pro Max">
-          </div>
 
-          <div class="callback-form-group">
-            <label>Full Name</label>
-            <input type="text" id="cbCustomerName" class="callback-input" required placeholder="Your Name">
-          </div>
+  <!-- =====================================================
+       TOAST
+  ====================================================== -->
 
-          <div class="callback-form-group">
-            <label>Phone Number</label>
-            <input type="tel" id="cbCustomerPhone" class="callback-input" required placeholder="e.g. 98765 43210">
-          </div>
+  <div
+    class="toast"
+    id="toast"
+  ></div>
 
-          <div class="callback-form-group">
-            <label>Preferred Contact Slot</label>
-            <select id="cbTimeSlot" class="callback-input">
-              <option value="Instant (Next 15 Mins)">⚡ Urgent / Instant (Next 15 Mins)</option>
-              <option value="Morning (10:00 AM - 1:00 PM)">Morning (10:00 AM - 1:00 PM)</option>
-              <option value="Afternoon (1:00 PM - 5:00 PM)" selected>Afternoon (1:00 PM - 5:00 PM)</option>
-              <option value="Evening (5:00 PM - 9:00 PM)">Evening (5:00 PM - 9:00 PM)</option>
-            </select>
-          </div>
 
-          <button type="submit" class="btn-primary-pink" style="width:100%; justify-content:center; margin-top:0.6rem; padding:0.95rem;">
-            <span>Request Showroom Callback →</span>
-          </button>
-        </form>
-      </div>
 
-      <div class="callback-success-view" id="callbackSuccessView">
-        <div class="callback-success-icon">✓</div>
-        <h3 style="font-family:var(--font-display); font-size:1.35rem; font-weight:800; color:var(--text-headline); margin-bottom:0.5rem;">
-          Callback Scheduled!
-        </h3>
-        <p style="font-size:0.92rem; color:var(--text-body); line-height:1.6; margin-bottom:1.5rem;" id="cbSuccessMsg">
-          Thanks! Our Mobile Station team will contact you shortly.
-        </p>
-        <button class="btn-primary-pink" style="width:100%; justify-content:center;" onclick="closeCallbackModal()">
-          Close
-        </button>
-      </div>
-    </div>
-  </div>
+  <!-- =====================================================
+       JAVASCRIPT
+  ====================================================== -->
 
-  <!-- ========================================================================= -->
-  <!-- 11. INTERACTIVE 3D PRODUCT DETAIL SHOWROOM VIEWER MODAL -->
-  <!-- ========================================================================= -->
-  <div class="modal-overlay-backdrop" id="productDetailModal" onclick="if(event.target===this) closeProductDetailModal()">
-    <div class="product-viewer-modal-card">
-      <button class="modal-close-corner" onclick="closeProductDetailModal()">✕</button>
+  <script src="script.js"></script>
 
-      <!-- Left Stage: High-Res 3D Isolated Product with Color Morphing -->
-      <div class="viewer-left-stage">
-        <div class="viewer-360-badge">👑 360° SHOWROOM PREVIEW</div>
-        
-        <div class="viewer-phone-display-box" id="viewerPhoneBox">
-          <img src="iphone-18-pro-finish-select-202609-6-9inch-burgundy.webp" 
-               alt="Showroom Model" 
-               class="viewer-phone-img-master" 
-               id="viewerMasterImg">
-        </div>
-
-        <div style="font-size:0.75rem; color:var(--text-muted); font-weight:700; margin-top:1.5rem;">
-          Hover or select finishes for dynamic material transition
-        </div>
-      </div>
-
-      <!-- Right Column: Specs, Storage, Colors & Action Buttons -->
-      <div class="viewer-right-info">
-        <div style="font-size:0.74rem; font-weight:800; letter-spacing:0.12em; text-transform:uppercase; color:var(--crimson-pink); margin-bottom:0.35rem;" id="viewerBrandKicker">
-          FLAGSHIP SPECIFICATION
-        </div>
-        
-        <h2 style="font-family:var(--font-display); font-size:1.75rem; font-weight:900; color:var(--text-headline); line-height:1.15;" id="viewerTitle">
-          iPhone 18 Pro Max
-        </h2>
-        
-        <div style="font-size:0.88rem; color:var(--crimson-pink); font-weight:700; margin-top:0.25rem; margin-bottom:0.85rem;" id="viewerFinishName">
-          Deep Burgundy Titanium
-        </div>
-
-        <div style="font-family:var(--font-display); font-size:1.85rem; font-weight:900; color:#0b0f19; margin-bottom:1rem;" id="viewerPrice">
-          ₹1,79,900
-        </div>
-
-        <!-- Color Swatches -->
-        <div style="margin-bottom:1rem;">
-          <div style="font-size:0.75rem; font-weight:800; text-transform:uppercase; color:var(--text-muted); margin-bottom:0.5rem;">
-            Select Finish / Color:
-          </div>
-          <div class="hero-card-color-row" id="viewerColorSwatches">
-            <!-- Injected via JS -->
-          </div>
-        </div>
-
-        <!-- Storage Selection -->
-        <div style="margin-bottom:1.25rem;">
-          <div style="font-size:0.75rem; font-weight:800; text-transform:uppercase; color:var(--text-muted); margin-bottom:0.5rem;">
-            Select Storage Tier:
-          </div>
-          <div class="hero-card-storage-row" id="viewerStoragePills">
-            <!-- Injected via JS -->
-          </div>
-        </div>
-
-        <!-- Hardware Specs Matrix -->
-        <div class="viewer-specs-table" id="viewerSpecsTable">
-          <!-- Injected via JS -->
-        </div>
-
-        <!-- Direct Actions Row -->
-        <div class="quad-card-actions-row">
-          <button class="btn-card-add-bag" style="padding:0.85rem;" onclick="addViewerProductToBag(event)">
-            <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><path d="M6 2L3 6v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V6l-3-4z"/><line x1="3" y1="6" x2="21" y2="6"/><path d="M16 10a4 4 0 0 1-8 0"/></svg>
-            <span>Add to Bag</span>
-          </button>
-
-          <button class="btn-card-whatsapp" style="padding:0.85rem;" onclick="chatWhatsAppForCurrentViewer()">
-            <svg width="15" height="15" viewBox="0 0 24 24" fill="currentColor"><path d="M.057 24l1.687-6.163c-1.041-1.804-1.588-3.849-1.587-5.946.003-6.556 5.338-11.891 11.893-11.891 3.181.001 6.167 1.24 8.413 3.488 2.245 2.248 3.481 5.236 3.48 8.414-.003 6.557-5.338 11.892-11.893 11.892-1.99-.001-3.951-.5-5.688-1.448l-6.305 1.654zm6.597-3.807c1.676.995 3.276 1.591 5.392 1.592 5.448 0 9.886-4.434 9.889-9.885.002-5.462-4.415-9.89-9.881-9.892-5.452 0-9.887 4.434-9.889 9.884-.001 2.225.651 3.891 1.746 5.634l-.999 3.648 3.742-.981zm11.387-5.464c-.074-.124-.272-.198-.57-.347-.297-.149-1.758-.868-2.031-.967-.272-.099-.47-.149-.669.149-.198.297-.768.967-.941 1.165-.173.198-.347.223-.644.074-.297-.149-1.255-.462-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.297-.347.446-.521.151-.172.2-.296.3-.495.099-.198.05-.372-.025-.521-.075-.148-.669-1.611-.916-2.206-.242-.579-.487-.501-.669-.51l-.57-.01c-.198 0-.52.074-.792.372s-1.04 1.016-1.04 2.479 1.065 2.876 1.213 3.074c.149.198 2.095 3.2 5.076 4.487.709.306 1.263.489 1.694.626.712.226 1.36.194 1.872.118.571-.085 1.758-.719 2.006-1.413.248-.695.248-1.29.173-1.414z"/></svg>
-            <span>WhatsApp</span>
-          </button>
-
-          <button class="btn-card-callback" style="padding:0.85rem;" onclick="openCallbackModal(currentViewerProduct ? currentViewerProduct.id : 'prod-001')">
-            <span>Callback</span>
-          </button>
-        </div>
-      </div>
-    </div>
-  </div>
-
-  <!-- Toast Notification -->
-  <div class="toast-notice" id="toastNotification">
-    <span class="toast-check">✓</span>
-    <span id="toastMessage">Added to Bag ✓</span>
-  </div>
-
-  <!-- Scripts -->
-  <script src="products-data.js"></script>
-  <script src="app.js"></script>
 </body>
 </html>
