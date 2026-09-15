@@ -1,31 +1,30 @@
-# Mobile Station & Siddhi Marketing
+# Mobile Station - Flagship Smartphone Showroom & Express Engineering Hub
 
-A modern, Amazon/Flipkart-style mobile store catalog and digital business platform for **Mobile Station** and its sister wholesale branch **Siddhi Marketing**.
+A luxury Apple-inspired smartphone showroom web platform and digital retail catalog for **Mobile Station**, Garud Complex (In front of Sony Novelty).
 
-## 📱 Features
+## 📱 Core Features
 
-- **Amazon / Flipkart Style Product Catalog**: Smartphones (Apple iPhone 16 Pro Max, Samsung Galaxy S24 Ultra, OnePlus 12, Vivo, Realme, Xiaomi), Certified Pre-Owned & Refurbished Devices, Smartwatches, Earbuds, Fast Chargers & Heavy-Duty Cases.
-- **Direct WhatsApp Ordering & Inquiries**: One-click order placement with pre-filled message templates including product name, price, variant, and store branch.
-- **Interactive Inquiry Bag (Cart)**: Multi-product selection with combined WhatsApp order sheet generation.
-- **Multi-Branch Digital Visiting Cards**:
-  - **Mobile Station**: Garud Complex, In front of Sony Novelty (Retail & 30-Min Fast Repair Hub)
-  - **Siddhi Marketing**: Gali no. 4, Balaji Mandir Road (`siddhimarketing2017@gmail.com`) (Wholesale & Distribution)
-  - One-tap `.vcf` Contact Card download, Direct Call & WhatsApp links.
-- **Express Phone Repair Booking**: Interactive estimator for display replacement, battery boost, liquid damage, and software fixes.
-- **Customer Reviews & Testimonials**: Verified ratings with an interactive "Write a Review" form.
-- **Modern UI & Aesthetics**: Dark & Light mode toggle, glassmorphism cards, and floating WhatsApp support widget.
+- **Luxury Apple-Grade Showroom Hero & 3D Interactive Studio**: Scroll-driven 3D smartphone interaction, floating glass ribbons, spec overlays, and pristine product displays.
+- **Latest Flagship Catalog (2025/2026 Editions)**: Apple iPhone 16 Pro Max (Desert Titanium), Samsung Galaxy S24 Ultra AI, Galaxy Z Fold 6, OnePlus 12/13, Vivo V40/X100 Pro ZEISS Optics, Grade A+ Certified Pre-Owned devices, and premium accessories.
+- **Festive Schemes & VIP Pre-Booking Hub**: Instant ₹7,000 Exchange Bonus, 0% Down Payment + No-Cost EMI approval, VIP ₹999 Day-1 Pre-booking pass, and 1-Year VIP Shield Damage Protection.
+- **Multi-Parameter Hardware Trade-In & Exchange Evaluator**: Multi-step diagnostic calculator (Brand, Model, Storage, Screen/Body Condition, Battery/FaceID function, Box/Bill) with realistic range valuation and transparent showroom inspection disclaimer.
+- **30-Minute Precision Repair Lab**: Screen crack simulation and interactive battery health diagnostics for express walk-in repair bookings.
+- **Direct Showroom WhatsApp Concierge**: Instant one-tap WhatsApp integration for price sheets, live device stock verification, and custom trade-in quotes.
+
+## 📍 Showroom Address
+- **Mobile Station**: Garud Complex, In front of Sony Novelty.
+- **Timing**: 10:00 AM - 9:30 PM (Open all 7 Days)
 
 ## 🚀 Getting Started
 
-1. Clone or download the repository:
+1. Clone the repository:
    ```bash
    git clone https://github.com/Asmitakukreja18/mobilestation.git
    ```
-2. Open `index.html` directly in any web browser, or run a local server:
+2. Open `index.html` in any browser or run a local web server:
    ```bash
    python -m http.server 3000
    ```
-3. Open `http://localhost:3000` in your browser.
 
 ## 📄 License
-© 2026 Mobile Station & Siddhi Marketing. All rights reserved.
+© 2026 Mobile Station. All rights reserved.

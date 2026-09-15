@@ -79,35 +79,135 @@ function triggerHeroEntrance() {
 }
 
 // =========================================================================
-// 1. SILKY SMOOTH LERPED MOUSE PARALLAX
+// 1. HERO 360° SCROLL ROTATION & INTERACTIVE DRAG-TO-SPIN
 // =========================================================================
 function initHeroMouseParallax() {
   const visual = document.getElementById("heroStudioCenter");
   if (!visual) return;
 
-  let targetX = 0, targetY = 0;
-  let currentX = 0, currentY = 0;
-  let isMoving = false;
+  // 1. Register GSAP ScrollTrigger for 360° Scroll-Driven Flip & Elevation
+  if (typeof gsap !== 'undefined' && typeof ScrollTrigger !== 'undefined') {
+    gsap.registerPlugin(ScrollTrigger);
 
+    // Smooth 360° rotation and levitation as user scrolls down through hero and story
+    gsap.to(".hero-master-phone-render-box", {
+      scrollTrigger: {
+        trigger: "#hero",
+        start: "top top",
+        end: "bottom+=400 top",
+        scrub: 1.2,
+        invalidateOnRefresh: true
+      },
+      rotationY: 360,
+      rotationX: -12,
+      y: -90,
+      scale: 1.06,
+      ease: "none"
+    });
+
+    // Floating spec widget parallax
+    gsap.to(".hero-integrated-spec-panel", {
+      scrollTrigger: {
+        trigger: "#hero",
+        start: "top top",
+        end: "bottom top",
+        scrub: 1.5
+      },
+      y: -60,
+      opacity: 0.85,
+      ease: "none"
+    });
+  }
+
+  // 2. Interactive Drag / Mouse / Touch 360° Spin
+  let isDragging = false;
+  let previousX = 0;
+  let dragRotationY = 0;
+  let velocityY = 0;
+  let targetParallaxX = 0, targetParallaxY = 0;
+  let currentParallaxX = 0, currentParallaxY = 0;
+  let animFrameId = null;
+
+  // Mouse Move Ambient Parallax
   window.addEventListener("mousemove", (e) => {
-    if (window.scrollY > 600) return;
-    targetX = (e.clientX / window.innerWidth - 0.5) * 16;
-    targetY = (e.clientY / window.innerHeight - 0.5) * 12;
-    if (!isMoving) {
-      isMoving = true;
-      requestAnimationFrame(renderParallax);
+    if (isDragging || window.scrollY > 800) return;
+    targetParallaxX = (e.clientX / window.innerWidth - 0.5) * 20;
+    targetParallaxY = (e.clientY / window.innerHeight - 0.5) * 14;
+    startRenderLoop();
+  });
+
+  // Mouse Down Drag
+  visual.style.cursor = "grab";
+  visual.addEventListener("mousedown", (e) => {
+    isDragging = true;
+    previousX = e.clientX;
+    visual.style.cursor = "grabbing";
+    startRenderLoop();
+  });
+
+  window.addEventListener("mouseup", () => {
+    if (isDragging) {
+      isDragging = false;
+      visual.style.cursor = "grab";
     }
   });
 
-  function renderParallax() {
-    currentX += (targetX - currentX) * 0.06;
-    currentY += (targetY - currentY) * 0.06;
-    visual.style.transform = `perspective(1200px) rotateY(${currentX * 0.4}deg) rotateX(${-currentY * 0.4}deg) translateY(${currentY * 0.25}px)`;
+  window.addEventListener("mousemove", (e) => {
+    if (!isDragging) return;
+    const deltaX = e.clientX - previousX;
+    previousX = e.clientX;
+    velocityY = deltaX * 0.75;
+    dragRotationY += velocityY;
+    startRenderLoop();
+  });
 
-    if (Math.abs(targetX - currentX) > 0.01 || Math.abs(targetY - currentY) > 0.01) {
-      requestAnimationFrame(renderParallax);
+  // Touch Support for Mobile
+  visual.addEventListener("touchstart", (e) => {
+    if (e.touches.length === 1) {
+      isDragging = true;
+      previousX = e.touches[0].clientX;
+    }
+  }, { passive: true });
+
+  window.addEventListener("touchend", () => {
+    isDragging = false;
+  });
+
+  window.addEventListener("touchmove", (e) => {
+    if (!isDragging || e.touches.length !== 1) return;
+    const deltaX = e.touches[0].clientX - previousX;
+    previousX = e.touches[0].clientX;
+    velocityY = deltaX * 0.9;
+    dragRotationY += velocityY;
+    startRenderLoop();
+  }, { passive: true });
+
+  function startRenderLoop() {
+    if (!animFrameId) {
+      animFrameId = requestAnimationFrame(renderPhysics);
+    }
+  }
+
+  function renderPhysics() {
+    // Apply inertia damping
+    if (!isDragging && Math.abs(velocityY) > 0.05) {
+      velocityY *= 0.92;
+      dragRotationY += velocityY;
+    }
+
+    currentParallaxX += (targetParallaxX - currentParallaxX) * 0.08;
+    currentParallaxY += (targetParallaxY - currentParallaxY) * 0.08;
+
+    const totalRotY = dragRotationY + (currentParallaxX * 0.4);
+    const totalRotX = -currentParallaxY * 0.4;
+    const totalTransY = currentParallaxY * 0.3;
+
+    visual.style.transform = `perspective(1200px) rotateY(${totalRotY}deg) rotateX(${totalRotX}deg) translateY(${totalTransY}px)`;
+
+    if (isDragging || Math.abs(velocityY) > 0.05 || Math.abs(targetParallaxX - currentParallaxX) > 0.01) {
+      animFrameId = requestAnimationFrame(renderPhysics);
     } else {
-      isMoving = false;
+      animFrameId = null;
     }
   }
 }
@@ -212,6 +312,67 @@ function initStory3D() {
   storyChassisMesh = storyPhoneGroup.userData.chassis;
   storyBackMesh = storyPhoneGroup.userData.back;
 
+  // Scroll-Driven Continuous 360° Spin for 3D Studio Stage
+  if (typeof gsap !== 'undefined' && typeof ScrollTrigger !== 'undefined') {
+    gsap.to(storyPhoneGroup.rotation, {
+      scrollTrigger: {
+        trigger: "#story",
+        start: "top bottom",
+        end: "bottom top",
+        scrub: 1.4
+      },
+      y: Math.PI * 2,
+      ease: "none"
+    });
+  }
+
+  // Interactive Drag-to-Rotate on 3D Canvas
+  let isDragging3D = false;
+  let previousMouseX = 0;
+  let storyVelY = 0;
+
+  canvas.style.cursor = "grab";
+  canvas.addEventListener("mousedown", (e) => {
+    isDragging3D = true;
+    previousMouseX = e.clientX;
+    canvas.style.cursor = "grabbing";
+  });
+
+  window.addEventListener("mouseup", () => {
+    if (isDragging3D) {
+      isDragging3D = false;
+      canvas.style.cursor = "grab";
+    }
+  });
+
+  window.addEventListener("mousemove", (e) => {
+    if (!isDragging3D) return;
+    const deltaX = e.clientX - previousMouseX;
+    previousMouseX = e.clientX;
+    storyVelY = deltaX * 0.012;
+    storyPhoneGroup.rotation.y += storyVelY;
+  });
+
+  // Touch Drag for Mobile
+  canvas.addEventListener("touchstart", (e) => {
+    if (e.touches.length === 1) {
+      isDragging3D = true;
+      previousMouseX = e.touches[0].clientX;
+    }
+  }, { passive: true });
+
+  window.addEventListener("touchend", () => {
+    isDragging3D = false;
+  });
+
+  window.addEventListener("touchmove", (e) => {
+    if (!isDragging3D || e.touches.length !== 1) return;
+    const deltaX = e.touches[0].clientX - previousMouseX;
+    previousMouseX = e.touches[0].clientX;
+    storyVelY = deltaX * 0.014;
+    storyPhoneGroup.rotation.y += storyVelY;
+  }, { passive: true });
+
   window.addEventListener("resize", () => {
     if (!storyCamera || !storyRenderer) return;
     const newW = container.clientWidth || 560;
@@ -223,6 +384,10 @@ function initStory3D() {
 
   function animateStory() {
     requestAnimationFrame(animateStory);
+    if (storyPhoneGroup && !isDragging3D && Math.abs(storyVelY) > 0.0001) {
+      storyVelY *= 0.94;
+      storyPhoneGroup.rotation.y += storyVelY;
+    }
     if (storyRenderer && storyScene && storyCamera) {
       storyRenderer.render(storyScene, storyCamera);
     }
