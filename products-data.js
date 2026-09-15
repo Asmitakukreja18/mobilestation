@@ -244,11 +244,11 @@ const PRODUCTS = [
     display: "6.7\" QHD+ Dynamic AMOLED 2X 120Hz",
     camera: "50MP Triple Camera with AI ProVisual Engine",
     battery: "4900 mAh with 45W Fast Charging",
-    image: "assets/phone.png",
+    image: "assets/samsung-s26-plus.png",
     colors: [
-      { name: "Cobalt Violet", hex: "#3b344d", image: "assets/phone.png" },
-      { name: "Amber Yellow", hex: "#d5b47a", image: "assets/phone.png" },
-      { name: "Onyx Black", hex: "#181819", image: "assets/phone.png" }
+      { name: "Cobalt Violet", hex: "#3b344d", image: "assets/samsung-s26-plus.png" },
+      { name: "Amber Yellow", hex: "#d5b47a", image: "assets/samsung-s26-plus.png" },
+      { name: "Onyx Black", hex: "#181819", image: "assets/samsung-s26-plus.png" }
     ],
     storage: ["256GB", "512GB"],
     emi: "₹4,660/mo"
@@ -269,10 +269,10 @@ const PRODUCTS = [
     display: "6.2\" FHD+ Dynamic AMOLED 2X 120Hz",
     camera: "50MP Main + 12MP Ultra-Wide + 10MP 3x Telephoto",
     battery: "4000 mAh with 30W Fast Charge",
-    image: "assets/phone.png",
+    image: "assets/samsung-s26.png",
     colors: [
-      { name: "Jade Green", hex: "#3f564d", image: "assets/phone.png" },
-      { name: "Sandstone Gold", hex: "#cfbfa6", image: "assets/phone.png" }
+      { name: "Jade Green", hex: "#3f564d", image: "assets/samsung-s26.png" },
+      { name: "Sandstone Gold", hex: "#cfbfa6", image: "assets/samsung-s26.png" }
     ],
     storage: ["128GB", "256GB"],
     emi: "₹3,770/mo"
@@ -293,11 +293,11 @@ const PRODUCTS = [
     display: "7.7\" Foldable Dynamic AMOLED 2X + 6.4\" Outer Screen",
     camera: "108MP Pro Sensor with Under-Display Camera",
     battery: "4600 mAh Dual Cell + 45W Fast Charging",
-    image: "assets/phone.png",
+    image: "assets/samsung-z-fold8.png",
     colors: [
-      { name: "Crafted Black", hex: "#121213", image: "assets/phone.png" },
-      { name: "Silver Shadow", hex: "#c8cbcf", image: "assets/phone.png" },
-      { name: "Crimson Burgundy", hex: "#6e121e", image: "assets/phone.png" }
+      { name: "Crafted Black", hex: "#121213", image: "assets/samsung-z-fold8.png" },
+      { name: "Silver Shadow", hex: "#c8cbcf", image: "assets/samsung-z-fold8.png" },
+      { name: "Crimson Burgundy", hex: "#6e121e", image: "assets/samsung-z-fold8.png" }
     ],
     storage: ["256GB", "512GB", "1TB"],
     emi: "₹7,550/mo"
@@ -318,7 +318,7 @@ const PRODUCTS = [
     display: "6.7\" Internal Foldable 120Hz + 3.9\" Flex Window",
     camera: "50MP Dual Camera with Auto Zoom & FlexCam",
     battery: "4000 mAh with All-Day AI Battery Management",
-    image: "assets/phone.png",
+    image: "assets/samsung-z-flip8.png",
     colors: [
       { name: "Mint Emerald", hex: "#94bfa5", image: "assets/phone.png" },
       { name: "Lavish Peach", hex: "#e09f87", image: "assets/phone.png" },
