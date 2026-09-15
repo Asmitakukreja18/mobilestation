@@ -220,7 +220,7 @@ function renderCart() {
    WHATSAPP INTEGRATION
 ===================================================== */
 function openWhatsApp(productName = "") {
-  const phone = "919820144521"; // Official Mobile Station Concierge
+  const phone = "919322160461"; // Official Mobile Station Concierge
 
   let message;
   if (productName) {

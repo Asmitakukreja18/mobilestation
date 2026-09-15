@@ -1,14 +1,14 @@
 // Product Catalog Data & Configuration for Mobile Station
 const STORE_CONFIG = {
-  primaryPhone: "919876543210", // Mobile Station Retail WhatsApp
+  primaryPhone: "919322160461", // Mobile Station Retail WhatsApp
   stores: [
     {
       id: "mobile-station",
       name: "Mobile Station",
       tagline: "Your Ultimate Smartphone & Gadget Destination",
       address: "Garud Complex, In front of Sony Novelty",
-      phone: "+91 98765 43210",
-      whatsapp: "919876543210",
+      phone: "+91 93221 60461",
+      whatsapp: "919322160461",
       type: "Retail Showroom & 30-Min Fast Repair Hub",
       timing: "10:00 AM - 9:30 PM (Open All 7 Days)",
       badge: "Flagship Retail Showroom",
