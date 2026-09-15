@@ -473,11 +473,11 @@ const PRODUCTS = [
     display: "6.8\" Super Actua LTPO OLED (1-120Hz, 3300 nits Peak)",
     camera: "50MP Quad-Bayer Main + 48MP 5x Telephoto + 48MP Macro Ultra-Wide",
     battery: "5200 mAh + 45W Fast Charging & Qi2 Magnetic Wireless",
-    image: "assets/phone.png",
+    image: "assets/pixel-11-pro.png",
     colors: [
-      { name: "Obsidian Black", hex: "#18191b", image: "assets/phone.png" },
-      { name: "Porcelain White", hex: "#f1eee7", image: "assets/phone.png" },
-      { name: "Ruby Sunset", hex: "#7d1627", image: "assets/phone.png" }
+      { name: "Obsidian Black", hex: "#18191b", image: "assets/pixel-11-pro.png" },
+      { name: "Porcelain White", hex: "#f1eee7", image: "assets/pixel-11-pro.png" },
+      { name: "Rose Quartz", hex: "#d89c9c", image: "assets/pixel-11-pro.png" }
     ],
     storage: ["128GB", "256GB", "512GB", "1TB"],
     emi: "₹5,110/mo"
@@ -498,11 +498,11 @@ const PRODUCTS = [
     display: "6.3\" Actua OLED 120Hz Display",
     camera: "50MP Dual Camera with Real Tone & Magic Editor 2.0",
     battery: "4800 mAh with 30W Fast Charge",
-    image: "assets/phone.png",
+    image: "assets/pixel-11.png",
     colors: [
-      { name: "Rose Quartz", hex: "#d89c9c", image: "assets/phone.png" },
-      { name: "Hazel Gray", hex: "#6c726c", image: "assets/phone.png" },
-      { name: "Obsidian", hex: "#18191b", image: "assets/phone.png" }
+      { name: "Bay Blue", hex: "#7a95b8", image: "assets/pixel-11.png" },
+      { name: "Hazel Gray", hex: "#6c726c", image: "assets/pixel-11.png" },
+      { name: "Obsidian", hex: "#18191b", image: "assets/pixel-11.png" }
     ],
     storage: ["128GB", "256GB"],
     emi: "₹3,680/mo"
@@ -523,10 +523,10 @@ const PRODUCTS = [
     display: "6.8\" Super Actua LTPO OLED (3000 nits)",
     camera: "50MP Main + 48MP 5x Optical Zoom + 8K Video Boost AI",
     battery: "5060 mAh Fast Charge",
-    image: "assets/phone.png",
+    image: "assets/pixel-10-pro-xl.png",
     colors: [
-      { name: "Porcelain", hex: "#f0ece4", image: "assets/phone.png" },
-      { name: "Obsidian", hex: "#1b1c1d", image: "assets/phone.png" }
+      { name: "Obsidian Black", hex: "#1b1c1d", image: "assets/pixel-10-pro-xl.png" },
+      { name: "Porcelain", hex: "#f0ece4", image: "assets/pixel-10-pro-xl.png" }
     ],
     storage: ["256GB", "512GB"],
     emi: "₹4,660/mo"
@@ -547,10 +547,10 @@ const PRODUCTS = [
     display: "6.3\" Super Actua 120Hz LTPO",
     camera: "50MP Main + 48MP 5x Telephoto + 48MP Ultrawide",
     battery: "4700 mAh Fast Charge",
-    image: "assets/phone.png",
+    image: "assets/pixel-10-pro.png",
     colors: [
-      { name: "Hazel", hex: "#6c726c", image: "assets/phone.png" },
-      { name: "Obsidian", hex: "#1b1c1d", image: "assets/phone.png" }
+      { name: "Hazel Gray", hex: "#6c726c", image: "assets/pixel-10-pro.png" },
+      { name: "Obsidian", hex: "#1b1c1d", image: "assets/pixel-10-pro.png" }
     ],
     storage: ["128GB", "256GB"],
     emi: "₹4,220/mo"
@@ -571,10 +571,10 @@ const PRODUCTS = [
     display: "6.3\" Actua OLED 120Hz",
     camera: "50MP Dual Lens with Night Sight & Best Take",
     battery: "4600 mAh Fast Charge",
-    image: "assets/phone.png",
+    image: "assets/pixel-10.png",
     colors: [
-      { name: "Peony Pink", hex: "#e0909f", image: "assets/phone.png" },
-      { name: "Obsidian", hex: "#18191b", image: "assets/phone.png" }
+      { name: "Hazel", hex: "#6c726c", image: "assets/pixel-10.png" },
+      { name: "Obsidian", hex: "#18191b", image: "assets/pixel-10.png" }
     ],
     storage: ["128GB", "256GB"],
     emi: "₹3,110/mo"
