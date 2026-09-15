@@ -28,124 +28,270 @@ const CATEGORIES = [
   { id: "accessories", name: "Fast Chargers & Cases", icon: "⚡" }
 ];
 
-const BRANDS = ["All", "Apple", "Samsung", "OnePlus", "Vivo", "Xiaomi", "Realme", "Boat", "Anker"];
+const BRANDS = ["All", "Apple", "Samsung", "Google", "OnePlus", "Vivo", "Xiaomi", "Realme", "Boat", "Anker"];
 
 const PRODUCTS = [
   {
     id: "prod-001",
-    name: "Apple iPhone 18 Pro Max (Burgundy Titanium)",
+    name: "Apple iPhone 18 Pro Max",
+    tagline: "Latest 2026 Flagship Hero",
     brand: "Apple",
     category: "apple",
     subCategory: "flagship",
-    price: 144900,
-    originalPrice: 169900,
-    discountPercent: 15,
+    price: 179900,
+    originalPrice: 199900,
+    discountPercent: 10,
     rating: 5.0,
-    reviewsCount: 492,
+    reviewsCount: 524,
     badge: "👑 2026 Flagship Hero",
     isHotDeal: true,
-    condition: "Brand New Sealed Box Pack (VIP Allotment)",
-    warranty: "1 Year Official Apple Warranty + VIP Shield",
+    condition: "Brand New Sealed Box Pack (VIP Day-1 Allotment)",
+    warranty: "1 Year Official Apple Warranty + VIP Shield Protection",
     image: "iphone-18-pro-finish-select-202609-6-9inch-burgundy.webp",
-    colors: ["Deep Burgundy Titanium", "Desert Titanium", "Natural Titanium", "Black Titanium"],
-    storageOptions: ["256GB", "512GB", "1TB", "2TB"],
+    colors: [
+      { name: "Deep Burgundy Titanium", hex: "#5a202d", image: "iphone-18-pro-finish-select-202609-6-9inch-burgundy.webp" },
+      { name: "Desert Titanium", hex: "#cbb799", image: "iphone-18-pro-finish-select-202609-6-9inch-burgundy.webp" },
+      { name: "Natural Titanium", hex: "#a8a6a0", image: "iphone-18-pro-finish-select-202609-6-9inch-burgundy.webp" },
+      { name: "Space Black Titanium", hex: "#1c1d1f", image: "iphone-18-pro-finish-select-202609-6-9inch-burgundy.webp" }
+    ],
+    storageOptions: [
+      { size: "256GB", price: 179900 },
+      { size: "512GB", price: 199900 },
+      { size: "1TB", price: 224900 },
+      { size: "2TB", price: 249900 }
+    ],
     specs: {
-      display: "6.9\" Super Retina XDR OLED (120Hz ProMotion & 2400 nits)",
-      processor: "Apple A19 Pro Bionic Chip (2nm Architecture)",
-      camera: "48MP Quad-Fusion + 48MP Ultra-Wide + 10x Optical Telephoto Prism",
-      battery: "Up to 36 hours video playback, MagSafe Ultra-Fast Charging",
-      os: "iOS 19 with Apple Intelligence Pro"
+      display: "6.9\" Super Retina XDR OLED (120Hz ProMotion & 2400 nits Peak)",
+      processor: "Apple A19 Pro Bionic Silicon (2nm Next-Gen Architecture)",
+      camera: "48MP Quad-Fusion Main + 48MP Ultra-Wide + 10x Optical Telephoto Prism",
+      battery: "Up to 36 hours video playback, MagSafe 35W Ultra-Fast Charging",
+      os: "iOS 19 with Apple Intelligence Pro Suite"
     },
     inStock: true,
-    emiStart: "₹6,990/mo"
+    emiStart: "₹7,990/mo"
   },
   {
     id: "prod-002",
-    name: "Samsung Galaxy S24 Ultra 5G (Titanium Gray)",
+    name: "Apple iPhone 18 Pro",
+    tagline: "Compact 6.3\" Pro Powerhouse",
+    brand: "Apple",
+    category: "apple",
+    subCategory: "flagship",
+    price: 134900,
+    originalPrice: 149900,
+    discountPercent: 10,
+    rating: 4.9,
+    reviewsCount: 380,
+    badge: "🔥 2026 Pro Compact",
+    isHotDeal: true,
+    condition: "Brand New Sealed Box",
+    warranty: "1 Year Official Apple Warranty",
+    image: "iphone-18-pro-finish-select-202609-6-9inch-burgundy.webp",
+    colors: [
+      { name: "Deep Burgundy Titanium", hex: "#5a202d", image: "iphone-18-pro-finish-select-202609-6-9inch-burgundy.webp" },
+      { name: "Natural Titanium", hex: "#a8a6a0", image: "iphone-18-pro-finish-select-202609-6-9inch-burgundy.webp" },
+      { name: "Space Black Titanium", hex: "#1c1d1f", image: "iphone-18-pro-finish-select-202609-6-9inch-burgundy.webp" }
+    ],
+    storageOptions: [
+      { size: "128GB", price: 134900 },
+      { size: "256GB", price: 144900 },
+      { size: "512GB", price: 164900 },
+      { size: "1TB", price: 184900 }
+    ],
+    specs: {
+      display: "6.3\" Super Retina XDR OLED (120Hz ProMotion)",
+      processor: "Apple A19 Pro Bionic Silicon (2nm)",
+      camera: "48MP Fusion + 48MP Ultra-Wide + 5x Telephoto Prism",
+      battery: "All-Day Pro Battery with MagSafe Charging",
+      os: "iOS 19 with Apple Intelligence"
+    },
+    inStock: true,
+    emiStart: "₹5,990/mo"
+  },
+  {
+    id: "prod-003",
+    name: "Samsung Galaxy S26 Ultra 5G",
+    tagline: "Galaxy AI & S-Pen Flagship",
     brand: "Samsung",
     category: "flagship",
     subCategory: "flagship",
-    price: 119999,
-    originalPrice: 134999,
-    discountPercent: 11,
+    price: 129999,
+    originalPrice: 144999,
+    discountPercent: 10,
     rating: 4.9,
-    reviewsCount: 345,
-    badge: "⭐ Galaxy AI",
+    reviewsCount: 420,
+    badge: "⭐ Galaxy AI Leader",
     isHotDeal: true,
     condition: "Brand New Sealed Box Pack",
     warranty: "1 Year Samsung India Warranty",
     image: "https://m.media-amazon.com/images/I/71RVuWl+CeL._SL1500_.jpg",
-    colors: ["Titanium Gray", "Titanium Black", "Titanium Violet", "Titanium Yellow"],
-    storageOptions: ["12GB/256GB", "12GB/512GB", "12GB/1TB"],
+    colors: [
+      { name: "Titanium Gray", hex: "#7a7876", image: "https://m.media-amazon.com/images/I/71RVuWl+CeL._SL1500_.jpg" },
+      { name: "Phantom Black", hex: "#181819", image: "https://m.media-amazon.com/images/I/71RVuWl+CeL._SL1500_.jpg" },
+      { name: "Titanium Violet", hex: "#4b4458", image: "https://m.media-amazon.com/images/I/71RVuWl+CeL._SL1500_.jpg" }
+    ],
+    storageOptions: [
+      { size: "12GB/256GB", price: 129999 },
+      { size: "12GB/512GB", price: 139999 },
+      { size: "16GB/1TB", price: 159999 }
+    ],
     specs: {
-      display: "6.8\" Dynamic AMOLED 2X, 2600 nits Peak, Gorilla Armor",
-      processor: "Snapdragon 8 Gen 3 for Galaxy",
-      camera: "200MP Quad Camera + 100x Space Zoom with AI",
-      battery: "5000 mAh with 45W Fast Charging & S-Pen Included",
-      os: "Android 14 (One UI 6.1 with 7 Years OS Updates)"
+      display: "6.8\" Dynamic AMOLED 2X, 2800 nits Peak, Anti-Reflective Armor",
+      processor: "Snapdragon 8 Gen 4 for Galaxy",
+      camera: "200MP Quad Camera + 100x Space Zoom with Live AI Editing",
+      battery: "5000 mAh with 45W Fast Charging & Integrated S-Pen",
+      os: "One UI 7.0 (Android 15) with 7 Years Updates"
     },
     inStock: true,
-    emiStart: "₹5,750/mo"
+    emiStart: "₹5,850/mo"
   },
   {
-    id: "prod-003",
-    name: "OnePlus 12 5G (Flowy Emerald)",
+    id: "prod-004",
+    name: "Google Pixel 11 Pro 5G",
+    tagline: "Next-Gen Computational AI & Pure Android",
+    brand: "Google",
+    category: "flagship",
+    subCategory: "flagship",
+    price: 109999,
+    originalPrice: 119999,
+    discountPercent: 8,
+    rating: 4.8,
+    reviewsCount: 260,
+    badge: "🤖 Google Gemini AI",
+    isHotDeal: true,
+    condition: "Brand New Sealed Box",
+    warranty: "1 Year Google India Warranty",
+    image: "https://m.media-amazon.com/images/I/71x4xQ7c2GL._SL1500_.jpg",
+    colors: [
+      { name: "Obsidian Black", hex: "#1e1f22", image: "https://m.media-amazon.com/images/I/71x4xQ7c2GL._SL1500_.jpg" },
+      { name: "Porcelain White", hex: "#f0ede6", image: "https://m.media-amazon.com/images/I/71x4xQ7c2GL._SL1500_.jpg" },
+      { name: "Hazel Gray", hex: "#7e837f", image: "https://m.media-amazon.com/images/I/71x4xQ7c2GL._SL1500_.jpg" }
+    ],
+    storageOptions: [
+      { size: "128GB", price: 109999 },
+      { size: "256GB", price: 119999 },
+      { size: "512GB", price: 134999 }
+    ],
+    specs: {
+      display: "6.7\" Super Actua LTPO OLED (1-120Hz, 3000 nits)",
+      processor: "Google Tensor G6 with Custom TPU AI Chip",
+      camera: "50MP Triple Pro Camera with 30x Super Res Zoom & Best Take 2.0",
+      battery: "5050 mAh with 30W Fast Charging & Qi2 Wireless",
+      os: "Stock Android 15 with 7 Years Pixel Feature Drops"
+    },
+    inStock: true,
+    emiStart: "₹4,950/mo"
+  },
+  {
+    id: "prod-005",
+    name: "OnePlus 13 5G (Emerald Flow)",
+    tagline: "Extreme Performance & 120W SuperVOOC",
     brand: "OnePlus",
     category: "flagship",
     subCategory: "flagship",
-    price: 64999,
-    originalPrice: 69999,
+    price: 69999,
+    originalPrice: 74999,
     discountPercent: 7,
     rating: 4.8,
-    reviewsCount: 212,
-    badge: "⚡ 100W SuperVOOC",
+    reviewsCount: 290,
+    badge: "⚡ 120W SuperVOOC",
     isHotDeal: false,
     condition: "Brand New Sealed Box",
     warranty: "1 Year OnePlus Warranty",
     image: "https://m.media-amazon.com/images/I/717Qo4MH97L._SL1500_.jpg",
-    colors: ["Flowy Emerald", "Silky Black", "Glacial White"],
-    storageOptions: ["12GB/256GB", "16GB/512GB"],
+    colors: [
+      { name: "Emerald Flow", hex: "#2b4b41", image: "https://m.media-amazon.com/images/I/717Qo4MH97L._SL1500_.jpg" },
+      { name: "Silky Black", hex: "#1c1c1e", image: "https://m.media-amazon.com/images/I/717Qo4MH97L._SL1500_.jpg" }
+    ],
+    storageOptions: [
+      { size: "12GB/256GB", price: 69999 },
+      { size: "16GB/512GB", price: 76999 }
+    ],
     specs: {
-      display: "6.82\" 2K 120Hz ProXDR Display, 4500 nits peak",
-      processor: "Snapdragon 8 Gen 3 Flagship Chipset",
-      camera: "4th Gen Hasselblad Camera (50MP Sony LYT-808)",
-      battery: "5400 mAh, 100W Wired + 50W Wireless AIRVOOC",
-      os: "OxygenOS 14 based on Android 14"
+      display: "6.82\" 2K 120Hz Oriental Screen (DisplayMate A+)",
+      processor: "Snapdragon 8 Gen 4 Flagship Processor",
+      camera: "5th Gen Hasselblad 50MP Triple Master Camera",
+      battery: "6000 mAh Glacier Battery + 120W Wired & 50W AIRVOOC",
+      os: "OxygenOS 15 (Android 15)"
     },
     inStock: true,
-    emiStart: "₹3,120/mo"
+    emiStart: "₹3,360/mo"
   },
   {
-    id: "prod-004",
-    name: "Vivo V40 Pro 5G (ZEISS Portrait Master)",
+    id: "prod-006",
+    name: "Vivo X200 Pro 5G (ZEISS Master Edition)",
+    tagline: "200MP ZEISS APO Telephoto Camera",
     brand: "Vivo",
     category: "flagship",
-    subCategory: "budget",
-    price: 49999,
-    originalPrice: 55999,
-    discountPercent: 11,
-    rating: 4.7,
-    reviewsCount: 165,
-    badge: "📸 ZEISS Optics",
+    subCategory: "flagship",
+    price: 89999,
+    originalPrice: 99999,
+    discountPercent: 10,
+    rating: 4.9,
+    reviewsCount: 195,
+    badge: "📸 200MP ZEISS APO",
     isHotDeal: true,
     condition: "Brand New Sealed Box",
     warranty: "1 Year Vivo India Warranty",
     image: "https://m.media-amazon.com/images/I/71x4xQ7c2GL._SL1500_.jpg",
-    colors: ["Ganges Blue", "Titanium Grey"],
-    storageOptions: ["8GB/256GB", "12GB/512GB"],
+    colors: [
+      { name: "Titanium Blue", hex: "#3b526d", image: "https://m.media-amazon.com/images/I/71x4xQ7c2GL._SL1500_.jpg" },
+      { name: "Carbon Black", hex: "#1b1c1e", image: "https://m.media-amazon.com/images/I/71x4xQ7c2GL._SL1500_.jpg" }
+    ],
+    storageOptions: [
+      { size: "16GB/512GB", price: 89999 },
+      { size: "16GB/1TB", price: 99999 }
+    ],
     specs: {
-      display: "6.78\" 1.5K 3D Curved AMOLED, 120Hz, 4500 nits",
-      processor: "MediaTek Dimensity 9200+ (4nm Flagship)",
-      camera: "50MP ZEISS Main + 50MP ZEISS Telephoto + 50MP Ultra-Wide",
-      battery: "5500 mAh BlueVolt Battery + 80W FlashCharge",
-      os: "Funtouch OS 14 (Android 14)"
+      display: "6.78\" 1.5K 8T LTPO Eye-Care AMOLED, 4500 nits",
+      processor: "MediaTek Dimensity 9400 (3nm)",
+      camera: "200MP ZEISS APO Telephoto + 50MP 1-inch Sony LYT-818 Main",
+      battery: "6000 mAh BlueVolt Semi-Solid Battery + 90W Flash",
+      os: "Funtouch OS 15 (Android 15)"
     },
     inStock: true,
-    emiStart: "₹2,399/mo"
+    emiStart: "₹4,299/mo"
   },
   {
-    id: "prod-005",
-    name: "Apple iPhone 16 (Dynamic Island • Ultramarine)",
+    id: "prod-007",
+    name: "Samsung Galaxy Z Fold 6 5G",
+    tagline: "Next-Gen AI Foldable Powerhouse",
+    brand: "Samsung",
+    category: "flagship",
+    subCategory: "flagship",
+    price: 164999,
+    originalPrice: 179999,
+    discountPercent: 8,
+    rating: 4.9,
+    reviewsCount: 175,
+    badge: "📱 AI Foldable Flagship",
+    isHotDeal: true,
+    condition: "Brand New Sealed Box",
+    warranty: "1 Year Samsung India Warranty",
+    image: "https://m.media-amazon.com/images/I/71f2I83DAhL._SL1500_.jpg",
+    colors: [
+      { name: "Silver Shadow", hex: "#c3c5c9", image: "https://m.media-amazon.com/images/I/71f2I83DAhL._SL1500_.jpg" },
+      { name: "Navy", hex: "#232e3d", image: "https://m.media-amazon.com/images/I/71f2I83DAhL._SL1500_.jpg" }
+    ],
+    storageOptions: [
+      { size: "12GB/256GB", price: 164999 },
+      { size: "12GB/512GB", price: 176999 },
+      { size: "12GB/1TB", price: 199999 }
+    ],
+    specs: {
+      display: "7.6\" Foldable Dynamic AMOLED 2X + 6.3\" Cover Screen (2600 nits)",
+      processor: "Snapdragon 8 Gen 3 for Galaxy (4nm)",
+      camera: "50MP Triple Camera with Galaxy AI Pro Visual Engine",
+      battery: "4400 mAh Dual Battery with 25W Fast Charge",
+      os: "One UI 6.1.1 on Android 14"
+    },
+    inStock: true,
+    emiStart: "₹7,910/mo"
+  },
+  {
+    id: "prod-008",
+    name: "Apple iPhone 16 (Dynamic Island)",
+    tagline: "Apple Intelligence & Camera Control",
     brand: "Apple",
     category: "apple",
     subCategory: "flagship",
@@ -153,14 +299,22 @@ const PRODUCTS = [
     originalPrice: 84900,
     discountPercent: 6,
     rating: 4.9,
-    reviewsCount: 610,
-    badge: "🔥 2025 Edition",
+    reviewsCount: 640,
+    badge: "✨ Apple Intelligence",
     isHotDeal: true,
     condition: "Brand New Sealed Box",
     warranty: "1 Year Official Apple Warranty",
     image: "https://m.media-amazon.com/images/I/71d7rfSl0wL._SL1500_.jpg",
-    colors: ["Ultramarine", "Teal", "Pink", "White", "Black"],
-    storageOptions: ["128GB", "256GB", "512GB"],
+    colors: [
+      { name: "Ultramarine", hex: "#355291", image: "https://m.media-amazon.com/images/I/71d7rfSl0wL._SL1500_.jpg" },
+      { name: "Teal", hex: "#4b8782", image: "https://m.media-amazon.com/images/I/71d7rfSl0wL._SL1500_.jpg" },
+      { name: "Pink", hex: "#dd7c93", image: "https://m.media-amazon.com/images/I/71d7rfSl0wL._SL1500_.jpg" }
+    ],
+    storageOptions: [
+      { size: "128GB", price: 79900 },
+      { size: "256GB", price: 89900 },
+      { size: "512GB", price: 109900 }
+    ],
     specs: {
       display: "6.1\" Super Retina XDR OLED with Camera Control & Action Button",
       processor: "A18 Bionic chip (3nm) with Apple Intelligence",
@@ -172,64 +326,9 @@ const PRODUCTS = [
     emiStart: "₹3,840/mo"
   },
   {
-    id: "prod-006",
-    name: "Redmi Note 13 Pro+ 5G (Fusion Purple)",
-    brand: "Xiaomi",
-    category: "budget",
-    subCategory: "budget",
-    price: 29999,
-    originalPrice: 33999,
-    discountPercent: 12,
-    rating: 4.6,
-    reviewsCount: 230,
-    badge: "🌟 200MP OIS",
-    isHotDeal: false,
-    condition: "Brand New Sealed",
-    warranty: "1 Year Xiaomi India Warranty",
-    image: "https://m.media-amazon.com/images/I/71VW8LmqqPL._SL1500_.jpg",
-    colors: ["Fusion Purple", "Fusion Black", "Fusion White"],
-    storageOptions: ["8GB/256GB", "12GB/512GB"],
-    specs: {
-      display: "6.67\" 1.5K 120Hz 3D Curved AMOLED with Victus Glass",
-      processor: "MediaTek Dimensity 7200 Ultra 5G",
-      camera: "200MP Samsung ISOCELL HP3 with OIS + 8MP + 2MP",
-      battery: "5000 mAh with 120W HyperCharge (0-100% in 19 mins)",
-      os: "Xiaomi HyperOS (Android 14)"
-    },
-    inStock: true,
-    emiStart: "₹1,440/mo"
-  },
-  {
-    id: "prod-007",
-    name: "Samsung Galaxy Z Fold 6 5G (Silver Shadow)",
-    brand: "Samsung",
-    category: "flagship",
-    subCategory: "flagship",
-    price: 164999,
-    originalPrice: 179999,
-    discountPercent: 8,
-    rating: 4.9,
-    reviewsCount: 148,
-    badge: "📱 AI Foldable Flagship",
-    isHotDeal: true,
-    condition: "Brand New Sealed Box",
-    warranty: "1 Year Samsung India Warranty",
-    image: "https://m.media-amazon.com/images/I/71f2I83DAhL._SL1500_.jpg",
-    colors: ["Silver Shadow", "Navy", "Pink"],
-    storageOptions: ["12GB/256GB", "12GB/512GB", "12GB/1TB"],
-    specs: {
-      display: "7.6\" Foldable Dynamic AMOLED 2X + 6.3\" Cover Display, 2600 nits",
-      processor: "Snapdragon 8 Gen 3 for Galaxy (4nm)",
-      camera: "50MP Triple Camera with Galaxy AI Editing Suite",
-      battery: "4400 mAh Dual Battery with 25W Fast Charge",
-      os: "One UI 6.1.1 on Android 14"
-    },
-    inStock: true,
-    emiStart: "₹7,910/mo"
-  },
-  {
-    id: "prod-008",
-    name: "Apple iPhone 13 (Certified Pre-Owned 100% Battery)",
+    id: "prod-009",
+    name: "Apple iPhone 13 (Certified Grade A+)",
+    tagline: "100% Original Certified Pre-Owned",
     brand: "Apple",
     category: "refurbished",
     subCategory: "refurbished",
@@ -240,11 +339,17 @@ const PRODUCTS = [
     reviewsCount: 412,
     badge: "💎 Certified Grade A+",
     isHotDeal: true,
-    condition: "Certified Pre-Owned (32-Point Quality Inspected, 100% Original)",
+    condition: "Certified Pre-Owned (32-Point Inspected, 100% Original Battery)",
     warranty: "6 Months Mobile Station Replacement Warranty",
     image: "https://m.media-amazon.com/images/I/71xb2xkN5qL._SL1500_.jpg",
-    colors: ["Midnight", "Starlight", "Blue", "Pink"],
-    storageOptions: ["128GB", "256GB"],
+    colors: [
+      { name: "Midnight", hex: "#1f2022", image: "https://m.media-amazon.com/images/I/71xb2xkN5qL._SL1500_.jpg" },
+      { name: "Starlight", hex: "#f0ece4", image: "https://m.media-amazon.com/images/I/71xb2xkN5qL._SL1500_.jpg" }
+    ],
+    storageOptions: [
+      { size: "128GB", price: 36999 },
+      { size: "256GB", price: 41999 }
+    ],
     specs: {
       display: "6.1\" Super Retina XDR OLED Display (Scratchless)",
       processor: "A15 Bionic chip (Blazing Fast)",
@@ -256,36 +361,9 @@ const PRODUCTS = [
     emiStart: "₹1,780/mo"
   },
   {
-    id: "prod-009",
-    name: "Samsung Galaxy S22 5G (Certified Pre-Owned)",
-    brand: "Samsung",
-    category: "refurbished",
-    subCategory: "refurbished",
-    price: 27999,
-    originalPrice: 72999,
-    discountPercent: 62,
-    rating: 4.7,
-    reviewsCount: 189,
-    badge: "🔥 62% OFF",
-    isHotDeal: true,
-    condition: "Certified Refurbished (Flawless Grade A+)",
-    warranty: "6 Months Mobile Station Warranty",
-    image: "https://m.media-amazon.com/images/I/71pvcfKE6mL._SL1500_.jpg",
-    colors: ["Phantom Black", "Green", "Phantom White"],
-    storageOptions: ["8GB/128GB", "8GB/256GB"],
-    specs: {
-      display: "6.1\" Dynamic AMOLED 2X (120Hz)",
-      processor: "Snapdragon 8 Gen 1",
-      camera: "50MP Triple Pro Camera + 30X Space Zoom",
-      battery: "3700 mAh + 25W Fast Charging",
-      os: "One UI 6.1 (Android 14)"
-    },
-    inStock: true,
-    emiStart: "₹1,340/mo"
-  },
-  {
     id: "prod-010",
-    name: "Apple AirPods Pro (2nd Gen with USB-C & ANC)",
+    name: "Apple AirPods Pro (2nd Gen USB-C)",
+    tagline: "Active Noise Cancellation & Spatial Audio",
     brand: "Apple",
     category: "audio",
     subCategory: "accessories",
@@ -299,8 +377,12 @@ const PRODUCTS = [
     condition: "Brand New Sealed Box",
     warranty: "1 Year Official Apple Warranty",
     image: "https://m.media-amazon.com/images/I/61SUj2aKoEL._SL1500_.jpg",
-    colors: ["White"],
-    storageOptions: ["MagSafe USB-C Case"],
+    colors: [
+      { name: "White", hex: "#ffffff", image: "https://m.media-amazon.com/images/I/61SUj2aKoEL._SL1500_.jpg" }
+    ],
+    storageOptions: [
+      { size: "MagSafe USB-C Case", price: 20999 }
+    ],
     specs: {
       display: "Apple H2 Silicon Chip with Personalized Spatial Audio",
       processor: "Up to 2x more Active Noise Cancellation + Adaptive Audio",
@@ -314,6 +396,7 @@ const PRODUCTS = [
   {
     id: "prod-011",
     name: "boAt Airdopes 141 ANC TWS Earbuds",
+    tagline: "32dB ANC & 42 Hours Total Playback",
     brand: "Boat",
     category: "audio",
     subCategory: "accessories",
@@ -327,8 +410,12 @@ const PRODUCTS = [
     condition: "Brand New Box Pack",
     warranty: "1 Year boAt Warranty",
     image: "https://m.media-amazon.com/images/I/61aYqMskkPL._SL1500_.jpg",
-    colors: ["Active Black", "Cider Cyan", "Gunmetal Grey"],
-    storageOptions: ["Standard"],
+    colors: [
+      { name: "Active Black", hex: "#111111", image: "https://m.media-amazon.com/images/I/61aYqMskkPL._SL1500_.jpg" }
+    ],
+    storageOptions: [
+      { size: "Standard Edition", price: 1499 }
+    ],
     specs: {
       display: "32dB Active Noise Cancellation (ANC)",
       processor: "42 Hours Total Playback with ASAP Fast Charge",
@@ -341,7 +428,8 @@ const PRODUCTS = [
   },
   {
     id: "prod-012",
-    name: "Samsung Galaxy Watch6 Bluetooth 44mm",
+    name: "Samsung Galaxy Watch6 44mm",
+    tagline: "Sapphire Crystal & Health Tracking",
     brand: "Samsung",
     category: "smartwatches",
     subCategory: "accessories",
@@ -355,8 +443,13 @@ const PRODUCTS = [
     condition: "Brand New Sealed Box",
     warranty: "1 Year Samsung India Warranty",
     image: "https://m.media-amazon.com/images/I/61ZDY5b3K3L._SL1500_.jpg",
-    colors: ["Graphite", "Silver"],
-    storageOptions: ["44mm Bluetooth", "44mm LTE"],
+    colors: [
+      { name: "Graphite", hex: "#2a2b2d", image: "https://m.media-amazon.com/images/I/61ZDY5b3K3L._SL1500_.jpg" }
+    ],
+    storageOptions: [
+      { size: "44mm Bluetooth", price: 18999 },
+      { size: "44mm LTE", price: 21999 }
+    ],
     specs: {
       display: "1.5\" Super AMOLED Sapphire Crystal Glass",
       processor: "Exynos W930 Dual Core 1.4GHz",
@@ -369,35 +462,8 @@ const PRODUCTS = [
   },
   {
     id: "prod-013",
-    name: "Apple 20W USB-C Fast Power Adapter",
-    brand: "Apple",
-    category: "accessories",
-    subCategory: "accessories",
-    price: 1699,
-    originalPrice: 1900,
-    discountPercent: 11,
-    rating: 4.9,
-    reviewsCount: 760,
-    badge: "⚡ 100% Original Apple",
-    isHotDeal: false,
-    condition: "Brand New Box Pack",
-    warranty: "1 Year Apple Warranty",
-    image: "https://m.media-amazon.com/images/I/61vtLhO6fDL._SL1500_.jpg",
-    colors: ["White"],
-    storageOptions: ["20W USB-C"],
-    specs: {
-      display: "Original Genuine Apple 20W Fast Charger",
-      processor: "Supports Power Delivery (PD 3.0)",
-      camera: "Charges iPhone 50% in just 30 mins",
-      battery: "Over-voltage & overheating protection",
-      os: "All iPhones, iPads, Apple Watches"
-    },
-    inStock: true,
-    emiStart: "N/A"
-  },
-  {
-    id: "prod-014",
-    name: "Anker 65W GaN III 3-Port Fast Charger",
+    name: "Anker 65W GaN III Fast Charger",
+    tagline: "3-Port Fast Power for Laptops & Flagships",
     brand: "Anker",
     category: "accessories",
     subCategory: "accessories",
@@ -411,8 +477,12 @@ const PRODUCTS = [
     condition: "Brand New Box Pack",
     warranty: "18 Months Anker Replacement Warranty",
     image: "https://m.media-amazon.com/images/I/61r-GfU+xPL._SL1500_.jpg",
-    colors: ["Black", "White"],
-    storageOptions: ["65W 3-Port"],
+    colors: [
+      { name: "Matte Black", hex: "#1b1b1b", image: "https://m.media-amazon.com/images/I/61r-GfU+xPL._SL1500_.jpg" }
+    ],
+    storageOptions: [
+      { size: "65W 3-Port GaN", price: 3499 }
+    ],
     specs: {
       display: "2x USB-C + 1x USB-A Simultaneous Fast Charging",
       processor: "Charges Laptops, MacBooks, iPhones, Samsung phones at full speed",
@@ -424,8 +494,42 @@ const PRODUCTS = [
     emiStart: "N/A"
   },
   {
+    id: "prod-014",
+    name: "Apple 20W USB-C Fast Power Adapter",
+    tagline: "Original Genuine Apple Fast Charger",
+    brand: "Apple",
+    category: "accessories",
+    subCategory: "accessories",
+    price: 1699,
+    originalPrice: 1900,
+    discountPercent: 11,
+    rating: 4.9,
+    reviewsCount: 760,
+    badge: "⚡ 100% Original Apple",
+    isHotDeal: false,
+    condition: "Brand New Box Pack",
+    warranty: "1 Year Apple Warranty",
+    image: "https://m.media-amazon.com/images/I/61vtLhO6fDL._SL1500_.jpg",
+    colors: [
+      { name: "White", hex: "#ffffff", image: "https://m.media-amazon.com/images/I/61vtLhO6fDL._SL1500_.jpg" }
+    ],
+    storageOptions: [
+      { size: "20W USB-C", price: 1699 }
+    ],
+    specs: {
+      display: "Original Genuine Apple 20W Fast Charger",
+      processor: "Supports Power Delivery (PD 3.0)",
+      camera: "Charges iPhone 50% in just 30 mins",
+      battery: "Over-voltage & overheating protection",
+      os: "All iPhones, iPads, Apple Watches"
+    },
+    inStock: true,
+    emiStart: "N/A"
+  },
+  {
     id: "prod-015",
-    name: "Premium Military-Grade MagSafe Armor Case + 9H Glass Combo",
+    name: "MagSafe Armor Case + 9H Glass Combo",
+    tagline: "Military-Grade Drop Protection & Strong N52 Magnet",
     brand: "Mobile Station Exclusive",
     category: "accessories",
     subCategory: "accessories",
@@ -436,11 +540,15 @@ const PRODUCTS = [
     reviewsCount: 540,
     badge: "🛡️ Heavy Duty Combo",
     isHotDeal: true,
-    condition: "Brand New",
+    condition: "Brand New Box Pack",
     warranty: "Fitment & Replacement Guarantee",
     image: "https://m.media-amazon.com/images/I/71YvO8g+hBL._SL1500_.jpg",
-    colors: ["Translucent Matte", "Smoky Black", "Navy Blue"],
-    storageOptions: ["Available for All iPhone & Android Models"],
+    colors: [
+      { name: "Translucent Matte", hex: "#3a3a3c", image: "https://m.media-amazon.com/images/I/71YvO8g+hBL._SL1500_.jpg" }
+    ],
+    storageOptions: [
+      { size: "All iPhone & Android Models", price: 699 }
+    ],
     specs: {
       display: "Strong N52 Magnetic Ring for instant MagSafe latching",
       processor: "Air-cushioned corners with 10ft drop tested protection",
