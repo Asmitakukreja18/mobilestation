@@ -524,21 +524,21 @@ const CUSTOMER_REVIEWS = [
   {
     id: 2,
     name: "Neha Verma",
-    location: "Balaji Mandir Road",
+    location: "Garud Complex, Showroom Customer",
     rating: 5,
     date: "1 week ago",
     product: "Samsung Galaxy S24 Ultra",
-    comment: "WhatsApp par direct baat ki, inhone turant color options aur price quotes bhej diye. Shop par jakar 10 minute me purchase kar liya. Siddhi Marketing and Mobile Station both branches are great!",
+    comment: "WhatsApp par direct baat ki, inhone turant color options aur price quotes bhej diye. Shop par jakar 10 minute me purchase kar liya. Mobile Station customer service is top notch!",
     verified: true
   },
   {
     id: 3,
     name: "Amit Patel",
-    location: "B2B Wholesale Buyer",
+    location: "Corporate Client",
     rating: 5,
     date: "2 weeks ago",
-    product: "Bulk Mobile Accessories & Chargers",
-    comment: "Siddhi Marketing (Balaji Mandir Road) se wholesale me cases and fast chargers mangwaye the shop ke liye. Rates wholesale market se bhi genuine hain aur delivery instant.",
+    product: "Bulk Mobile Accessories & Fast Chargers",
+    comment: "Mobile Station (Garud Complex) se genuine cases and 65W GaN fast chargers mangwaye the. Rates market se bhi best hain aur delivery instant.",
     verified: true
   },
   {
