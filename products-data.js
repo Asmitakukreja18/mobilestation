@@ -937,11 +937,11 @@ const PRODUCTS = [
     display: "6.73\" 2K C9 LTPO OLED 120Hz (3500 nits, Dolby Vision)",
     camera: "50MP 1-inch Stepless Aperture + 200MP Leica Periscope + 50MP 3.2x + 50MP UW",
     battery: "6000 mAh Silicon-Carbon + 120W Wired & 80W Wireless",
-    image: "assets/phone.png",
+    image: "assets/user_phone_5.jpg",
     colors: [
-      { name: "Leica Crimson", hex: "#7a1120", image: "assets/phone.png" },
-      { name: "Titanium Silver", hex: "#c2c4c8", image: "assets/phone.png" },
-      { name: "Ceramic Black", hex: "#141416", image: "assets/phone.png" }
+      { name: "Leica Crimson", hex: "#7a1120", image: "assets/user_phone_5.jpg" },
+      { name: "Titanium Silver", hex: "#c2c4c8", image: "assets/user_phone_5.jpg" },
+      { name: "Ceramic Black", hex: "#141416", image: "assets/user_phone_5.jpg" }
     ],
     storage: ["256GB", "512GB", "1TB"],
     emi: "₹4,880/mo"
@@ -962,10 +962,10 @@ const PRODUCTS = [
     display: "6.36\" 1.5K 120Hz LTPO OLED (1.38mm Bezel)",
     camera: "50MP Leica Hunter 900 + 50MP Telephoto + 50MP Ultrawide",
     battery: "5400 mAh + 90W HyperCharge",
-    image: "assets/phone.png",
+    image: "assets/temp_batch_1.jpg",
     colors: [
-      { name: "Alpine Green", hex: "#3e5246", image: "assets/phone.png" },
-      { name: "White Velvet", hex: "#f4f3ef", image: "assets/phone.png" }
+      { name: "Alpine Green", hex: "#3e5246", image: "assets/temp_batch_1.jpg" },
+      { name: "White Velvet", hex: "#f4f3ef", image: "assets/temp_batch_1.jpg" }
     ],
     storage: ["256GB", "512GB"],
     emi: "₹3,110/mo"
@@ -986,11 +986,11 @@ const PRODUCTS = [
     display: "6.67\" 1.5K Curved AMOLED 144Hz (Dolby Vision)",
     camera: "200MP Samsung ISOCELL HP3 OIS + 8MP UW + 2MP Macro",
     battery: "5500 mAh + 120W Fast Charger in Box",
-    image: "assets/phone.png",
+    image: "assets/temp_batch_2.jpg",
     colors: [
-      { name: "Crimson Red", hex: "#871526", image: "assets/phone.png" },
-      { name: "Midnight Black", hex: "#1c1c1f", image: "assets/phone.png" },
-      { name: "Fusion Purple", hex: "#4a3c5a", image: "assets/phone.png" }
+      { name: "Crimson Red", hex: "#871526", image: "assets/temp_batch_2.jpg" },
+      { name: "Midnight Black", hex: "#1c1c1f", image: "assets/temp_batch_2.jpg" },
+      { name: "Fusion Purple", hex: "#4a3c5a", image: "assets/temp_batch_2.jpg" }
     ],
     storage: ["128GB", "256GB", "512GB"],
     emi: "₹1,460/mo"
@@ -1011,10 +1011,10 @@ const PRODUCTS = [
     display: "6.67\" 120Hz 1.5K AMOLED (Gorilla Glass Victus 2)",
     camera: "50MP Sony LYT-600 OIS Dual Camera",
     battery: "5100 mAh + 67W Turbo Charge",
-    image: "assets/phone.png",
+    image: "assets/temp_batch_3.jpg",
     colors: [
-      { name: "Ocean Teal", hex: "#3f6e70", image: "assets/phone.png" },
-      { name: "Obsidian Black", hex: "#1a1b1d", image: "assets/phone.png" }
+      { name: "Ocean Teal", hex: "#3f6e70", image: "assets/temp_batch_3.jpg" },
+      { name: "Obsidian Black", hex: "#1a1b1d", image: "assets/temp_batch_3.jpg" }
     ],
     storage: ["128GB", "256GB"],
     emi: "₹1,190/mo"
@@ -1035,10 +1035,10 @@ const PRODUCTS = [
     display: "6.67\" FHD+ 120Hz AMOLED (2100 nits)",
     camera: "108MP 3x In-Sensor Zoom Camera",
     battery: "5000 mAh + 45W Fast Charging",
-    image: "assets/phone.png",
+    image: "assets/temp_batch_4.jpg",
     colors: [
-      { name: "Prism Gold", hex: "#d5b47a", image: "assets/phone.png" },
-      { name: "Graphite Black", hex: "#222325", image: "assets/phone.png" }
+      { name: "Prism Gold", hex: "#d5b47a", image: "assets/temp_batch_4.jpg" },
+      { name: "Graphite Black", hex: "#222325", image: "assets/temp_batch_4.jpg" }
     ],
     storage: ["128GB", "256GB"],
     emi: "₹840/mo"
@@ -1063,11 +1063,11 @@ const PRODUCTS = [
     display: "6.82\" 2K LTPO 120Hz ZEISS Master Color Display (4500 nits)",
     camera: "50MP 1-inch Sony LYT-900 + 200MP ZEISS APO Periscope + 50MP Portrait + 50MP UW",
     battery: "6200 mAh BlueVolt Silicon Anode + 100W Flash & 50W Wireless",
-    image: "assets/phone.png",
+    image: "assets/user_phone_6.jpg",
     colors: [
-      { name: "Crimson Titanium", hex: "#7a1120", image: "assets/phone.png" },
-      { name: "Titanium Gray", hex: "#8c8e93", image: "assets/phone.png" },
-      { name: "Midnight Black", hex: "#161618", image: "assets/phone.png" }
+      { name: "Crimson Titanium", hex: "#7a1120", image: "assets/user_phone_6.jpg" },
+      { name: "Titanium Gray", hex: "#8c8e93", image: "assets/user_phone_6.jpg" },
+      { name: "Midnight Black", hex: "#161618", image: "assets/user_phone_6.jpg" }
     ],
     storage: ["256GB", "512GB", "1TB"],
     emi: "₹5,110/mo"
@@ -1088,10 +1088,10 @@ const PRODUCTS = [
     display: "6.78\" 1.5K 120Hz Eye-Care AMOLED",
     camera: "50MP Sony LYT-818 Main + 200MP ZEISS APO Telephoto + 50MP UW",
     battery: "6000 mAh BlueVolt Battery + 90W FlashCharge",
-    image: "assets/phone.png",
+    image: "assets/user_phone_7.jpg",
     colors: [
-      { name: "Titanium Blue", hex: "#2b4563", image: "assets/phone.png" },
-      { name: "Space Black", hex: "#1b1b1d", image: "assets/phone.png" }
+      { name: "Titanium Blue", hex: "#2b4563", image: "assets/user_phone_7.jpg" },
+      { name: "Space Black", hex: "#1b1b1d", image: "assets/user_phone_7.jpg" }
     ],
     storage: ["256GB", "512GB"],
     emi: "₹3,990/mo"
@@ -1112,10 +1112,10 @@ const PRODUCTS = [
     display: "6.67\" 1.5K 120Hz Ultra-Bright Display",
     camera: "50MP Sony IMX921 Main + 50MP ZEISS Telephoto + 50MP UW",
     battery: "5800 mAh + 90W FlashCharge",
-    image: "assets/phone.png",
+    image: "assets/temp_batch_5.jpg",
     colors: [
-      { name: "Aurora White", hex: "#f0f2f5", image: "assets/phone.png" },
-      { name: "Carbon Black", hex: "#181819", image: "assets/phone.png" }
+      { name: "Aurora White", hex: "#f0f2f5", image: "assets/temp_batch_5.jpg" },
+      { name: "Carbon Black", hex: "#181819", image: "assets/temp_batch_5.jpg" }
     ],
     storage: ["256GB", "512GB"],
     emi: "₹3,110/mo"
@@ -1136,10 +1136,10 @@ const PRODUCTS = [
     display: "6.78\" 3D Curved 1.5K 120Hz AMOLED",
     camera: "50MP ZEISS OIS Main + 50MP ZEISS Telephoto + 50MP Group Selfie",
     battery: "5500 mAh + 80W FlashCharge",
-    image: "assets/phone.png",
+    image: "assets/user_phone_8.jpg",
     colors: [
-      { name: "Ganges Blue", hex: "#325c74", image: "assets/phone.png" },
-      { name: "Titanium Silver", hex: "#bfc2c7", image: "assets/phone.png" }
+      { name: "Ganges Blue", hex: "#325c74", image: "assets/user_phone_8.jpg" },
+      { name: "Titanium Silver", hex: "#bfc2c7", image: "assets/user_phone_8.jpg" }
     ],
     storage: ["256GB", "512GB"],
     emi: "₹2,080/mo"
@@ -1164,11 +1164,11 @@ const PRODUCTS = [
     display: "6.82\" 2K 120Hz LTPO OLED (4500 nits, ProXDR)",
     camera: "50MP 1-inch LYT-900 + 50MP 3x Periscope + 50MP 6x Periscope + 50MP UW",
     battery: "6100 mAh + 100W SUPERVOOC & 50W AIRVOOC",
-    image: "assets/phone.png",
+    image: "assets/user_phone_9.jpg",
     colors: [
-      { name: "Crimson Vegan Leather", hex: "#78121f", image: "assets/phone.png" },
-      { name: "Desert Brown", hex: "#8c6b4e", image: "assets/phone.png" },
-      { name: "Ocean Blue", hex: "#1e3c54", image: "assets/phone.png" }
+      { name: "Crimson Vegan Leather", hex: "#78121f", image: "assets/user_phone_9.jpg" },
+      { name: "Desert Brown", hex: "#8c6b4e", image: "assets/user_phone_9.jpg" },
+      { name: "Ocean Blue", hex: "#1e3c54", image: "assets/user_phone_9.jpg" }
     ],
     storage: ["256GB", "512GB", "1TB"],
     emi: "₹5,330/mo"
@@ -1189,10 +1189,10 @@ const PRODUCTS = [
     display: "6.78\" 1.5K 120Hz Micro-Quad Curved AMOLED",
     camera: "50MP Sony LYT-808 + 50MP 3x Periscope + 50MP UW",
     battery: "5910 mAh Silicon-Carbon + 80W SUPERVOOC",
-    image: "assets/phone.png",
+    image: "assets/user_phone_4.jpg",
     colors: [
-      { name: "Starry Silver", hex: "#c9cbcf", image: "assets/phone.png" },
-      { name: "Space Black", hex: "#18181a", image: "assets/phone.png" }
+      { name: "Starry Silver", hex: "#c9cbcf", image: "assets/user_phone_4.jpg" },
+      { name: "Space Black", hex: "#18181a", image: "assets/user_phone_4.jpg" }
     ],
     storage: ["256GB", "512GB"],
     emi: "₹4,220/mo"
@@ -1213,11 +1213,11 @@ const PRODUCTS = [
     display: "6.59\" 1.5K 120Hz Flat AMOLED (1.45mm Symmetrical Bezels)",
     camera: "50MP Sony Main + 50MP 3x Periscope + 50MP Ultra-Wide",
     battery: "5630 mAh + 80W SUPERVOOC",
-    image: "assets/phone.png",
+    image: "assets/user_phone_2.jpg",
     colors: [
-      { name: "Wind Chime Blue", hex: "#4b748a", image: "assets/phone.png" },
-      { name: "Pure White", hex: "#f3f3f5", image: "assets/phone.png" },
-      { name: "Titanium Black", hex: "#1d1d1f", image: "assets/phone.png" }
+      { name: "Wind Chime Blue", hex: "#4b748a", image: "assets/user_phone_2.jpg" },
+      { name: "Pure White", hex: "#f3f3f5", image: "assets/user_phone_2.jpg" },
+      { name: "Titanium Black", hex: "#1d1d1f", image: "assets/user_phone_2.jpg" }
     ],
     storage: ["256GB", "512GB"],
     emi: "₹3,330/mo"
