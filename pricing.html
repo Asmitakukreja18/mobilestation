@@ -1,0 +1,394 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Official Price List & Festive Schemes (October 2026) | Mobile Station</title>
+  <meta name="description" content="Explore official verified MOP rates, 0% No-Cost EMI, and festive offers for Apple iPhone, MacBook, iPad, Watch, Nothing, Xiaomi, POCO, itel & Lava at Mobile Station." />
+
+  <!-- Google Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&family=Manrope:wght@400;500;600;700;800;900&family=Outfit:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
+
+  <link rel="stylesheet" href="styles.css" />
+  <link rel="stylesheet" href="css/pricing.css" />
+  <link rel="icon" type="image/png" href="assets/logo.png" />
+</head>
+
+<body>
+
+  <!-- ================= TOP ANNOUNCEMENT TICKER ================= -->
+  <div style="background:#170d10; color:#ebe0d5; padding:0.45rem 1rem; font-size:0.78rem; text-align:center; font-weight:600; border-bottom:1px solid rgba(215,25,66,0.3);">
+    🎉 <span style="color:#d71942; font-weight:800;">OCTOBER FESTIVE SCHEME PERIOD:</span> 01-OCT-2026 to 31-OCT-2026 • 0% Paperless EMI & Bank Cashback Active on All Brands
+  </div>
+
+  <!-- ================= NAVBAR ================= -->
+  <header class="navbar" id="navbar">
+    <a href="index.html" class="brand" aria-label="Mobile Station Home">
+      <div class="brand-mark">
+        <img src="assets/logo.png" alt="Mobile Station Logo" class="brand-logo" onerror="this.style.display='none'; this.nextElementSibling.style.display='grid'" />
+        <span class="brand-fallback-logo" style="display:none;">MS</span>
+      </div>
+      <div class="brand-text">
+        <strong>MOBILE</strong>
+        <span>STATION</span>
+      </div>
+    </a>
+
+    <nav class="navigation" id="navigation">
+      <a href="index.html" class="nav-link">Home</a>
+      <a href="story.html" class="nav-link">Story</a>
+      <a href="flagships.html" class="nav-link">Flagships</a>
+      <a href="pricing.html" class="nav-link active">Price List</a>
+      <a href="schemes.html" class="nav-link">Schemes</a>
+      <a href="repair-lab.html" class="nav-link">Repair Lab</a>
+      <a href="trade-in.html" class="nav-link">Trade-In</a>
+      <a href="showrooms.html" class="nav-link">Showrooms</a>
+    </nav>
+
+    <div class="nav-actions">
+      <button class="icon-btn search-trigger-btn" id="openSearchBtn" aria-label="Search">
+        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="8"></circle><line x1="21" y1="21" x2="16.65" y2="16.65"></line></svg>
+      </button>
+
+      <button class="bag-button" id="openBagBtn" aria-label="Open Bag">
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M6 2L3 6v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V6l-3-4z"></path><line x1="3" y1="6" x2="21" y2="6"></line><path d="M16 10a4 4 0 0 1-8 0"></path></svg>
+        <span>Bag</span>
+        <span class="bag-badge" id="bagCount">0</span>
+      </button>
+
+      <button class="whatsapp-concierge-btn" onclick="openWhatsApp('Hi Mobile Station! I am reviewing the October 2026 Official Price List and want to enquire about stock.')">
+        <span class="online-indicator"></span>
+        <div class="btn-text-block">
+          <strong>WhatsApp</strong>
+          <small>VIP Concierge</small>
+        </div>
+      </button>
+
+      <button class="mobile-menu-toggle" id="mobileMenuToggle" aria-label="Toggle Menu">
+        <span></span><span></span><span></span>
+      </button>
+    </div>
+  </header>
+
+  <!-- Mobile Navigation Drawer -->
+  <div class="mobile-nav-drawer" id="mobileNavDrawer">
+    <div class="mobile-nav-links">
+      <a href="index.html">Home</a>
+      <a href="story.html">Brand Story</a>
+      <a href="flagships.html">Flagships Collection</a>
+      <a href="pricing.html" class="active">Official Price List</a>
+      <a href="schemes.html">EMI & Schemes</a>
+      <a href="repair.html">Repair Lab</a>
+      <a href="trade.html">Trade-In Calculator</a>
+      <a href="showrooms.html">Showroom Locations</a>
+    </div>
+    <div class="mobile-nav-footer">
+      <button class="btn btn-crimson btn-full" onclick="openWhatsApp(); closeMobileMenu();">
+        💬 Chat with Showroom Concierge
+      </button>
+    </div>
+  </div>
+
+
+  <!-- ================= PRICING HERO BANNER ================= -->
+  <section class="pricing-hero">
+    <div class="pricing-hero-container">
+      <div class="scheme-validity-pill">
+        <span class="pulse-dot"></span>
+        Official Festive Scheme: 01-OCT-26 to 31-OCT-26
+      </div>
+
+      <h1>
+        Official Showroom Price List & <span>Festive Schemes.</span>
+      </h1>
+
+      <p>
+        Verified MOP (Market Operating Price) and authorized festival rate sheets across 250+ smartphones, MacBooks, iPads, smartwatches, and audio. Enjoy 0% paperless EMI, instant trade-in exchange bonuses, and 100% genuine brand warranty.
+      </p>
+
+      <!-- Perks Grid -->
+      <div class="pricing-perks-strip">
+        <div class="perk-box">
+          <div class="perk-icon">💳</div>
+          <div>
+            <strong>0% No-Cost EMI</strong>
+            <span>Bajaj, HDFC, ICICI, SBI & TVS Credit</span>
+          </div>
+        </div>
+
+        <div class="perk-box">
+          <div class="perk-icon">🔄</div>
+          <div>
+            <strong>₹55,000 Exchange Bonus</strong>
+            <span>Instant on-spot device trade-in multiplier</span>
+          </div>
+        </div>
+
+        <div class="perk-box">
+          <div class="perk-icon">🏷️</div>
+          <div>
+            <strong>Authorized MOP Rates</strong>
+            <span>Direct distributor guaranteed festive pricing</span>
+          </div>
+        </div>
+
+        <div class="perk-box">
+          <div class="perk-icon">🛡️</div>
+          <div>
+            <strong>100% Original with GST</strong>
+            <span>Manufacturer warranty + paperless invoice</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+
+  <!-- ================= STICKY CONTROLS & FILTER BAR ================= -->
+  <section class="pricing-controls-section" id="controlsSection">
+    <div class="pricing-controls-container">
+      <!-- Brand Tabs -->
+      <div class="brand-filter-bar" id="brandFilterBar">
+        <button class="brand-chip-btn active" data-brand="all">
+          <span>🌟 All Brands</span>
+          <span class="chip-count">258</span>
+        </button>
+        <button class="brand-chip-btn" data-brand="Apple">
+          <span>🍎 Apple</span>
+          <span class="chip-count">138</span>
+        </button>
+        <button class="brand-chip-btn" data-brand="Nothing">
+          <span>⚡ Nothing & CMF</span>
+          <span class="chip-count">15</span>
+        </button>
+        <button class="brand-chip-btn" data-brand="Xiaomi / Redmi">
+          <span>🔥 Xiaomi / Redmi</span>
+          <span class="chip-count">48</span>
+        </button>
+        <button class="brand-chip-btn" data-brand="POCO">
+          <span>🚀 POCO</span>
+          <span class="chip-count">21</span>
+        </button>
+        <button class="brand-chip-btn" data-brand="itel">
+          <span>📱 itel</span>
+          <span class="chip-count">25</span>
+        </button>
+        <button class="brand-chip-btn" data-brand="Lava">
+          <span>🇮🇳 Lava</span>
+          <span class="chip-count">11</span>
+        </button>
+      </div>
+
+      <!-- Search, Categories and Sort/View Row -->
+      <div class="filter-search-row">
+        <!-- Search Input -->
+        <div class="search-box-wrapper">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="8"></circle><line x1="21" y1="21" x2="16.65" y2="16.65"></line></svg>
+          <input type="text" id="pricingSearchInput" class="search-input" placeholder="Search model (e.g. iPhone 18, MacBook M5, Note 17, POCO M8...)" aria-label="Search price list" />
+          <button class="clear-search-btn" id="clearSearchBtn" aria-label="Clear search">✕</button>
+        </div>
+
+        <!-- Category Pills -->
+        <div class="category-pills-group" id="categoryPillsGroup">
+          <button class="cat-pill active" data-cat="all">All Devices</button>
+          <button class="cat-pill" data-cat="smartphones">Smartphones</button>
+          <button class="cat-pill" data-cat="laptops">Mac & Laptops</button>
+          <button class="cat-pill" data-cat="tablets">iPads & Tablets</button>
+          <button class="cat-pill" data-cat="wearables">Smartwatches</button>
+          <button class="cat-pill" data-cat="audio">AirPods & Audio</button>
+        </div>
+
+        <!-- Utilities (Sort, View, Print) -->
+        <div class="utility-actions-group">
+          <select id="pricingSortSelect" class="sort-select" aria-label="Sort products">
+            <option value="default">Default Order</option>
+            <option value="price-asc">Price: Low to High</option>
+            <option value="price-desc">Price: High to Low</option>
+            <option value="savings-desc">Highest Discount / Savings</option>
+            <option value="name-asc">Model Name (A-Z)</option>
+          </select>
+
+          <button id="viewToggleBtn" class="view-toggle-btn" title="Toggle Table/Grid view">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="3" width="7" height="7"></rect><rect x="14" y="3" width="7" height="7"></rect><rect x="14" y="14" width="7" height="7"></rect><rect x="3" y="14" width="7" height="7"></rect></svg>
+            <span>Grid View</span>
+          </button>
+
+          <button id="printPriceListBtn" class="view-toggle-btn print-btn" title="Print official showroom price sheet">
+            <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="6 9 6 2 18 2 18 9"></polyline><path d="M6 18H4a2 2 0 0 1-2-2v-5a2 2 0 0 1 2-2h16a2 2 0 0 1 2 2v5a2 2 0 0 1-2 2h-2"></path><rect x="6" y="14" width="12" height="8"></rect></svg>
+            <span>Print Sheet</span>
+          </button>
+        </div>
+      </div>
+    </div>
+  </section>
+
+
+  <!-- ================= METRICS STRIP ================= -->
+  <div class="pricing-metrics-bar">
+    <div>
+      Showing: <strong id="resultsCount">258 Official Products</strong> • Verified Showroom MOP Rates
+    </div>
+    <div>
+      <span style="color:#d71942; font-weight:700;">● Live Stock:</span> Amravati Flagship, Nagpur Experience Lounge & Mumbai Studio
+    </div>
+  </div>
+
+
+  <!-- ================= MAIN PRICE LIST DISPLAY ================= -->
+  <section class="pricing-content-section">
+    <!-- Table View -->
+    <div class="table-wrapper" id="pricingTableWrapper">
+      <table class="pricing-table">
+        <thead>
+          <tr>
+            <th style="width: 120px;">Brand</th>
+            <th>Model & Specifications</th>
+            <th style="width: 160px;">Showroom MOP</th>
+            <th style="width: 140px;">Festive Offer</th>
+            <th style="width: 170px;">0% EMI Plan</th>
+            <th style="width: 140px; text-align: right;">Showroom Booking</th>
+          </tr>
+        </thead>
+        <tbody id="pricingTableBody">
+          <!-- Populated by js/pricing-page.js -->
+        </tbody>
+      </table>
+    </div>
+
+    <!-- Cards Grid View -->
+    <div class="pricing-cards-grid" id="pricingCardsGrid">
+      <!-- Populated by js/pricing-page.js -->
+    </div>
+
+    <!-- Empty State -->
+    <div class="no-results-box" id="pricingEmptyState" style="display: none;">
+      <div style="font-size: 3rem; margin-bottom: 0.5rem;">🔍</div>
+      <h3>No Products Found</h3>
+      <p>We couldn't find any products matching your search query or filters. Please adjust your keywords or reset filters.</p>
+      <button class="btn btn-crimson" onclick="document.getElementById('pricingSearchInput').value=''; document.querySelector('.brand-chip-btn[data-brand=\'all\']').click(); document.querySelector('.cat-pill[data-cat=\'all\']').click();">
+        Reset All Filters
+      </button>
+    </div>
+  </section>
+
+
+  <!-- ================= SCHEME & FINANCE CALLOUT ================= -->
+  <section class="section" style="padding: 2rem 1.5rem 4rem; background: #ebe0d5;">
+    <div class="section-container" style="max-width: 1200px; margin: 0 auto;">
+      <div class="glass-card" style="padding: 2.5rem; border-radius: 20px; background: rgba(255,255,255,0.85); display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between; gap: 2rem;">
+        <div style="max-width: 650px;">
+          <div class="section-kicker" style="color: #d71942; font-weight:800; font-size: 0.85rem; letter-spacing: 0.05em; text-transform: uppercase; margin-bottom: 0.5rem;">SHOWROOM FINANCING DESK</div>
+          <h2 style="font-size: 1.8rem; font-weight: 800; color: #170d10; margin-bottom: 0.75rem;">Need 0% Paperless EMI or Phone Exchange?</h2>
+          <p style="color: #584147; font-size: 0.95rem; line-height: 1.6; margin: 0;">
+            Walk into any Mobile Station showroom or connect with our VIP WhatsApp concierge. Get 10-minute instant approval with Aadhaar / PAN, 0 down-payment schemes, and maximum exchange value for your old smartphone.
+          </p>
+        </div>
+
+        <div style="display: flex; gap: 1rem; flex-wrap: wrap;">
+          <a href="schemes.html" class="btn btn-crimson" style="padding: 0.85rem 1.5rem; text-decoration: none; border-radius: 10px; font-weight: 700;">
+            Explore EMI Schemes →
+          </a>
+          <a href="trade-in.html" class="btn btn-outline" style="padding: 0.85rem 1.5rem; text-decoration: none; border-radius: 10px; font-weight: 700; border: 1px solid #170d10; color: #170d10;">
+            Calculate Trade-In Value 🔄
+          </a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+
+  <!-- ================= FOOTER ================= -->
+  <footer class="footer" id="footer">
+    <div class="footer-container">
+      <div class="footer-grid">
+        <div class="footer-brand-col">
+          <div class="footer-logo">
+            <div class="brand-mark" style="width:48px; height:48px; margin-right:12px; border-radius:12px;"><img src="assets/logo.png" alt="Mobile Station Logo" class="brand-logo" /></div>
+            <div class="footer-brand-text"><strong>MOBILE</strong><span>STATION</span></div>
+          </div>
+          <p class="footer-tagline">
+            Official Showroom & Express Lab. Authorized retailer for Apple, Samsung, OnePlus, Google, Xiaomi, Nothing, POCO, itel & Lava.
+          </p>
+          <div class="footer-locations">
+            <span>📍 Amravati (Flagship)</span> • <span>📍 Nagpur (Lounge)</span> • <span>📍 Mumbai (BKC Studio)</span>
+          </div>
+        </div>
+
+        <div class="footer-links-col">
+          <h4>Showroom Catalog</h4>
+          <ul>
+            <li><a href="flagships.html">Flagships Collection</a></li>
+            <li><a href="pricing.html">Official Price List 2026</a></li>
+            <li><a href="schemes.html">0% EMI Schemes</a></li>
+            <li><a href="trade-in.html">Trade-In Exchange</a></li>
+            <li><a href="repair-lab.html">Express Repair Lab</a></li>
+            <li><a href="showrooms.html">Showroom Addresses</a></li>
+          </ul>
+        </div>
+
+        <div class="footer-links-col">
+          <h4>Brand Collections</h4>
+          <ul>
+            <li><a href="apple.html">Apple Showcase</a></li>
+            <li><a href="samsung.html">Samsung Galaxy</a></li>
+            <li><a href="oneplus.html">OnePlus</a></li>
+            <li><a href="xiaomi.html">Xiaomi & Redmi</a></li>
+            <li><a href="pricing.html?brand=Nothing">Nothing & CMF</a></li>
+            <li><a href="pricing.html?brand=POCO">POCO Official Rates</a></li>
+          </ul>
+        </div>
+
+        <div class="footer-links-col">
+          <h4>Showroom Concierge</h4>
+          <p style="color:#887076; font-size:13px; line-height:1.6;">
+            Direct Showroom Desk: <strong>+91 93221 60461</strong><br/>
+            Open 10:00 AM – 10:00 PM (All 7 Days)<br/>
+            Instant WhatsApp Stock Reservation
+          </p>
+          <div style="margin-top: 1rem;">
+            <button class="btn btn-crimson" style="width: 100%; padding: 0.6rem 1rem; font-size: 0.85rem;" onclick="openWhatsApp('Hi Mobile Station! I need assistance with product pricing & schemes.')">
+              💬 Open VIP Concierge
+            </button>
+          </div>
+        </div>
+      </div>
+
+      <div class="footer-bottom-bar">
+        <div>© 2026 MOBILE STATION. All Rights Reserved. Official Festive Rates 01-OCT-26 to 31-OCT-26.</div>
+        <div class="footer-bottom-links">
+          <a href="index.html">Home</a>
+          <a href="pricing.html">Price List</a>
+          <a href="schemes.html">Schemes</a>
+          <a href="javascript:void(0)" onclick="openWhatsApp()">WhatsApp Concierge</a>
+        </div>
+      </div>
+    </div>
+  </footer>
+
+  <!-- Shopping Bag Overlay & Drawer -->
+  <div class="bag-overlay" id="bagOverlay" onclick="closeBagDrawer()"></div>
+  <aside class="bag-drawer" id="bagDrawer" aria-label="Shopping Bag">
+    <div class="bag-drawer-header">
+      <div class="bag-header-title"><h3>Your Shopping Bag</h3><span class="drawer-count" id="drawerItemCount">(0 items)</span></div>
+      <button class="drawer-close-btn" onclick="closeBagDrawer()">✕</button>
+    </div>
+    <div class="bag-items-list" id="bagItemsList"></div>
+    <div class="bag-drawer-footer">
+      <div class="bag-summary-row"><span>Showroom Subtotal</span><strong id="bagSubtotalAmount">₹0</strong></div>
+      <button class="btn btn-crimson btn-full" onclick="checkoutBagWhatsApp()"><span>💬</span> Complete Order on WhatsApp →</button>
+    </div>
+  </aside>
+
+  <div class="toast-notification" id="toastNotification">
+    <span class="toast-icon">✓</span><span class="toast-message" id="toastMessage">Done</span>
+  </div>
+
+  <!-- Scripts -->
+  <script src="pricing-data.js"></script>
+  <script src="products-data.js"></script>
+  <script src="script.js"></script>
+  <script src="js/pricing-page.js"></script>
+</body>
+</html>
