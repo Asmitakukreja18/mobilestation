@@ -388,8 +388,9 @@ function renderProductCards() {
             <button
               class="btn btn-outline-light card-btn-sub"
               onclick="openProductModal('${product.id}')"
+              aria-label="View Details for ${product.name.replace(/'/g, "\\'")}"
             >
-              View Details
+              🔍 View Details
             </button>
             <button
               class="btn btn-whatsapp-secondary card-btn-sub"

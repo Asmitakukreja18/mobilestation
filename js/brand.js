@@ -112,9 +112,14 @@ function initBrandPage(brandKey) {
             <button class="btn btn-crimson btn-full" onclick="handleAddCardToBag('${p.id}')">
               🛍️ Add to Bag
             </button>
-            <button class="btn btn-whatsapp-secondary btn-full" onclick="enquireWhatsApp('${p.name}', '${p.price}')">
-              💬 Enquire on WhatsApp
-            </button>
+            <div class="product-card-sub-row" style="display:grid; grid-template-columns: 1fr 1fr; gap:8px;">
+              <button class="btn btn-outline-details btn-full" onclick="openProductModal('${p.id}')">
+                🔍 View Details
+              </button>
+              <button class="btn btn-whatsapp-secondary btn-full" onclick="enquireWhatsApp('${p.name}', '${p.price}')">
+                💬 Enquire
+              </button>
+            </div>
           </div>
         </div>
       </div>
