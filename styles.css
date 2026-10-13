@@ -729,7 +729,7 @@ img {
 
 
 /* =========================================================================
-   HERO SECTION — LUXURY WARM CREAM ARCHITECTURAL SHOWROOM
+   HERO SECTION — EDITORIAL BRUTALIST ARCHIVE SHOWROOM
 ========================================================================= */
 .hero {
   position: relative;
@@ -739,16 +739,12 @@ img {
   flex-direction: column;
   justify-content: center;
   overflow: hidden;
-  background: radial-gradient(circle at 65% 45%, #fff6f0 0%, #f6e8de 45%, #ebd7c8 100%);
+  background: var(--paper, #f5f4ef);
 }
 
-/* Architectural Background Elements */
+/* Architectural Background Elements Hidden */
 .architecture {
-  position: absolute;
-  inset: 0;
-  pointer-events: none;
-  overflow: hidden;
-  z-index: 1;
+  display: none !important;
 }
 
 /* Ceiling */
@@ -981,15 +977,15 @@ img {
   display: inline-flex;
   align-items: center;
   gap: 8px;
-  font-size: 12px;
-  font-weight: 800;
+  font-size: 11px;
+  font-weight: 700;
   letter-spacing: 2px;
-  color: var(--crimson-primary);
+  color: #0f0f0e;
   text-transform: uppercase;
-  background: rgba(215, 25, 66, 0.08);
+  background: rgba(15, 15, 14, 0.05);
   padding: 5px 14px;
   border-radius: 20px;
-  border: 1px solid rgba(212, 175, 55, 0.35);
+  border: 1px solid rgba(15, 15, 14, 0.12);
   width: fit-content;
 }
 
@@ -997,8 +993,8 @@ img {
   width: 8px;
   height: 8px;
   border-radius: 50%;
-  background: var(--crimson-primary);
-  box-shadow: 0 0 10px var(--crimson-primary);
+  background: #10b981;
+  box-shadow: 0 0 8px rgba(16, 185, 129, 0.5);
   animation: pulseDot 1.6s infinite ease-in-out;
 }
 
@@ -1011,7 +1007,7 @@ img {
   font-family: var(--display, "Manrope", sans-serif);
   font-size: clamp(38px, 4.2vw, 64px);
   line-height: 1.05;
-  color: #170d10;
+  color: #0f0f0e;
   font-weight: 900;
   letter-spacing: -0.02em;
   text-transform: uppercase;
@@ -1021,9 +1017,10 @@ img {
 .hero-title .gold-red-headline {
   display: block;
   font-weight: 900;
-  background: linear-gradient(135deg, #170d10 0%, #d71942 55%, #d4af37 100%) !important;
-  -webkit-background-clip: text !important;
-  -webkit-text-fill-color: transparent !important;
+  color: #0f0f0e !important;
+  background: none !important;
+  -webkit-background-clip: unset !important;
+  -webkit-text-fill-color: initial !important;
   letter-spacing: -0.01em;
 }
 
@@ -1052,6 +1049,18 @@ img {
   letter-spacing: 0.3px;
 }
 
+.dark-badge {
+  background: #0f0f0e;
+  color: #ffffff;
+  border: 1px solid #0f0f0e;
+}
+
+.subtle-badge {
+  background: rgba(15, 15, 14, 0.05);
+  color: #3b3a36;
+  border: 1px solid rgba(15, 15, 14, 0.1);
+}
+
 .gold-badge {
   background: rgba(212, 175, 55, 0.15);
   color: #a88118;
@@ -1059,21 +1068,15 @@ img {
 }
 
 .red-badge {
-  background: rgba(229, 23, 68, 0.12);
-  color: #d71942;
-  border: 1px solid rgba(229, 23, 68, 0.35);
-}
-
-.dark-badge {
-  background: #140508;
-  color: #ffd700;
-  border: 1px solid rgba(212, 175, 55, 0.35);
+  background: rgba(15, 15, 14, 0.05);
+  color: #0f0f0e;
+  border: 1px solid rgba(15, 15, 14, 0.12);
 }
 
 .glass-badge {
-  background: rgba(255, 255, 255, 0.8);
+  background: rgba(255, 255, 255, 0.9);
   color: #170d10;
-  border: 1px solid rgba(212, 175, 55, 0.3);
+  border: 1px solid rgba(15, 15, 14, 0.1);
 }
 
 .hero-quick-cta-row {
@@ -1084,30 +1087,53 @@ img {
   flex-wrap: wrap;
 }
 
+.btn-dark-pill {
+  background: #0f0f0e !important;
+  color: #ffffff !important;
+  padding: 13px 26px !important;
+  border-radius: 999px !important;
+  font-weight: 700 !important;
+  font-size: 13.5px !important;
+  letter-spacing: -0.01em !important;
+  box-shadow: 0 4px 14px rgba(15, 15, 14, 0.18) !important;
+  transition: all 0.25s ease !important;
+  border: 1px solid #0f0f0e !important;
+  text-decoration: none;
+  display: inline-flex;
+  align-items: center;
+}
+
+.btn-dark-pill:hover {
+  background: #252422 !important;
+  transform: translateY(-2px);
+  box-shadow: 0 8px 24px rgba(15, 15, 14, 0.25) !important;
+}
+
 .hero-quick-cta-row .btn-crimson {
-  background: linear-gradient(135deg, #d71942 0%, #aa1032 100%);
-  border: 1px solid rgba(255, 215, 0, 0.45);
-  box-shadow: 0 6px 20px rgba(215, 25, 66, 0.35), 0 0 12px rgba(212, 175, 55, 0.25);
+  background: #0f0f0e;
+  border: 1px solid #0f0f0e;
+  box-shadow: 0 4px 14px rgba(15, 15, 14, 0.18);
   color: #ffffff;
   font-weight: 700;
+  border-radius: 999px;
+  padding: 13px 26px;
 }
 
 .hero-quick-cta-row .btn-outline-hero {
-  background: rgba(255, 255, 255, 0.85);
-  border: 1px solid rgba(212, 175, 55, 0.4);
-  color: #170d10;
+  background: #ffffff;
+  border: 1px solid rgba(15, 15, 14, 0.15);
+  color: #0f0f0e;
   font-weight: 700;
-  padding: 12px 22px;
-  border-radius: 30px;
+  padding: 13px 24px;
+  border-radius: 999px;
   text-decoration: none;
   transition: all 0.25s ease;
 }
 
 .hero-quick-cta-row .btn-outline-hero:hover {
-  background: #ffffff;
-  border-color: #d4af37;
-  color: #d71942;
-  box-shadow: 0 4px 15px rgba(212, 175, 55, 0.25);
+  background: #f5f4ef;
+  border-color: #0f0f0e;
+  color: #0f0f0e;
   transform: translateY(-2px);
 }
 
@@ -1274,14 +1300,18 @@ img {
 
 /* 1. PHONE PHOTO CELLS */
 .hero-mosaic .cell.ph {
-  background: linear-gradient(155deg, #ffffff 0%, #fbf8f4 55%, #f4ede2 100%);
-  border: 1px solid rgba(212, 175, 55, 0.32);
+  background: #ffffff;
+  border: 1px solid rgba(15, 15, 14, 0.08);
   display: flex;
   flex-direction: column;
   justify-content: space-between;
   padding: 14px 12px 12px;
   cursor: pointer;
   text-decoration: none;
+}
+
+.hero-mosaic .cell.ph:hover {
+  border-color: rgba(15, 15, 14, 0.2);
 }
 
 .hero-mosaic .cell.ph .cell-ph-header {
@@ -1296,11 +1326,11 @@ img {
   font-weight: 800;
   letter-spacing: 0.06em;
   text-transform: uppercase;
-  color: var(--crimson-primary);
-  background: rgba(215, 25, 66, 0.08);
+  color: #0f0f0e;
+  background: rgba(15, 15, 14, 0.06);
   padding: 2px 7px;
   border-radius: 999px;
-  border: 1px solid rgba(215, 25, 66, 0.16);
+  border: none;
 }
 
 .hero-mosaic .cell.ph .cell-live-badge {
@@ -1313,6 +1343,7 @@ img {
   display: flex;
   align-items: center;
   gap: 3px;
+  border: none;
 }
 
 .hero-mosaic .cell.ph .cell-live-badge::before {
@@ -1337,7 +1368,7 @@ img {
   max-width: 90%;
   max-height: 135px;
   object-fit: contain;
-  filter: drop-shadow(0 12px 16px rgba(0, 0, 0, 0.16));
+  filter: drop-shadow(0 12px 16px rgba(0, 0, 0, 0.14));
   transition: transform 0.3s cubic-bezier(0.16, 1, 0.3, 1);
 }
 
@@ -1347,19 +1378,17 @@ img {
 
 .hero-mosaic .cell.ph .cell-ph-footer {
   z-index: 2;
-  background: rgba(255, 255, 255, 0.92);
-  backdrop-filter: blur(8px);
-  -webkit-backdrop-filter: blur(8px);
+  background: #faf8f5;
   padding: 7px 10px;
   border-radius: 12px;
-  border: 1px solid rgba(212, 175, 55, 0.25);
-  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.04);
+  border: 1px solid rgba(15, 15, 14, 0.06);
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.03);
 }
 
 .hero-mosaic .cell.ph .cell-title {
   font-size: 11.5px;
   font-weight: 700;
-  color: #170d10;
+  color: #0f0f0e;
   white-space: nowrap;
   overflow: hidden;
   text-overflow: ellipsis;
@@ -1376,7 +1405,7 @@ img {
 .hero-mosaic .cell.ph .cell-price {
   font-size: 12.5px;
   font-weight: 800;
-  color: var(--crimson-primary);
+  color: #0f0f0e;
   letter-spacing: -0.02em;
 }
 
@@ -1492,24 +1521,22 @@ img {
   gap: 14px;
   padding: 14px 20px;
   border-radius: 16px;
-  background: rgba(255, 255, 255, 0.88);
-  backdrop-filter: blur(15px);
-  -webkit-backdrop-filter: blur(15px);
-  border: 1px solid rgba(212, 175, 55, 0.35);
-  box-shadow: 0 4px 20px rgba(80, 25, 35, 0.06);
+  background: #ffffff;
+  border: 1px solid rgba(15, 15, 14, 0.08);
+  box-shadow: 0 4px 16px rgba(15, 15, 14, 0.04);
   transition: all 0.25s ease;
 }
 
 .spec-tile:hover {
   background: #ffffff;
-  border-color: rgba(212, 175, 55, 0.6);
+  border-color: rgba(15, 15, 14, 0.2);
   transform: translateY(-2px);
-  box-shadow: 0 8px 25px rgba(212, 175, 55, 0.18);
+  box-shadow: 0 8px 24px rgba(15, 15, 14, 0.08);
 }
 
 .spec-icon {
   font-size: 22px;
-  color: var(--crimson-primary);
+  color: #0f0f0e;
   flex-shrink: 0;
 }
 
