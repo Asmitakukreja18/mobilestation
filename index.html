@@ -34,8 +34,8 @@
       <a href="flagships.html" class="nav-link">Flagships</a>
       <a href="pricing.html" class="nav-link">Price List</a>
       <a href="schemes.html" class="nav-link">Schemes</a>
-      <a href="repair-lab.html" class="nav-link">Repair Lab</a>
-      <a href="trade-in.html" class="nav-link">Trade-In</a>
+      <a href="repair.html" class="nav-link">Repair Lab</a>
+      <a href="trade.html" class="nav-link">Trade-In</a>
       <a href="showrooms.html" class="nav-link">Showrooms</a>
       <a href="#reviews" class="nav-link">Reviews</a>
     </nav>
@@ -189,143 +189,465 @@
       </div>
 
 
-      <!-- CENTER STAGE: FLOATING 3D PHONE + DYNAMIC AURA RINGS -->
-      <div class="phone-scene" id="phoneScene">
-        
-        <!-- Energy Aura & Orbit Ring System -->
-        <div class="aura-system">
-          <div class="aura-bloom-bg"></div>
-          
-          <!-- Back Orbit Ring (passes behind phone) -->
-          <div class="orbit orbit-back orbit-1"></div>
-          <div class="orbit orbit-back orbit-2"></div>
-          
-          <!-- Energy Sparks & Light Trails -->
-          <div class="energy-streak streak-1"></div>
-          <div class="energy-streak streak-2"></div>
-          <div class="energy-particle dot-1"></div>
-          <div class="energy-particle dot-2"></div>
-          <div class="energy-particle dot-3"></div>
-        </div>
+      <!-- RIGHT STAGE: 3-COLUMN CONTINUOUS VERTICAL PHONE MOSAIC (14.6s LOOP) -->
+      <div class="hero-mosaic-container" aria-label="Flagship Smartphone Showroom Archive">
+        <div class="hero-mosaic" id="heroMosaic">
 
-        <!-- 3D FLOATING PHONE CONTAINER -->
-        <div class="phone-container" id="phoneContainer" title="Drag to rotate 3D view">
-          <div class="phone-3d-wrapper" id="phone3dWrapper">
-            <img
-              src="assets/phone.png"
-              class="phone-image"
-              id="phoneImage"
-              alt="iPhone 18 Pro Max Titanium Showroom Centerpiece"
-              draggable="false"
-            />
-            <div class="phone-lens-flare" id="phoneGlare"></div>
+          <!-- COLUMN 1: colDown marquee (10 cards for seamless -50% loop) -->
+          <div class="col c1">
+            <!-- 1. Solid Crimson Flagship Tile -->
+            <div class="cell solid crimson">
+              <div>
+                <span class="solid-icon">🏛️</span>
+                <div class="solid-tag">MOBILE STATION</div>
+              </div>
+              <div>
+                <div class="solid-h">Showroom Flagship</div>
+                <div class="solid-sub">Delhi NCR Exclusive Studio • 100% Genuine</div>
+              </div>
+            </div>
+
+            <!-- 2. Phone Cell: iPhone 18 Pro Max -->
+            <a href="#flagships" class="cell ph" title="iPhone 18 Pro Max">
+              <div class="cell-ph-header">
+                <span class="cell-brand-tag">APPLE</span>
+                <span class="cell-live-badge">In Stock</span>
+              </div>
+              <div class="cell-ph-media">
+                <img src="assets/iphone-18-pro-max.png" alt="iPhone 18 Pro Max" loading="eager" />
+              </div>
+              <div class="cell-ph-footer">
+                <div class="cell-title">iPhone 18 Pro Max</div>
+                <div class="cell-price-row">
+                  <span class="cell-price">₹1,79,900</span>
+                  <span class="cell-mrp">₹1,89,900</span>
+                </div>
+              </div>
+            </a>
+
+            <!-- 3. Phone Cell: Samsung Galaxy S26 Ultra -->
+            <a href="#flagships" class="cell ph" title="Samsung Galaxy S26 Ultra">
+              <div class="cell-ph-header">
+                <span class="cell-brand-tag">SAMSUNG</span>
+                <span class="cell-live-badge">Hot</span>
+              </div>
+              <div class="cell-ph-media">
+                <img src="assets/samsung-s26-ultra.png" alt="Galaxy S26 Ultra" loading="eager" />
+              </div>
+              <div class="cell-ph-footer">
+                <div class="cell-title">Galaxy S26 Ultra</div>
+                <div class="cell-price-row">
+                  <span class="cell-price">₹1,39,999</span>
+                  <span class="cell-mrp">₹1,49,999</span>
+                </div>
+              </div>
+            </a>
+
+            <!-- 4. Solid Gold Tile: Warranty & Seal -->
+            <div class="cell solid gold">
+              <div>
+                <span class="solid-icon">🛡️</span>
+                <div class="solid-tag">ASSURANCE</div>
+              </div>
+              <div>
+                <div class="solid-h">Zero-Defect Seal</div>
+                <div class="solid-sub">1-Yr Official Brand Warranty • Factory Sealed</div>
+              </div>
+            </div>
+
+            <!-- 5. Phone Cell: Google Pixel 11 Pro -->
+            <a href="#flagships" class="cell ph" title="Google Pixel 11 Pro">
+              <div class="cell-ph-header">
+                <span class="cell-brand-tag">GOOGLE</span>
+                <span class="cell-live-badge">New</span>
+              </div>
+              <div class="cell-ph-media">
+                <img src="assets/pixel-11-pro.png" alt="Pixel 11 Pro" loading="eager" />
+              </div>
+              <div class="cell-ph-footer">
+                <div class="cell-title">Pixel 11 Pro</div>
+                <div class="cell-price-row">
+                  <span class="cell-price">₹1,09,999</span>
+                  <span class="cell-mrp">₹1,19,999</span>
+                </div>
+              </div>
+            </a>
+
+            <!-- DUPLICATE SET FOR INFINITE CSS MARQUEE LOOP -->
+            <div class="cell solid crimson" aria-hidden="true">
+              <div>
+                <span class="solid-icon">🏛️</span>
+                <div class="solid-tag">MOBILE STATION</div>
+              </div>
+              <div>
+                <div class="solid-h">Showroom Flagship</div>
+                <div class="solid-sub">Delhi NCR Exclusive Studio • 100% Genuine</div>
+              </div>
+            </div>
+
+            <a href="#flagships" class="cell ph" title="iPhone 18 Pro Max" aria-hidden="true" tabindex="-1">
+              <div class="cell-ph-header">
+                <span class="cell-brand-tag">APPLE</span>
+                <span class="cell-live-badge">In Stock</span>
+              </div>
+              <div class="cell-ph-media">
+                <img src="assets/iphone-18-pro-max.png" alt="iPhone 18 Pro Max" loading="eager" />
+              </div>
+              <div class="cell-ph-footer">
+                <div class="cell-title">iPhone 18 Pro Max</div>
+                <div class="cell-price-row">
+                  <span class="cell-price">₹1,79,900</span>
+                  <span class="cell-mrp">₹1,89,900</span>
+                </div>
+              </div>
+            </a>
+
+            <a href="#flagships" class="cell ph" title="Samsung Galaxy S26 Ultra" aria-hidden="true" tabindex="-1">
+              <div class="cell-ph-header">
+                <span class="cell-brand-tag">SAMSUNG</span>
+                <span class="cell-live-badge">Hot</span>
+              </div>
+              <div class="cell-ph-media">
+                <img src="assets/samsung-s26-ultra.png" alt="Galaxy S26 Ultra" loading="eager" />
+              </div>
+              <div class="cell-ph-footer">
+                <div class="cell-title">Galaxy S26 Ultra</div>
+                <div class="cell-price-row">
+                  <span class="cell-price">₹1,39,999</span>
+                  <span class="cell-mrp">₹1,49,999</span>
+                </div>
+              </div>
+            </a>
+
+            <div class="cell solid gold" aria-hidden="true">
+              <div>
+                <span class="solid-icon">🛡️</span>
+                <div class="solid-tag">ASSURANCE</div>
+              </div>
+              <div>
+                <div class="solid-h">Zero-Defect Seal</div>
+                <div class="solid-sub">1-Yr Official Brand Warranty • Factory Sealed</div>
+              </div>
+            </div>
+
+            <a href="#flagships" class="cell ph" title="Google Pixel 11 Pro" aria-hidden="true" tabindex="-1">
+              <div class="cell-ph-header">
+                <span class="cell-brand-tag">GOOGLE</span>
+                <span class="cell-live-badge">New</span>
+              </div>
+              <div class="cell-ph-media">
+                <img src="assets/pixel-11-pro.png" alt="Pixel 11 Pro" loading="eager" />
+              </div>
+              <div class="cell-ph-footer">
+                <div class="cell-title">Pixel 11 Pro</div>
+                <div class="cell-price-row">
+                  <span class="cell-price">₹1,09,999</span>
+                  <span class="cell-mrp">₹1,19,999</span>
+                </div>
+              </div>
+            </a>
           </div>
-        </div>
 
-        <!-- Front Orbit Ring (passes in front of phone) -->
-        <div class="aura-front-system">
-          <div class="orbit orbit-front orbit-3"></div>
-          <div class="orbit orbit-front orbit-4"></div>
-        </div>
+          <!-- COLUMN 2: colUp marquee (10 cards for seamless -50% loop) -->
+          <div class="col c2">
+            <!-- 1. Solid Gold Tile: VIP Desk -->
+            <div class="cell solid gold">
+              <div>
+                <span class="solid-icon">⭐</span>
+                <div class="solid-tag">VIP DESK</div>
+              </div>
+              <div>
+                <div class="solid-h">Concierge Buying</div>
+                <div class="solid-sub">Dedicated Specialist • Instant Setup</div>
+              </div>
+            </div>
 
-        <!-- Studio Pedestal Base & Floor Reflection -->
-        <div class="pedestal-assembly">
-          <div class="pedestal-disc-top"></div>
-          <div class="pedestal-glow-ring"></div>
-          <div class="phone-pedestal-shadow"></div>
-          <div class="phone-mirror-reflection">
-            <img src="assets/phone.png" id="phoneReflectionImg" alt="Floor Reflection" />
+            <!-- 2. Phone Cell: Galaxy Z Fold 8 -->
+            <a href="#flagships" class="cell ph" title="Samsung Galaxy Z Fold 8">
+              <div class="cell-ph-header">
+                <span class="cell-brand-tag">SAMSUNG</span>
+                <span class="cell-live-badge">Foldable</span>
+              </div>
+              <div class="cell-ph-media">
+                <img src="assets/samsung-z-fold8.png" alt="Galaxy Z Fold 8" loading="eager" />
+              </div>
+              <div class="cell-ph-footer">
+                <div class="cell-title">Galaxy Z Fold 8</div>
+                <div class="cell-price-row">
+                  <span class="cell-price">₹1,74,999</span>
+                  <span class="cell-mrp">₹1,84,999</span>
+                </div>
+              </div>
+            </a>
+
+            <!-- 3. Solid Dark Obsidian Tile: Archive Retrospective -->
+            <div class="cell solid dark">
+              <div>
+                <span class="solid-icon">💎</span>
+                <div class="solid-tag">ARCHIVE '26</div>
+              </div>
+              <div>
+                <div class="solid-h">180+ Active Models</div>
+                <div class="solid-sub">Live Showroom Stock • All Colors In-Hand</div>
+              </div>
+            </div>
+
+            <!-- 4. Phone Cell: iPhone Air -->
+            <a href="#flagships" class="cell ph" title="iPhone Air">
+              <div class="cell-ph-header">
+                <span class="cell-brand-tag">APPLE</span>
+                <span class="cell-live-badge">Ultralight</span>
+              </div>
+              <div class="cell-ph-media">
+                <img src="assets/iphone-air.png" alt="iPhone Air" loading="eager" />
+              </div>
+              <div class="cell-ph-footer">
+                <div class="cell-title">iPhone Air Ultra-Thin</div>
+                <div class="cell-price-row">
+                  <span class="cell-price">₹1,19,900</span>
+                  <span class="cell-mrp">₹1,29,900</span>
+                </div>
+              </div>
+            </a>
+
+            <!-- 5. Solid Crimson Tile: Delivery -->
+            <div class="cell solid crimson">
+              <div>
+                <span class="solid-icon">⚡</span>
+                <div class="solid-tag">EXPRESS DISPATCH</div>
+              </div>
+              <div>
+                <div class="solid-h">Day-1 Delivery</div>
+                <div class="solid-sub">Secure Tamper-Proof Insured Transit</div>
+              </div>
+            </div>
+
+            <!-- DUPLICATE SET FOR INFINITE CSS MARQUEE LOOP -->
+            <div class="cell solid gold" aria-hidden="true">
+              <div>
+                <span class="solid-icon">⭐</span>
+                <div class="solid-tag">VIP DESK</div>
+              </div>
+              <div>
+                <div class="solid-h">Concierge Buying</div>
+                <div class="solid-sub">Dedicated Specialist • Instant Setup</div>
+              </div>
+            </div>
+
+            <a href="#flagships" class="cell ph" title="Samsung Galaxy Z Fold 8" aria-hidden="true" tabindex="-1">
+              <div class="cell-ph-header">
+                <span class="cell-brand-tag">SAMSUNG</span>
+                <span class="cell-live-badge">Foldable</span>
+              </div>
+              <div class="cell-ph-media">
+                <img src="assets/samsung-z-fold8.png" alt="Galaxy Z Fold 8" loading="eager" />
+              </div>
+              <div class="cell-ph-footer">
+                <div class="cell-title">Galaxy Z Fold 8</div>
+                <div class="cell-price-row">
+                  <span class="cell-price">₹1,74,999</span>
+                  <span class="cell-mrp">₹1,84,999</span>
+                </div>
+              </div>
+            </a>
+
+            <div class="cell solid dark" aria-hidden="true">
+              <div>
+                <span class="solid-icon">💎</span>
+                <div class="solid-tag">ARCHIVE '26</div>
+              </div>
+              <div>
+                <div class="solid-h">180+ Active Models</div>
+                <div class="solid-sub">Live Showroom Stock • All Colors In-Hand</div>
+              </div>
+            </div>
+
+            <a href="#flagships" class="cell ph" title="iPhone Air" aria-hidden="true" tabindex="-1">
+              <div class="cell-ph-header">
+                <span class="cell-brand-tag">APPLE</span>
+                <span class="cell-live-badge">Ultralight</span>
+              </div>
+              <div class="cell-ph-media">
+                <img src="assets/iphone-air.png" alt="iPhone Air" loading="eager" />
+              </div>
+              <div class="cell-ph-footer">
+                <div class="cell-title">iPhone Air Ultra-Thin</div>
+                <div class="cell-price-row">
+                  <span class="cell-price">₹1,19,900</span>
+                  <span class="cell-mrp">₹1,29,900</span>
+                </div>
+              </div>
+            </a>
+
+            <div class="cell solid crimson" aria-hidden="true">
+              <div>
+                <span class="solid-icon">⚡</span>
+                <div class="solid-tag">EXPRESS DISPATCH</div>
+              </div>
+              <div>
+                <div class="solid-h">Day-1 Delivery</div>
+                <div class="solid-sub">Secure Tamper-Proof Insured Transit</div>
+              </div>
+            </div>
           </div>
-        </div>
 
-        <!-- 3D Interactive Indicator -->
-        <div class="drag-hint" id="dragHint">
-          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-            <polyline points="15 18 9 12 15 6"></polyline>
-          </svg>
-          <span>Drag to Rotate 3D</span>
-          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-            <polyline points="9 18 15 12 9 6"></polyline>
-          </svg>
+          <!-- COLUMN 3: colDown marquee (10 cards for seamless -50% loop) -->
+          <div class="col c3">
+            <!-- 1. Phone Cell: OnePlus 15 -->
+            <a href="#flagships" class="cell ph" title="OnePlus 15">
+              <div class="cell-ph-header">
+                <span class="cell-brand-tag">ONEPLUS</span>
+                <span class="cell-live-badge">Speed</span>
+              </div>
+              <div class="cell-ph-media">
+                <img src="assets/oneplus-15.png" alt="OnePlus 15" loading="eager" />
+              </div>
+              <div class="cell-ph-footer">
+                <div class="cell-title">OnePlus 15 5G</div>
+                <div class="cell-price-row">
+                  <span class="cell-price">₹72,999</span>
+                  <span class="cell-mrp">₹79,999</span>
+                </div>
+              </div>
+            </a>
+
+            <!-- 2. Solid Cream Tile: Exchange Bonus -->
+            <div class="cell solid cream">
+              <div>
+                <span class="solid-icon">🔄</span>
+                <div class="solid-tag">TRADE-IN</div>
+              </div>
+              <div>
+                <div class="solid-h">Instant Exchange</div>
+                <div class="solid-sub">Up to ₹12,000 Extra Valuation on Old Device</div>
+              </div>
+            </div>
+
+            <!-- 3. Phone Cell: Galaxy Z Flip 8 -->
+            <a href="#flagships" class="cell ph" title="Samsung Galaxy Z Flip 8">
+              <div class="cell-ph-header">
+                <span class="cell-brand-tag">SAMSUNG</span>
+                <span class="cell-live-badge">Flip</span>
+              </div>
+              <div class="cell-ph-media">
+                <img src="assets/samsung-z-flip8.png" alt="Galaxy Z Flip 8" loading="eager" />
+              </div>
+              <div class="cell-ph-footer">
+                <div class="cell-title">Galaxy Z Flip 8</div>
+                <div class="cell-price-row">
+                  <span class="cell-price">₹1,09,999</span>
+                  <span class="cell-mrp">₹1,19,999</span>
+                </div>
+              </div>
+            </a>
+
+            <!-- 4. Solid Gold Tile: Finance Options -->
+            <div class="cell solid gold">
+              <div>
+                <span class="solid-icon">💳</span>
+                <div class="solid-tag">FINANCE</div>
+              </div>
+              <div>
+                <div class="solid-h">0% Instant EMI</div>
+                <div class="solid-sub">Paperless Approval • HDFC • ICICI • SBI</div>
+              </div>
+            </div>
+
+            <!-- 5. Phone Cell: iPhone 17 Pro Max -->
+            <a href="#flagships" class="cell ph" title="iPhone 17 Pro Max">
+              <div class="cell-ph-header">
+                <span class="cell-brand-tag">APPLE</span>
+                <span class="cell-live-badge">Titanium</span>
+              </div>
+              <div class="cell-ph-media">
+                <img src="assets/iphone-17-pro-max.png" alt="iPhone 17 Pro Max" loading="eager" />
+              </div>
+              <div class="cell-ph-footer">
+                <div class="cell-title">iPhone 17 Pro Max</div>
+                <div class="cell-price-row">
+                  <span class="cell-price">₹1,44,900</span>
+                  <span class="cell-mrp">₹1,59,900</span>
+                </div>
+              </div>
+            </a>
+
+            <!-- DUPLICATE SET FOR INFINITE CSS MARQUEE LOOP -->
+            <a href="#flagships" class="cell ph" title="OnePlus 15" aria-hidden="true" tabindex="-1">
+              <div class="cell-ph-header">
+                <span class="cell-brand-tag">ONEPLUS</span>
+                <span class="cell-live-badge">Speed</span>
+              </div>
+              <div class="cell-ph-media">
+                <img src="assets/oneplus-15.png" alt="OnePlus 15" loading="eager" />
+              </div>
+              <div class="cell-ph-footer">
+                <div class="cell-title">OnePlus 15 5G</div>
+                <div class="cell-price-row">
+                  <span class="cell-price">₹72,999</span>
+                  <span class="cell-mrp">₹79,999</span>
+                </div>
+              </div>
+            </a>
+
+            <div class="cell solid cream" aria-hidden="true">
+              <div>
+                <span class="solid-icon">🔄</span>
+                <div class="solid-tag">TRADE-IN</div>
+              </div>
+              <div>
+                <div class="solid-h">Instant Exchange</div>
+                <div class="solid-sub">Up to ₹12,000 Extra Valuation on Old Device</div>
+              </div>
+            </div>
+
+            <a href="#flagships" class="cell ph" title="Samsung Galaxy Z Flip 8" aria-hidden="true" tabindex="-1">
+              <div class="cell-ph-header">
+                <span class="cell-brand-tag">SAMSUNG</span>
+                <span class="cell-live-badge">Flip</span>
+              </div>
+              <div class="cell-ph-media">
+                <img src="assets/samsung-z-flip8.png" alt="Galaxy Z Flip 8" loading="eager" />
+              </div>
+              <div class="cell-ph-footer">
+                <div class="cell-title">Galaxy Z Flip 8</div>
+                <div class="cell-price-row">
+                  <span class="cell-price">₹1,09,999</span>
+                  <span class="cell-mrp">₹1,19,999</span>
+                </div>
+              </div>
+            </a>
+
+            <div class="cell solid gold" aria-hidden="true">
+              <div>
+                <span class="solid-icon">💳</span>
+                <div class="solid-tag">FINANCE</div>
+              </div>
+              <div>
+                <div class="solid-h">0% Instant EMI</div>
+                <div class="solid-sub">Paperless Approval • HDFC • ICICI • SBI</div>
+              </div>
+            </div>
+
+            <a href="#flagships" class="cell ph" title="iPhone 17 Pro Max" aria-hidden="true" tabindex="-1">
+              <div class="cell-ph-header">
+                <span class="cell-brand-tag">APPLE</span>
+                <span class="cell-live-badge">Titanium</span>
+              </div>
+              <div class="cell-ph-media">
+                <img src="assets/iphone-17-pro-max.png" alt="iPhone 17 Pro Max" loading="eager" />
+              </div>
+              <div class="cell-ph-footer">
+                <div class="cell-title">iPhone 17 Pro Max</div>
+                <div class="cell-price-row">
+                  <span class="cell-price">₹1,44,900</span>
+                  <span class="cell-mrp">₹1,59,900</span>
+                </div>
+              </div>
+            </a>
+          </div>
+
         </div>
       </div>
-
-
-      <!-- RIGHT SIDE: PREMIUM GLASS PRODUCT CARD -->
-      <aside class="product-panel glass-card" id="heroProductPanel">
-        <div class="product-panel-header">
-          <div class="brand-chip">
-            <span class="brand-chip-icon">🍎</span>
-            <span id="heroBrandLabel">Apple Flagship</span>
-          </div>
-          <span class="stock-indicator">In Stock • Day-1 Delivery</span>
-        </div>
-
-        <h3 class="panel-product-name" id="heroCardTitle">iPhone 18 Pro Max</h3>
-
-        <div class="price-container">
-          <div class="price-main">
-            <strong id="heroCardPrice">₹1,79,900</strong>
-            <span class="price-label">onwards</span>
-          </div>
-          <div class="emi-badge" id="heroEmiTag">EMI starts at ₹7,990/mo</div>
-        </div>
-
-        <!-- Storage Selection -->
-        <div class="selector-group">
-          <div class="selector-header">
-            <span>Storage Capacity</span>
-            <small id="selectedStorageText">256GB</small>
-          </div>
-          <div class="storage-options-grid" id="heroStorageSelector">
-            <button class="storage-btn active" data-storage="256GB" data-price="179900">256GB</button>
-            <button class="storage-btn" data-storage="512GB" data-price="199900">512GB</button>
-            <button class="storage-btn" data-storage="1TB" data-price="224900">1TB</button>
-            <button class="storage-btn" data-storage="2TB" data-price="249900">2TB</button>
-          </div>
-        </div>
-
-        <!-- Color Selection -->
-        <div class="selector-group">
-          <div class="selector-header">
-            <span>Finish / Color</span>
-            <strong id="heroSelectedColorName">Deep Red Titanium</strong>
-          </div>
-          <div class="color-options-row" id="heroColorSelector">
-            <button class="color-swatch active deep-red" data-color="Deep Red Titanium" data-filter="hue-rotate(0deg)" title="Deep Red Titanium"></button>
-            <button class="color-swatch champagne" data-color="Champagne Gold" data-filter="hue-rotate(45deg) saturate(1.2)" title="Champagne Gold"></button>
-            <button class="color-swatch silver" data-color="Natural Titanium" data-filter="grayscale(1) brightness(1.1)" title="Natural Titanium"></button>
-            <button class="color-swatch graphite" data-color="Space Graphite" data-filter="brightness(0.5) contrast(1.3)" title="Space Graphite"></button>
-          </div>
-        </div>
-
-        <!-- Key Actions -->
-        <div class="panel-cta-stack">
-          <button class="btn btn-crimson btn-full" id="heroAddBagBtn">
-            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-              <path d="M6 2L3 6v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V6l-3-4z"></path>
-              <line x1="3" y1="6" x2="21" y2="6"></line>
-              <path d="M16 10a4 4 0 0 1-8 0"></path>
-            </svg>
-            ADD TO BAG
-          </button>
-
-          <div class="panel-secondary-actions">
-            <button class="btn btn-whatsapp-secondary" id="heroWhatsAppBtn" onclick="openHeroWhatsApp()">
-              <span>💬</span> Chat on WhatsApp
-            </button>
-            <button class="btn btn-callback-secondary" id="heroCallbackBtn" onclick="openCallbackModal('iPhone 18 Pro Max')">
-              <span>📞</span> Request Callback
-            </button>
-          </div>
-        </div>
-
-        <!-- Showroom Trust Badges -->
-        <div class="panel-trust-bar">
-          <div>✓ 100% Sealed Box Pack</div>
-          <div>✓ 0% Instant EMI Options</div>
-        </div>
-      </aside>
 
     </div>
 
@@ -465,7 +787,7 @@
 
       <!-- Brand Filter Tabs -->
       <div class="brand-filter-tabs" id="brandFilterTabs">
-        <button class="brand-tab active" data-brand="all">All Brands (32)</button>
+        <button class="brand-tab active" data-brand="all"><span>📱</span> All Brands (32)</button>
         <button class="brand-tab" data-brand="apple">🍎 Apple (6)</button>
         <button class="brand-tab" data-brand="samsung">🪐 Samsung (6)</button>
         <button class="brand-tab" data-brand="oneplus">⚡ OnePlus (4)</button>
@@ -1135,8 +1457,8 @@
         <span>💬</span> Complete Order on WhatsApp →
       </button>
 
-      <button class="btn btn-outline-light btn-full" onclick="closeBagDrawer()">
-        Continue Exploring Flagships
+      <button class="btn btn-outline-light btn-full btn-continue-shopping" onclick="closeBagDrawer()">
+        <span>🛍️</span> Continue Exploring Flagships
       </button>
     </div>
   </aside>
@@ -1357,5 +1679,17 @@
   <script src="js/add-phone.js"></script>
   <script src="js/google-reviews.js"></script>
   <script src="script.js"></script>
+  <script>
+    // Mobile Station Hero Mosaic: Seamless infinite loop duplication (5 -> 10 cells)
+    (function initHeroMosaic() {
+      const cols = document.querySelectorAll('.hero-mosaic .col');
+      cols.forEach(col => {
+        const items = Array.from(col.children);
+        items.forEach(item => {
+          col.appendChild(item.cloneNode(true));
+        });
+      });
+    })();
+  </script>
 </body>
 </html>

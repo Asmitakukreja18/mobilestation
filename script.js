@@ -594,7 +594,7 @@ function updateBagUI() {
               <span class="qty-val">${item.qty}</span>
               <button class="qty-btn" onclick="updateQty(${idx}, 1)">+</button>
             </div>
-            <button class="remove-btn" onclick="removeBagItem(${idx})">Remove</button>
+            <button class="remove-btn" onclick="removeBagItem(${idx})"><span>🗑️</span> Remove</button>
           </div>
         </div>
       </div>
@@ -944,6 +944,11 @@ function initNavbarScroll() {
   if (menuToggle && mobileDrawer) {
     menuToggle.addEventListener("click", () => {
       mobileDrawer.classList.toggle("open");
+    });
+    mobileDrawer.querySelectorAll("a").forEach(link => {
+      link.addEventListener("click", () => {
+        closeMobileMenu();
+      });
     });
   }
 }
