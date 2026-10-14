@@ -67,6 +67,9 @@ html {
   scroll-behavior: smooth;
   font-size: 16px;
   background-color: var(--showroom-bg);
+  overflow-x: hidden;
+  width: 100%;
+  max-width: 100vw;
 }
 
 body {
@@ -75,6 +78,8 @@ body {
   color: var(--text-primary);
   line-height: 1.6;
   overflow-x: hidden;
+  width: 100%;
+  max-width: 100vw;
   -webkit-font-smoothing: antialiased;
 }
 

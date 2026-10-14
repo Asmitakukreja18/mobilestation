@@ -68,6 +68,9 @@ html {
   scroll-behavior: smooth;
   font-size: 16px;
   background-color: var(--showroom-bg);
+  overflow-x: hidden;
+  width: 100%;
+  max-width: 100vw;
 }
 
 body {
@@ -76,6 +79,8 @@ body {
   color: var(--text-primary);
   line-height: 1.6;
   overflow-x: hidden;
+  width: 100%;
+  max-width: 100vw;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 }
@@ -1693,15 +1698,44 @@ img {
     padding: 0 24px;
     margin-top: 28px;
   }
+
+  @media (min-width: 880px) and (max-width: 1024px) {
+    .hero-stage-container {
+      display: grid !important;
+      grid-template-columns: 1fr 1.15fr !important;
+      align-items: center !important;
+      text-align: left !important;
+      gap: 32px !important;
+      padding: 16px 28px 0 !important;
+    }
+    .hero-copy {
+      text-align: left !important;
+      align-items: flex-start !important;
+      margin: 0 !important;
+    }
+    .hero-badges-row,
+    .hero-quick-cta-row {
+      justify-content: flex-start !important;
+      margin-left: 0 !important;
+    }
+    .eyebrow-badge,
+    .hero-showroom-live-status {
+      margin-left: 0 !important;
+    }
+    .hero-mosaic-container {
+      margin-left: auto !important;
+      margin-right: 0 !important;
+    }
+  }
 }
 
 /* 4. MOBILE PHONES (361px - 767px) */
 @media (max-width: 767px) {
   :root {
-    --col: clamp(142px, 43vw, 170px);
-    --gap: 9px;
-    --pitch: calc(var(--col) * 1.34);
-    --r: 16px;
+    --gap: clamp(6px, 1.8vw, 8px);
+    --col: calc((100% - (2 * var(--gap))) / 3);
+    --pitch: calc(var(--col) * 1.38);
+    --r: 14px;
   }
 
   .navbar {
@@ -1729,9 +1763,11 @@ img {
   }
 
   .hero {
-    padding-top: 82px;
+    padding-top: 80px;
     min-height: auto;
-    padding-bottom: 30px;
+    padding-bottom: 24px;
+    overflow: hidden;
+    width: 100%;
   }
 
   .hero-stage-container {
@@ -1739,36 +1775,38 @@ img {
     flex-direction: column;
     align-items: center;
     text-align: center;
-    gap: 22px;
-    padding: 12px 14px 0;
+    gap: 16px;
+    padding: 8px 12px 0;
     min-height: auto;
     width: 100%;
+    max-width: 100%;
+    box-sizing: border-box;
   }
 
   .hero-copy {
     align-items: center;
     text-align: center;
-    gap: 12px;
+    gap: 8px;
     max-width: 100%;
     width: 100%;
   }
 
   .eyebrow-badge {
-    font-size: 10.5px;
-    letter-spacing: 1.5px;
-    padding: 4px 12px;
+    font-size: 10px;
+    letter-spacing: 1.2px;
+    padding: 3px 10px;
     margin: 0 auto;
   }
 
   .hero-title {
-    font-size: clamp(26px, 7.5vw, 36px);
-    line-height: 1.12;
+    font-size: clamp(23px, 6.2vw, 32px);
+    line-height: 1.08;
     letter-spacing: -0.02em;
   }
 
   .hero-tagline {
-    font-size: 13.5px;
-    line-height: 1.5;
+    font-size: 12.5px;
+    line-height: 1.45;
     max-width: 95%;
     margin: 0 auto;
   }
@@ -1776,147 +1814,209 @@ img {
   .hero-badges-row {
     justify-content: center;
     gap: 6px;
+    margin-top: 2px;
   }
 
   .pill-badge {
-    font-size: 10.5px;
-    padding: 4px 10px;
+    font-size: 10px;
+    padding: 3px 9px;
   }
 
   .hero-quick-cta-row {
-    flex-direction: column;
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 8px;
     width: 100%;
-    max-width: 320px;
-    gap: 10px;
     margin: 4px auto 0;
   }
 
-  .hero-quick-cta-row .btn-crimson,
+  .hero-quick-cta-row .btn-dark-pill,
   .hero-quick-cta-row .btn-outline-hero {
-    width: 100%;
-    padding: 12px 18px;
-    font-size: 13.5px;
+    padding: 10px 16px !important;
+    font-size: 12.5px !important;
+    border-radius: 999px !important;
     justify-content: center;
     text-align: center;
   }
 
   .btn-text-link {
     justify-content: center;
-    font-size: 13px;
+    font-size: 12px;
+    margin-top: 2px;
   }
 
   .hero-showroom-live-status {
-    margin: 4px auto 0;
-    padding: 7px 14px;
-    border-radius: 16px;
+    margin: 2px auto 0;
+    padding: 5px 12px;
+    border-radius: 14px;
     width: fit-content;
   }
   .hero-showroom-live-status strong {
-    font-size: 11.5px;
+    font-size: 11px;
   }
   .hero-showroom-live-status small {
-    font-size: 10px;
+    font-size: 9.5px;
   }
 
-  /* 2-Column Mobile Mosaic */
-  .hero-mosaic .col.c3 {
-    display: none !important;
-  }
-
+  /* 3-COLUMN MARQUEE PRESERVED ON MOBILE (EXACTLY AS DESKTOP) */
   .hero-mosaic-container {
-    width: calc(2 * var(--col) + var(--gap));
-    max-width: 100%;
-    height: 390px;
+    width: 100%;
+    max-width: min(100%, 430px);
+    height: clamp(380px, 48vh, 440px);
     margin: 0 auto;
-    border-radius: 20px;
+    border-radius: 18px;
+    overflow: hidden;
+    position: relative;
     touch-action: pan-y;
+    -webkit-mask-image: linear-gradient(to bottom, transparent 0%, black 7%, black 93%, transparent 100%);
+    mask-image: linear-gradient(to bottom, transparent 0%, black 7%, black 93%, transparent 100%);
   }
 
-  /* Compact Card Sizing for Mobile */
+  .hero-mosaic {
+    position: relative;
+    width: 100%;
+    height: 100%;
+  }
+
+  .hero-mosaic .col {
+    position: absolute;
+    width: var(--col);
+    gap: var(--gap);
+  }
+
+  .hero-mosaic .col.c1 {
+    left: 0;
+    top: 40px;
+  }
+
+  .hero-mosaic .col.c2 {
+    left: calc(var(--col) + var(--gap));
+    top: -16px;
+  }
+
+  .hero-mosaic .col.c3 {
+    display: flex !important;
+    left: calc(2 * (var(--col) + var(--gap))) !important;
+    top: 40px;
+  }
+
+  /* High-Density Card Sizing for Mobile 3-Column Display */
+  .hero-mosaic .cell {
+    width: var(--col);
+    height: calc(var(--pitch) - var(--gap));
+    border-radius: var(--r);
+    box-shadow: 0 4px 12px rgba(15, 15, 14, 0.08);
+  }
+
   .hero-mosaic .cell.ph {
-    padding: 9px 8px 8px;
+    padding: 7px 5px 5px;
   }
   .hero-mosaic .cell.ph .cell-brand-tag {
-    font-size: 8.5px;
-    padding: 1px 5px;
+    font-size: 7.5px;
+    padding: 1px 4px;
   }
   .hero-mosaic .cell.ph .cell-live-badge {
-    font-size: 8px;
-    padding: 1px 5px;
+    font-size: 7px;
+    padding: 1px 4px;
+    gap: 2px;
+  }
+  .hero-mosaic .cell.ph .cell-live-badge::before {
+    width: 4px;
+    height: 4px;
+  }
+  .hero-mosaic .cell.ph .cell-ph-media {
+    padding: 2px 0;
   }
   .hero-mosaic .cell.ph img {
-    max-height: 98px;
-    max-width: 86%;
+    max-height: 72px;
+    max-width: 88%;
+    filter: drop-shadow(0 6px 10px rgba(0, 0, 0, 0.12));
   }
   .hero-mosaic .cell.ph .cell-ph-footer {
-    padding: 5px 8px;
-    border-radius: 10px;
+    padding: 3px 5px;
+    border-radius: 8px;
   }
   .hero-mosaic .cell.ph .cell-title {
-    font-size: 10.5px;
+    font-size: 9.5px;
+    font-weight: 800;
+    line-height: 1.15;
   }
   .hero-mosaic .cell.ph .cell-price {
-    font-size: 11.5px;
+    font-size: 10px;
+    font-weight: 900;
   }
   .hero-mosaic .cell.ph .cell-mrp {
-    font-size: 9px;
+    font-size: 7.5px;
   }
 
   /* Compact Solid Tiles for Mobile */
   .hero-mosaic .cell.solid {
-    padding: 14px 12px;
+    padding: 10px 8px;
   }
   .hero-mosaic .cell.solid .solid-icon {
-    font-size: 19px;
+    font-size: 18px;
   }
   .hero-mosaic .cell.solid .solid-tag {
-    font-size: 8px;
+    font-size: 7.5px;
   }
   .hero-mosaic .cell.solid .solid-h {
-    font-size: 12.5px;
-    margin-top: 2px;
-    line-height: 1.2;
+    font-size: 11px;
+    margin-top: 1px;
+    line-height: 1.15;
   }
   .hero-mosaic .cell.solid .solid-sub {
-    font-size: 9.5px;
-    margin-top: 2px;
-    line-height: 1.25;
+    font-size: 8.5px;
+    margin-top: 1px;
+    line-height: 1.2;
   }
 
   /* Bottom Specs on Mobile */
   .hero-bottom-specs {
     grid-template-columns: repeat(2, 1fr);
-    gap: 10px;
-    padding: 0 14px;
-    margin-top: 20px;
+    gap: 8px;
+    padding: 0 12px;
+    margin-top: 16px;
   }
   .spec-tile {
-    padding: 10px 12px;
-    gap: 8px;
-    border-radius: 12px;
+    padding: 8px 10px;
+    gap: 6px;
+    border-radius: 10px;
   }
   .spec-icon {
-    font-size: 16px;
+    font-size: 15px;
   }
   .spec-info strong {
-    font-size: 12px;
+    font-size: 11px;
   }
   .spec-info span {
-    font-size: 9.5px;
+    font-size: 8.5px;
   }
 }
 
 /* 5. EXTRA-NARROW SMARTPHONES (<= 360px) */
 @media (max-width: 360px) {
   :root {
-    --col: 136px;
-    --gap: 7px;
+    --gap: 5px;
+    --col: calc((100% - (2 * var(--gap))) / 3);
+    --pitch: calc(var(--col) * 1.35);
+    --r: 12px;
   }
   .hero-mosaic-container {
-    height: 360px;
+    height: 350px;
   }
   .hero-title {
-    font-size: 25px;
+    font-size: 22px;
+  }
+  .hero-mosaic .cell.ph img {
+    max-height: 62px;
+  }
+  .hero-mosaic .cell.ph .cell-title {
+    font-size: 8.5px;
+  }
+  .hero-mosaic .cell.ph .cell-price {
+    font-size: 9px;
   }
   .hero-bottom-specs {
     grid-template-columns: 1fr;

@@ -195,3 +195,38 @@
     justify-content: center;
   }
 }
+
+@media (max-width: 640px) {
+  .brand-hero-section {
+    padding-top: 90px;
+    padding-bottom: 40px;
+  }
+  .brand-hero-title {
+    font-size: clamp(28px, 7vw, 38px);
+  }
+  .brand-hero-stage {
+    min-height: 320px;
+    overflow: hidden;
+    max-width: 100%;
+  }
+  .brand-stage-glow {
+    width: min(280px, 80vw);
+    height: min(280px, 80vw);
+  }
+  .brand-stage-orbit {
+    width: min(300px, 88vw);
+    height: min(300px, 88vw);
+  }
+  .brand-stage-phone {
+    max-height: 260px;
+  }
+  .brand-price-tag {
+    bottom: 10px;
+    right: 10px;
+    padding: 8px 14px;
+  }
+  .brand-price-tag strong {
+    font-size: 16px;
+  }
+}
+
