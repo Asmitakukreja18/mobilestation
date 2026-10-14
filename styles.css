@@ -1731,13 +1731,6 @@ img {
 
 /* 4. MOBILE PHONES (361px - 767px) */
 @media (max-width: 767px) {
-  :root {
-    --gap: 12px;
-    --col: calc((100% - var(--gap)) / 2);
-    --pitch: calc(var(--col) * 1.35);
-    --r: 18px;
-  }
-
   .navbar {
     height: 72px;
     padding: 0 16px;
@@ -1862,39 +1855,52 @@ img {
 
   /* 2 LUXURY PROPORTIONAL COLUMNS ON SMARTPHONES (NEVER SQUISHED, ZERO TOUCH TRAPPING) */
   .hero-mosaic-container {
-    width: 100%;
-    max-width: 370px;
-    height: 410px;
-    margin: 0 auto;
-    border-radius: 20px;
-    overflow: hidden;
-    position: relative;
+    width: 100% !important;
+    max-width: 380px !important;
+    height: 390px !important;
+    margin: 10px auto 0 !important;
+    border-radius: 20px !important;
+    overflow: hidden !important;
+    position: relative !important;
     touch-action: pan-y !important;
     pointer-events: none !important;
-    -webkit-mask-image: linear-gradient(to bottom, transparent 0%, black 6%, black 94%, transparent 100%);
-    mask-image: linear-gradient(to bottom, transparent 0%, black 6%, black 94%, transparent 100%);
+    -webkit-mask-image: linear-gradient(to bottom, transparent 0%, black 8%, black 92%, transparent 100%) !important;
+    mask-image: linear-gradient(to bottom, transparent 0%, black 8%, black 92%, transparent 100%) !important;
   }
 
   .hero-mosaic {
-    position: relative;
-    width: 100%;
-    height: 100%;
+    display: flex !important;
+    justify-content: space-between !important;
+    gap: 12px !important;
+    width: 100% !important;
+    height: 100% !important;
+    position: relative !important;
   }
 
   .hero-mosaic .col {
-    position: absolute;
-    width: var(--col);
-    gap: var(--gap);
+    position: relative !important;
+    flex: 1 1 0 !important;
+    width: calc(50% - 6px) !important;
+    max-width: calc(50% - 6px) !important;
+    left: auto !important;
+    right: auto !important;
+    top: auto !important;
+    bottom: auto !important;
+    display: flex !important;
+    flex-direction: column !important;
+    gap: 12px !important;
+    will-change: transform !important;
   }
 
   .hero-mosaic .col.c1 {
-    left: 0;
-    top: 30px;
+    animation: colDown 15s linear infinite !important;
+    -webkit-animation: colDown 15s linear infinite !important;
   }
 
   .hero-mosaic .col.c2 {
-    left: calc(var(--col) + var(--gap));
-    top: -20px;
+    animation: colUp 15s linear infinite !important;
+    -webkit-animation: colUp 15s linear infinite !important;
+    display: flex !important;
   }
 
   .hero-mosaic .col.c3 {
@@ -1903,94 +1909,120 @@ img {
 
   /* Spacious High-End Card Sizing for Mobile Display */
   .hero-mosaic .cell {
-    width: var(--col);
-    height: calc(var(--pitch) - var(--gap));
-    border-radius: var(--r);
-    box-shadow: 0 4px 16px rgba(15, 15, 14, 0.08);
+    width: 100% !important;
+    height: 230px !important;
+    border-radius: 18px !important;
+    box-shadow: 0 4px 16px rgba(15, 15, 14, 0.08) !important;
+    flex-shrink: 0 !important;
   }
 
   .hero-mosaic .cell.ph {
-    padding: 10px 9px 8px;
+    padding: 10px 10px 8px !important;
+    display: flex !important;
+    flex-direction: column !important;
+    justify-content: space-between !important;
+  }
+  .hero-mosaic .cell.ph .cell-ph-header {
+    display: flex !important;
+    justify-content: space-between !important;
+    align-items: center !important;
   }
   .hero-mosaic .cell.ph .cell-brand-tag {
-    font-size: 8.5px;
-    padding: 2px 6px;
+    font-size: 9px !important;
+    font-weight: 800 !important;
+    padding: 2px 7px !important;
+    border-radius: 6px !important;
   }
   .hero-mosaic .cell.ph .cell-live-badge {
-    font-size: 8px;
-    padding: 2px 6px;
-    gap: 3px;
+    font-size: 8.5px !important;
+    padding: 2px 7px !important;
+    gap: 4px !important;
   }
   .hero-mosaic .cell.ph .cell-live-badge::before {
-    width: 5px;
-    height: 5px;
+    width: 5px !important;
+    height: 5px !important;
   }
   .hero-mosaic .cell.ph .cell-ph-media {
-    padding: 4px 0;
+    flex: 1 !important;
+    display: flex !important;
+    align-items: center !important;
+    justify-content: center !important;
+    padding: 4px 0 !important;
   }
   .hero-mosaic .cell.ph img {
-    max-height: 98px;
-    max-width: 90%;
-    filter: drop-shadow(0 8px 14px rgba(0, 0, 0, 0.14));
+    max-height: 105px !important;
+    max-width: 90% !important;
+    object-fit: contain !important;
+    filter: drop-shadow(0 8px 14px rgba(0, 0, 0, 0.14)) !important;
   }
   .hero-mosaic .cell.ph .cell-ph-footer {
-    padding: 5px 8px;
-    border-radius: 10px;
+    padding: 6px 10px !important;
+    border-radius: 10px !important;
+    background: #faf8f5 !important;
   }
   .hero-mosaic .cell.ph .cell-title {
-    font-size: 11px;
-    font-weight: 800;
-    line-height: 1.25;
+    font-size: 11.5px !important;
+    font-weight: 800 !important;
+    line-height: 1.25 !important;
+    white-space: nowrap !important;
+    overflow: hidden !important;
+    text-overflow: ellipsis !important;
+    color: #100609 !important;
   }
   .hero-mosaic .cell.ph .cell-price {
-    font-size: 12px;
-    font-weight: 900;
+    font-size: 13px !important;
+    font-weight: 900 !important;
+    color: #100609 !important;
   }
   .hero-mosaic .cell.ph .cell-mrp {
-    font-size: 9px;
+    font-size: 9.5px !important;
+    color: #887076 !important;
   }
 
   /* Solid Brand Tiles on Mobile */
   .hero-mosaic .cell.solid {
-    padding: 14px 12px;
+    padding: 14px 12px !important;
   }
   .hero-mosaic .cell.solid .solid-icon {
-    font-size: 20px;
+    font-size: 22px !important;
   }
   .hero-mosaic .cell.solid .solid-tag {
-    font-size: 8.5px;
+    font-size: 9px !important;
   }
   .hero-mosaic .cell.solid .solid-h {
-    font-size: 13px;
-    margin-top: 2px;
-    line-height: 1.2;
+    font-size: 13.5px !important;
+    margin-top: 2px !important;
+    line-height: 1.2 !important;
   }
   .hero-mosaic .cell.solid .solid-sub {
-    font-size: 9.5px;
-    margin-top: 2px;
-    line-height: 1.25;
+    font-size: 10px !important;
+    margin-top: 2px !important;
+    line-height: 1.25 !important;
   }
 
   /* Bottom Specs on Mobile */
   .hero-bottom-specs {
-    grid-template-columns: repeat(2, 1fr);
-    gap: 10px;
-    padding: 0 14px;
-    margin-top: 20px;
+    grid-template-columns: repeat(2, 1fr) !important;
+    gap: 10px !important;
+    padding: 0 16px !important;
+    margin-top: 20px !important;
+    margin-bottom: 24px !important;
   }
   .spec-tile {
-    padding: 10px 12px;
-    gap: 8px;
-    border-radius: 12px;
+    padding: 12px 14px !important;
+    gap: 10px !important;
+    border-radius: 14px !important;
   }
   .spec-icon {
-    font-size: 18px;
+    font-size: 20px !important;
   }
   .spec-info strong {
-    font-size: 12px;
+    font-size: 12.5px !important;
+    color: #100609 !important;
   }
   .spec-info span {
-    font-size: 9.5px;
+    font-size: 10px !important;
+    color: #584147 !important;
   }
 
   /* Hide mouse wheel scroll hint on mobile touchscreens (fixes overlap issue) */
@@ -2001,30 +2033,27 @@ img {
 
 /* 5. EXTRA-NARROW SMARTPHONES (<= 360px) */
 @media (max-width: 360px) {
-  :root {
-    --gap: 8px;
-    --col: calc((100% - var(--gap)) / 2);
-    --pitch: calc(var(--col) * 1.32);
-    --r: 14px;
-  }
   .hero-mosaic-container {
-    height: 360px;
-    max-width: 320px;
+    height: 360px !important;
+    max-width: 340px !important;
+  }
+  .hero-mosaic .cell {
+    height: 210px !important;
   }
   .hero-title {
-    font-size: 24px;
+    font-size: 24px !important;
   }
   .hero-mosaic .cell.ph img {
-    max-height: 82px;
+    max-height: 90px !important;
   }
   .hero-mosaic .cell.ph .cell-title {
-    font-size: 10px;
+    font-size: 10.5px !important;
   }
   .hero-mosaic .cell.ph .cell-price {
-    font-size: 10.5px;
+    font-size: 11.5px !important;
   }
   .hero-bottom-specs {
-    grid-template-columns: 1fr;
+    grid-template-columns: 1fr !important;
   }
 }
 
@@ -2586,9 +2615,9 @@ img {
 }
 
 .featured-scheme {
-  background: linear-gradient(145deg, rgba(60, 10, 20, 0.8), rgba(25, 4, 8, 0.9));
-  border-color: rgba(255, 60, 95, 0.5);
-  box-shadow: 0 20px 60px rgba(0, 0, 0, 0.8), var(--glow-crimson-sm);
+  background: linear-gradient(145deg, #24050d 0%, #150307 100%) !important;
+  border: 1px solid rgba(255, 60, 95, 0.4) !important;
+  box-shadow: 0 20px 60px rgba(0, 0, 0, 0.35), var(--glow-crimson-sm) !important;
 }
 
 .popular-tag {
@@ -2608,47 +2637,67 @@ img {
   width: 54px;
   height: 54px;
   border-radius: 16px;
-  background: rgba(229, 23, 68, 0.2);
-  border: 1px solid rgba(229, 23, 68, 0.4);
-  display: grid;
-  place-items: center;
-  font-size: 24px;
+  background: rgba(229, 23, 68, 0.12);
+  border: 1px solid rgba(229, 23, 68, 0.3);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 26px;
   margin-bottom: 20px;
 }
 
 .scheme-glass-card h3 {
   font-size: 22px;
-  color: #fff;
+  color: #100609 !important;
+  font-weight: 800;
   margin-bottom: 10px;
+}
+
+.featured-scheme h3 {
+  color: #ffffff !important;
 }
 
 .scheme-glass-card p {
   font-size: 14px;
-  color: var(--text-secondary);
+  color: #584147 !important;
   line-height: 1.5;
   margin-bottom: 20px;
+}
+
+.featured-scheme p {
+  color: rgba(255, 240, 243, 0.88) !important;
 }
 
 .scheme-perks {
   list-style: none;
   display: flex;
   flex-direction: column;
-  gap: 8px;
+  gap: 10px;
   margin-bottom: 24px;
 }
 
 .scheme-perks li {
-  font-size: 12px;
-  color: var(--warm-white);
+  font-size: 13px;
+  color: #2b1a1f !important;
+  font-weight: 600;
   display: flex;
   align-items: center;
-  gap: 8px;
+  gap: 10px;
+}
+
+.featured-scheme .scheme-perks li {
+  color: #ffffff !important;
 }
 
 .scheme-perks li::before {
   content: "✓";
-  color: var(--crimson-glow);
-  font-weight: 800;
+  color: var(--crimson-primary) !important;
+  font-weight: 900;
+  font-size: 14px;
+}
+
+.featured-scheme .scheme-perks li::before {
+  color: #ffd700 !important;
 }
 
 
@@ -2694,13 +2743,17 @@ img {
   width: 36px;
   height: 36px;
   border-radius: 50%;
-  background: var(--crimson-primary);
-  color: #fff;
+  background: linear-gradient(135deg, #e51744, #a80a29) !important;
+  color: #ffffff !important;
   font-weight: 800;
-  display: grid;
-  place-items: center;
-  font-size: 14px;
+  display: flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+  text-align: center;
+  line-height: 1;
+  font-size: 15px;
   flex-shrink: 0;
+  box-shadow: 0 4px 12px rgba(215, 25, 66, 0.35);
 }
 
 .trade-step strong {
@@ -5160,11 +5213,29 @@ img {
     gap: 16px !important;
   }
 
+  /* Schemes Section Mobile */
+  .schemes-cards-grid {
+    grid-template-columns: 1fr !important;
+    gap: 18px !important;
+  }
+
+  .scheme-glass-card {
+    padding: 24px 20px !important;
+    border-radius: 20px !important;
+  }
+
   /* Trade-in Section Mobile */
   .trade-in-wrapper {
     padding: 24px 16px !important;
     gap: 24px !important;
     grid-template-columns: 1fr !important;
+  }
+
+  .glass-card:hover,
+  .trade-in-wrapper:hover {
+    transform: none !important;
+    border-color: rgba(215, 175, 155, 0.4) !important;
+    box-shadow: 0 10px 30px rgba(80, 25, 35, 0.06) !important;
   }
 
   .trade-right-card {
