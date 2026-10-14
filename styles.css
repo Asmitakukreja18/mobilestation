@@ -750,6 +750,11 @@ img {
   background: var(--paper, #f5f4ef);
 }
 
+/* Mobile Video Background (Hidden on Desktop) */
+.hero-mobile-video-bg {
+  display: none;
+}
+
 /* Architectural Background Elements Hidden */
 .architecture {
   display: none !important;
@@ -1921,6 +1926,7 @@ img {
   }
 
   .hero {
+    position: relative;
     padding-top: 80px;
     min-height: auto;
     padding-bottom: 24px;
@@ -1928,7 +1934,37 @@ img {
     width: 100%;
   }
 
+  /* Mobile Background Video (Aperture Macro Motion) */
+  .hero-mobile-video-bg {
+    display: block !important;
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    overflow: hidden;
+    z-index: 1;
+    pointer-events: none;
+  }
+
+  .hero-mobile-video {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    object-position: center 30%;
+    opacity: 0.45;
+    filter: contrast(1.1) saturate(1.2);
+  }
+
+  .hero-mobile-video-overlay {
+    position: absolute;
+    inset: 0;
+    background: radial-gradient(circle at 50% 32%, rgba(245, 236, 229, 0.35) 0%, rgba(245, 236, 229, 0.78) 65%, var(--showroom-bg) 100%);
+    pointer-events: none;
+  }
+
   .hero-stage-container {
+    position: relative !important;
+    z-index: 3 !important;
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -2166,6 +2202,8 @@ img {
 
   /* Bottom Specs on Mobile */
   .hero-bottom-specs {
+    position: relative !important;
+    z-index: 3 !important;
     grid-template-columns: repeat(2, 1fr) !important;
     gap: 10px !important;
     padding: 0 16px !important;

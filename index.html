@@ -106,6 +106,14 @@
   ===================================================== -->
   <section class="hero" id="home">
 
+    <!-- MOBILE BACKGROUND VIDEO (CHERRY APERTURE MOTION) -->
+    <div class="hero-mobile-video-bg" aria-hidden="true">
+      <video class="hero-mobile-video" autoplay muted loop playsinline webkit-playsinline preload="auto">
+        <source src="assets/324806_dvCwap6e0.webm" type="video/webm">
+      </video>
+      <div class="hero-mobile-video-overlay"></div>
+    </div>
+
     <!-- HERO CONTENT CONTAINER -->
     <div class="hero-stage-container">
 
@@ -1716,6 +1724,25 @@
           col.appendChild(item.cloneNode(true));
         });
       });
+    })();
+
+    // Autoplay mobile hero background video safely on mobile devices
+    (function initMobileHeroVideo() {
+      const vid = document.querySelector('.hero-mobile-video');
+      if (!vid) return;
+      vid.muted = true;
+      const playPromise = vid.play();
+      if (playPromise !== undefined) {
+        playPromise.catch(() => {
+          const startPlay = () => {
+            vid.play().catch(() => {});
+            window.removeEventListener('touchstart', startPlay);
+            window.removeEventListener('scroll', startPlay);
+          };
+          window.addEventListener('touchstart', startPlay, { passive: true, once: true });
+          window.addEventListener('scroll', startPlay, { passive: true, once: true });
+        });
+      }
     })();
   </script>
 </body>
