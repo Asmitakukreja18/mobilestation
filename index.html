@@ -102,6 +102,15 @@
   ===================================================== -->
   <section class="hero" id="home">
 
+    <!-- MOBILE CINEMATIC BACKGROUND VIDEO (FULL BLEED, NO TEXT OVERLAY) -->
+    <div class="hero-mobile-bg-video-wrap" id="heroMobileBgVideoWrap" aria-hidden="true">
+      <video class="hero-mobile-bg-video" autoplay muted loop playsinline webkit-playsinline preload="auto">
+        <source src="assets/hero-bg.mp4" type="video/mp4">
+        <source src="assets/324806_dvCwap6e0.webm" type="video/webm">
+      </video>
+      <div class="hero-mobile-bg-gradient-overlay"></div>
+    </div>
+
     <!-- HERO CONTENT CONTAINER -->
     <div class="hero-stage-container">
 
@@ -139,24 +148,10 @@
         </div>
       </div>
 
-      <!-- RIGHT STAGE: 180+ MODEL ARCHIVE (DESKTOP) & 4K VIDEO (MOBILE) -->
+      <!-- RIGHT STAGE: 180+ MODEL ARCHIVE (DESKTOP) -->
       <div class="hero-right-stage" id="heroRightStage">
 
-        <!-- 1. CINEMATIC 4K FLAGSHIP VIDEO SHOWCASE (VISIBLE ONLY ON MOBILE) -->
-        <div class="hero-video-stage" id="heroVideoStage" aria-label="Official Flagship 4K Showcase">
-          <div class="hero-video-frame">
-            <video class="hero-showcase-video" autoplay muted loop playsinline webkit-playsinline preload="auto">
-              <source src="assets/hero-bg.mp4" type="video/mp4">
-              <source src="assets/324806_dvCwap6e0.webm" type="video/webm">
-            </video>
-            <div class="video-live-pill">
-              <span class="video-pulse-dot"></span>
-              <span>4K CINEMATIC PREVIEW • IPHONE 18 PRO MAX</span>
-            </div>
-          </div>
-        </div>
-
-        <!-- 2. 180+ MODEL ARCHIVE MOSAIC SHOWROOM (VISIBLE ON DESKTOP & LAPTOPS) -->
+        <!-- 180+ MODEL ARCHIVE MOSAIC SHOWROOM (VISIBLE ON DESKTOP & LAPTOPS) -->
         <div class="hero-mosaic-container" id="heroMosaicContainer" aria-label="Flagship Smartphone Showroom Archive">
           <div class="hero-mosaic" id="heroMosaic">
 
@@ -1440,9 +1435,9 @@
       });
     })();
 
-    // Autoplay hero showcase video safely on all devices (iOS Safari & Android)
+    // Autoplay mobile hero background video safely on all devices (iOS Safari & Android)
     (function initMobileHeroVideo() {
-      const vid = document.querySelector('.hero-showcase-video');
+      const vid = document.querySelector('.hero-mobile-bg-video') || document.querySelector('.hero-showcase-video');
       if (!vid) return;
       vid.muted = true;
       vid.defaultMuted = true;
