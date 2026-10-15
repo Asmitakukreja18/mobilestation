@@ -378,12 +378,14 @@
   background: #ffffff;
   border-radius: 18px;
   border: 1px solid rgba(215, 25, 66, 0.1);
-  overflow: hidden;
+  overflow-x: auto;
+  -webkit-overflow-scrolling: touch;
   box-shadow: 0 8px 30px rgba(0, 0, 0, 0.04);
 }
 
 .pricing-table {
   width: 100%;
+  min-width: 680px;
   border-collapse: collapse;
   text-align: left;
 }
@@ -392,7 +394,7 @@
   background: #170d10;
   color: #fcf6f1;
   position: sticky;
-  top: 150px;
+  top: 0;
   z-index: 10;
 }
 
@@ -423,16 +425,22 @@
 
 .brand-badge-tag {
   display: inline-block;
-  padding: 0.25rem 0.6rem;
+  padding: 0.28rem 0.65rem;
   border-radius: 6px;
-  font-size: 0.75rem;
+  font-size: 0.74rem;
   font-weight: 700;
   text-transform: uppercase;
   background: #f4ece6;
   color: #725960;
+  letter-spacing: 0.02em;
 }
 
 .brand-badge-tag.apple { background: #000000; color: #ffffff; }
+.brand-badge-tag.samsung { background: #034ea2; color: #ffffff; }
+.brand-badge-tag.oneplus { background: #eb0028; color: #ffffff; }
+.brand-badge-tag.google { background: #1a73e8; color: #ffffff; }
+.brand-badge-tag.vivo { background: #008cd6; color: #ffffff; }
+.brand-badge-tag.oppo { background: #00875a; color: #ffffff; }
 .brand-badge-tag.poco { background: #ffe600; color: #000000; }
 .brand-badge-tag.xiaomi { background: #ff6900; color: #ffffff; }
 .brand-badge-tag.nothing { background: #222222; color: #ffffff; }
@@ -719,9 +727,26 @@
   .search-box-wrapper {
     max-width: 100%;
   }
+  .category-pills-group {
+    flex-wrap: nowrap;
+    overflow-x: auto;
+    padding-bottom: 4px;
+    scrollbar-width: none;
+    -webkit-overflow-scrolling: touch;
+  }
+  .category-pills-group::-webkit-scrollbar {
+    display: none;
+  }
+  .cat-pill {
+    white-space: nowrap;
+    flex-shrink: 0;
+  }
   .utility-actions-group {
     justify-content: space-between;
     width: 100%;
+  }
+  .pricing-table {
+    min-width: 500px;
   }
   .pricing-table th, .pricing-table td {
     padding: 0.75rem 0.6rem;

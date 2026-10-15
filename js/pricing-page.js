@@ -25,21 +25,31 @@ document.addEventListener("DOMContentLoaded", () => {
   // Safety check on data
   const dataList = (typeof OFFICIAL_PRICE_LIST_2026 !== "undefined") ? OFFICIAL_PRICE_LIST_2026 : [];
 
-  // Update Brand Badge Counts
+  // Update Brand Badge Counts dynamically for all brands
   function updateBrandCounts() {
-    const counts = { all: dataList.length };
-    dataList.forEach(item => {
-      const b = item.brand;
-      counts[b] = (counts[b] || 0) + 1;
-    });
-
     brandPills.forEach(btn => {
       const brandKey = btn.dataset.brand;
       const countSpan = btn.querySelector(".chip-count");
       if (countSpan) {
-        if (brandKey === "all") countSpan.textContent = counts.all || 0;
-        else if (counts[brandKey]) countSpan.textContent = counts[brandKey];
-        else countSpan.textContent = 0;
+        if (brandKey === "all") {
+          countSpan.textContent = dataList.length;
+        } else {
+          const keyLower = brandKey.toLowerCase();
+          let count = 0;
+          dataList.forEach(item => {
+            const itemB = (item.brand || "").toLowerCase();
+            if (keyLower === "xiaomi / redmi") {
+              if (itemB.includes("xiaomi") || itemB.includes("redmi")) count++;
+            } else if (keyLower === "nothing") {
+              if (itemB.includes("nothing") || itemB.includes("cmf")) count++;
+            } else if (keyLower.includes("google") || keyLower.includes("pixel")) {
+              if (itemB.includes("google") || itemB.includes("pixel")) count++;
+            } else {
+              if (itemB.includes(keyLower)) count++;
+            }
+          });
+          countSpan.textContent = count;
+        }
       }
     });
   }
@@ -70,6 +80,11 @@ document.addEventListener("DOMContentLoaded", () => {
   function getBrandClass(brand) {
     const b = (brand || "").toLowerCase();
     if (b.includes("apple")) return "apple";
+    if (b.includes("samsung")) return "samsung";
+    if (b.includes("oneplus")) return "oneplus";
+    if (b.includes("google") || b.includes("pixel")) return "google";
+    if (b.includes("vivo")) return "vivo";
+    if (b.includes("oppo")) return "oppo";
     if (b.includes("poco")) return "poco";
     if (b.includes("xiaomi") || b.includes("redmi")) return "xiaomi";
     if (b.includes("nothing") || b.includes("cmf")) return "nothing";
@@ -83,12 +98,17 @@ document.addEventListener("DOMContentLoaded", () => {
     let filtered = dataList.filter(item => {
       // Brand filter
       if (currentBrand !== "all") {
-        if (currentBrand === "Apple" && item.brand !== "Apple") return false;
-        if (currentBrand === "POCO" && item.brand !== "POCO") return false;
-        if (currentBrand === "Nothing" && item.brand !== "Nothing") return false;
-        if (currentBrand === "Xiaomi / Redmi" && item.brand !== "Xiaomi / Redmi") return false;
-        if (currentBrand === "itel" && item.brand !== "itel") return false;
-        if (currentBrand === "Lava" && item.brand !== "Lava") return false;
+        const itemB = (item.brand || "").toLowerCase();
+        const curB = currentBrand.toLowerCase();
+        if (curB === "xiaomi / redmi") {
+          if (!itemB.includes("xiaomi") && !itemB.includes("redmi")) return false;
+        } else if (curB === "nothing") {
+          if (!itemB.includes("nothing") && !itemB.includes("cmf")) return false;
+        } else if (curB.includes("google") || curB.includes("pixel")) {
+          if (!itemB.includes("google") && !itemB.includes("pixel")) return false;
+        } else {
+          if (!itemB.includes(curB)) return false;
+        }
       }
 
       // Category filter
@@ -346,6 +366,20 @@ document.addEventListener("DOMContentLoaded", () => {
       const walk = (x - startX) * 1.5;
       brandBar.scrollLeft = scrollLeft - walk;
     });
+  }
+
+  // Default to card/grid view on mobile screens for seamless touch navigation
+  if (window.innerWidth <= 768) {
+    currentView = "grid";
+    const tableWrapper = document.getElementById("pricingTableWrapper");
+    if (tableWrapper) tableWrapper.style.display = "none";
+    if (cardsGrid) cardsGrid.style.display = "grid";
+    if (viewToggleBtn) {
+      viewToggleBtn.innerHTML = `
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="8" y1="6" x2="21" y2="6"></line><line x1="8" y1="12" x2="21" y2="12"></line><line x1="8" y1="18" x2="21" y2="18"></line><line x1="3" y1="6" x2="3.01" y2="6"></line><line x1="3" y1="12" x2="3.01" y2="12"></line><line x1="3" y1="18" x2="3.01" y2="18"></line></svg>
+        <span>Table View</span>
+      `;
+    }
   }
 
   // Initial Run
