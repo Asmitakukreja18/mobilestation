@@ -141,20 +141,11 @@
         </div>
       </div>
 
-      <!-- RIGHT STAGE: 4K VIDEO SHOWCASE + DESKTOP ARCHIVE SWITCHER -->
+      <!-- RIGHT STAGE: 180+ MODEL ARCHIVE (DESKTOP) & 4K VIDEO (MOBILE) -->
       <div class="hero-right-stage" id="heroRightStage">
-        <!-- Desktop Switcher -->
-        <div class="hero-stage-switcher" id="heroStageSwitcher">
-          <button class="stage-switch-btn active" id="btnShowVideo" onclick="switchHeroStage('video')">
-            <span>🎬</span> 4K Film Preview
-          </button>
-          <button class="stage-switch-btn" id="btnShowMosaic" onclick="switchHeroStage('mosaic')">
-            <span>📱</span> 180+ Model Archive
-          </button>
-        </div>
 
-        <!-- 1. CINEMATIC 4K FLAGSHIP VIDEO SHOWCASE (VISIBLE ON BOTH MOBILE & DESKTOP) -->
-        <div class="hero-video-stage active" id="heroVideoStage" aria-label="Official Flagship 4K Showcase">
+        <!-- 1. CINEMATIC 4K FLAGSHIP VIDEO SHOWCASE (VISIBLE ONLY ON MOBILE) -->
+        <div class="hero-video-stage" id="heroVideoStage" aria-label="Official Flagship 4K Showcase">
           <div class="hero-video-frame">
             <video class="hero-showcase-video" autoplay muted loop playsinline webkit-playsinline preload="auto">
               <source src="assets/hero-bg.mp4" type="video/mp4">
@@ -167,8 +158,8 @@
           </div>
         </div>
 
-        <!-- 2. MOSAIC CONTAINER -->
-        <div class="hero-mosaic-container" id="heroMosaicContainer" aria-label="Flagship Smartphone Showroom Archive" style="display:none;">
+        <!-- 2. 180+ MODEL ARCHIVE MOSAIC SHOWROOM (VISIBLE ON DESKTOP & LAPTOPS) -->
+        <div class="hero-mosaic-container" id="heroMosaicContainer" aria-label="Flagship Smartphone Showroom Archive">
           <div class="hero-mosaic" id="heroMosaic">
 
           <!-- COLUMN 1: colDown marquee (10 cards for seamless -50% loop) -->
@@ -1479,31 +1470,6 @@
       window.addEventListener('scroll', onUserGesture, { passive: true, once: true });
       window.addEventListener('click', onUserGesture, { passive: true, once: true });
     })();
-
-    // Desktop Switcher: 4K Film Preview vs Showroom Archive Mosaic
-    window.switchHeroStage = function(mode) {
-      const vidStage = document.getElementById('heroVideoStage');
-      const mosStage = document.getElementById('heroMosaicContainer');
-      const btnVid = document.getElementById('btnShowVideo');
-      const btnMos = document.getElementById('btnShowMosaic');
-      const vid = document.querySelector('.hero-showcase-video');
-
-      if (mode === 'video') {
-        if (vidStage) vidStage.style.display = 'block';
-        if (mosStage) mosStage.style.display = 'none';
-        if (btnVid) btnVid.classList.add('active');
-        if (btnMos) btnMos.classList.remove('active');
-        if (vid) {
-          vid.muted = true;
-          vid.play().catch(() => {});
-        }
-      } else {
-        if (vidStage) vidStage.style.display = 'none';
-        if (mosStage) mosStage.style.display = 'block';
-        if (btnVid) btnVid.classList.remove('active');
-        if (btnMos) btnMos.classList.add('active');
-      }
-    };
   </script>
 </body>
 </html>

@@ -750,9 +750,9 @@ img {
   background: var(--paper, #f5f4ef);
 }
 
-/* Cinematic Hero Flagship Video Showcase */
+/* Cinematic Hero Flagship Video Showcase (Shown ONLY on mobile viewports) */
 .hero-video-stage {
-  display: block;
+  display: none;
   position: relative;
   z-index: 12;
   width: 100%;
@@ -820,7 +820,7 @@ img {
   50% { transform: scale(1.4); opacity: 0.5; }
 }
 
-/* Hero Right Stage (Hosts Switcher, Video & Mosaic Archive) */
+/* Hero Right Stage (Hosts 180+ Model Archive on desktop & Video on mobile) */
 .hero-right-stage {
   display: flex;
   flex-direction: column;
@@ -831,16 +831,7 @@ img {
 }
 
 .hero-stage-switcher {
-  display: inline-flex;
-  align-items: center;
-  gap: 6px;
-  background: rgba(255, 255, 255, 0.9);
-  padding: 5px;
-  border-radius: 999px;
-  border: 1px solid rgba(15, 15, 14, 0.12);
-  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.05);
-  width: fit-content;
-  margin: 0 auto 4px;
+  display: none !important;
 }
 
 .stage-switch-btn {
