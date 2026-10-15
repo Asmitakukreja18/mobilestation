@@ -335,69 +335,102 @@ function renderProductCards() {
 
   grid.innerHTML = filtered
     .map((product) => {
+      const mainCamera = product.camera ? product.camera.split('+')[0].trim() : "Pro Optics";
+      const displayShort = product.display ? product.display.split(',')[0].trim() : "120Hz ProMotion";
+      const emiText = product.emi || `₹${Math.round(product.price / 24).toLocaleString("en-IN")}/mo`;
+
       return `
-        <article class="phone-card">
-          <div class="card-top-badges">
-            <span class="card-brand-tag">${product.brand}</span>
-            <span class="card-deal-badge">${product.badge || "👑 Flagship"}</span>
+        <article class="phone-card luxury-aesthetic-card">
+          <!-- Top Header: Brand Badge & Status Pill -->
+          <div class="card-top-header">
+            <span class="aesthetic-brand-badge">${product.brand}</span>
+            <span class="aesthetic-status-pill">
+              <span class="status-pulse-dot"></span>
+              ${product.badge || "Flagship 2026"}
+            </span>
           </div>
 
+          <!-- Floating Visual Stage with Ambient Halo -->
           <div class="card-visual-stage" onclick="openProductModal('${product.id}')" style="cursor: pointer;">
-            <div class="card-stage-glow"></div>
+            <div class="stage-ambient-halo"></div>
             <img
               src="${product.image}"
               alt="${product.name}"
               class="card-phone-image"
               loading="lazy"
             />
-          </div>
-
-          <h3 class="card-product-title" onclick="openProductModal('${product.id}')" style="cursor: pointer;">
-            ${product.name}
-          </h3>
-          <p class="card-tagline">${product.tagline || "Latest 2026 Smartphone Technology"}</p>
-
-          <div class="card-specs-list">
-            <div class="spec-item-row">
-              <i>⚡</i> <span>${product.chip || "Flagship 3nm Processor"}</span>
-            </div>
-            <div class="spec-item-row">
-              <i>📸</i> <span>${product.camera ? product.camera.substring(0, 42) + '...' : "Pro Camera Array"}</span>
-            </div>
-            <div class="spec-item-row">
-              <i>✨</i> <span>${product.display ? product.display.substring(0, 38) + '...' : "120Hz Pro Display"}</span>
+            <div class="stage-hover-overlay">
+              <span class="quick-view-badge">Quick Preview ↗</span>
             </div>
           </div>
 
-          <div class="card-price-row">
-            <div>
-              <strong>₹${product.price.toLocaleString("en-IN")}</strong>
-            </div>
-            <div class="card-emi-text">
-              ${product.emi || `EMI ₹${Math.round(product.price / 24).toLocaleString("en-IN")}/mo`}
-            </div>
-          </div>
+          <!-- Product Details Block -->
+          <div class="card-info-block">
+            <h3 class="card-product-title" onclick="openProductModal('${product.id}')" style="cursor: pointer;">
+              ${product.name}
+            </h3>
+            <p class="card-tagline">${product.tagline || "Engineered with flagship precision & optical excellence"}</p>
 
-          <div class="card-actions-grid">
-            <button
-              class="btn btn-crimson card-btn-primary"
-              onclick="addToBag({ id: '${product.id}', name: '${product.name.replace(/'/g, "\\'")}', price: ${product.price}, variant: '${product.storage ? product.storage[0] : "Standard"}', image: '${product.image}' })"
-            >
-              Add to Bag
-            </button>
-            <button
-              class="btn btn-outline-light card-btn-sub"
-              onclick="openProductModal('${product.id}')"
-              aria-label="View Details for ${product.name.replace(/'/g, "\\'")}"
-            >
-              🔍 View Details
-            </button>
-            <button
-              class="btn btn-whatsapp-secondary card-btn-sub"
-              onclick="openWhatsApp('Hi Mobile Station! I am enquiring about ${encodeURIComponent(product.name)} (₹${product.price.toLocaleString("en-IN")}). Please share details.')"
-            >
-              WhatsApp
-            </button>
+            <!-- Minimalist Spec Chips -->
+            <div class="aesthetic-specs-chips">
+              <span class="spec-chip-pill" title="Processor">
+                <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"></polygon></svg>
+                ${product.chip || "3nm Silicon"}
+              </span>
+              <span class="spec-chip-pill" title="Camera">
+                <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><path d="M23 19a2 2 0 0 1-2 2H3a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h4l2-3h6l2 3h4a2 2 0 0 1 2 2z"></path><circle cx="12" cy="13" r="4"></circle></svg>
+                ${mainCamera}
+              </span>
+              <span class="spec-chip-pill" title="Display">
+                <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><rect x="2" y="3" width="20" height="14" rx="2" ry="2"></rect><line x1="8" y1="21" x2="16" y2="21"></line><line x1="12" y1="17" x2="12" y2="21"></line></svg>
+                ${displayShort}
+              </span>
+            </div>
+
+            <!-- Luxury Price Box -->
+            <div class="aesthetic-price-card">
+              <div class="price-main-stack">
+                <span class="mop-label">OFFICIAL FESTIVE MOP</span>
+                <div class="price-val-wrap">
+                  <strong class="price-currency">₹</strong>
+                  <strong class="price-number">${product.price.toLocaleString("en-IN")}</strong>
+                </div>
+              </div>
+              <div class="emi-pill-badge">
+                <span class="emi-kicker">0% EMI</span>
+                <span class="emi-amount">${emiText}</span>
+              </div>
+            </div>
+
+            <!-- Ergonomic Action Bar -->
+            <div class="aesthetic-card-actions">
+              <button
+                class="aesthetic-btn-bag"
+                onclick="addToBag({ id: '${product.id}', name: '${product.name.replace(/'/g, "\\'")}', price: ${product.price}, variant: '${product.storage ? product.storage[0] : "Standard"}', image: '${product.image}' })"
+                aria-label="Add ${product.name.replace(/'/g, "\\'")} to Bag"
+              >
+                <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><path d="M6 2L3 6v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V6l-3-4z"></path><line x1="3" y1="6" x2="21" y2="6"></line><path d="M16 10a4 4 0 0 1-8 0"></path></svg>
+                <span>Add to Bag</span>
+              </button>
+
+              <button
+                class="aesthetic-btn-icon"
+                onclick="openProductModal('${product.id}')"
+                title="View Full Specifications"
+                aria-label="View specifications"
+              >
+                <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><circle cx="11" cy="11" r="8"></circle><line x1="21" y1="21" x2="16.65" y2="16.65"></line></svg>
+              </button>
+
+              <button
+                class="aesthetic-btn-icon whatsapp-icon-btn"
+                onclick="openWhatsApp('Hi Mobile Station! I am enquiring about ${encodeURIComponent(product.name)} (₹${product.price.toLocaleString("en-IN")}). Please share best offer and availability.')"
+                title="WhatsApp VIP Concierge"
+                aria-label="Chat on WhatsApp"
+              >
+                <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><path d="M21 11.5a8.38 8.38 0 0 1-.9 3.8 8.5 8.5 0 0 1-7.6 4.7 8.38 8.38 0 0 1-3.8-.9L3 21l1.9-5.7a8.38 8.38 0 0 1-.9-3.8 8.5 8.5 0 0 1 4.7-7.6 8.38 8.38 0 0 1 3.8-.9h.5a8.48 8.48 0 0 1 8 8v.5z"></path></svg>
+              </button>
+            </div>
           </div>
         </article>
       `;

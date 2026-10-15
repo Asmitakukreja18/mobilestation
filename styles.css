@@ -1936,13 +1936,18 @@ img {
   }
   
   .navbar {
-    padding: 0 20px;
+    padding: 0 16px;
   }
   .navigation {
-    display: none;
+    display: flex;
+    gap: 4px;
+  }
+  .nav-link {
+    font-size: 12px;
+    padding: 5px 8px;
   }
   .mobile-menu-toggle {
-    display: flex;
+    display: none;
   }
 
   .hero {
@@ -2629,176 +2634,339 @@ img {
   gap: 24px;
 }
 
-/* High-End Smartphone Card (Cream Luxury Card) */
+/* =========================================================================
+   LUXURY ARCHITECTURAL SMARTPHONE CARD (AESTHETIC UPGRADE)
+========================================================================= */
+.phone-card.luxury-aesthetic-card,
 .phone-card {
   position: relative;
-  padding: 24px;
-  border-radius: 24px;
-  background: rgba(255, 255, 255, 0.85);
-  backdrop-filter: blur(18px);
-  -webkit-backdrop-filter: blur(18px);
-  border: 1px solid rgba(215, 175, 155, 0.4);
-  box-shadow: 0 10px 30px rgba(80, 25, 35, 0.06);
+  padding: 20px 20px 18px;
+  border-radius: 22px;
+  background: #ffffff;
+  border: 1px solid rgba(229, 23, 68, 0.12);
+  box-shadow: 0 10px 30px rgba(23, 13, 16, 0.05);
   display: flex;
   flex-direction: column;
-  transition: all 0.35s var(--ease-spring);
+  transition: all 0.35s cubic-bezier(0.16, 1, 0.3, 1);
+  overflow: hidden;
 }
 
+.phone-card.luxury-aesthetic-card:hover,
 .phone-card:hover {
   transform: translateY(-8px);
-  border-color: rgba(229, 23, 68, 0.45);
-  box-shadow: 0 20px 50px rgba(215, 25, 66, 0.14), 0 0 20px rgba(229, 23, 68, 0.1);
+  border-color: rgba(229, 23, 68, 0.38);
+  box-shadow: 0 24px 50px rgba(215, 25, 66, 0.12), 0 0 25px rgba(229, 23, 68, 0.08);
 }
 
-.card-top-badges {
+/* Card Top Header */
+.card-top-header {
   display: flex;
   justify-content: space-between;
   align-items: center;
   margin-bottom: 12px;
 }
 
-.card-brand-tag {
-  font-size: 11px;
+.aesthetic-brand-badge {
+  font-size: 10px;
   font-weight: 800;
-  letter-spacing: 1px;
+  letter-spacing: 1.5px;
   text-transform: uppercase;
-  color: var(--champagne);
+  color: #170d10;
+  background: rgba(15, 15, 14, 0.05);
+  padding: 4px 10px;
+  border-radius: 8px;
+  border: 1px solid rgba(15, 15, 14, 0.08);
 }
 
-.card-deal-badge {
+.aesthetic-status-pill {
+  display: inline-flex;
+  align-items: center;
+  gap: 5px;
   font-size: 10px;
   font-weight: 700;
   color: #d71942;
-  background: rgba(229, 23, 68, 0.12);
-  border: 1px solid rgba(229, 23, 68, 0.3);
-  padding: 3px 8px;
-  border-radius: 12px;
+  background: rgba(215, 25, 66, 0.08);
+  border: 1px solid rgba(215, 25, 66, 0.22);
+  padding: 3px 9px;
+  border-radius: 999px;
+}
+
+.status-pulse-dot {
+  width: 5px;
+  height: 5px;
+  border-radius: 50%;
+  background: #d71942;
+  box-shadow: 0 0 6px rgba(215, 25, 66, 0.6);
+  animation: pulseDot 1.8s infinite;
 }
 
 /* Card Visual Stage */
+.luxury-aesthetic-card .card-visual-stage,
 .card-visual-stage {
-  height: 220px;
+  height: 200px;
   position: relative;
   display: flex;
   align-items: center;
   justify-content: center;
-  margin-bottom: 16px;
+  margin-bottom: 14px;
+  background: radial-gradient(circle at 50% 55%, rgba(246, 238, 232, 0.8) 0%, transparent 70%);
+  border-radius: 16px;
+  overflow: hidden;
 }
 
-.card-stage-glow {
+.stage-ambient-halo {
   position: absolute;
-  width: 140px;
-  height: 140px;
+  width: 120px;
+  height: 120px;
   border-radius: 50%;
-  background: radial-gradient(circle, rgba(229, 23, 68, 0.2) 0%, transparent 70%);
-  filter: blur(20px);
+  background: radial-gradient(circle, rgba(229, 23, 68, 0.18) 0%, transparent 70%);
+  filter: blur(25px);
+  pointer-events: none;
 }
 
+.luxury-aesthetic-card .card-phone-image,
 .card-phone-image {
-  max-height: 200px;
+  max-height: 175px;
+  max-width: 85%;
   object-fit: contain;
   z-index: 2;
-  filter: drop-shadow(0 15px 25px rgba(80, 25, 35, 0.25));
-  transition: transform 0.3s var(--ease-spring);
+  filter: drop-shadow(0 14px 25px rgba(23, 13, 16, 0.2));
+  transition: transform 0.4s cubic-bezier(0.16, 1, 0.3, 1);
 }
 
+.phone-card.luxury-aesthetic-card:hover .card-phone-image,
 .phone-card:hover .card-phone-image {
-  transform: scale(1.08) translateY(-4px);
+  transform: translateY(-6px) scale(1.05);
+  filter: drop-shadow(0 20px 30px rgba(215, 25, 66, 0.28));
 }
 
-.card-product-title {
-  font-size: 20px;
-  color: #170d10;
-  line-height: 1.2;
-  margin-bottom: 4px;
-}
-
-.card-tagline {
-  font-size: 12px;
-  color: var(--text-muted);
-  margin-bottom: 14px;
-  min-height: 36px;
-  line-height: 1.4;
-}
-
-/* Key Specs Pills */
-.card-specs-list {
-  display: flex;
-  flex-direction: column;
-  gap: 6px;
-  margin-bottom: 18px;
-  padding: 10px 12px;
-  border-radius: 12px;
-  background: rgba(246, 238, 232, 0.7);
-  border: 1px solid rgba(215, 175, 155, 0.35);
-}
-
-.spec-item-row {
+.stage-hover-overlay {
+  position: absolute;
+  inset: 0;
   display: flex;
   align-items: center;
-  gap: 8px;
+  justify-content: center;
+  background: rgba(23, 13, 16, 0.18);
+  backdrop-filter: blur(4px);
+  -webkit-backdrop-filter: blur(4px);
+  opacity: 0;
+  transition: opacity 0.25s ease;
+  z-index: 4;
+}
+
+.phone-card.luxury-aesthetic-card:hover .stage-hover-overlay {
+  opacity: 1;
+}
+
+.quick-view-badge {
+  background: #ffffff;
+  color: #170d10;
   font-size: 11px;
+  font-weight: 700;
+  padding: 6px 14px;
+  border-radius: 999px;
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.15);
+  transform: translateY(6px);
+  transition: transform 0.25s ease;
+}
+
+.phone-card.luxury-aesthetic-card:hover .quick-view-badge {
+  transform: translateY(0);
+}
+
+/* Card Info Block */
+.card-info-block {
+  display: flex;
+  flex-direction: column;
+  flex: 1;
+}
+
+.luxury-aesthetic-card .card-product-title,
+.card-product-title {
+  font-family: var(--display, "Manrope", sans-serif);
+  font-size: 18px;
+  font-weight: 800;
+  color: #170d10;
+  line-height: 1.25;
+  margin-bottom: 4px;
+  transition: color 0.2s;
+}
+
+.luxury-aesthetic-card .card-product-title:hover {
+  color: #d71942;
+}
+
+.luxury-aesthetic-card .card-tagline,
+.card-tagline {
+  font-size: 11.5px;
+  color: #725960;
+  line-height: 1.45;
+  margin-bottom: 12px;
+  min-height: 34px;
+  display: -webkit-box;
+  -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+}
+
+/* Minimalist Spec Chips */
+.aesthetic-specs-chips {
+  display: flex;
+  gap: 6px;
+  flex-wrap: wrap;
+  margin-bottom: 14px;
+}
+
+.spec-chip-pill {
+  display: inline-flex;
+  align-items: center;
+  gap: 5px;
+  padding: 4px 9px;
+  border-radius: 8px;
+  background: #fbf7f4;
+  border: 1px solid rgba(215, 175, 155, 0.35);
   color: #4a353c;
+  font-size: 10px;
+  font-weight: 600;
+  letter-spacing: 0.01em;
 }
 
-.spec-item-row i {
-  color: var(--crimson-primary);
-  font-style: normal;
-  font-size: 12px;
+.spec-chip-pill svg {
+  color: #d71942;
+  flex-shrink: 0;
 }
 
-/* Card Price Block */
-.card-price-row {
+/* Luxury Price Block */
+.aesthetic-price-card {
   display: flex;
   justify-content: space-between;
   align-items: flex-end;
+  padding: 10px 12px;
+  border-radius: 12px;
+  background: linear-gradient(135deg, #faf5f0 0%, #f4eae1 100%);
+  border: 1px solid rgba(215, 175, 155, 0.4);
   margin-top: auto;
-  padding-bottom: 14px;
-  border-bottom: 1px solid rgba(215, 175, 155, 0.3);
+  margin-bottom: 14px;
 }
 
-.card-price-row strong {
-  font-size: 22px;
+.price-main-stack {
+  display: flex;
+  flex-direction: column;
+}
+
+.mop-label {
+  font-size: 8.5px;
+  font-weight: 800;
+  letter-spacing: 1.2px;
+  color: #8c6a2d;
+  text-transform: uppercase;
+  margin-bottom: 2px;
+}
+
+.price-val-wrap {
+  display: flex;
+  align-items: baseline;
+  gap: 2px;
+}
+
+.price-currency {
+  font-size: 14px;
+  color: #170d10;
+  font-weight: 700;
+}
+
+.price-number {
+  font-size: 20px;
   font-weight: 900;
+  color: #170d10;
+  letter-spacing: -0.02em;
+}
+
+.emi-pill-badge {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+  text-align: right;
+}
+
+.emi-kicker {
+  font-size: 8.5px;
+  font-weight: 800;
+  color: #0d8750;
+  letter-spacing: 0.5px;
+}
+
+.emi-amount {
+  font-size: 11px;
+  font-weight: 700;
   color: #170d10;
 }
 
-.card-emi-text {
-  font-size: 11px;
-  font-weight: 700;
-  color: var(--champagne);
-}
-
-/* Card Action Stack */
-.card-actions-grid {
-  display: grid;
-  grid-template-columns: 1fr 1fr;
+/* Card Action Buttons */
+.aesthetic-card-actions {
+  display: flex;
+  align-items: center;
   gap: 8px;
-  margin-top: 14px;
 }
 
-.card-btn-primary {
-  grid-column: span 2;
-  padding: 12px 14px;
-  font-size: 13.5px;
-  width: 100%;
-}
-
-.card-btn-sub {
-  padding: 10px 8px;
-  font-size: 12px;
-  font-weight: 700;
-  border-radius: 20px;
-  width: 100%;
+.aesthetic-btn-bag {
+  flex: 1;
   display: inline-flex;
   align-items: center;
   justify-content: center;
-  text-align: center;
-  gap: 5px;
-  transition: all 0.2s ease;
-  white-space: normal;
-  line-height: 1.2;
-  min-height: 42px;
+  gap: 8px;
+  padding: 10px 16px;
+  border-radius: 999px;
+  background: #170d10;
+  color: #ffffff;
+  border: 1px solid #170d10;
+  font-size: 12px;
+  font-weight: 700;
+  letter-spacing: 0.02em;
+  cursor: pointer;
+  transition: all 0.25s cubic-bezier(0.16, 1, 0.3, 1);
+  box-shadow: 0 4px 14px rgba(23, 13, 16, 0.18);
+}
+
+.aesthetic-btn-bag:hover {
+  background: #d71942;
+  border-color: #d71942;
+  transform: translateY(-2px);
+  box-shadow: 0 8px 20px rgba(215, 25, 66, 0.3);
+}
+
+.aesthetic-btn-icon {
+  width: 38px;
+  height: 38px;
+  border-radius: 50%;
+  display: grid;
+  place-items: center;
+  background: #ffffff;
+  border: 1px solid rgba(15, 15, 14, 0.15);
+  color: #170d10;
+  cursor: pointer;
+  transition: all 0.22s ease;
+  flex-shrink: 0;
+}
+
+.aesthetic-btn-icon:hover {
+  background: #fdf5f0;
+  border-color: #d71942;
+  color: #d71942;
+  transform: translateY(-2px);
+}
+
+.aesthetic-btn-icon.whatsapp-icon-btn {
+  color: #25d366;
+  border-color: rgba(37, 211, 102, 0.35);
+  background: rgba(37, 211, 102, 0.06);
+}
+
+.aesthetic-btn-icon.whatsapp-icon-btn:hover {
+  background: #25d366;
+  color: #ffffff;
+  border-color: #25d366;
+  box-shadow: 0 4px 14px rgba(37, 211, 102, 0.3);
 }
 
 /* Highly visible View Details Outline Button */
@@ -4225,12 +4393,17 @@ img {
   }
 }
 
-@media (max-width: 1120px) {
+@media (max-width: 1120px) and (min-width: 769px) {
   .navigation {
-    display: none !important;
+    display: flex !important;
+    gap: 3px !important;
+  }
+  .nav-link {
+    font-size: 11.5px !important;
+    padding: 5px 7px !important;
   }
   .mobile-menu-toggle {
-    display: flex !important;
+    display: none !important;
   }
   .btn-text-block small {
     display: none;
