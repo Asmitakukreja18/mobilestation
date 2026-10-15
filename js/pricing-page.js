@@ -311,6 +311,43 @@ document.addEventListener("DOMContentLoaded", () => {
     });
   }
 
+  // Smooth mouse-wheel & drag scroll for Brand Filter Tabs
+  const brandBar = document.getElementById("brandFilterBar");
+  if (brandBar) {
+    brandBar.addEventListener("wheel", (e) => {
+      if (e.deltaY !== 0) {
+        e.preventDefault();
+        brandBar.scrollLeft += e.deltaY;
+      }
+    }, { passive: false });
+
+    let isDown = false;
+    let startX = 0;
+    let scrollLeft = 0;
+
+    brandBar.addEventListener("mousedown", (e) => {
+      isDown = true;
+      brandBar.classList.add("dragging");
+      startX = e.pageX - brandBar.offsetLeft;
+      scrollLeft = brandBar.scrollLeft;
+    });
+    brandBar.addEventListener("mouseleave", () => {
+      isDown = false;
+      brandBar.classList.remove("dragging");
+    });
+    brandBar.addEventListener("mouseup", () => {
+      isDown = false;
+      brandBar.classList.remove("dragging");
+    });
+    brandBar.addEventListener("mousemove", (e) => {
+      if (!isDown) return;
+      e.preventDefault();
+      const x = e.pageX - brandBar.offsetLeft;
+      const walk = (x - startX) * 1.5;
+      brandBar.scrollLeft = scrollLeft - walk;
+    });
+  }
+
   // Initial Run
   updateBrandCounts();
   renderProducts();

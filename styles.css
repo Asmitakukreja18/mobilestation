@@ -750,9 +750,122 @@ img {
   background: var(--paper, #f5f4ef);
 }
 
-/* Mobile Video Background (Hidden on Desktop) */
-.hero-mobile-video-bg {
-  display: none;
+/* Cinematic Hero Flagship Video Showcase */
+.hero-video-stage {
+  display: block;
+  position: relative;
+  z-index: 12;
+  width: 100%;
+  max-width: 580px;
+  margin: 0 auto;
+}
+
+.hero-video-frame {
+  position: relative;
+  width: 100%;
+  aspect-ratio: 16 / 10;
+  border-radius: 26px;
+  overflow: hidden;
+  background: #000000;
+  border: 1.5px solid rgba(229, 23, 68, 0.35);
+  box-shadow: 0 25px 60px rgba(0, 0, 0, 0.22), 0 0 40px rgba(229, 23, 68, 0.25);
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.hero-video-frame:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 30px 70px rgba(0, 0, 0, 0.28), 0 0 50px rgba(229, 23, 68, 0.35);
+}
+
+.hero-showcase-video {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+  opacity: 1;
+  filter: contrast(1.08) saturate(1.15);
+}
+
+.video-live-pill {
+  position: absolute;
+  bottom: 14px;
+  left: 16px;
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  padding: 6px 14px;
+  border-radius: 999px;
+  background: rgba(16, 6, 9, 0.82);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  border: 1px solid rgba(255, 255, 255, 0.18);
+  color: #ffffff;
+  font-size: 10.5px;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  pointer-events: none;
+}
+
+.video-pulse-dot {
+  width: 7px;
+  height: 7px;
+  border-radius: 50%;
+  background: #e51744;
+  box-shadow: 0 0 10px #e51744;
+  animation: livePulse 1.8s infinite;
+}
+
+@keyframes livePulse {
+  0%, 100% { transform: scale(1); opacity: 1; }
+  50% { transform: scale(1.4); opacity: 0.5; }
+}
+
+/* Hero Right Stage (Hosts Switcher, Video & Mosaic Archive) */
+.hero-right-stage {
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+  width: 100%;
+  position: relative;
+  z-index: 12;
+}
+
+.hero-stage-switcher {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  background: rgba(255, 255, 255, 0.9);
+  padding: 5px;
+  border-radius: 999px;
+  border: 1px solid rgba(15, 15, 14, 0.12);
+  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.05);
+  width: fit-content;
+  margin: 0 auto 4px;
+}
+
+.stage-switch-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  padding: 7px 16px;
+  border-radius: 999px;
+  border: none;
+  background: transparent;
+  color: #584147;
+  font-size: 12px;
+  font-weight: 700;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.stage-switch-btn:hover {
+  color: #170d10;
+}
+
+.stage-switch-btn.active {
+  background: #170d10;
+  color: #ffffff;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.2);
 }
 
 /* Architectural Background Elements Hidden */
@@ -1934,61 +2047,73 @@ img {
     width: 100%;
   }
 
-  /* Mobile Background Video (Aperture Macro Motion) */
-  .hero-mobile-video-bg {
-    display: block !important;
-    position: absolute;
-    inset: 0;
-    width: 100%;
-    height: 100%;
-    overflow: hidden;
-    z-index: 1;
-    pointer-events: none;
-  }
-
-  .hero-mobile-video {
-    width: 100%;
-    height: 100%;
-    object-fit: cover;
-    object-position: center 25%;
-    opacity: 0.85;
-    filter: contrast(1.15) saturate(1.2);
-  }
-
-  .hero-mobile-video-overlay {
-    position: absolute;
-    inset: 0;
-    background: linear-gradient(
-      to bottom,
-      rgba(245, 236, 229, 0.2) 0%,
-      rgba(245, 236, 229, 0.05) 30%,
-      rgba(245, 236, 229, 0.35) 70%,
-      var(--showroom-bg) 100%
-    );
-    pointer-events: none;
-  }
-
+  /* Mobile Hero Stage Container: Vertical flex (Video on top, text below) */
   .hero-stage-container {
     position: relative !important;
     z-index: 3 !important;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    text-align: center;
-    gap: 16px;
-    padding: 8px 14px 0;
-    min-height: auto;
-    width: 100%;
-    max-width: 100%;
-    box-sizing: border-box;
+    display: flex !important;
+    flex-direction: column !important;
+    align-items: center !important;
+    text-align: center !important;
+    gap: 14px !important;
+    padding: 8px 14px 0 !important;
+    min-height: auto !important;
+    width: 100% !important;
+    max-width: 100% !important;
+    box-sizing: border-box !important;
   }
 
+  .hero-right-stage {
+    display: contents !important;
+  }
+
+  .hero-stage-switcher {
+    display: none !important;
+  }
+
+  /* 1. Video on top: 100% visible, crisp & unobstructed */
+  .hero-video-stage {
+    order: 1 !important;
+    display: block !important;
+    width: 100% !important;
+    max-width: 440px !important;
+    margin: 4px auto 6px !important;
+    position: relative !important;
+    z-index: 10 !important;
+  }
+
+  .hero-video-frame {
+    position: relative !important;
+    width: 100% !important;
+    aspect-ratio: 16 / 10 !important;
+    max-height: 270px !important;
+    border-radius: 20px !important;
+    overflow: hidden !important;
+    background: #000000 !important;
+    border: 1.5px solid rgba(229, 23, 68, 0.35) !important;
+    box-shadow: 0 16px 40px rgba(0, 0, 0, 0.22), 0 0 30px rgba(229, 23, 68, 0.2) !important;
+  }
+
+  .hero-showcase-video {
+    width: 100% !important;
+    height: 100% !important;
+    object-fit: cover !important;
+    display: block !important;
+    opacity: 1 !important;
+    filter: contrast(1.08) saturate(1.15) !important;
+  }
+
+  /* 2. Written text below video ("likr text niche ddaaldo") */
   .hero-copy {
-    align-items: center;
-    text-align: center;
-    gap: 8px;
-    max-width: 100%;
-    width: 100%;
+    order: 2 !important;
+    display: flex !important;
+    flex-direction: column !important;
+    align-items: center !important;
+    text-align: center !important;
+    gap: 8px !important;
+    max-width: 100% !important;
+    width: 100% !important;
+    margin-top: 2px !important;
   }
 
   .eyebrow-badge {
@@ -2060,18 +2185,9 @@ img {
     font-size: 9.5px;
   }
 
-  /* Mobile View: Hide moving mosaic chain, show the animated Cherry Pro stage */
+  /* Mobile View: Hide moving mosaic chain */
   .hero-mosaic-container {
     display: none !important;
-  }
-
-  .hero-mobile-stage {
-    display: block !important;
-    width: 100% !important;
-    max-width: 380px !important;
-    margin: 6px auto 0 !important;
-    position: relative !important;
-    z-index: 10 !important;
   }
 
   .hero-mosaic {

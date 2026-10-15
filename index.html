@@ -104,15 +104,6 @@
   ===================================================== -->
   <section class="hero" id="home">
 
-    <!-- MOBILE BACKGROUND VIDEO (CHERRY APERTURE MOTION) -->
-    <div class="hero-mobile-video-bg" aria-hidden="true">
-      <video class="hero-mobile-video" autoplay muted loop playsinline webkit-playsinline preload="auto">
-        <source src="assets/hero-bg.mp4" type="video/mp4">
-        <source src="assets/324806_dvCwap6e0.webm" type="video/webm">
-      </video>
-      <div class="hero-mobile-video-overlay"></div>
-    </div>
-
     <!-- HERO CONTENT CONTAINER -->
     <div class="hero-stage-container">
 
@@ -150,10 +141,35 @@
         </div>
       </div>
 
+      <!-- RIGHT STAGE: 4K VIDEO SHOWCASE + DESKTOP ARCHIVE SWITCHER -->
+      <div class="hero-right-stage" id="heroRightStage">
+        <!-- Desktop Switcher -->
+        <div class="hero-stage-switcher" id="heroStageSwitcher">
+          <button class="stage-switch-btn active" id="btnShowVideo" onclick="switchHeroStage('video')">
+            <span>🎬</span> 4K Film Preview
+          </button>
+          <button class="stage-switch-btn" id="btnShowMosaic" onclick="switchHeroStage('mosaic')">
+            <span>📱</span> 180+ Model Archive
+          </button>
+        </div>
 
-      <!-- RIGHT STAGE: 3-COLUMN CONTINUOUS VERTICAL PHONE MOSAIC (14.6s LOOP) -->
-      <div class="hero-mosaic-container" aria-label="Flagship Smartphone Showroom Archive">
-        <div class="hero-mosaic" id="heroMosaic">
+        <!-- 1. CINEMATIC 4K FLAGSHIP VIDEO SHOWCASE (VISIBLE ON BOTH MOBILE & DESKTOP) -->
+        <div class="hero-video-stage active" id="heroVideoStage" aria-label="Official Flagship 4K Showcase">
+          <div class="hero-video-frame">
+            <video class="hero-showcase-video" autoplay muted loop playsinline webkit-playsinline preload="auto">
+              <source src="assets/hero-bg.mp4" type="video/mp4">
+              <source src="assets/324806_dvCwap6e0.webm" type="video/webm">
+            </video>
+            <div class="video-live-pill">
+              <span class="video-pulse-dot"></span>
+              <span>4K CINEMATIC PREVIEW • IPHONE 18 PRO MAX</span>
+            </div>
+          </div>
+        </div>
+
+        <!-- 2. MOSAIC CONTAINER -->
+        <div class="hero-mosaic-container" id="heroMosaicContainer" aria-label="Flagship Smartphone Showroom Archive" style="display:none;">
+          <div class="hero-mosaic" id="heroMosaic">
 
           <!-- COLUMN 1: colDown marquee (10 cards for seamless -50% loop) -->
           <div class="col c1">
@@ -695,6 +711,7 @@
         </div>
       </div>
     </div>
+  </div>
 
 
     <!-- BOTTOM SPECS HIGHLIGHT BAR -->
@@ -1434,9 +1451,9 @@
       });
     })();
 
-    // Autoplay mobile hero background video safely on mobile devices (iOS Safari & Android)
+    // Autoplay hero showcase video safely on all devices (iOS Safari & Android)
     (function initMobileHeroVideo() {
-      const vid = document.querySelector('.hero-mobile-video');
+      const vid = document.querySelector('.hero-showcase-video');
       if (!vid) return;
       vid.muted = true;
       vid.defaultMuted = true;
@@ -1462,6 +1479,31 @@
       window.addEventListener('scroll', onUserGesture, { passive: true, once: true });
       window.addEventListener('click', onUserGesture, { passive: true, once: true });
     })();
+
+    // Desktop Switcher: 4K Film Preview vs Showroom Archive Mosaic
+    window.switchHeroStage = function(mode) {
+      const vidStage = document.getElementById('heroVideoStage');
+      const mosStage = document.getElementById('heroMosaicContainer');
+      const btnVid = document.getElementById('btnShowVideo');
+      const btnMos = document.getElementById('btnShowMosaic');
+      const vid = document.querySelector('.hero-showcase-video');
+
+      if (mode === 'video') {
+        if (vidStage) vidStage.style.display = 'block';
+        if (mosStage) mosStage.style.display = 'none';
+        if (btnVid) btnVid.classList.add('active');
+        if (btnMos) btnMos.classList.remove('active');
+        if (vid) {
+          vid.muted = true;
+          vid.play().catch(() => {});
+        }
+      } else {
+        if (vidStage) vidStage.style.display = 'none';
+        if (mosStage) mosStage.style.display = 'block';
+        if (btnVid) btnVid.classList.remove('active');
+        if (btnMos) btnMos.classList.add('active');
+      }
+    };
   </script>
 </body>
 </html>

@@ -158,16 +158,18 @@
   align-items: center;
   gap: 0.5rem;
   overflow-x: auto;
-  padding-bottom: 0.4rem;
-  scrollbar-width: thin;
+  overflow-y: hidden;
+  padding: 4px 2px 6px;
+  scrollbar-width: none !important; /* Firefox */
+  -ms-overflow-style: none !important; /* IE/Edge */
+  -webkit-overflow-scrolling: touch; /* iOS Safari momentum scroll */
+  scroll-behavior: smooth;
 }
 
 .brand-filter-bar::-webkit-scrollbar {
-  height: 4px;
-}
-.brand-filter-bar::-webkit-scrollbar-thumb {
-  background: rgba(215, 25, 66, 0.2);
-  border-radius: 4px;
+  display: none !important; /* Chrome, Edge, Safari */
+  width: 0 !important;
+  height: 0 !important;
 }
 
 .brand-chip-btn {
