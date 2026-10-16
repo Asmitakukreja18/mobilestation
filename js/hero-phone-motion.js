@@ -1,26 +1,32 @@
 /**
- * MOBILE STATION — HERO PHONE MOTION ENGINE
- * Recreates the premium floating 3D product motion from reference video:
- *  - Continuous harmonic levitation (gentle vertical up/down + subtle left/right sway)
- *  - 3D perspective rotation (subtle pitch, yaw & roll)
- *  - Scroll-driven parallax & smooth scale expansion matching reference video
+ * MOBILE STATION — PRECISE PHONE ANIMATION ENGINE
+ * Recreates the exact restrained, high-end motion style from the reference video:
+ *  - Scroll-driven subtle scale expansion (1.0 -> 1.05) & parallax lift
+ *  - Controlled 3D perspective tilt (pitch & yaw under 4 degrees)
  *  - Smooth pointer/touch parallax reaction with damped lerp easing
- *  - Strictly zero layout shift & zero modification to any text or existing layout
- *  - 60 FPS GPU-accelerated via transform: translate3d() rotate() scale()
+ *  - Restrained, calm idle levitation (3.5px gentle breathing)
+ *  - Strictly zero layout shift, zero modification to any text or existing layout
+ *  - 60 FPS GPU-accelerated via transform: translate3d() rotateX() rotateY() scale()
+ *  - Full prefers-reduced-motion support
  */
 
 (function () {
   'use strict';
 
-  function initPhoneMotion() {
+  function initPhoneAnimation() {
     const phone = document.getElementById('heroPhoneArt') || document.querySelector('.phone-art');
     const stage = document.querySelector('.product-stage');
     const hero = document.getElementById('home') || document.querySelector('.hero');
 
     if (!phone) return;
 
-    // Disable competing static CSS keyframe animation so our 60 FPS physics loop runs cleanly
-    phone.style.animation = 'none';
+    // Respect user's accessibility preferences
+    if (window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
+      phone.style.transform = 'none';
+      return;
+    }
+
+    // Prepare GPU acceleration on the phone element only
     phone.style.willChange = 'transform';
     phone.style.transformStyle = 'preserve-3d';
 
@@ -31,41 +37,41 @@
 
     // Motion State
     let time = 0;
-    let targetScrollProgress = 0;
-    let currentScrollProgress = 0;
+    let targetScroll = 0;
+    let smoothScroll = 0;
 
-    // Pointer / Tilt State
     let targetPointerX = 0;
     let targetPointerY = 0;
-    let currentPointerX = 0;
-    let currentPointerY = 0;
+    let smoothPointerX = 0;
+    let smoothPointerY = 0;
 
-    // Device responsive factor
-    function getDeviceFactor() {
+    // Responsive intensity factor
+    function getResponsiveFactor() {
       const w = window.innerWidth;
-      if (w >= 1024) return 1.0;     // Desktop: full premium motion
-      if (w >= 768) return 0.75;     // Tablet: slightly reduced intensity
-      return 0.55;                   // Mobile: subtle, contained within viewport
+      if (w >= 1024) return 1.0;  // Desktop: full premium motion
+      if (w >= 768) return 0.75;  // Tablet: balanced
+      return 0.5;                 // Mobile: subtle, strictly contained, no overlap
     }
 
-    // 1. Scroll tracking with clamped progress
-    function updateScroll() {
+    // 1. Scroll-linked tracking
+    function updateScrollProgress() {
       if (!hero) return;
       const rect = hero.getBoundingClientRect();
-      const heroHeight = hero.offsetHeight || 650;
+      const heroHeight = hero.offsetHeight || 600;
       const scrolled = Math.max(0, -rect.top);
-      targetScrollProgress = Math.min(1.2, scrolled / (heroHeight * 0.85));
+      // Normalized progress through hero section (0 to 1)
+      targetScroll = Math.min(1.0, scrolled / (heroHeight * 0.9));
     }
 
-    window.addEventListener('scroll', updateScroll, { passive: true });
-    updateScroll();
+    window.addEventListener('scroll', updateScrollProgress, { passive: true });
+    updateScrollProgress();
 
-    // 2. Interactive Pointer / Touch Parallax
+    // 2. Interactive Pointer Parallax (matching reference video 4s-8s)
     function onPointerMove(e) {
       const container = stage || hero;
       if (!container) return;
       const rect = container.getBoundingClientRect();
-      if (rect.width === 0 || rect.height === 0) return;
+      if (!rect.width || !rect.height) return;
 
       // Normalized coordinates (-1 to 1)
       const nx = ((e.clientX - rect.left) / rect.width - 0.5) * 2;
@@ -89,7 +95,7 @@
       hero.addEventListener('pointerleave', onPointerLeave, { passive: true });
     }
 
-    // Optional subtle touch listener for mobile
+    // Touch support for mobile devices
     window.addEventListener('touchmove', (e) => {
       if (e.touches && e.touches[0] && stage) {
         const rect = stage.getBoundingClientRect();
@@ -97,8 +103,8 @@
           const touch = e.touches[0];
           const nx = ((touch.clientX - rect.left) / rect.width - 0.5) * 2;
           const ny = ((touch.clientY - rect.top) / rect.height - 0.5) * 2;
-          targetPointerX = Math.max(-1, Math.min(1, nx)) * 0.6;
-          targetPointerY = Math.max(-1, Math.min(1, ny)) * 0.6;
+          targetPointerX = Math.max(-1, Math.min(1, nx)) * 0.5;
+          targetPointerY = Math.max(-1, Math.min(1, ny)) * 0.5;
         }
       }
     }, { passive: true });
@@ -108,70 +114,61 @@
       targetPointerY = 0;
     }, { passive: true });
 
-    // 3. Main 60 FPS Physics & Animation Loop
-    let lastTimestamp = performance.now();
+    // 3. 60 FPS Physics Loop with Damped Easing (Lerp)
+    let lastTime = performance.now();
 
-    function renderMotionLoop(timestamp) {
-      requestAnimationFrame(renderMotionLoop);
+    function renderLoop(now) {
+      requestAnimationFrame(renderLoop);
 
-      const delta = Math.min(50, timestamp - lastTimestamp) / 1000;
-      lastTimestamp = timestamp;
+      const dt = Math.min(50, now - lastTime) / 1000;
+      lastTime = now;
 
-      // Increment harmonic time
-      time += delta * 1.6;
+      // Advance calm breathing time
+      time += dt * 1.4;
 
-      const deviceFactor = getDeviceFactor();
+      const factor = getResponsiveFactor();
 
-      // Damped interpolation (lerp) for buttery smooth easing
-      // Avoids sudden jumps when scrolling or mouse stops
-      currentScrollProgress += (targetScrollProgress - currentScrollProgress) * 0.085;
-      currentPointerX += (targetPointerX - currentPointerX) * 0.075;
-      currentPointerY += (targetPointerY - currentPointerY) * 0.075;
+      // Damped interpolation (lerp) prevents sudden jumps when scrolling/moving stops
+      smoothScroll += (targetScroll - smoothScroll) * 0.09;
+      smoothPointerX += (targetPointerX - smoothPointerX) * 0.08;
+      smoothPointerY += (targetPointerY - smoothPointerY) * 0.08;
 
-      // --- A. Continuous Floating Harmonic Motion ---
-      // Gentle vertical up/down oscillation (sine wave)
-      const idleY = Math.sin(time) * 11 * deviceFactor;
-      // Slight left/right swaying (phase-shifted cosine wave)
-      const idleX = Math.cos(time * 0.72) * 5 * deviceFactor;
-      // Subtle 3D rotation & tilt
-      const idleRotX = Math.sin(time * 0.85) * 2.2 * deviceFactor;
-      const idleRotY = Math.cos(time * 0.65) * 3.4 * deviceFactor;
-      const idleRotZ = Math.sin(time * 0.55) * 0.8 * deviceFactor;
+      // --- A. Restrained, Calm Idle Levitation ---
+      const idleY = Math.sin(time) * 3.5 * factor;
+      const idleRotY = Math.cos(time * 0.8) * 0.9 * factor;
 
-      // --- B. Scroll-Driven Dynamics (Matching Reference Video) ---
-      // Scale expansion on scroll (as seen in reference 0s-3s expanding element)
-      const scrollScale = 1 + (Math.sin(Math.min(1, currentScrollProgress) * Math.PI) * 0.065 * deviceFactor);
-      // Gentle parallax vertical glide
-      const scrollY = currentScrollProgress * -22 * deviceFactor;
-      // Scroll-induced 3D perspective pitch & yaw
-      const scrollRotX = currentScrollProgress * -4.5 * deviceFactor;
-      const scrollRotY = Math.sin(currentScrollProgress * Math.PI) * 3.5 * deviceFactor;
+      // --- B. Scroll-Driven Dynamics (Reference 0s–3s) ---
+      // Subtle scale expansion from 1.0 to 1.05 as user scrolls
+      const scrollScale = 1 + (smoothScroll * 0.05 * factor);
+      // Subtle parallax lift
+      const scrollY = smoothScroll * -18 * factor;
+      // Controlled 3D pitch and yaw tilt
+      const scrollRotX = smoothScroll * -3.2 * factor;
+      const scrollRotY = Math.sin(smoothScroll * Math.PI) * 2.0 * factor;
 
-      // --- C. Interactive Pointer Parallax ---
-      const pointerTiltX = -currentPointerY * 12 * deviceFactor;
-      const pointerTiltY = currentPointerX * 16 * deviceFactor;
-      const pointerShiftX = currentPointerX * 8 * deviceFactor;
-      const pointerShiftY = currentPointerY * 6 * deviceFactor;
+      // --- C. Controlled Pointer Parallax (Reference 4s–8s) ---
+      const pointerTiltX = -smoothPointerY * 3.8 * factor;
+      const pointerTiltY = smoothPointerX * 4.2 * factor;
+      const pointerShiftX = smoothPointerX * 10 * factor;
+      const pointerShiftY = smoothPointerY * 6 * factor;
 
-      // --- D. Combine All Transforms ---
-      const totalX = (idleX + pointerShiftX).toFixed(2);
+      // --- D. Combine Transforms ---
+      const totalX = (pointerShiftX).toFixed(2);
       const totalY = (idleY + scrollY + pointerShiftY).toFixed(2);
-      const totalRotX = (idleRotX + scrollRotX + pointerTiltX).toFixed(2);
+      const totalRotX = (scrollRotX + pointerTiltX).toFixed(2);
       const totalRotY = (idleRotY + scrollRotY + pointerTiltY).toFixed(2);
-      const totalRotZ = (idleRotZ).toFixed(2);
       const totalScale = scrollScale.toFixed(4);
 
-      // Apply GPU-accelerated transform to the phone element only
-      phone.style.transform = `translate3d(${totalX}px, ${totalY}px, 0px) rotateX(${totalRotX}deg) rotateY(${totalRotY}deg) rotateZ(${totalRotZ}deg) scale(${totalScale})`;
+      phone.style.transform = `translate3d(${totalX}px, ${totalY}px, 0px) rotateX(${totalRotX}deg) rotateY(${totalRotY}deg) scale(${totalScale})`;
     }
 
-    requestAnimationFrame(renderMotionLoop);
+    requestAnimationFrame(renderLoop);
   }
 
-  // Safe initialization
+  // Safe startup
   if (document.readyState === 'loading') {
-    document.addEventListener('DOMContentLoaded', initPhoneMotion);
+    document.addEventListener('DOMContentLoaded', initPhoneAnimation);
   } else {
-    initPhoneMotion();
+    initPhoneAnimation();
   }
 })();

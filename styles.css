@@ -1274,7 +1274,7 @@ img {
   width: min(85%, 320px);
   z-index: 2;
   transform-style: preserve-3d;
-  animation: phone-float 6s ease-in-out infinite;
+  will-change: transform;
   filter: drop-shadow(0 25px 45px rgba(35, 6, 12, 0.4));
 }
 
