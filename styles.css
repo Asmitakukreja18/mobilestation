@@ -750,11 +750,6 @@ img {
   background: var(--paper, #f5f4ef);
 }
 
-/* Mobile Background Video (Hidden on Desktop, Visible exclusively on Mobile) */
-.hero-mobile-bg-video-wrap {
-  display: none;
-}
-
 /* Hero Right Stage (Hosts 180+ Model Archive on desktop & Video on mobile) */
 .hero-right-stage {
   display: flex;
@@ -1971,56 +1966,14 @@ img {
 
   .hero {
     position: relative;
-    padding-top: 72px;
+    padding-top: 96px;
     min-height: auto;
-    padding-bottom: 24px;
+    padding-bottom: 28px;
     overflow: hidden;
     width: 100%;
     background: var(--paper, #f5f4ef);
   }
 
-  /* 1. Mobile Full-Bleed Background Video (Zero text overlay on it, pure cinematic 4K) */
-  .hero-mobile-bg-video-wrap {
-    display: block !important;
-    position: relative !important;
-    width: 100% !important;
-    height: 52vh !important;
-    min-height: 310px !important;
-    max-height: 420px !important;
-    overflow: hidden !important;
-    background: #000000 !important;
-    margin: 0 !important;
-    padding: 0 !important;
-    z-index: 2 !important;
-  }
-
-  .hero-mobile-bg-video {
-    width: 100% !important;
-    height: 100% !important;
-    object-fit: cover !important;
-    object-position: center 25% !important;
-    display: block !important;
-    opacity: 1 !important;
-    filter: contrast(1.1) saturate(1.15) !important;
-    pointer-events: none !important;
-  }
-
-  /* Seamless smooth gradient fade at bottom into showroom background */
-  .hero-mobile-bg-gradient-overlay {
-    position: absolute !important;
-    inset: 0 !important;
-    background: linear-gradient(
-      to bottom,
-      rgba(0, 0, 0, 0.25) 0%,
-      transparent 35%,
-      transparent 70%,
-      rgba(245, 244, 239, 0.5) 90%,
-      var(--paper, #f5f4ef) 100%
-    ) !important;
-    pointer-events: none !important;
-  }
-
-  /* 2. Text Content Container: Sits completely below the video (Zero overlap) */
   .hero-stage-container {
     position: relative !important;
     z-index: 3 !important;
@@ -2028,8 +1981,8 @@ img {
     flex-direction: column !important;
     align-items: center !important;
     text-align: center !important;
-    gap: 12px !important;
-    padding: 14px 16px 0 !important;
+    gap: 16px !important;
+    padding: 24px 18px 0 !important;
     min-height: auto !important;
     width: 100% !important;
     max-width: 100% !important;
@@ -2056,58 +2009,59 @@ img {
   }
 
   .eyebrow-badge {
-    font-size: 10px;
-    letter-spacing: 1.2px;
-    padding: 3px 10px;
+    font-size: 10.5px;
+    letter-spacing: 1.5px;
+    padding: 4px 12px;
     margin: 0 auto;
   }
 
   .hero-title {
-    font-size: clamp(24px, 6.5vw, 34px);
-    line-height: 1.08;
+    font-size: clamp(30px, 8vw, 42px);
+    line-height: 1.06;
     letter-spacing: -0.02em;
   }
 
   .hero-tagline {
-    font-size: 13px;
-    line-height: 1.45;
-    max-width: 360px;
+    font-size: 14px;
+    line-height: 1.5;
+    max-width: 380px;
     margin: 0 auto;
+    color: #584147;
   }
 
   .hero-badges-row {
     justify-content: center;
-    gap: 6px;
-    margin-top: 2px;
+    gap: 8px;
+    margin-top: 4px;
+    flex-wrap: wrap;
   }
 
   .pill-badge {
-    font-size: 10.5px;
-    padding: 4px 10px;
+    font-size: 11px;
+    padding: 5px 12px;
   }
 
   .hero-quick-cta-row {
     display: flex;
-    flex-direction: row;
-    flex-wrap: wrap;
-    justify-content: center;
-    gap: 8px;
+    flex-direction: column;
+    align-items: center;
+    gap: 10px;
     width: 100%;
-    margin: 4px auto 0;
+    margin: 8px auto 0;
   }
 
-  .hero-quick-cta-row .btn-dark-pill,
-  .hero-quick-cta-row .btn-outline-hero {
-    padding: 11px 18px !important;
-    font-size: 12.5px !important;
+  .hero-quick-cta-row .btn-dark-pill {
+    padding: 13px 30px !important;
+    font-size: 13.5px !important;
     border-radius: 999px !important;
     justify-content: center;
     text-align: center;
+    width: min(100%, 280px);
   }
 
   .btn-text-link {
     justify-content: center;
-    font-size: 12.5px;
+    font-size: 13px;
     margin-top: 2px;
   }
 
