@@ -12,7 +12,6 @@
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&family=Manrope:wght@400;500;600;700;800;900&family=Outfit:wght@400;500;600;700;800&display=swap" rel="stylesheet">
 
   <link rel="stylesheet" href="styles.css" />
-  <link rel="stylesheet" href="css/hero-3d-phone.css" />
   <link rel="icon" type="image/png" href="assets/logo.png" />
 </head>
 
@@ -127,46 +126,6 @@
           <span class="pill-badge subtle-badge">100% Factory Sealed • Official Warranty</span>
         </div>
 
-        <!-- FLOWTY-INSPIRED 3D INTERACTIVE PHONE SHOWCASE -->
-        <div class="hero-phone-3d-stage" id="heroPhone3dStage">
-          <div class="hero-phone-glow-backdrop" id="heroPhoneGlow"></div>
-          
-          <div class="hero-phone-canvas-wrap" id="heroPhoneCanvasWrap">
-            <!-- WebGL 3D Canvas -->
-            <canvas class="hero-phone-canvas" id="heroPhoneCanvas" aria-label="Interactive 3D Flagship Phone"></canvas>
-            
-            <!-- Instant-Load CSS 3D Perspective Fallback -->
-            <div class="hero-phone-fallback" id="heroPhoneFallback">
-              <div class="hero-phone-fallback-inner" id="heroPhoneFallbackInner">
-                <img src="assets/iphone-18-pro-max.png" alt="iPhone 18 Pro Max Titanium 3D" id="heroPhoneFallbackImg" class="hero-phone-fallback-img" loading="eager" />
-              </div>
-              <div class="hero-phone-floor-shadow"></div>
-            </div>
-            
-            <!-- Interactive Hint Pill -->
-            <div class="hero-phone-hint-pill" id="heroPhoneHint">
-              <span class="pulse-dot"></span>
-              ✨ 3D Model • Drag to Rotate 360°
-            </div>
-          </div>
-
-          <!-- Titanium Finishes Quick Selector -->
-          <div class="hero-phone-color-chips">
-            <button type="button" class="color-chip-btn active" data-finish="desert" title="Desert Titanium">
-              <span class="chip-swatch" style="background: linear-gradient(135deg, #e4be9e, #cba17d);"></span>
-              Desert
-            </button>
-            <button type="button" class="color-chip-btn" data-finish="natural" title="Natural Titanium">
-              <span class="chip-swatch" style="background: linear-gradient(135deg, #bfb8ad, #9e978c);"></span>
-              Natural
-            </button>
-            <button type="button" class="color-chip-btn" data-finish="black" title="Black Titanium">
-              <span class="chip-swatch" style="background: linear-gradient(135deg, #383536, #1d1b1c);"></span>
-              Black
-            </button>
-          </div>
-        </div>
-
         <div class="hero-quick-cta-row">
           <a href="#flagships" class="btn btn-dark-pill">
             Explore All Brands ↓
@@ -174,6 +133,31 @@
           <button class="btn-text-link" onclick="openTradeInModal()">
             Check Exchange Value →
           </button>
+        </div>
+      </div>
+
+      <!-- MOBILE HERO PRODUCT SHOWCASE STAGE (ANIMATED FLAGSHIP SPOTLIGHT) -->
+      <div class="hero-mobile-stage" aria-label="Animated flagship smartphone showcase">
+        <div class="product-stage">
+          <div class="stage-ring ring-one"></div>
+          <div class="stage-ring ring-two"></div>
+          <div class="image-halo"></div>
+          <div class="phone-art" id="heroPhoneArt">
+            <img src="assets/cherry-iphone-showcase.jpg" alt="Premium flagship smartphone, front and back view" loading="eager" />
+            <div class="shine"></div>
+          </div>
+          <div class="spec-chip camera-chip">
+            <span class="chip-symbol">◉</span>
+            <span><b>Pro camera system</b><small>Details in every frame</small></span>
+          </div>
+          <div class="spec-chip finish-chip">
+            <span class="chip-symbol">✦</span>
+            <span><b>Cherry finish</b><small>Made to stand out</small></span>
+          </div>
+          <div class="stage-caption">
+            <span>01 / FLAGSHIP HERO</span>
+            <span>IPHONE 18 PRO MAX</span>
+          </div>
         </div>
       </div>
 
@@ -1464,8 +1448,37 @@
       });
     })();
 
-    // Flowty-style 3D Phone Animation Script
+    // Smooth interactive 3D pointer tilt for flagship phone (Flowty-inspired micro-interaction)
+    (function initHeroPhoneTilt() {
+      const stage = document.querySelector('.product-stage');
+      const phone = document.getElementById('heroPhoneArt');
+      if (!stage || !phone) return;
+
+      let bounds = null;
+      function updateBounds() {
+        bounds = stage.getBoundingClientRect();
+      }
+      window.addEventListener('resize', updateBounds, { passive: true });
+      window.addEventListener('scroll', updateBounds, { passive: true });
+
+      function onPointerMove(e) {
+        if (!bounds) updateBounds();
+        if (!bounds.width || !bounds.height) return;
+        const x = (e.clientX - bounds.left) / bounds.width - 0.5;
+        const y = (e.clientY - bounds.top) / bounds.height - 0.5;
+        const tiltX = -y * 14;
+        const tiltY = x * 18;
+        phone.style.transform = `perspective(1000px) rotateX(${tiltX.toFixed(2)}deg) rotateY(${tiltY.toFixed(2)}deg) translate3d(0, -6px, 12px)`;
+      }
+
+      function onPointerLeave() {
+        phone.style.transform = '';
+      }
+
+      stage.addEventListener('pointermove', onPointerMove, { passive: true });
+      stage.addEventListener('pointerleave', onPointerLeave, { passive: true });
+      stage.addEventListener('pointercancel', onPointerLeave, { passive: true });
+    })();
   </script>
-  <script type="module" src="js/hero-3d-phone.js"></script>
 </body>
 </html>
