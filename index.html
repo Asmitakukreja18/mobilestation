@@ -12,6 +12,7 @@
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&family=Manrope:wght@400;500;600;700;800;900&family=Outfit:wght@400;500;600;700;800&display=swap" rel="stylesheet">
 
   <link rel="stylesheet" href="styles.css" />
+  <link rel="stylesheet" href="css/hero-3d-phone.css" />
   <link rel="icon" type="image/png" href="assets/logo.png" />
 </head>
 
@@ -124,6 +125,46 @@
         <div class="hero-badges-row">
           <span class="pill-badge dark-badge">👑 2026 Flagship Hero</span>
           <span class="pill-badge subtle-badge">100% Factory Sealed • Official Warranty</span>
+        </div>
+
+        <!-- FLOWTY-INSPIRED 3D INTERACTIVE PHONE SHOWCASE -->
+        <div class="hero-phone-3d-stage" id="heroPhone3dStage">
+          <div class="hero-phone-glow-backdrop" id="heroPhoneGlow"></div>
+          
+          <div class="hero-phone-canvas-wrap" id="heroPhoneCanvasWrap">
+            <!-- WebGL 3D Canvas -->
+            <canvas class="hero-phone-canvas" id="heroPhoneCanvas" aria-label="Interactive 3D Flagship Phone"></canvas>
+            
+            <!-- Instant-Load CSS 3D Perspective Fallback -->
+            <div class="hero-phone-fallback" id="heroPhoneFallback">
+              <div class="hero-phone-fallback-inner" id="heroPhoneFallbackInner">
+                <img src="assets/iphone-18-pro-max.png" alt="iPhone 18 Pro Max Titanium 3D" id="heroPhoneFallbackImg" class="hero-phone-fallback-img" loading="eager" />
+              </div>
+              <div class="hero-phone-floor-shadow"></div>
+            </div>
+            
+            <!-- Interactive Hint Pill -->
+            <div class="hero-phone-hint-pill" id="heroPhoneHint">
+              <span class="pulse-dot"></span>
+              ✨ 3D Model • Drag to Rotate 360°
+            </div>
+          </div>
+
+          <!-- Titanium Finishes Quick Selector -->
+          <div class="hero-phone-color-chips">
+            <button type="button" class="color-chip-btn active" data-finish="desert" title="Desert Titanium">
+              <span class="chip-swatch" style="background: linear-gradient(135deg, #e4be9e, #cba17d);"></span>
+              Desert
+            </button>
+            <button type="button" class="color-chip-btn" data-finish="natural" title="Natural Titanium">
+              <span class="chip-swatch" style="background: linear-gradient(135deg, #bfb8ad, #9e978c);"></span>
+              Natural
+            </button>
+            <button type="button" class="color-chip-btn" data-finish="black" title="Black Titanium">
+              <span class="chip-swatch" style="background: linear-gradient(135deg, #383536, #1d1b1c);"></span>
+              Black
+            </button>
+          </div>
         </div>
 
         <div class="hero-quick-cta-row">
@@ -1423,34 +1464,8 @@
       });
     })();
 
-    // Autoplay mobile hero background video safely on all devices (iOS Safari & Android)
-    (function initMobileHeroVideo() {
-      const vid = document.querySelector('.hero-mobile-bg-video') || document.querySelector('.hero-showcase-video');
-      if (!vid) return;
-      vid.muted = true;
-      vid.defaultMuted = true;
-      vid.setAttribute('playsinline', '');
-      vid.setAttribute('webkit-playsinline', '');
-      vid.setAttribute('muted', '');
-      const tryPlay = () => {
-        vid.muted = true;
-        const p = vid.play();
-        if (p !== undefined) {
-          p.catch(() => {});
-        }
-      };
-      tryPlay();
-      // Fallback triggers on first user gesture
-      const onUserGesture = () => {
-        tryPlay();
-        window.removeEventListener('touchstart', onUserGesture);
-        window.removeEventListener('scroll', onUserGesture);
-        window.removeEventListener('click', onUserGesture);
-      };
-      window.addEventListener('touchstart', onUserGesture, { passive: true, once: true });
-      window.addEventListener('scroll', onUserGesture, { passive: true, once: true });
-      window.addEventListener('click', onUserGesture, { passive: true, once: true });
-    })();
+    // Flowty-style 3D Phone Animation Script
   </script>
+  <script type="module" src="js/hero-3d-phone.js"></script>
 </body>
 </html>
