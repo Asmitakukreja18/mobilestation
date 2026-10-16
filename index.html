@@ -1448,37 +1448,7 @@
       });
     })();
 
-    // Smooth interactive 3D pointer tilt for flagship phone (Flowty-inspired micro-interaction)
-    (function initHeroPhoneTilt() {
-      const stage = document.querySelector('.product-stage');
-      const phone = document.getElementById('heroPhoneArt');
-      if (!stage || !phone) return;
-
-      let bounds = null;
-      function updateBounds() {
-        bounds = stage.getBoundingClientRect();
-      }
-      window.addEventListener('resize', updateBounds, { passive: true });
-      window.addEventListener('scroll', updateBounds, { passive: true });
-
-      function onPointerMove(e) {
-        if (!bounds) updateBounds();
-        if (!bounds.width || !bounds.height) return;
-        const x = (e.clientX - bounds.left) / bounds.width - 0.5;
-        const y = (e.clientY - bounds.top) / bounds.height - 0.5;
-        const tiltX = -y * 14;
-        const tiltY = x * 18;
-        phone.style.transform = `perspective(1000px) rotateX(${tiltX.toFixed(2)}deg) rotateY(${tiltY.toFixed(2)}deg) translate3d(0, -6px, 12px)`;
-      }
-
-      function onPointerLeave() {
-        phone.style.transform = '';
-      }
-
-      stage.addEventListener('pointermove', onPointerMove, { passive: true });
-      stage.addEventListener('pointerleave', onPointerLeave, { passive: true });
-      stage.addEventListener('pointercancel', onPointerLeave, { passive: true });
-    })();
   </script>
+  <script src="js/hero-phone-motion.js"></script>
 </body>
 </html>
