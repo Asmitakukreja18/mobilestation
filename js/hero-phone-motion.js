@@ -111,6 +111,10 @@
     }
 
     measureLayout();
+    const phoneImg = phone.querySelector('img');
+    if (phoneImg && !phoneImg.complete) {
+      phoneImg.addEventListener('load', measureLayout, { once: true });
+    }
     window.addEventListener('resize', measureLayout, { passive: true });
 
     // Scroll state tracking
@@ -200,8 +204,8 @@
         currentScale = baseFocalScale * (1 - tExit * 0.16);
         currentZ = 120 * (1 - tExit);
         currentPitchX = 3.0 * tExit;
-        // Stays solid until halfway through exit, then smoothly fades out
-        currentOpacity = tExit < 0.45 ? 1.0 : Math.max(0, 1 - (tExit - 0.45) / 0.55);
+        // Stays solid until halfway through exit, then smoothly eases opacity
+        currentOpacity = tExit < 0.5 ? 1.0 : Math.max(0.15, 1 - (tExit - 0.5) / 0.5);
       }
 
       // Apply GPU-accelerated transforms

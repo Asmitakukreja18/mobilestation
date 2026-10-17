@@ -1283,6 +1283,8 @@ img {
   position: relative;
   width: min(85%, 280px);
   z-index: 30;
+  display: block !important;
+  visibility: visible !important;
   transform-style: preserve-3d;
   will-change: transform, opacity;
   filter: drop-shadow(0 25px 45px rgba(20, 10, 15, 0.4));
@@ -1291,7 +1293,10 @@ img {
 .phone-art img {
   width: 100%;
   height: auto;
-  display: block;
+  max-width: 100%;
+  display: block !important;
+  visibility: visible !important;
+  opacity: 1 !important;
   border-radius: 0;
   border: none;
   box-shadow: none;
