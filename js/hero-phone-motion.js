@@ -11,10 +11,12 @@
  *     Right Zone: "Brilliance at 3000 Nits. Pure Clarity." (Dynamic Island, 120Hz LTPO).
  *     *Zero text behind the phone! Text is on the right, phone is on the left!*
  * 
- *   - Step 3 (0.68 -> 1.00): Precision Metallic Desk Stand ("Vo Rakhne Vala")
- *     Left Side: Metallic desk stand emerges from below, phone rotates -90° into horizontal
- *     landscape StandBy mode resting securely in the cradle hooks.
- *     Screen displays the authentic Flowty 49:49 Focus Timer with Mode Pill & Controls.
+ *   - Step 3 (0.68 -> 1.00): Smartphone Desktop Stand ("Vo Rakhne Vala")
+ *     Left Side: Authentic aluminum desk phone holder rises behind and under the iPhone.
+ *     The iPhone rotates -90° into horizontal landscape, scaling naturally (0.72x) to phone proportions,
+ *     and docks securely into the two silver-chamfered cradle hooks.
+ *     Screen displays the authentic Flowty 49:49 Focus Timer with Dynamic Island notch on left.
+ *     Floating action pill appears below the stand.
  *     Right Zone: "Always-On StandBy. Studio Precision." specs & CTAs.
  * 
  *   - Fluid 60/120 FPS bidirectional lerp on scroll up & down.
@@ -33,6 +35,8 @@
     const frontFace = document.getElementById('phoneFrontFace');
     const standbyOverlay = document.getElementById('iosStandbyOverlay');
     const deskStand = document.getElementById('magsafeDeskStand');
+    const standFrontCradle = document.getElementById('standFrontCradle');
+    const floatingPill = document.getElementById('standbyFloatingPill');
 
     const step1 = document.getElementById('storyStep1');
     const step2 = document.getElementById('storyStep2');
@@ -149,6 +153,8 @@
         curRotX = -2.0;
 
         if (deskStand) deskStand.classList.remove('visible');
+        if (standFrontCradle) standFrontCradle.classList.remove('visible');
+        if (floatingPill) floatingPill.classList.remove('visible');
         if (standbyOverlay) standbyOverlay.classList.remove('active');
       } else if (p <= 0.44) {
         // Transition 1 -> 2: 180° Flip to Sidha / Front Super Retina Display
@@ -160,6 +166,8 @@
         curScale = 1.0 + 0.06 * Math.sin(t1 * Math.PI);
 
         if (deskStand) deskStand.classList.remove('visible');
+        if (standFrontCradle) standFrontCradle.classList.remove('visible');
+        if (floatingPill) floatingPill.classList.remove('visible');
         if (standbyOverlay) standbyOverlay.classList.remove('active');
       } else if (p <= 0.68) {
         // Step 2: Holds Front View (180° Sidha) with Dynamic Island & Screen on Left
@@ -169,6 +177,8 @@
         curRotX = 0;
 
         if (deskStand) deskStand.classList.remove('visible');
+        if (standFrontCradle) standFrontCradle.classList.remove('visible');
+        if (floatingPill) floatingPill.classList.remove('visible');
         if (standbyOverlay) standbyOverlay.classList.remove('active');
       } else if (p <= 0.88) {
         // Transition 2 -> 3: Rotates -90° into Landscape StandBy Mode on Desk Stand!
@@ -176,17 +186,25 @@
         curRotY = 180;
         curRotZ = -90 * t3; // Rotates smoothly into horizontal landscape
         curZ = (isMobile ? 35 : 55) * Math.sin(t3 * Math.PI);
-        dockY = (isMobile ? 18 : 28) * t3; // Lowers into the desk stand cradle
-        curScale = 1.0 + (isMobile ? -0.05 : 0.02) * t3;
+        dockY = (isMobile ? 12 : 18) * t3;
+        // Smoothly scale down from 1.0 to 0.74 so horizontal phone maintains smartphone proportions
+        curScale = 1.0 - (isMobile ? 0.22 : 0.26) * t3;
 
-        // Show desk stand & standby overlay as it reaches horizontal
-        if (deskStand) {
-          if (t3 > 0.35) deskStand.classList.add('visible');
-          else deskStand.classList.remove('visible');
+        // Show desk stand, cradle hooks, floating pill & standby overlay
+        if (t3 > 0.35) {
+          if (deskStand) deskStand.classList.add('visible');
+          if (standFrontCradle) standFrontCradle.classList.add('visible');
+          if (floatingPill) floatingPill.classList.add('visible');
+        } else {
+          if (deskStand) deskStand.classList.remove('visible');
+          if (standFrontCradle) standFrontCradle.classList.remove('visible');
+          if (floatingPill) floatingPill.classList.remove('visible');
         }
-        if (standbyOverlay) {
-          if (t3 > 0.55) standbyOverlay.classList.add('active');
-          else standbyOverlay.classList.remove('active');
+
+        if (t3 > 0.55) {
+          if (standbyOverlay) standbyOverlay.classList.add('active');
+        } else {
+          if (standbyOverlay) standbyOverlay.classList.remove('active');
         }
       } else {
         // Step 3: Holds Landscape StandBy Mode on Desk Stand (Reference Match!)
@@ -194,15 +212,17 @@
         curRotZ = -90;
         curZ = 0;
         curRotX = 0;
-        dockY = isMobile ? 18 : 28;
-        curScale = isMobile ? 0.95 : 1.02;
+        dockY = isMobile ? 12 : 18;
+        curScale = isMobile ? 0.78 : 0.74;
 
         if (deskStand) deskStand.classList.add('visible');
+        if (standFrontCradle) standFrontCradle.classList.add('visible');
+        if (floatingPill) floatingPill.classList.add('visible');
         if (standbyOverlay) standbyOverlay.classList.add('active');
       }
 
       // Subtle aerodynamic breathing wave
-      const floatY = Math.sin(p * Math.PI * 3.5) * (isMobile ? 5 : 8) + dockY;
+      const floatY = Math.sin(p * Math.PI * 3.5) * (isMobile ? 4 : 6) + dockY;
 
       // Apply 3D Transforms to phone element
       phone.style.transform = `translate3d(0, ${floatY.toFixed(1)}px, ${curZ.toFixed(1)}px) scale(${curScale.toFixed(4)}) rotateX(${curRotX.toFixed(2)}deg) rotateZ(${curRotZ.toFixed(2)}deg)`;
