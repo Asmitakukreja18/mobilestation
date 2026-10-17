@@ -1250,21 +1250,30 @@ img {
 }
 
 /* =========================================================================
-   MOBILE HERO PRODUCT STAGE (CHERRY PRO SPOTLIGHT)
+   HERO PRODUCT STAGE (FLAGSHIP PHONE SHOWCASE — VISIBLE ON DESKTOP & MOBILE)
 ========================================================================= */
 .hero-mobile-stage {
-  display: none;
+  display: block !important;
+  width: 100%;
+  max-width: 480px;
+  margin: 0 auto;
+  position: relative;
+  z-index: 10;
+}
+
+.hero-right-stage {
+  display: none !important;
 }
 
 .product-stage {
   position: relative;
   min-width: 0;
-  min-height: 380px;
+  min-height: 440px;
   display: grid;
   place-items: center;
-  perspective: 1000px;
+  perspective: 1200px;
   width: 100%;
-  max-width: 440px;
+  max-width: 460px;
   margin: 0 auto;
   user-select: none;
 }

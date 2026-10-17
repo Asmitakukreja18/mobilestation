@@ -1,13 +1,13 @@
 /**
- * MOBILE STATION — PROMINENT & HIGH-END PHONE MOTION ENGINE
- * Inspired by Flowty.co ("Flowty On Your Wrist") and Apple keynote product animations:
- *  - Noticeable, elegant floating levitation (fluid ±10px breathing + subtle 3D sway)
- *  - Dynamic scroll-driven scale expansion (1.0 -> 1.12) & upward parallax lift
- *  - Responsive touch & pointer 3D tilt tracking with smooth damped lerp easing
- *  - Native mobile gyroscope (device orientation) tilt support for real-time reactivity
- *  - Dynamic shine/halo sync for photorealistic depth
- *  - Strictly GPU-accelerated: zero layout shifts, zero text/UI alterations
- *  - Full prefers-reduced-motion accessibility support
+ * MOBILE STATION — PROMINENT 3D FLAGSHIP PHONE MOTION ENGINE
+ * Recreates the iconic Flowty.co ("Flowty On Your Wrist") motion on Desktop & Mobile:
+ *  - Prominent, elegant floating levitation (fluid ±15px breathing + organic 3D tilt)
+ *  - Eye-catching Flowty-style scroll expansion (scales smoothly from 1.0 -> 1.22)
+ *  - Deep 3D parallax glide (-50px lift + -8deg perspective pitch on scroll)
+ *  - Interactive mouse & touch 3D tilt tracking with buttery damped lerp easing
+ *  - Mobile physical gyroscope orientation tracking
+ *  - Synchronized specular glass shine reflection & pulsing background halo
+ *  - 100% GPU-accelerated: zero layout shifts, zero text alterations
  */
 
 (function () {
@@ -22,7 +22,7 @@
 
     if (!phone) return;
 
-    // Accessibility: Return to stable static state if reduced motion is requested
+    // Accessibility: Return to stable static state if user prefers reduced motion
     if (window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
       phone.style.transform = 'none';
       return;
@@ -37,7 +37,7 @@
       stage.style.transformStyle = 'preserve-3d';
     }
 
-    // Motion State variables
+    // Motion State
     let time = 0;
     let targetScroll = 0;
     let smoothScroll = 0;
@@ -52,23 +52,56 @@
     let smoothGyroX = 0;
     let smoothGyroY = 0;
 
-    // Intensity factors
-    function getMotionScale() {
+    // Responsive intensity scale
+    function getMotionConfig() {
       const w = window.innerWidth;
-      if (w >= 1024) return { floatY: 7, tilt: 7, scaleExpand: 0.08, parallaxY: -28 };
-      if (w >= 768)  return { floatY: 9, tilt: 8, scaleExpand: 0.10, parallaxY: -32 };
-      // Mobile: Prominent, clearly noticeable, yet clean and contained
-      return { floatY: 11, tilt: 9, scaleExpand: 0.12, parallaxY: -36 };
+      if (w >= 1024) {
+        // Desktop: Full expansive 3D stage
+        return {
+          floatY: 15,
+          tiltX: 12,
+          tiltY: 14,
+          shiftX: 18,
+          shiftY: 12,
+          scaleExpand: 0.20,
+          parallaxY: -55,
+          pitchOnScroll: -7.5
+        };
+      }
+      if (w >= 768) {
+        // Tablet
+        return {
+          floatY: 14,
+          tiltX: 11,
+          tiltY: 13,
+          shiftX: 15,
+          shiftY: 10,
+          scaleExpand: 0.18,
+          parallaxY: -48,
+          pitchOnScroll: -7.0
+        };
+      }
+      // Mobile: Prominent, clearly noticeable, contained within hero stage
+      return {
+        floatY: 13,
+        tiltX: 10,
+        tiltY: 12,
+        shiftX: 14,
+        shiftY: 9,
+        scaleExpand: 0.18,
+        parallaxY: -42,
+        pitchOnScroll: -6.5
+      };
     }
 
-    // 1. Scroll tracking with responsive progression
+    // 1. Scroll progression tracking
     function updateScroll() {
       if (!hero) return;
       const rect = hero.getBoundingClientRect();
       const heroHeight = hero.offsetHeight || 650;
       const scrolled = Math.max(0, -rect.top);
-      // Normalized scroll progress across hero (0 to 1)
-      targetScroll = Math.min(1.2, scrolled / (heroHeight * 0.8));
+      // Normalized progress through hero section (0 to 1)
+      targetScroll = Math.min(1.2, scrolled / (heroHeight * 0.75));
     }
 
     window.addEventListener('scroll', updateScroll, { passive: true });
@@ -121,19 +154,16 @@
     // 4. Mobile Device Gyroscope (Physical Tilt Interaction)
     if (window.DeviceOrientationEvent) {
       window.addEventListener('deviceorientation', (e) => {
-        // gamma: left-to-right tilt in degrees [-90, 90]
-        // beta: front-to-back tilt in degrees [-180, 180]
         if (e.gamma !== null && e.beta !== null) {
           const clampedGamma = Math.max(-30, Math.min(30, e.gamma));
-          const clampedBeta = Math.max(10, Math.min(70, e.beta)) - 40; // centered around ~40 deg holding angle
-
-          gyroX = clampedGamma / 30; // normalized [-1, 1]
-          gyroY = clampedBeta / 30;  // normalized [-1, 1]
+          const clampedBeta = Math.max(10, Math.min(70, e.beta)) - 40;
+          gyroX = clampedGamma / 30;
+          gyroY = clampedBeta / 30;
         }
       }, { passive: true });
     }
 
-    // 5. High-Performance 60 FPS Physics & Render Loop
+    // 5. 60 FPS Physics & Render Loop
     let lastTime = performance.now();
 
     function renderLoop(now) {
@@ -142,12 +172,12 @@
       const dt = Math.min(50, now - lastTime) / 1000;
       lastTime = now;
 
-      // Harmonic time for natural, breathing levitation
-      time += dt * 1.5;
+      // Natural rhythmic breathing (period ~2.9s)
+      time += dt * 2.15;
 
-      const motion = getMotionScale();
+      const config = getMotionConfig();
 
-      // Damped interpolation (lerp) for smooth easing without jerky motion
+      // Damped interpolation (lerp) for silky easing
       smoothScroll += (targetScroll - smoothScroll) * 0.085;
       smoothPointerX += (targetPointerX - smoothPointerX) * 0.08;
       smoothPointerY += (targetPointerY - smoothPointerY) * 0.08;
@@ -155,31 +185,30 @@
       smoothGyroX += (gyroX - smoothGyroX) * 0.06;
       smoothGyroY += (gyroY - smoothGyroY) * 0.06;
 
-      // Combine pointer and gyro inputs
-      const combinedInputX = smoothPointerX + smoothGyroX * 0.7;
-      const combinedInputY = smoothPointerY + smoothGyroY * 0.7;
+      const combinedX = smoothPointerX + smoothGyroX * 0.75;
+      const combinedY = smoothPointerY + smoothGyroY * 0.75;
 
-      // --- A. Organic 3D Levitation (Noticeable Breathing Motion) ---
-      const idleY = Math.sin(time) * motion.floatY;
-      const idleRotY = Math.cos(time * 0.8) * 2.2;
-      const idleRotX = Math.sin(time * 0.65) * 1.4;
-      const idleRotZ = Math.sin(time * 0.5) * 0.8;
+      // --- A. Prominent 3D Levitation (Visible in Real Time) ---
+      const idleY = Math.sin(time) * config.floatY;
+      const idleRotY = Math.cos(time * 0.85) * 3.2;
+      const idleRotX = Math.sin(time * 0.7) * 2.2;
+      const idleRotZ = Math.sin(time * 0.5) * 1.2;
 
-      // --- B. Scroll-Linked Dynamics (Flowty Style Expansion) ---
-      // Phone expands as user scrolls down, reaching prominent focus
-      const scrollScale = 1 + (smoothScroll * motion.scaleExpand);
+      // --- B. Flowty Scroll Dynamics (Noticeable Scale Expansion) ---
+      // Phone expands from 1.0 up to ~1.20 as you scroll through hero
+      const scrollScale = 1 + (smoothScroll * config.scaleExpand);
       // Upward parallax glide
-      const scrollY = smoothScroll * motion.parallaxY;
-      // Scroll-driven 3D pitch (phone leans back slightly as it travels)
-      const scrollRotX = smoothScroll * -5.5;
+      const scrollY = smoothScroll * config.parallaxY;
+      // 3D perspective pitch tilt on scroll
+      const scrollRotX = smoothScroll * config.pitchOnScroll;
 
-      // --- C. Interactive Tilt (Touch & Pointer Reactions) ---
-      const tiltX = -combinedInputY * motion.tilt;
-      const tiltY = combinedInputX * motion.tilt;
-      const shiftX = combinedInputX * 12;
-      const shiftY = combinedInputY * 8;
+      // --- C. Interactive Tilt (Mouse, Touch, and Gyro) ---
+      const tiltX = -combinedY * config.tiltX;
+      const tiltY = combinedX * config.tiltY;
+      const shiftX = combinedX * config.shiftX;
+      const shiftY = combinedY * config.shiftY;
 
-      // --- D. Combine All Transforms ---
+      // --- D. Combine Transforms ---
       const finalX = (shiftX).toFixed(2);
       const finalY = (idleY + scrollY + shiftY).toFixed(2);
       const finalRotX = (idleRotX + scrollRotX + tiltX).toFixed(2);
@@ -187,18 +216,18 @@
       const finalRotZ = (idleRotZ).toFixed(2);
       const finalScale = scrollScale.toFixed(4);
 
-      // Apply transform directly to the phone
+      // Apply GPU-accelerated transform to the phone element
       phone.style.transform = `translate3d(${finalX}px, ${finalY}px, 0px) rotateX(${finalRotX}deg) rotateY(${finalRotY}deg) rotateZ(${finalRotZ}deg) scale(${finalScale})`;
 
-      // Dynamic specular highlight sync (shifts shine slightly with tilt for glass realism)
+      // Dynamic specular highlight reflection shift
       if (shine) {
-        const shineShift = (combinedInputX * 25 + Math.sin(time) * 10).toFixed(1);
+        const shineShift = (combinedX * 30 + Math.sin(time) * 12).toFixed(1);
         shine.style.transform = `translateX(${shineShift}px)`;
       }
 
-      // Sync background halo scale with phone breathing
+      // Sync background halo scale and intensity
       if (halo) {
-        const haloScale = (1 + Math.sin(time) * 0.08 + smoothScroll * 0.1).toFixed(3);
+        const haloScale = (1 + Math.sin(time) * 0.10 + smoothScroll * 0.15).toFixed(3);
         halo.style.transform = `scale(${haloScale})`;
       }
     }
