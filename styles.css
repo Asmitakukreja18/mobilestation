@@ -1532,12 +1532,12 @@ img {
   justify-content: center;
 }
 
-/* 1. Mobile Desk Stand Hardware (Behind & Under the Phone) */
+/* 1. Mobile Desk Stand Hardware (Behind & Under the Horizontal Phone) */
 .mobile-desk-stand {
   position: absolute;
   left: 50%;
-  bottom: 2%;
-  transform: translateX(-50%) translateY(40px);
+  top: 50%;
+  transform: translate(-50%, -50%) translateY(35px);
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -1549,15 +1549,15 @@ img {
 
 .mobile-desk-stand.visible {
   opacity: 1;
-  transform: translateX(-50%) translateY(0);
+  transform: translate(-50%, -50%) translateY(5px);
 }
 
-/* Compact Fluted Silicone/Rubber Backplate */
+/* Compact Fluted Silicone/Rubber Backplate (Peeks behind top of horizontal phone) */
 .stand-backplate {
   position: relative;
-  width: 135px;
-  height: 155px;
-  border-radius: 18px 18px 8px 8px;
+  width: 145px;
+  height: 190px;
+  border-radius: 20px 20px 10px 10px;
   background: linear-gradient(180deg, #2b2629 0%, #161315 100%);
   border: 1px solid rgba(255, 255, 255, 0.18);
   box-shadow: 0 10px 28px rgba(0, 0, 0, 0.6), inset 0 1px 0 rgba(255, 255, 255, 0.2);
@@ -1579,11 +1579,11 @@ img {
   opacity: 0.85;
 }
 
-/* Dual Silver Cradle Hooks (Holding the bottom of the phone) */
+/* Dual Silver Cradle Hooks (Holding the bottom long edge of horizontal phone) */
 .stand-cradle-hooks {
   position: relative;
-  width: 135px;
-  height: 24px;
+  width: 150px;
+  height: 26px;
   display: flex;
   justify-content: space-between;
   padding: 0 16px;
@@ -1594,8 +1594,8 @@ img {
 
 .cradle-prong {
   position: relative;
-  width: 16px;
-  height: 22px;
+  width: 18px;
+  height: 24px;
   background: linear-gradient(135deg, #443c40, #171315);
   border-radius: 4px 4px 2px 2px;
   border: 1px solid rgba(255, 255, 255, 0.35);
@@ -1650,8 +1650,8 @@ img {
 /* Weighted Heavy Aluminum Desk Base */
 .stand-base {
   position: relative;
-  width: 155px;
-  height: 15px;
+  width: 160px;
+  height: 16px;
   background: linear-gradient(180deg, #302b2e, #141113);
   border-radius: 18px;
   border: 1px solid rgba(255, 255, 255, 0.2);
@@ -1669,6 +1669,228 @@ img {
   background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.5) 50%, transparent);
   border-radius: 2px;
 }
+
+/* =========================================================================
+   AUTHENTIC STANDBY LANDSCAPE SCREEN (TEDA / HORIZONTAL DISPLAY ON STAND)
+   Matches Reference: Focus/Break, 49 49 OLED Digits, Power Hour, Pause/Reset
+========================================================================= */
+.standby-landscape-screen {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 196%;
+  height: 92.6%;
+  transform: translate(-50%, -50%) rotate(90deg);
+  transform-origin: center center;
+  border-radius: 42px;
+  background: #08080a;
+  overflow: hidden;
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 0.4s ease;
+  z-index: 10;
+  box-shadow: inset 0 0 0 1px rgba(255, 255, 255, 0.08);
+  display: flex;
+  align-items: center;
+  padding: 18px 26px;
+  box-sizing: border-box;
+}
+
+.standby-island-pill {
+  position: absolute;
+  left: 14px;
+  top: 50%;
+  transform: translateY(-50%);
+  width: 14px;
+  height: 52px;
+  border-radius: 10px;
+  background: #000000;
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  box-shadow: inset 0 0 4px rgba(0, 0, 0, 0.9);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 5;
+}
+
+.standby-island-pill .island-lens {
+  width: 7px;
+  height: 7px;
+  border-radius: 50%;
+  background: #0a0e1a;
+  border: 0.5px solid rgba(70, 100, 160, 0.5);
+}
+
+.standby-ui-content {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  padding-left: 28px;
+  box-sizing: border-box;
+}
+
+.standby-top-bar {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  width: 100%;
+}
+
+.standby-tab-capsule {
+  display: inline-flex;
+  align-items: center;
+  background: rgba(255, 255, 255, 0.12);
+  border-radius: 20px;
+  padding: 3px 4px;
+  gap: 2px;
+}
+
+.standby-tab {
+  font-size: 11px;
+  font-weight: 700;
+  padding: 4px 12px;
+  border-radius: 14px;
+  color: #888892;
+  transition: all 0.2s ease;
+}
+
+.standby-tab.active {
+  background: #ffffff;
+  color: #08080a;
+}
+
+.standby-clock-time {
+  font-size: 11.5px;
+  font-weight: 600;
+  color: #a0a0ab;
+  letter-spacing: 0.3px;
+}
+
+.standby-clock-time .time-day {
+  color: #6a6a75;
+  margin-left: 4px;
+}
+
+.standby-digits-wrapper {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 28px;
+  margin: auto 0;
+  position: relative;
+}
+
+.digit-col {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  position: relative;
+}
+
+.digit-col .unit-marker {
+  font-size: 11px;
+  font-weight: 800;
+  color: #6a6a75;
+  text-transform: uppercase;
+  margin-bottom: -4px;
+  letter-spacing: 1px;
+}
+
+.digit-col .big-num {
+  font-family: "Inter", "Manrope", sans-serif;
+  font-size: 72px;
+  font-weight: 800;
+  line-height: 1;
+  color: #ffffff;
+  letter-spacing: -2px;
+  text-shadow: 0 0 24px rgba(255, 255, 255, 0.25);
+}
+
+.digit-col .cycle-marker {
+  position: absolute;
+  right: -52px;
+  bottom: 12px;
+  font-size: 9.5px;
+  color: #6a6a75;
+  font-weight: 600;
+  white-space: nowrap;
+}
+
+.standby-bottom-bar {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  width: 100%;
+}
+
+.standby-session-tag {
+  display: flex;
+  align-items: center;
+  gap: 7px;
+  font-size: 11.5px;
+  color: #ffffff;
+}
+
+.session-green-dot {
+  width: 6.5px;
+  height: 6.5px;
+  border-radius: 50%;
+  background: #34d399;
+  box-shadow: 0 0 8px rgba(52, 211, 153, 0.7);
+}
+
+.standby-session-tag strong {
+  font-weight: 700;
+}
+
+.standby-session-tag .session-duration {
+  color: #6a6a75;
+  font-size: 10px;
+}
+
+.standby-actions-group {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.standby-pause-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  padding: 5px 12px;
+  border-radius: 8px;
+  background: rgba(229, 23, 68, 0.14);
+  border: 1px solid rgba(229, 23, 68, 0.5);
+  color: #ffffff;
+  font-size: 11px;
+  font-weight: 700;
+  cursor: pointer;
+}
+
+.standby-pause-btn .pause-box-icon {
+  width: 8px;
+  height: 8px;
+  border-radius: 1.5px;
+  border: 1.5px solid #ff3b65;
+}
+
+.standby-icon-btn {
+  width: 26px;
+  height: 26px;
+  border-radius: 50%;
+  background: rgba(255, 255, 255, 0.1);
+  border: 1px solid rgba(255, 255, 255, 0.18);
+  color: #ffffff;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+}
+
 
 /* Floating Bottom Action Pill */
 .standby-floating-pill {
@@ -2651,31 +2873,36 @@ img {
     margin: 0 auto !important;
   }
 
-  /* Mobile Desk Stand hardware responsive sizing */
+  /* Mobile Desk Stand hardware responsive sizing (for horizontal phone) */
   .mobile-desk-stand {
-    bottom: 3% !important;
+    top: 50% !important;
+    bottom: auto !important;
+    transform: translate(-50%, -50%) translateY(32px) !important;
+  }
+  .mobile-desk-stand.visible {
+    transform: translate(-50%, -50%) translateY(8px) !important;
   }
   .stand-backplate {
-    width: 112px !important;
-    height: 125px !important;
+    width: 118px !important;
+    height: 145px !important;
     border-radius: 14px 14px 6px 6px !important;
   }
   .stand-cradle-hooks {
-    width: 112px !important;
-    height: 20px !important;
+    width: 120px !important;
+    height: 22px !important;
     padding: 0 10px !important;
   }
   .cradle-prong {
     width: 14px !important;
-    height: 18px !important;
+    height: 20px !important;
   }
   .stand-stem {
     width: 14px !important;
-    height: 58px !important;
+    height: 60px !important;
   }
   .stand-base {
-    width: 128px !important;
-    height: 12px !important;
+    width: 130px !important;
+    height: 13px !important;
     border-radius: 14px !important;
   }
   .standby-floating-pill {
@@ -2686,6 +2913,55 @@ img {
   }
   .standby-floating-pill .pill-brand-badge {
     font-size: 11px !important;
+  }
+
+  /* StandBy landscape screen mobile scale */
+  .standby-landscape-screen {
+    border-radius: 28px !important;
+    padding: 10px 14px !important;
+  }
+  .standby-island-pill {
+    left: 8px !important;
+    width: 10px !important;
+    height: 38px !important;
+    border-radius: 7px !important;
+  }
+  .standby-ui-content {
+    padding-left: 18px !important;
+  }
+  .standby-tab {
+    font-size: 9px !important;
+    padding: 2px 8px !important;
+  }
+  .standby-clock-time {
+    font-size: 9.5px !important;
+  }
+  .digit-col .big-num {
+    font-size: 42px !important;
+    letter-spacing: -1px !important;
+  }
+  .digit-col .unit-marker {
+    font-size: 8.5px !important;
+  }
+  .digit-col .cycle-marker {
+    font-size: 8px !important;
+    right: -40px !important;
+    bottom: 4px !important;
+  }
+  .standby-session-tag {
+    font-size: 9px !important;
+    gap: 5px !important;
+  }
+  .standby-session-tag .session-duration {
+    display: none !important;
+  }
+  .standby-pause-btn {
+    padding: 3px 8px !important;
+    font-size: 9px !important;
+  }
+  .standby-icon-btn {
+    width: 20px !important;
+    height: 20px !important;
   }
 
   .hero-mosaic-container {

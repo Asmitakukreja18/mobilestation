@@ -11,7 +11,7 @@
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&family=Manrope:wght@400;500;600;700;800;900&family=Outfit:wght@400;500;600;700;800&display=swap" rel="stylesheet">
 
-  <link rel="stylesheet" href="styles.css?v=ms-mobile-parity-23.0" />
+  <link rel="stylesheet" href="styles.css?v=ms-teda-standby-24.0" />
   <link rel="icon" type="image/png" href="assets/logo.png" />
 </head>
 
@@ -240,6 +240,61 @@
                   <!-- FRONT FACE: Super Retina Display with Dynamic Island & Lock Screen -->
                   <div class="phone-face phone-face-front" id="phoneFrontFace">
                     <img src="assets/Modern_iPhone_Lock_Screen_Mockup-removebg-preview.png" alt="iPhone 18 Pro Max Super Retina Display Front View" loading="eager" />
+
+                    <!-- AUTHENTIC STANDBY HORIZONTAL SCREEN (TEDA / LANDSCAPE DISPLAY ON DESK STAND) -->
+                    <div class="standby-landscape-screen" id="standbyLandscapeScreen">
+                      <!-- Dynamic Island on Left Edge (Landscape orientation) -->
+                      <div class="standby-island-pill">
+                        <span class="island-lens"></span>
+                      </div>
+
+                      <!-- StandBy UI Content Container -->
+                      <div class="standby-ui-content">
+                        <!-- Top Header Row -->
+                        <div class="standby-top-bar">
+                          <div class="standby-tab-capsule">
+                            <span class="standby-tab active">Focus</span>
+                            <span class="standby-tab">Break</span>
+                          </div>
+                          <div class="standby-clock-time">
+                            01:34 PM <span class="time-day">Wednesday</span>
+                          </div>
+                        </div>
+
+                        <!-- Giant Center Digits (Reference 49 49) -->
+                        <div class="standby-digits-wrapper">
+                          <div class="digit-col">
+                            <span class="unit-marker">M</span>
+                            <span class="big-num">49</span>
+                          </div>
+                          <div class="digit-col">
+                            <span class="unit-marker">S</span>
+                            <span class="big-num">49</span>
+                            <span class="cycle-marker">1st Cycle</span>
+                          </div>
+                        </div>
+
+                        <!-- Bottom Session & Action Bar -->
+                        <div class="standby-bottom-bar">
+                          <div class="standby-session-tag">
+                            <span class="session-green-dot"></span>
+                            <strong>The Power Hour</strong>
+                            <span class="session-duration">50 • 10 MIN</span>
+                          </div>
+                          <div class="standby-actions-group">
+                            <button class="standby-pause-btn" type="button" aria-label="Pause Timer">
+                              <span class="pause-box-icon"></span>
+                              <span>Pause</span>
+                            </button>
+                            <button class="standby-icon-btn" type="button" aria-label="Restart Timer">
+                              <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
+                                <path d="M21.5 2v6h-6M21.34 15.57a10 10 0 1 1-.57-8.38l5.67-5.67"></path>
+                              </svg>
+                            </button>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
                   </div>
                 </div>
               </div>
@@ -984,6 +1039,6 @@
   <script src="products-data.js"></script>
   <script src="js/add-phone.js"></script>
   <script src="script.js"></script>
-  <script src="js/hero-phone-motion.js?v=ms-mobile-parity-23.0"></script>
+  <script src="js/hero-phone-motion.js?v=ms-teda-standby-24.0"></script>
 </body>
 </html>

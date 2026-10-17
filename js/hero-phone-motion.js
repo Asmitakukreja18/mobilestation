@@ -34,6 +34,7 @@
     const frontFace = document.getElementById('phoneFrontFace');
     const deskStand = document.getElementById('magsafeDeskStand');
     const floatingPill = document.getElementById('standbyFloatingPill');
+    const standbyScreen = document.getElementById('standbyLandscapeScreen');
 
     const step1 = document.getElementById('storyStep1');
     const step2 = document.getElementById('storyStep2');
@@ -156,7 +157,7 @@
       }
 
       // -----------------------------------------------------------------------
-      // 3. 3D REAL IPHONE ROTATIONS, FLIPS & STANDBY DOCK ON MOBILE STAND
+      // 3. 3D REAL IPHONE ROTATIONS, FLIPS & TEDA STANDBY DOCK ON MOBILE STAND
       // -----------------------------------------------------------------------
       let curRotY = 0;
       let curZ = 0;
@@ -173,6 +174,7 @@
         curRotX = -2.0;
         curScale = 1.0;
 
+        if (standbyScreen) standbyScreen.style.opacity = '0';
         if (deskStand) deskStand.classList.remove('visible');
         if (floatingPill) floatingPill.classList.remove('visible');
       } else if (p <= 0.44) {
@@ -184,29 +186,34 @@
         curRotX = -2.0 + Math.sin(t1 * Math.PI) * -3.0;
         curScale = 1.0 + 0.05 * Math.sin(t1 * Math.PI);
 
+        if (standbyScreen) standbyScreen.style.opacity = '0';
         if (deskStand) deskStand.classList.remove('visible');
         if (floatingPill) floatingPill.classList.remove('visible');
       } else if (p <= 0.68) {
-        // Step 2: Real iPhone Super Retina OLED Display with Dynamic Island on Left
+        // Step 2: Real iPhone Super Retina OLED Display with Dynamic Island on Left (Portrait)
         curRotY = 180;
         curZ = 0;
         curRotZ = 0;
         curRotX = 0;
         curScale = 1.0;
 
+        if (standbyScreen) standbyScreen.style.opacity = '0';
         if (deskStand) deskStand.classList.remove('visible');
         if (floatingPill) floatingPill.classList.remove('visible');
       } else if (p <= 0.88) {
-        // Transition 2 -> 3: Mobile Desk Stand emerges & cradles the real iPhone!
+        // Transition 2 -> 3: Phone rotates into Landscape ("teda") & docks onto Desk Stand!
         const t3 = smoothstep(0.68, 0.88, p);
-        curRotY = 180 - 6 * t3;
-        curRotZ = 0;
-        curRotX = -6 * t3; // Authentic 3D desk stand tilt
-        curZ = (isMobile ? 15 : 25) * Math.sin(t3 * Math.PI);
-        dockY = (isMobile ? 10 : 16) * t3;
-        curScale = 1.0 - 0.03 * t3;
+        curRotY = 180 - 4 * t3;
+        curRotZ = -90 * t3; // Rotates smoothly from 0° (portrait) to -90° (landscape / "teda")
+        curRotX = -12 * t3; // Authentic 3D desk stand tilt
+        curZ = (isMobile ? 12 : 25) * Math.sin(t3 * Math.PI);
+        dockY = (isMobile ? 12 : 22) * t3;
+        curScale = isMobile ? (1.0 - 0.12 * t3) : (1.0 - 0.05 * t3);
 
-        // Show desk stand & floating pill
+        // Fade in StandBy landscape OLED screen and show stand
+        if (standbyScreen) {
+          standbyScreen.style.opacity = t3 > 0.35 ? ((t3 - 0.35) / 0.65).toFixed(3) : '0';
+        }
         if (t3 > 0.3) {
           if (deskStand) deskStand.classList.add('visible');
           if (floatingPill) floatingPill.classList.add('visible');
@@ -215,14 +222,15 @@
           if (floatingPill) floatingPill.classList.remove('visible');
         }
       } else {
-        // Step 3: Real iPhone resting securely on the Mobile Desk Stand (Reference Match!)
-        curRotY = 174;
-        curRotZ = 0;
-        curRotX = -6;
+        // Step 3: Real iPhone resting horizontally ("teda") in StandBy Mode on Desk Stand (Reference Match!)
+        curRotY = 176;
+        curRotZ = -90; // Landscape ("teda")!
+        curRotX = -12; // 3D Desk Tilt
         curZ = 0;
-        dockY = isMobile ? 10 : 16;
-        curScale = 0.97;
+        dockY = isMobile ? 12 : 22;
+        curScale = isMobile ? 0.88 : 0.95;
 
+        if (standbyScreen) standbyScreen.style.opacity = '1';
         if (deskStand) deskStand.classList.add('visible');
         if (floatingPill) floatingPill.classList.add('visible');
       }
