@@ -98,626 +98,126 @@
 
 
   <!-- =====================================================
-       HERO SECTION — EDITORIAL BRUTALIST ARCHIVE SHOWROOM
+       CINEMATIC SCROLL STORY SECTION (STEP-BY-STEP FLAGSHIP EXPERIENCE)
   ===================================================== -->
-  <section class="hero" id="home">
+  <section class="hero-scroll-story" id="home">
+    <div class="story-sticky-viewport">
+      <div class="story-layout-container">
 
-    <!-- HERO CONTENT CONTAINER -->
-    <div class="hero-stage-container">
+        <!-- LEFT COLUMN: EDITORIAL CONTENT (NO TEXT BEHIND PHONE) -->
+        <div class="story-text-column">
 
-      <!-- LEFT SIDE: PRODUCT HEADLINE & IDENTITY -->
-      <div class="hero-copy">
-        <div class="eyebrow-badge">
-          <span class="pulsing-dot"></span>
-          OFFICIAL ARCHIVE 2026
-        </div>
+          <!-- STEP 1: HERO SPOTLIGHT -->
+          <article class="story-step-slide active" data-step="1" id="storyStep1">
+            <div class="eyebrow-badge">
+              <span class="pulsing-dot"></span>
+              01 / FLAGSHIP HERO 2026
+            </div>
+            <h1 class="story-title">
+              iPhone 18 <strong>Pro Max</strong>
+            </h1>
+            <p class="story-tagline">
+              Power. Beauty. Beyond. Curated collection of luxury multi-brand flagship smartphones in Delhi NCR. 100% factory sealed with official brand warranty.
+            </p>
+            <div class="hero-badges-row">
+              <span class="pill-badge dark-badge">👑 2026 Flagship Hero</span>
+              <span class="pill-badge subtle-badge">100% Brand Sealed</span>
+            </div>
+            <div class="hero-quick-cta-row">
+              <a href="#flagships" class="btn btn-crimson btn-pill">
+                Explore All Brands ↓
+              </a>
+              <button class="btn-text-link" onclick="openTradeInModal()">
+                Check Exchange Value →
+              </button>
+            </div>
+            <div class="story-scroll-hint">
+              <span class="hint-dot"></span>
+              <span>Scroll to unveil features ↓</span>
+            </div>
+          </article>
 
-        <h1 class="hero-title" id="heroTitle">
-          iPhone 18
-          <strong>Pro Max</strong>
-        </h1>
-
-        <p class="hero-tagline" id="heroTagline">
-          Power. Beauty. Beyond. Curated collection of luxury multi-brand flagship smartphones in Delhi NCR.
-        </p>
-
-        <div class="hero-badges-row">
-          <span class="pill-badge dark-badge">👑 2026 Flagship Hero</span>
-          <span class="pill-badge subtle-badge">100% Factory Sealed • Official Warranty</span>
-        </div>
-
-        <div class="hero-quick-cta-row">
-          <a href="#flagships" class="btn btn-dark-pill">
-            Explore All Brands ↓
-          </a>
-          <button class="btn-text-link" onclick="openTradeInModal()">
-            Check Exchange Value →
-          </button>
-        </div>
-      </div>
-
-      <!-- MOBILE HERO PRODUCT SHOWCASE STAGE (ANIMATED FLAGSHIP SPOTLIGHT) -->
-      <div class="hero-mobile-stage" aria-label="Animated flagship smartphone showcase">
-        <div class="product-stage">
-          <div class="stage-ring ring-one"></div>
-          <div class="stage-ring ring-two"></div>
-          <div class="image-halo"></div>
-          <div class="phone-art" id="heroPhoneArt">
-            <div class="phone-3d-card" id="heroPhone3D">
-              <!-- BACK FACE (Initial: Titanium Rear View with Apple Logo & Triple Camera) -->
-              <div class="phone-face phone-face-back" id="phoneBackFace">
-                <img src="assets/Silver_iPhone-Style_Smartphone_Rear_View-removebg-preview.png" alt="iPhone 18 Pro Max Titanium Rear View" loading="eager" />
+          <!-- STEP 2: SUPER RETINA OLED & DYNAMIC ISLAND -->
+          <article class="story-step-slide" data-step="2" id="storyStep2">
+            <div class="eyebrow-badge crimson-eyebrow">
+              <span>✦</span> 02 / DISPLAY & PROMOTION
+            </div>
+            <h2 class="story-title">
+              Brilliance at 3000 Nits. <strong>Pure Clarity.</strong>
+            </h2>
+            <p class="story-tagline">
+              Always-On Super Retina XDR OLED display with Dynamic Island intelligence. Calibrated with pro-grade color accuracy and 120Hz ProMotion smoothness.
+            </p>
+            <div class="story-spec-chips">
+              <div class="spec-pill">
+                <strong>120Hz LTPO</strong>
+                <span>ProMotion Fluidity</span>
               </div>
-              <!-- FRONT FACE (Seedha: Dynamic Island, Super Retina OLED Display, 9:41 Clock) -->
-              <div class="phone-face phone-face-front" id="phoneFrontFace">
-                <img src="assets/Modern_iPhone_Lock_Screen_Mockup-removebg-preview.png" alt="iPhone 18 Pro Max Super Retina Display Front View" loading="eager" />
+              <div class="spec-pill">
+                <strong>3000 Nits</strong>
+                <span>Peak Outdoor HDR</span>
+              </div>
+              <div class="spec-pill">
+                <strong>Dynamic Island</strong>
+                <span>Live Interactive UI</span>
               </div>
             </div>
-          </div>
-          <div class="spec-chip camera-chip">
-            <span class="chip-symbol">◉</span>
-            <span><b>Super Retina XDR</b><small>120Hz ProMotion OLED</small></span>
-          </div>
-          <div class="spec-chip finish-chip">
-            <span class="chip-symbol">✦</span>
-            <span><b>Dynamic Island</b><small>Always-On Display</small></span>
-          </div>
-          <div class="stage-caption">
-            <span>01 / FLAGSHIP HERO</span>
-            <span>IPHONE 18 PRO MAX</span>
-          </div>
-        </div>
-      </div>
+          </article>
 
-      <!-- RIGHT STAGE: 180+ MODEL ARCHIVE (DESKTOP) -->
-      <div class="hero-right-stage" id="heroRightStage">
-
-        <!-- 180+ MODEL ARCHIVE MOSAIC SHOWROOM (VISIBLE ON DESKTOP & LAPTOPS) -->
-        <div class="hero-mosaic-container" id="heroMosaicContainer" aria-label="Flagship Smartphone Showroom Archive">
-          <div class="hero-mosaic" id="heroMosaic">
-
-          <!-- COLUMN 1: colDown marquee (10 cards for seamless -50% loop) -->
-          <div class="col c1">
-            <!-- 1. iPhone 18 Pro Max -->
-            <a href="#flagships" class="cell ph" title="iPhone 18 Pro Max">
-              <div class="cell-ph-header">
-                <span class="cell-brand-tag">APPLE</span>
-                <span class="cell-live-badge">In Stock</span>
-              </div>
-              <div class="cell-ph-media">
-                <img src="assets/iphone-18-pro-max.png" alt="iPhone 18 Pro Max" loading="eager" />
-              </div>
-              <div class="cell-ph-footer">
-                <div class="cell-title">iPhone 18 Pro Max</div>
-                <div class="cell-price-row">
-                  <span class="cell-price">₹1,79,900</span>
-                  <span class="cell-mrp">₹1,89,900</span>
-                </div>
-              </div>
-            </a>
-
-            <!-- 2. Samsung Galaxy S26 Ultra -->
-            <a href="#flagships" class="cell ph" title="Samsung Galaxy S26 Ultra">
-              <div class="cell-ph-header">
-                <span class="cell-brand-tag">SAMSUNG</span>
-                <span class="cell-live-badge">Hot</span>
-              </div>
-              <div class="cell-ph-media">
-                <img src="assets/samsung-s26-ultra.png" alt="Galaxy S26 Ultra" loading="eager" />
-              </div>
-              <div class="cell-ph-footer">
-                <div class="cell-title">Galaxy S26 Ultra</div>
-                <div class="cell-price-row">
-                  <span class="cell-price">₹1,39,999</span>
-                  <span class="cell-mrp">₹1,49,999</span>
-                </div>
-              </div>
-            </a>
-
-            <!-- 3. Google Pixel 11 Pro -->
-            <a href="#flagships" class="cell ph" title="Google Pixel 11 Pro">
-              <div class="cell-ph-header">
-                <span class="cell-brand-tag">GOOGLE</span>
-                <span class="cell-live-badge">Gemini AI</span>
-              </div>
-              <div class="cell-ph-media">
-                <img src="assets/pixel-11-pro.png" alt="Pixel 11 Pro" loading="eager" />
-              </div>
-              <div class="cell-ph-footer">
-                <div class="cell-title">Pixel 11 Pro</div>
-                <div class="cell-price-row">
-                  <span class="cell-price">₹1,09,999</span>
-                  <span class="cell-mrp">₹1,19,999</span>
-                </div>
-              </div>
-            </a>
-
-            <!-- 4. OnePlus 15 5G -->
-            <a href="#flagships" class="cell ph" title="OnePlus 15 5G">
-              <div class="cell-ph-header">
-                <span class="cell-brand-tag">ONEPLUS</span>
-                <span class="cell-live-badge">Speed</span>
-              </div>
-              <div class="cell-ph-media">
-                <img src="assets/oneplus-15.png" alt="OnePlus 15 5G" loading="eager" />
-              </div>
-              <div class="cell-ph-footer">
-                <div class="cell-title">OnePlus 15 5G</div>
-                <div class="cell-price-row">
-                  <span class="cell-price">₹72,999</span>
-                  <span class="cell-mrp">₹79,999</span>
-                </div>
-              </div>
-            </a>
-
-            <!-- 5. iPhone 17 Pro -->
-            <a href="#flagships" class="cell ph" title="iPhone 17 Pro">
-              <div class="cell-ph-header">
-                <span class="cell-brand-tag">APPLE</span>
-                <span class="cell-live-badge">Bestseller</span>
-              </div>
-              <div class="cell-ph-media">
-                <img src="assets/iphone-17-pro.png" alt="iPhone 17 Pro" loading="eager" />
-              </div>
-              <div class="cell-ph-footer">
-                <div class="cell-title">iPhone 17 Pro</div>
-                <div class="cell-price-row">
-                  <span class="cell-price">₹1,34,900</span>
-                  <span class="cell-mrp">₹1,44,900</span>
-                </div>
-              </div>
-            </a>
-
-            <!-- DUPLICATE SET 1 FOR SEAMLESS 50% MARQUEE LOOP -->
-            <a href="#flagships" class="cell ph" title="iPhone 18 Pro Max" aria-hidden="true" tabindex="-1">
-              <div class="cell-ph-header">
-                <span class="cell-brand-tag">APPLE</span>
-                <span class="cell-live-badge">In Stock</span>
-              </div>
-              <div class="cell-ph-media">
-                <img src="assets/iphone-18-pro-max.png" alt="iPhone 18 Pro Max" loading="eager" />
-              </div>
-              <div class="cell-ph-footer">
-                <div class="cell-title">iPhone 18 Pro Max</div>
-                <div class="cell-price-row">
-                  <span class="cell-price">₹1,79,900</span>
-                  <span class="cell-mrp">₹1,89,900</span>
-                </div>
-              </div>
-            </a>
-
-            <a href="#flagships" class="cell ph" title="Samsung Galaxy S26 Ultra" aria-hidden="true" tabindex="-1">
-              <div class="cell-ph-header">
-                <span class="cell-brand-tag">SAMSUNG</span>
-                <span class="cell-live-badge">Hot</span>
-              </div>
-              <div class="cell-ph-media">
-                <img src="assets/samsung-s26-ultra.png" alt="Galaxy S26 Ultra" loading="eager" />
-              </div>
-              <div class="cell-ph-footer">
-                <div class="cell-title">Galaxy S26 Ultra</div>
-                <div class="cell-price-row">
-                  <span class="cell-price">₹1,39,999</span>
-                  <span class="cell-mrp">₹1,49,999</span>
-                </div>
-              </div>
-            </a>
-
-            <a href="#flagships" class="cell ph" title="Google Pixel 11 Pro" aria-hidden="true" tabindex="-1">
-              <div class="cell-ph-header">
-                <span class="cell-brand-tag">GOOGLE</span>
-                <span class="cell-live-badge">Gemini AI</span>
-              </div>
-              <div class="cell-ph-media">
-                <img src="assets/pixel-11-pro.png" alt="Pixel 11 Pro" loading="eager" />
-              </div>
-              <div class="cell-ph-footer">
-                <div class="cell-title">Pixel 11 Pro</div>
-                <div class="cell-price-row">
-                  <span class="cell-price">₹1,09,999</span>
-                  <span class="cell-mrp">₹1,19,999</span>
-                </div>
-              </div>
-            </a>
-
-            <a href="#flagships" class="cell ph" title="OnePlus 15 5G" aria-hidden="true" tabindex="-1">
-              <div class="cell-ph-header">
-                <span class="cell-brand-tag">ONEPLUS</span>
-                <span class="cell-live-badge">Speed</span>
-              </div>
-              <div class="cell-ph-media">
-                <img src="assets/oneplus-15.png" alt="OnePlus 15 5G" loading="eager" />
-              </div>
-              <div class="cell-ph-footer">
-                <div class="cell-title">OnePlus 15 5G</div>
-                <div class="cell-price-row">
-                  <span class="cell-price">₹72,999</span>
-                  <span class="cell-mrp">₹79,999</span>
-                </div>
-              </div>
-            </a>
-
-            <a href="#flagships" class="cell ph" title="iPhone 17 Pro" aria-hidden="true" tabindex="-1">
-              <div class="cell-ph-header">
-                <span class="cell-brand-tag">APPLE</span>
-                <span class="cell-live-badge">Bestseller</span>
-              </div>
-              <div class="cell-ph-media">
-                <img src="assets/iphone-17-pro.png" alt="iPhone 17 Pro" loading="eager" />
-              </div>
-              <div class="cell-ph-footer">
-                <div class="cell-title">iPhone 17 Pro</div>
-                <div class="cell-price-row">
-                  <span class="cell-price">₹1,34,900</span>
-                  <span class="cell-mrp">₹1,44,900</span>
-                </div>
-              </div>
-            </a>
-          </div>
-
-          <!-- COLUMN 2: colUp marquee (10 cards for seamless -50% loop) -->
-          <div class="col c2">
-            <!-- 1. Samsung Galaxy Z Fold 8 -->
-            <a href="#flagships" class="cell ph" title="Samsung Galaxy Z Fold 8">
-              <div class="cell-ph-header">
-                <span class="cell-brand-tag">SAMSUNG</span>
-                <span class="cell-live-badge">Foldable</span>
-              </div>
-              <div class="cell-ph-media">
-                <img src="assets/samsung-z-fold8.png" alt="Galaxy Z Fold 8" loading="eager" />
-              </div>
-              <div class="cell-ph-footer">
-                <div class="cell-title">Galaxy Z Fold 8</div>
-                <div class="cell-price-row">
-                  <span class="cell-price">₹1,74,999</span>
-                  <span class="cell-mrp">₹1,84,999</span>
-                </div>
-              </div>
-            </a>
-
-            <!-- 2. iPhone Air Ultra-Thin -->
-            <a href="#flagships" class="cell ph" title="iPhone Air">
-              <div class="cell-ph-header">
-                <span class="cell-brand-tag">APPLE</span>
-                <span class="cell-live-badge">Ultralight</span>
-              </div>
-              <div class="cell-ph-media">
-                <img src="assets/iphone-air.png" alt="iPhone Air" loading="eager" />
-              </div>
-              <div class="cell-ph-footer">
-                <div class="cell-title">iPhone Air Ultra-Thin</div>
-                <div class="cell-price-row">
-                  <span class="cell-price">₹1,19,900</span>
-                  <span class="cell-mrp">₹1,29,900</span>
-                </div>
-              </div>
-            </a>
-
-            <!-- 3. Google Pixel 10 Pro XL -->
-            <a href="#flagships" class="cell ph" title="Google Pixel 10 Pro XL">
-              <div class="cell-ph-header">
-                <span class="cell-brand-tag">GOOGLE</span>
-                <span class="cell-live-badge">Pro Cam</span>
-              </div>
-              <div class="cell-ph-media">
-                <img src="assets/pixel-10-pro-xl.png" alt="Pixel 10 Pro XL" loading="eager" />
-              </div>
-              <div class="cell-ph-footer">
-                <div class="cell-title">Pixel 10 Pro XL</div>
-                <div class="cell-price-row">
-                  <span class="cell-price">₹94,999</span>
-                  <span class="cell-mrp">₹1,04,999</span>
-                </div>
-              </div>
-            </a>
-
-            <!-- 4. Samsung Galaxy Z Flip 8 -->
-            <a href="#flagships" class="cell ph" title="Samsung Galaxy Z Flip 8">
-              <div class="cell-ph-header">
-                <span class="cell-brand-tag">SAMSUNG</span>
-                <span class="cell-live-badge">Compact</span>
-              </div>
-              <div class="cell-ph-media">
-                <img src="assets/samsung-z-flip8.png" alt="Galaxy Z Flip 8" loading="eager" />
-              </div>
-              <div class="cell-ph-footer">
-                <div class="cell-title">Galaxy Z Flip 8</div>
-                <div class="cell-price-row">
-                  <span class="cell-price">₹1,04,999</span>
-                  <span class="cell-mrp">₹1,14,999</span>
-                </div>
-              </div>
-            </a>
-
-            <!-- 5. OnePlus 15R -->
-            <a href="#flagships" class="cell ph" title="OnePlus 15R">
-              <div class="cell-ph-header">
-                <span class="cell-brand-tag">ONEPLUS</span>
-                <span class="cell-live-badge">Fast Charge</span>
-              </div>
-              <div class="cell-ph-media">
-                <img src="assets/oneplus-15r.png" alt="OnePlus 15R" loading="eager" />
-              </div>
-              <div class="cell-ph-footer">
-                <div class="cell-title">OnePlus 15R</div>
-                <div class="cell-price-row">
-                  <span class="cell-price">₹54,999</span>
-                  <span class="cell-mrp">₹59,999</span>
-                </div>
-              </div>
-            </a>
-
-            <!-- DUPLICATE SET 2 FOR SEAMLESS 50% MARQUEE LOOP -->
-            <a href="#flagships" class="cell ph" title="Samsung Galaxy Z Fold 8" aria-hidden="true" tabindex="-1">
-              <div class="cell-ph-header">
-                <span class="cell-brand-tag">SAMSUNG</span>
-                <span class="cell-live-badge">Foldable</span>
-              </div>
-              <div class="cell-ph-media">
-                <img src="assets/samsung-z-fold8.png" alt="Galaxy Z Fold 8" loading="eager" />
-              </div>
-              <div class="cell-ph-footer">
-                <div class="cell-title">Galaxy Z Fold 8</div>
-                <div class="cell-price-row">
-                  <span class="cell-price">₹1,74,999</span>
-                  <span class="cell-mrp">₹1,84,999</span>
-                </div>
-              </div>
-            </a>
-
-            <a href="#flagships" class="cell ph" title="iPhone Air" aria-hidden="true" tabindex="-1">
-              <div class="cell-ph-header">
-                <span class="cell-brand-tag">APPLE</span>
-                <span class="cell-live-badge">Ultralight</span>
-              </div>
-              <div class="cell-ph-media">
-                <img src="assets/iphone-air.png" alt="iPhone Air" loading="eager" />
-              </div>
-              <div class="cell-ph-footer">
-                <div class="cell-title">iPhone Air Ultra-Thin</div>
-                <div class="cell-price-row">
-                  <span class="cell-price">₹1,19,900</span>
-                  <span class="cell-mrp">₹1,29,900</span>
-                </div>
-              </div>
-            </a>
-
-            <a href="#flagships" class="cell ph" title="Google Pixel 10 Pro XL" aria-hidden="true" tabindex="-1">
-              <div class="cell-ph-header">
-                <span class="cell-brand-tag">GOOGLE</span>
-                <span class="cell-live-badge">Pro Cam</span>
-              </div>
-              <div class="cell-ph-media">
-                <img src="assets/pixel-10-pro-xl.png" alt="Pixel 10 Pro XL" loading="eager" />
-              </div>
-              <div class="cell-ph-footer">
-                <div class="cell-title">Pixel 10 Pro XL</div>
-                <div class="cell-price-row">
-                  <span class="cell-price">₹94,999</span>
-                  <span class="cell-mrp">₹1,04,999</span>
-                </div>
-              </div>
-            </a>
-
-            <a href="#flagships" class="cell ph" title="Samsung Galaxy Z Flip 8" aria-hidden="true" tabindex="-1">
-              <div class="cell-ph-header">
-                <span class="cell-brand-tag">SAMSUNG</span>
-                <span class="cell-live-badge">Compact</span>
-              </div>
-              <div class="cell-ph-media">
-                <img src="assets/samsung-z-flip8.png" alt="Galaxy Z Flip 8" loading="eager" />
-              </div>
-              <div class="cell-ph-footer">
-                <div class="cell-title">Galaxy Z Flip 8</div>
-                <div class="cell-price-row">
-                  <span class="cell-price">₹1,04,999</span>
-                  <span class="cell-mrp">₹1,14,999</span>
-                </div>
-              </div>
-            </a>
-
-            <a href="#flagships" class="cell ph" title="OnePlus 15R" aria-hidden="true" tabindex="-1">
-              <div class="cell-ph-header">
-                <span class="cell-brand-tag">ONEPLUS</span>
-                <span class="cell-live-badge">Fast Charge</span>
-              </div>
-              <div class="cell-ph-media">
-                <img src="assets/oneplus-15r.png" alt="OnePlus 15R" loading="eager" />
-              </div>
-              <div class="cell-ph-footer">
-                <div class="cell-title">OnePlus 15R</div>
-                <div class="cell-price-row">
-                  <span class="cell-price">₹54,999</span>
-                  <span class="cell-mrp">₹59,999</span>
-                </div>
-              </div>
-            </a>
-          </div>
-
-          <!-- COLUMN 3: colDown marquee (10 cards for seamless -50% loop) -->
-          <div class="col c3">
-            <!-- 1. iPhone 18 Pro -->
-            <a href="#flagships" class="cell ph" title="iPhone 18 Pro">
-              <div class="cell-ph-header">
-                <span class="cell-brand-tag">APPLE</span>
-                <span class="cell-live-badge">A19 Pro</span>
-              </div>
-              <div class="cell-ph-media">
-                <img src="assets/iphone-18-pro.png" alt="iPhone 18 Pro" loading="eager" />
-              </div>
-              <div class="cell-ph-footer">
-                <div class="cell-title">iPhone 18 Pro</div>
-                <div class="cell-price-row">
-                  <span class="cell-price">₹1,34,900</span>
-                  <span class="cell-mrp">₹1,44,900</span>
-                </div>
-              </div>
-            </a>
-
-            <!-- 2. Samsung Galaxy S26+ -->
-            <a href="#flagships" class="cell ph" title="Samsung Galaxy S26+">
-              <div class="cell-ph-header">
-                <span class="cell-brand-tag">SAMSUNG</span>
-                <span class="cell-live-badge">Dynamic AMOLED</span>
-              </div>
-              <div class="cell-ph-media">
-                <img src="assets/samsung-s26-plus.png" alt="Galaxy S26+" loading="eager" />
-              </div>
-              <div class="cell-ph-footer">
-                <div class="cell-title">Galaxy S26+</div>
-                <div class="cell-price-row">
-                  <span class="cell-price">₹99,999</span>
-                  <span class="cell-mrp">₹1,09,999</span>
-                </div>
-              </div>
-            </a>
-
-            <!-- 3. Google Pixel 11 -->
-            <a href="#flagships" class="cell ph" title="Google Pixel 11">
-              <div class="cell-ph-header">
-                <span class="cell-brand-tag">GOOGLE</span>
-                <span class="cell-live-badge">Tensor G6</span>
-              </div>
-              <div class="cell-ph-media">
-                <img src="assets/pixel-11.png" alt="Pixel 11" loading="eager" />
-              </div>
-              <div class="cell-ph-footer">
-                <div class="cell-title">Pixel 11</div>
-                <div class="cell-price-row">
-                  <span class="cell-price">₹79,999</span>
-                  <span class="cell-mrp">₹86,999</span>
-                </div>
-              </div>
-            </a>
-
-            <!-- 4. OnePlus Nord 6 -->
-            <a href="#flagships" class="cell ph" title="OnePlus Nord 6">
-              <div class="cell-ph-header">
-                <span class="cell-brand-tag">ONEPLUS</span>
-                <span class="cell-live-badge">Value Hero</span>
-              </div>
-              <div class="cell-ph-media">
-                <img src="assets/oneplus-n6.png" alt="OnePlus Nord 6" loading="eager" />
-              </div>
-              <div class="cell-ph-footer">
-                <div class="cell-title">OnePlus Nord 6</div>
-                <div class="cell-price-row">
-                  <span class="cell-price">₹34,999</span>
-                  <span class="cell-mrp">₹38,999</span>
-                </div>
-              </div>
-            </a>
-
-            <!-- 5. iPhone 17 Pro Max -->
-            <a href="#flagships" class="cell ph" title="iPhone 17 Pro Max">
-              <div class="cell-ph-header">
-                <span class="cell-brand-tag">APPLE</span>
-                <span class="cell-live-badge">5x Telephoto</span>
-              </div>
-              <div class="cell-ph-media">
-                <img src="assets/iphone-17-pro-max.png" alt="iPhone 17 Pro Max" loading="eager" />
-              </div>
-              <div class="cell-ph-footer">
-                <div class="cell-title">iPhone 17 Pro Max</div>
-                <div class="cell-price-row">
-                  <span class="cell-price">₹1,44,900</span>
-                  <span class="cell-mrp">₹1,59,900</span>
-                </div>
-              </div>
-            </a>
-
-            <!-- DUPLICATE SET 3 FOR SEAMLESS 50% MARQUEE LOOP -->
-            <a href="#flagships" class="cell ph" title="iPhone 18 Pro" aria-hidden="true" tabindex="-1">
-              <div class="cell-ph-header">
-                <span class="cell-brand-tag">APPLE</span>
-                <span class="cell-live-badge">A19 Pro</span>
-              </div>
-              <div class="cell-ph-media">
-                <img src="assets/iphone-18-pro.png" alt="iPhone 18 Pro" loading="eager" />
-              </div>
-              <div class="cell-ph-footer">
-                <div class="cell-title">iPhone 18 Pro</div>
-                <div class="cell-price-row">
-                  <span class="cell-price">₹1,34,900</span>
-                  <span class="cell-mrp">₹1,44,900</span>
-                </div>
-              </div>
-            </a>
-
-            <a href="#flagships" class="cell ph" title="Samsung Galaxy S26+" aria-hidden="true" tabindex="-1">
-              <div class="cell-ph-header">
-                <span class="cell-brand-tag">SAMSUNG</span>
-                <span class="cell-live-badge">Dynamic AMOLED</span>
-              </div>
-              <div class="cell-ph-media">
-                <img src="assets/samsung-s26-plus.png" alt="Galaxy S26+" loading="eager" />
-              </div>
-              <div class="cell-ph-footer">
-                <div class="cell-title">Galaxy S26+</div>
-                <div class="cell-price-row">
-                  <span class="cell-price">₹99,999</span>
-                  <span class="cell-mrp">₹1,09,999</span>
-                </div>
-              </div>
-            </a>
-
-            <a href="#flagships" class="cell ph" title="Google Pixel 11" aria-hidden="true" tabindex="-1">
-              <div class="cell-ph-header">
-                <span class="cell-brand-tag">GOOGLE</span>
-                <span class="cell-live-badge">Tensor G6</span>
-              </div>
-              <div class="cell-ph-media">
-                <img src="assets/pixel-11.png" alt="Pixel 11" loading="eager" />
-              </div>
-              <div class="cell-ph-footer">
-                <div class="cell-title">Pixel 11</div>
-                <div class="cell-price-row">
-                  <span class="cell-price">₹79,999</span>
-                  <span class="cell-mrp">₹86,999</span>
-                </div>
-              </div>
-            </a>
-
-            <a href="#flagships" class="cell ph" title="OnePlus Nord 6" aria-hidden="true" tabindex="-1">
-              <div class="cell-ph-header">
-                <span class="cell-brand-tag">ONEPLUS</span>
-                <span class="cell-live-badge">Value Hero</span>
-              </div>
-              <div class="cell-ph-media">
-                <img src="assets/oneplus-n6.png" alt="OnePlus Nord 6" loading="eager" />
-              </div>
-              <div class="cell-ph-footer">
-                <div class="cell-title">OnePlus Nord 6</div>
-                <div class="cell-price-row">
-                  <span class="cell-price">₹34,999</span>
-                  <span class="cell-mrp">₹38,999</span>
-                </div>
-              </div>
-            </a>
-
-            <a href="#flagships" class="cell ph" title="iPhone 17 Pro Max" aria-hidden="true" tabindex="-1">
-              <div class="cell-ph-header">
-                <span class="cell-brand-tag">APPLE</span>
-                <span class="cell-live-badge">5x Telephoto</span>
-              </div>
-              <div class="cell-ph-media">
-                <img src="assets/iphone-17-pro-max.png" alt="iPhone 17 Pro Max" loading="eager" />
-              </div>
-              <div class="cell-ph-footer">
-                <div class="cell-title">iPhone 17 Pro Max</div>
-                <div class="cell-price-row">
-                  <span class="cell-price">₹1,44,900</span>
-                  <span class="cell-mrp">₹1,59,900</span>
-                </div>
-              </div>
-            </a>
-          </div>
+          <!-- STEP 3: AEROSPACE TITANIUM & 200MP OPTICS -->
+          <article class="story-step-slide" data-step="3" id="storyStep3">
+            <div class="eyebrow-badge gold-eyebrow">
+              <span>⚡</span> 03 / OPTICS & 2NM SILICON
+            </div>
+            <h2 class="story-title">
+              Forged in Titanium. <strong>Studio Precision.</strong>
+            </h2>
+            <p class="story-tagline">
+              Aerospace Grade 5 titanium chassis housing a 48MP Fusion triple-lens periscope system. Powered by 2nm Silicon for all-day uninterrupted speed.
+            </p>
+            <div class="story-spec-chips">
+              <div class="spec-pill">
+                <strong>A20 Pro (2nm)</strong>
+                <span>Next-Gen Silicon</span>
+              </div>
+              <div class="spec-pill">
+                <strong>10x Optical</strong>
+                <span>Periscope Zoom</span>
+              </div>
+              <div class="spec-pill">
+                <strong>VIP Unboxing</strong>
+                <span>Official Warranty</span>
+              </div>
+            </div>
+          </article>
 
         </div>
+
+        <!-- RIGHT COLUMN: 3D PHONE STAGE (SIDE-BY-SIDE WITH TEXT, NEVER OVERLAPS) -->
+        <div class="story-phone-column" id="storyPhoneColumn">
+          <div class="story-phone-stage" id="storyPhoneStage">
+            <div class="stage-ring ring-one"></div>
+            <div class="stage-ring ring-two"></div>
+            <div class="image-halo"></div>
+
+            <div class="phone-art" id="heroPhoneArt">
+              <div class="phone-3d-card" id="heroPhone3D">
+                <!-- BACK FACE: Titanium Rear View with Apple Logo & Triple Camera -->
+                <div class="phone-face phone-face-back" id="phoneBackFace">
+                  <img src="assets/Silver_iPhone-Style_Smartphone_Rear_View-removebg-preview.png" alt="iPhone 18 Pro Max Titanium Rear View" loading="eager" />
+                </div>
+                <!-- FRONT FACE: Super Retina Display with Dynamic Island & Lock Screen -->
+                <div class="phone-face phone-face-front" id="phoneFrontFace">
+                  <img src="assets/Modern_iPhone_Lock_Screen_Mockup-removebg-preview.png" alt="iPhone 18 Pro Max Super Retina Display Front View" loading="eager" />
+                </div>
+              </div>
+            </div>
+
+          </div>
+        </div>
+
       </div>
     </div>
-  </div>
-
 
     <!-- BOTTOM SPECS HIGHLIGHT BAR -->
     <div class="hero-bottom-specs">
@@ -1444,19 +944,6 @@
   <script src="products-data.js"></script>
   <script src="js/add-phone.js"></script>
   <script src="script.js"></script>
-  <script>
-    // Mobile Station Hero Mosaic: Seamless infinite loop duplication (5 -> 10 cells)
-    (function initHeroMosaic() {
-      const cols = document.querySelectorAll('.hero-mosaic .col');
-      cols.forEach(col => {
-        const items = Array.from(col.children);
-        items.forEach(item => {
-          col.appendChild(item.cloneNode(true));
-        });
-      });
-    })();
-
-  </script>
-  <script src="js/hero-phone-motion.js?v=ms-header-safe-card-dock-16.0"></script>
+  <script src="js/hero-phone-motion.js?v=ms-cinematic-story-17.0"></script>
 </body>
 </html>
