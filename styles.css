@@ -1281,30 +1281,26 @@ img {
 
 .phone-art {
   position: relative;
-  width: min(85%, 320px);
+  width: min(85%, 280px);
   z-index: 30;
   transform-style: preserve-3d;
   will-change: transform, opacity;
-  filter: drop-shadow(0 25px 45px rgba(35, 6, 12, 0.4));
+  filter: drop-shadow(0 25px 45px rgba(20, 10, 15, 0.4));
 }
 
 .phone-art img {
   width: 100%;
   height: auto;
   display: block;
-  border-radius: 26px;
-  border: 1px solid rgba(229, 23, 68, 0.35);
-  box-shadow: 0 16px 40px rgba(0, 0, 0, 0.3);
+  border-radius: 0;
+  border: none;
+  box-shadow: none;
+  background: transparent;
+  filter: drop-shadow(0 15px 30px rgba(0, 0, 0, 0.25));
 }
 
 .shine {
-  position: absolute;
-  inset: 4% 7%;
-  pointer-events: none;
-  border-radius: 26px;
-  overflow: hidden;
-  opacity: 0.7;
-  will-change: transform;
+  display: none !important;
 }
 
 .shine::before {
