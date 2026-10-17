@@ -1294,6 +1294,7 @@ img {
   border-radius: 26px;
   overflow: hidden;
   opacity: 0.7;
+  will-change: transform;
 }
 
 .shine::before {
@@ -1317,6 +1318,7 @@ img {
   filter: blur(50px);
   animation: halo-breathe 5s ease-in-out infinite;
   pointer-events: none;
+  will-change: transform;
 }
 
 .stage-ring {
