@@ -1,19 +1,23 @@
 /**
  * MOBILE STATION — CINEMATIC STEP-BY-STEP FLAGSHIP SCROLL STORY
  * 
- * Features:
- *   - Step 1 (0.00 -> 0.32): Hero Flagship Intro
- *     Left: "iPhone 18 Pro Max" headline + CTAs.
- *     Right: 3D Phone in Portrait Titanium Rear View (0° Back).
- *   - Step 2 (0.33 -> 0.67): Super Retina XDR OLED & Dynamic Island
- *     Left: "Brilliance at 3000 Nits. Pure Clarity."
- *     Right: Phone flips 180° to Front View (Sidha) showing Dynamic Island & Lock Screen.
- *     *Text is on left, Phone is on right — ZERO text behind the phone!*
- *   - Step 3 (0.68 -> 1.00): Apple MagSafe StandBy Mode on Desk Stand
- *     Left: "Always-On StandBy. Studio Precision."
- *     Right: MagSafe metallic desk dock appears, Phone smoothly rotates -90° into
- *     horizontal Landscape StandBy Mode on the dock, displaying the glowing 09:41 clock!
- *   - All motions reverse seamlessly at 60/120 FPS on scroll up.
+ * Features & Sequence:
+ *   - Step 1 (0.00 -> 0.32): Hero Flagship Spotlight (Right Side)
+ *     Left Zone: "iPhone 18 Pro Max" headline, specs, CTAs, scroll hint.
+ *     Right Side: 3D Phone in Portrait Titanium Rear View (0° Back).
+ * 
+ *   - Step 2 (0.33 -> 0.67): Dynamic Travel to Left + Super Retina Display
+ *     The phone glides across from Right side to Left side while flipping 180° to Front View!
+ *     Right Zone: "Brilliance at 3000 Nits. Pure Clarity." (Dynamic Island, 120Hz LTPO).
+ *     *Zero text behind the phone! Text is on the right, phone is on the left!*
+ * 
+ *   - Step 3 (0.68 -> 1.00): Precision Metallic Desk Stand ("Vo Rakhne Vala")
+ *     Left Side: Metallic desk stand emerges from below, phone rotates -90° into horizontal
+ *     landscape StandBy mode resting securely in the cradle hooks.
+ *     Screen displays the authentic Flowty 49:49 Focus Timer with Mode Pill & Controls.
+ *     Right Zone: "Always-On StandBy. Studio Precision." specs & CTAs.
+ * 
+ *   - Fluid 60/120 FPS bidirectional lerp on scroll up & down.
  */
 
 (function () {
@@ -21,6 +25,8 @@
 
   function initCinematicStoryMotion() {
     const story = document.querySelector('.hero-scroll-story');
+    const container = document.querySelector('.story-layout-container');
+    const phoneColumn = document.getElementById('storyPhoneColumn');
     const phone = document.getElementById('heroPhoneArt');
     const phone3D = document.getElementById('heroPhone3D');
     const backFace = document.getElementById('phoneBackFace');
@@ -32,7 +38,7 @@
     const step2 = document.getElementById('storyStep2');
     const step3 = document.getElementById('storyStep3');
 
-    if (!story || !phone) return;
+    if (!story || !phone || !phoneColumn) return;
 
     // Accessibility check
     if (window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
@@ -83,24 +89,50 @@
       // 1. STEP-BY-STEP TEXT SLIDE ACTIVATION (NO OVERLAP)
       // -----------------------------------------------------------------------
       if (p < 0.32) {
-        // Step 1: Hero Flagship Intro
+        // Step 1: Active in Left Zone
         if (step1) step1.classList.add('active');
         if (step2) step2.classList.remove('active');
         if (step3) step3.classList.remove('active');
       } else if (p < 0.68) {
-        // Step 2: Super Retina & Dynamic Island
+        // Step 2: Active in Right Zone
         if (step1) step1.classList.remove('active');
         if (step2) step2.classList.add('active');
         if (step3) step3.classList.remove('active');
       } else {
-        // Step 3: MagSafe StandBy & Studio Optics
+        // Step 3: Active in Right Zone
         if (step1) step1.classList.remove('active');
         if (step2) step2.classList.remove('active');
         if (step3) step3.classList.add('active');
       }
 
       // -----------------------------------------------------------------------
-      // 2. 3D PHONE ROTATIONS, FLIPS & STANDBY LANDSCAPE DOCK
+      // 2. HORIZONTAL PHONE TRAVEL: RIGHT SIDE -> LEFT SIDE ("phle right, fir left")
+      // -----------------------------------------------------------------------
+      let colShiftX = 0;
+      if (!isMobile && container) {
+        const containerWidth = container.offsetWidth;
+        // Travel distance from center of Right column to center of Left column
+        const travelDistance = containerWidth * 0.5;
+
+        if (p <= 0.22) {
+          // Step 1: Phone starts on the Right side
+          colShiftX = 0;
+        } else if (p <= 0.44) {
+          // Transition 1 -> 2: Phone smoothly glides from Right side to Left side
+          const tGlide = smoothstep(0.22, 0.44, p);
+          colShiftX = -travelDistance * tGlide;
+        } else {
+          // Step 2 & 3: Phone rests on the Left side
+          colShiftX = -travelDistance;
+        }
+
+        phoneColumn.style.transform = `translate3d(${colShiftX.toFixed(1)}px, 0, 0)`;
+      } else {
+        phoneColumn.style.transform = 'none';
+      }
+
+      // -----------------------------------------------------------------------
+      // 3. 3D PHONE ROTATIONS, FLIPS & STANDBY LANDSCAPE DOCK
       // -----------------------------------------------------------------------
       let curRotY = 0;
       let curZ = 0;
@@ -122,15 +154,15 @@
         // Transition 1 -> 2: 180° Flip to Sidha / Front Super Retina Display
         const t1 = smoothstep(0.22, 0.44, p);
         curRotY = 180 * t1;
-        curZ = (isMobile ? 45 : 70) * Math.sin(t1 * Math.PI);
-        curRotZ = Math.sin(t1 * Math.PI) * (isMobile ? 5.5 : 8.0);
+        curZ = (isMobile ? 45 : 75) * Math.sin(t1 * Math.PI);
+        curRotZ = Math.sin(t1 * Math.PI) * (isMobile ? 5.5 : 8.5);
         curRotX = -2.0 + Math.sin(t1 * Math.PI) * -3.0;
         curScale = 1.0 + 0.06 * Math.sin(t1 * Math.PI);
 
         if (deskStand) deskStand.classList.remove('visible');
         if (standbyOverlay) standbyOverlay.classList.remove('active');
       } else if (p <= 0.68) {
-        // Step 2: Holds Front View (180° Sidha) with Dynamic Island & Screen
+        // Step 2: Holds Front View (180° Sidha) with Dynamic Island & Screen on Left
         curRotY = 180;
         curZ = 0;
         curRotZ = 0;
@@ -149,11 +181,11 @@
 
         // Show desk stand & standby overlay as it reaches horizontal
         if (deskStand) {
-          if (t3 > 0.4) deskStand.classList.add('visible');
+          if (t3 > 0.35) deskStand.classList.add('visible');
           else deskStand.classList.remove('visible');
         }
         if (standbyOverlay) {
-          if (t3 > 0.6) standbyOverlay.classList.add('active');
+          if (t3 > 0.55) standbyOverlay.classList.add('active');
           else standbyOverlay.classList.remove('active');
         }
       } else {

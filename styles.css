@@ -1275,25 +1275,35 @@ img {
 }
 
 .story-layout-container {
+  position: relative;
   width: 100%;
   max-width: 1360px;
   margin: 0 auto;
   padding: 0 clamp(20px, 4vw, 48px);
   display: grid;
-  grid-template-columns: 1.05fr 0.95fr;
+  grid-template-columns: 1fr 1fr;
   align-items: center;
   gap: clamp(24px, 4vw, 64px);
   height: 100%;
   box-sizing: border-box;
 }
 
-/* Left Column: Text Track (NO TEXT BEHIND PHONE) */
-.story-text-column {
+/* Side Zones: Left zone holds Step 1; Right zone holds Step 2 & 3 */
+.story-zone {
   position: relative;
   height: 100%;
   display: flex;
   align-items: center;
   min-height: 420px;
+  z-index: 10;
+}
+
+.story-zone-left {
+  grid-column: 1;
+}
+
+.story-zone-right {
+  grid-column: 2;
 }
 
 .story-step-slide {
@@ -1413,14 +1423,19 @@ img {
   animation: pulseDot 1.8s infinite;
 }
 
-/* Right Column: 3D Phone Track */
+/* 3D Phone Column: Positioned on the Right, Glides to Left via JS */
 .story-phone-column {
-  position: relative;
-  width: 100%;
+  position: absolute;
+  top: 0;
+  right: clamp(20px, 4vw, 48px);
+  width: calc(50% - clamp(12px, 2vw, 32px));
   height: 100%;
   display: flex;
   align-items: center;
   justify-content: center;
+  z-index: 30;
+  pointer-events: none;
+  will-change: transform;
 }
 
 .story-phone-stage {
@@ -1506,7 +1521,7 @@ img {
 }
 
 /* =========================================================================
-   IOS LANDSCAPE STANDBY DISPLAY & MAGSAFE DESK DOCK
+   IOS LANDSCAPE STANDBY DISPLAY OVERLAY (FLOWTY MATCH: 49:49 TIMER)
 ========================================================================= */
 .ios-standby-overlay {
   position: absolute;
@@ -1524,75 +1539,198 @@ img {
   pointer-events: none;
   overflow: hidden;
   z-index: 10;
-  box-shadow: inset 0 0 25px rgba(0, 0, 0, 0.9);
+  box-shadow: inset 0 0 30px rgba(0, 0, 0, 0.95);
 }
 
 .ios-standby-overlay.active {
   opacity: 1;
 }
 
-.standby-content {
+.standby-screen-frame {
+  width: 100%;
+  height: 100%;
   display: flex;
   flex-direction: column;
+  justify-content: space-between;
+  padding: 16px 20px;
+  box-sizing: border-box;
+  transform: rotate(90deg); /* Counter-rotated: Displays upright when phone turns -90deg */
+  color: #ffffff;
+  user-select: none;
+}
+
+.standby-top-bar {
+  display: flex;
   align-items: center;
-  justify-content: center;
-  /* Rotate 90deg so it is right-side up when phone turns -90deg landscape */
-  transform: rotate(90deg);
+  justify-content: space-between;
+  width: 100%;
+}
+
+.standby-nav-back {
+  font-size: 18px;
+  color: rgba(255, 255, 255, 0.6);
+  cursor: pointer;
+  line-height: 1;
+}
+
+.standby-mode-pill {
+  display: inline-flex;
+  background: rgba(255, 255, 255, 0.12);
+  border-radius: 20px;
+  padding: 3px;
+  border: 1px solid rgba(255, 255, 255, 0.15);
+}
+
+.standby-mode-pill .mode-opt {
+  font-size: 10px;
+  font-weight: 700;
+  padding: 3px 10px;
+  border-radius: 16px;
+  color: rgba(255, 255, 255, 0.6);
+}
+
+.standby-mode-pill .mode-opt.active {
+  background: #ffffff;
+  color: #000000;
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.3);
+}
+
+.standby-clock-meta {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+  font-size: 9px;
+  line-height: 1.2;
+}
+
+.standby-clock-meta .meta-time {
+  font-weight: 800;
   color: #ffffff;
 }
 
-.standby-time {
+.standby-clock-meta .meta-day {
+  color: rgba(255, 255, 255, 0.5);
+}
+
+/* Center Big Focus Timer: 49 49 (with superscript M and S) */
+.standby-timer-display {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 16px;
+  margin: auto 0;
+}
+
+.standby-timer-display .timer-col {
+  position: relative;
+  display: flex;
+  align-items: flex-start;
+}
+
+.standby-timer-display .unit-sup {
+  position: absolute;
+  top: -8px;
+  left: -10px;
+  font-size: 11px;
+  font-weight: 700;
+  color: rgba(255, 255, 255, 0.5);
+}
+
+.standby-timer-display .timer-num {
   font-family: "Manrope", sans-serif;
-  font-size: 58px;
+  font-size: 64px;
   font-weight: 900;
   letter-spacing: -2px;
   line-height: 1;
   color: #ffffff;
-  text-shadow: 0 0 25px rgba(255, 255, 255, 0.35);
+  text-shadow: 0 0 20px rgba(255, 255, 255, 0.3);
 }
 
-.standby-time span {
-  color: var(--crimson-primary, #d71942);
+/* Bottom Bar */
+.standby-bottom-bar {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  width: 100%;
 }
 
-.standby-sub {
+.standby-profile-tag {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+
+.standby-profile-tag .tag-dot {
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  background: #54d68a;
+  box-shadow: 0 0 8px rgba(84, 214, 138, 0.8);
+}
+
+.standby-profile-tag .tag-text {
+  display: flex;
+  flex-direction: column;
+  font-size: 8.5px;
+  line-height: 1.2;
+}
+
+.standby-profile-tag .tag-text strong {
+  color: #ffffff;
+}
+
+.standby-profile-tag .tag-text span {
+  color: rgba(255, 255, 255, 0.5);
+}
+
+.standby-playback-controls {
   display: flex;
   align-items: center;
   gap: 8px;
-  margin-top: 8px;
 }
 
-.standby-badge {
+.standby-playback-controls .ctrl-btn {
+  background: rgba(255, 255, 255, 0.1);
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  color: #ffffff;
+  border-radius: 14px;
+  padding: 4px 10px;
   font-size: 10px;
-  font-weight: 800;
-  padding: 3px 8px;
-  border-radius: 8px;
-  background: rgba(215, 25, 66, 0.25);
+  font-weight: 700;
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+  cursor: pointer;
+}
+
+.standby-playback-controls .ctrl-pause {
+  border-color: rgba(215, 25, 66, 0.6);
+  background: rgba(215, 25, 66, 0.2);
   color: #ff6b81;
-  border: 1px solid rgba(215, 25, 66, 0.4);
-  letter-spacing: 0.5px;
 }
 
-.standby-date {
-  font-size: 11px;
-  font-weight: 600;
-  color: #a0989c;
+.standby-cycle-tag {
+  font-size: 9px;
+  font-weight: 700;
+  color: rgba(255, 255, 255, 0.7);
 }
 
-/* Luxury Metallic MagSafe Desk Stand */
+/* =========================================================================
+   LUXURY METALLIC DESK STAND ("VO RAKHNE VALA" - FLOWTY MATCH)
+========================================================================= */
 .magsafe-desk-stand {
   position: absolute;
-  bottom: 8%;
+  bottom: 0px;
   left: 50%;
-  transform: translateX(-50%) translateY(30px);
-  width: 160px;
+  transform: translateX(-50%) translateY(40px);
+  width: 220px;
   display: flex;
   flex-direction: column;
   align-items: center;
-  z-index: 40;
+  z-index: 35;
   opacity: 0;
   pointer-events: none;
-  transition: opacity 0.5s ease, transform 0.5s var(--ease-spring);
+  transition: opacity 0.5s cubic-bezier(0.16, 1, 0.3, 1), transform 0.5s cubic-bezier(0.16, 1, 0.3, 1);
 }
 
 .magsafe-desk-stand.visible {
@@ -1600,50 +1738,122 @@ img {
   transform: translateX(-50%) translateY(0);
 }
 
-.stand-head {
-  width: 140px;
-  height: 22px;
+/* Fluted Backplate behind the docked phone */
+.stand-backplate {
+  position: relative;
+  width: 170px;
+  height: 200px;
+  border-radius: 18px 18px 12px 12px;
+  background: linear-gradient(180deg, #2d282b 0%, #171416 100%);
+  border: 1px solid rgba(255, 255, 255, 0.15);
+  box-shadow: 0 12px 35px rgba(0, 0, 0, 0.55), inset 0 1px 0 rgba(255, 255, 255, 0.25);
+  overflow: hidden;
+  margin-bottom: -15px;
+  z-index: 1;
+}
+
+.stand-backplate .flute-lines {
+  position: absolute;
+  inset: 0;
+  background: repeating-linear-gradient(
+    90deg,
+    rgba(255, 255, 255, 0.04) 0px,
+    rgba(255, 255, 255, 0.04) 2px,
+    transparent 2px,
+    transparent 6px
+  );
+  opacity: 0.85;
+}
+
+/* Dual Cradle Hooks holding the phone */
+.stand-cradle {
+  position: relative;
+  width: 175px;
+  height: 28px;
   display: flex;
   justify-content: space-between;
-  padding: 0 10px;
+  padding: 0 14px;
+  box-sizing: border-box;
+  z-index: 60;
+}
+
+.cradle-hook {
   position: relative;
-  z-index: 2;
+  width: 18px;
+  height: 26px;
+  background: linear-gradient(135deg, #443c40, #1a1618);
+  border: 1px solid rgba(255, 255, 255, 0.3);
+  border-radius: 5px 5px 3px 3px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.6), inset 0 1px 2px rgba(255, 255, 255, 0.35);
 }
 
-.cradle-prong {
-  width: 16px;
-  height: 20px;
-  background: linear-gradient(135deg, #332d30, #141012);
-  border: 1px solid rgba(212, 175, 55, 0.4);
-  border-radius: 6px 6px 4px 4px;
-  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.4);
+.cradle-hook .hook-lip {
+  position: absolute;
+  top: -3px;
+  left: 0;
+  right: 0;
+  height: 4px;
+  background: #5a5055;
+  border-radius: 3px 3px 0 0;
+  border-top: 1px solid rgba(255, 255, 255, 0.45);
 }
 
+/* Vertical Sturdy Support Stem */
 .stand-stem {
-  width: 14px;
-  height: 75px;
-  background: linear-gradient(90deg, #1f1b1d, #3d3538 50%, #171315);
-  border-left: 1px solid rgba(212, 175, 55, 0.25);
-  border-right: 1px solid rgba(212, 175, 55, 0.25);
-  box-shadow: 0 6px 16px rgba(0, 0, 0, 0.35);
+  position: relative;
+  width: 22px;
+  height: 72px;
+  background: linear-gradient(90deg, #1c181a, #383034 45%, #473e42 55%, #181416 100%);
+  border-left: 1px solid rgba(255, 255, 255, 0.18);
+  border-right: 1px solid rgba(0, 0, 0, 0.8);
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.5);
   margin-top: -6px;
+  z-index: 2;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
 }
 
+.stand-stem .stem-rail {
+  width: 4px;
+  height: 70%;
+  background: rgba(0, 0, 0, 0.6);
+  border-radius: 2px;
+  box-shadow: inset 0 1px 2px rgba(0, 0, 0, 0.8);
+}
+
+.stand-stem .stem-joint {
+  position: absolute;
+  top: 10px;
+  width: 26px;
+  height: 12px;
+  border-radius: 6px;
+  background: linear-gradient(180deg, #4d4448, #221d20);
+  border: 1px solid rgba(255, 255, 255, 0.2);
+}
+
+/* Substantial Weighted Desk Base */
 .stand-base {
-  width: 125px;
-  height: 16px;
-  background: linear-gradient(180deg, #383034, #1a1518);
-  border-radius: 12px;
-  border: 1px solid rgba(212, 175, 55, 0.4);
-  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.4), 0 0 18px rgba(212, 175, 55, 0.15);
   position: relative;
+  width: 170px;
+  height: 16px;
+  background: linear-gradient(180deg, #332d30 0%, #1d191b 60%, #110e10 100%);
+  border-radius: 22px;
+  border: 1px solid rgba(255, 255, 255, 0.22);
+  box-shadow: 0 16px 36px rgba(0, 0, 0, 0.5), 0 4px 12px rgba(0, 0, 0, 0.4);
+  margin-top: -4px;
+  z-index: 3;
 }
 
 .stand-base-rim {
   position: absolute;
-  inset: 2px;
-  border-radius: 9px;
-  border: 1px solid rgba(255, 255, 255, 0.12);
+  top: 1px;
+  left: 6px;
+  right: 6px;
+  height: 2px;
+  background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.45) 50%, transparent);
+  border-radius: 2px;
 }
 
 .shine {
@@ -2450,10 +2660,16 @@ img {
     padding: 10px 18px 0;
     align-items: center;
   }
-  .story-text-column {
-    min-height: 210px;
+  .story-zone {
+    width: 100%;
+    min-height: 200px;
     height: auto;
+    grid-column: 1 !important;
     align-items: flex-start;
+  }
+  .story-zone-left,
+  .story-zone-right {
+    grid-column: 1 !important;
   }
   .story-step-slide {
     top: 0;
@@ -2489,8 +2705,14 @@ img {
     font-size: 9.5px;
   }
   .story-phone-column {
+    position: relative !important;
+    top: auto !important;
+    right: auto !important;
+    left: auto !important;
+    width: 100% !important;
     height: 100%;
     min-height: 260px;
+    transform: none !important;
   }
   .story-phone-stage {
     max-height: 380px;
