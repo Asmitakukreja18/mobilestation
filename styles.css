@@ -2507,82 +2507,185 @@ img {
   /* Mobile Scroll Story Experience */
   .hero-scroll-story {
     height: 240vh;
+    overflow: visible;
   }
   .story-sticky-viewport {
-    height: calc(100vh - 68px);
-    top: 68px;
-    padding-top: 10px;
+    height: calc(100vh - 72px);
+    top: 72px;
+    padding: 6px 0 0;
+    overflow: hidden;
+    touch-action: pan-y;
   }
   .story-layout-container {
-    grid-template-columns: 1fr;
-    grid-template-rows: auto 1fr;
-    gap: 12px;
-    padding: 10px 18px 0;
-    align-items: center;
+    display: grid !important;
+    grid-template-columns: 1fr !important;
+    grid-template-rows: clamp(175px, 24vh, 205px) 1fr !important;
+    gap: 6px !important;
+    padding: 6px 14px 8px !important;
+    height: 100% !important;
+    box-sizing: border-box !important;
+    align-items: center !important;
   }
+  /* Both left & right text zones occupy the EXACT same top row */
   .story-zone {
-    width: 100%;
-    min-height: 200px;
-    height: auto;
-    grid-column: 1 !important;
-    align-items: flex-start;
+    width: 100% !important;
+    height: 100% !important;
+    min-height: 175px !important;
+    max-height: 205px !important;
+    position: relative !important;
+    display: flex !important;
+    align-items: center !important;
+    justify-content: center !important;
   }
   .story-zone-left,
   .story-zone-right {
-    grid-column: 1 !important;
+    grid-row: 1 / 2 !important;
+    grid-column: 1 / 2 !important;
+    z-index: 10 !important;
   }
   .story-step-slide {
-    top: 0;
-    transform: translateY(0);
-    text-align: center;
-    align-items: center;
-    gap: 8px;
-    max-width: 100%;
+    position: absolute !important;
+    top: 50% !important;
+    left: 0 !important;
+    right: 0 !important;
+    transform: translateY(-50%) translateY(14px) !important;
+    text-align: center !important;
+    align-items: center !important;
+    gap: 8px !important;
+    width: 100% !important;
+    max-width: 420px !important;
+    margin: 0 auto !important;
+    padding: 0 4px !important;
+    box-sizing: border-box !important;
+    transition: opacity 0.4s ease, transform 0.4s cubic-bezier(0.16, 1, 0.3, 1), visibility 0.4s ease !important;
   }
   .story-step-slide.active {
-    transform: translateY(0);
+    transform: translateY(-50%) translateY(0) !important;
   }
   .story-title {
-    font-size: clamp(24px, 6.8vw, 32px);
-    line-height: 1.1;
+    font-size: clamp(22px, 6.2vw, 29px) !important;
+    line-height: 1.12 !important;
+    letter-spacing: -0.02em !important;
+    margin: 0 !important;
   }
   .story-tagline {
-    font-size: 13px;
-    line-height: 1.45;
-    max-width: 360px;
+    font-size: 12.5px !important;
+    line-height: 1.42 !important;
+    max-width: 340px !important;
+    margin: 0 auto !important;
+    color: var(--text-secondary, #584147) !important;
+    display: -webkit-box !important;
+    -webkit-line-clamp: 2 !important;
+    -webkit-box-orient: vertical !important;
+    overflow: hidden !important;
+    text-overflow: ellipsis !important;
+  }
+  .hero-badges-row {
+    margin-top: 2px !important;
+    gap: 6px !important;
+  }
+  .hero-quick-cta-row {
+    margin: 4px auto 0 !important;
+    gap: 8px !important;
+  }
+  .hero-quick-cta-row .btn-crimson {
+    padding: 8px 18px !important;
+    font-size: 12.5px !important;
+  }
+  .hero-quick-cta-row .btn-text-link {
+    font-size: 12px !important;
+  }
+  .story-scroll-hint {
+    margin-top: 2px !important;
+    font-size: 11px !important;
+    gap: 6px !important;
   }
   .story-spec-chips {
-    justify-content: center;
-    gap: 8px;
+    justify-content: center !important;
+    gap: 6px !important;
+    margin-top: 4px !important;
   }
   .story-spec-chips .spec-pill {
-    padding: 6px 10px;
+    padding: 5px 9px !important;
+    border-radius: 12px !important;
   }
   .story-spec-chips .spec-pill strong {
-    font-size: 11.5px;
+    font-size: 11px !important;
   }
   .story-spec-chips .spec-pill span {
-    font-size: 9.5px;
+    font-size: 9px !important;
   }
+
+  /* Phone Stage pinned to Row 2 */
   .story-phone-column {
+    grid-row: 2 / 3 !important;
+    grid-column: 1 / 2 !important;
     position: relative !important;
     top: auto !important;
     right: auto !important;
     left: auto !important;
     width: 100% !important;
-    height: 100%;
-    min-height: 260px;
-    transform: none !important;
+    height: 100% !important;
+    min-height: 0 !important;
+    display: flex !important;
+    align-items: center !important;
+    justify-content: center !important;
+    z-index: 25 !important;
+    will-change: transform !important;
   }
   .story-phone-stage {
-    max-height: 380px;
+    position: relative !important;
+    width: 100% !important;
+    max-width: 360px !important;
+    height: 100% !important;
+    max-height: clamp(340px, 50vh, 420px) !important;
+    display: flex !important;
+    align-items: center !important;
+    justify-content: center !important;
   }
   .story-phone-stage .phone-art,
   .phone-art,
   .hero-mobile-stage .phone-art {
-    width: min(65vw, 210px) !important;
-    max-width: 210px !important;
+    width: min(56vw, 195px) !important;
+    max-width: 195px !important;
     margin: 0 auto !important;
+  }
+
+  /* Mobile Desk Stand hardware responsive sizing */
+  .mobile-desk-stand {
+    bottom: 3% !important;
+  }
+  .stand-backplate {
+    width: 112px !important;
+    height: 125px !important;
+    border-radius: 14px 14px 6px 6px !important;
+  }
+  .stand-cradle-hooks {
+    width: 112px !important;
+    height: 20px !important;
+    padding: 0 10px !important;
+  }
+  .cradle-prong {
+    width: 14px !important;
+    height: 18px !important;
+  }
+  .stand-stem {
+    width: 14px !important;
+    height: 58px !important;
+  }
+  .stand-base {
+    width: 128px !important;
+    height: 12px !important;
+    border-radius: 14px !important;
+  }
+  .standby-floating-pill {
+    bottom: 6px !important;
+    padding: 6px 14px !important;
+    font-size: 11px !important;
+    gap: 8px !important;
+  }
+  .standby-floating-pill .pill-brand-badge {
+    font-size: 11px !important;
   }
 
   .hero-mosaic-container {

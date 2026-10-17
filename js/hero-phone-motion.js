@@ -129,7 +129,30 @@
 
         phoneColumn.style.transform = `translate3d(${colShiftX.toFixed(1)}px, 0, 0)`;
       } else {
-        phoneColumn.style.transform = 'none';
+        // Mobile View: Synchronized Right-to-Left motion & Center Stand Docking
+        const screenW = window.innerWidth || 390;
+        const mobileTravel = Math.min(36, Math.max(22, (screenW - 200) * 0.24));
+
+        if (p <= 0.22) {
+          // Step 1: Phone starts gracefully on the Right (+shift)
+          colShiftX = mobileTravel;
+        } else if (p <= 0.44) {
+          // Transition 1 -> 2: Glides Right (+shift) to Left (-shift) while flipping 180°
+          const tGlide = smoothstep(0.22, 0.44, p);
+          colShiftX = mobileTravel - (2 * mobileTravel) * tGlide;
+        } else if (p <= 0.68) {
+          // Step 2: Phone rests on the Left (-shift)
+          colShiftX = -mobileTravel;
+        } else if (p <= 0.88) {
+          // Transition 2 -> 3: Glides back to center as the mobile desk stand rises
+          const tDock = smoothstep(0.68, 0.88, p);
+          colShiftX = -mobileTravel * (1 - tDock);
+        } else {
+          // Step 3: Phone perfectly centered and resting on the mobile desk stand
+          colShiftX = 0;
+        }
+
+        phoneColumn.style.transform = `translate3d(${colShiftX.toFixed(1)}px, 0, 0)`;
       }
 
       // -----------------------------------------------------------------------
