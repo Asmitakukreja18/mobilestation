@@ -107,10 +107,10 @@
       }
 
       // -----------------------------------------------------------------------
-      // 2. HORIZONTAL PHONE TRAVEL: RIGHT SIDE -> LEFT SIDE ("phle right, fir left")
+      // 2. HORIZONTAL PHONE TRAVEL: RIGHT SIDE -> LEFT SIDE ("pehle right, fir left")
       // -----------------------------------------------------------------------
       let colShiftX = 0;
-      if (!isMobile && container) {
+      if (container) {
         const containerWidth = container.offsetWidth;
         // Travel distance from center of Right column to center of Left column
         const travelDistance = containerWidth * 0.5;
@@ -119,37 +119,12 @@
           // Step 1: Phone starts on the Right side
           colShiftX = 0;
         } else if (p <= 0.44) {
-          // Transition 1 -> 2: Phone smoothly glides from Right side to Left side
+          // Transition 1 -> 2: Phone smoothly glides from Right side to Left side while flipping 180°
           const tGlide = smoothstep(0.22, 0.44, p);
           colShiftX = -travelDistance * tGlide;
         } else {
-          // Step 2 & 3: Phone rests on the Left side
+          // Step 2 & 3: Phone rests on the Left side (docking onto the desk stand in Step 3)
           colShiftX = -travelDistance;
-        }
-
-        phoneColumn.style.transform = `translate3d(${colShiftX.toFixed(1)}px, 0, 0)`;
-      } else {
-        // Mobile View: Synchronized Right-to-Left motion & Center Stand Docking (scaled for compact phone)
-        const screenW = window.innerWidth || 390;
-        const mobileTravel = Math.min(24, Math.max(14, (screenW - 150) * 0.16));
-
-        if (p <= 0.22) {
-          // Step 1: Phone starts gracefully on the Right (+shift)
-          colShiftX = mobileTravel;
-        } else if (p <= 0.44) {
-          // Transition 1 -> 2: Glides Right (+shift) to Left (-shift) while flipping 180°
-          const tGlide = smoothstep(0.22, 0.44, p);
-          colShiftX = mobileTravel - (2 * mobileTravel) * tGlide;
-        } else if (p <= 0.68) {
-          // Step 2: Phone rests on the Left (-shift)
-          colShiftX = -mobileTravel;
-        } else if (p <= 0.88) {
-          // Transition 2 -> 3: Glides back to center as the mobile desk stand rises
-          const tDock = smoothstep(0.68, 0.88, p);
-          colShiftX = -mobileTravel * (1 - tDock);
-        } else {
-          // Step 3: Phone perfectly centered and resting on the mobile desk stand
-          colShiftX = 0;
         }
 
         phoneColumn.style.transform = `translate3d(${colShiftX.toFixed(1)}px, 0, 0)`;
