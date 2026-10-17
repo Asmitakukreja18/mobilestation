@@ -11,7 +11,7 @@
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&family=Manrope:wght@400;500;600;700;800;900&family=Outfit:wght@400;500;600;700;800&display=swap" rel="stylesheet">
 
-  <link rel="stylesheet" href="styles.css?v=ms-front-v8.0" />
+  <link rel="stylesheet" href="styles.css?v=ms-flip-v9.0" />
   <link rel="icon" type="image/png" href="assets/logo.png" />
 </head>
 
@@ -143,7 +143,16 @@
           <div class="stage-ring ring-two"></div>
           <div class="image-halo"></div>
           <div class="phone-art" id="heroPhoneArt">
-            <img src="assets/Modern_iPhone_Lock_Screen_Mockup-removebg-preview.png" alt="iPhone 18 Pro Max Flagship Display Front View" loading="eager" />
+            <div class="phone-3d-card" id="heroPhone3D">
+              <!-- BACK VIEW (Initial: Silver Titanium Rear View with Apple Logo & Triple Camera) -->
+              <div class="phone-face phone-back" id="phoneBackFace">
+                <img src="assets/Silver_iPhone-Style_Smartphone_Rear_View-removebg-preview.png" alt="iPhone 18 Pro Max Titanium Rear View" loading="eager" />
+              </div>
+              <!-- FRONT VIEW (Seedha: Dynamic Island, Super Retina OLED Display, 9:41 Clock) -->
+              <div class="phone-face phone-front" id="phoneFrontFace">
+                <img src="assets/Modern_iPhone_Lock_Screen_Mockup-removebg-preview.png" alt="iPhone 18 Pro Max Super Retina Display Front View" loading="eager" />
+              </div>
+            </div>
           </div>
           <div class="spec-chip camera-chip">
             <span class="chip-symbol">◉</span>
@@ -1448,6 +1457,6 @@
     })();
 
   </script>
-  <script src="js/hero-phone-motion.js?v=ms-front-v8.0"></script>
+  <script src="js/hero-phone-motion.js?v=ms-flip-v9.0"></script>
 </body>
 </html>

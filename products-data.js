@@ -63,18 +63,18 @@ const PRODUCTS = [
     "display": "6.9\" Super Retina XDR ProMotion 120Hz (3000 nits)",
     "camera": "48MP Fusion Triple Camera + 10x Optical Periscope Zoom",
     "battery": "38 hrs video playback, MagSafe 45W Ultra Charge",
-    "image": "assets/user_phone_1.jpg",
+    "image": "assets/iphone-18-pro-max.png",
     "fallbackImage": "assets/phone.png",
     "colors": [
         {
             "name": "Deep Burgundy Titanium",
             "hex": "#7a1120",
-            "image": "assets/user_phone_1.jpg"
+            "image": "assets/iphone-18-pro-max.png"
         },
         {
             "name": "Champagne Gold",
             "hex": "#d8c49e",
-            "image": "assets/user_phone_1.jpg"
+            "image": "assets/iphone-18-pro-max.png"
         }
     ],
     "storage": [
