@@ -115,9 +115,9 @@
       // 2. HORIZONTAL PHONE TRAVEL: RIGHT SIDE -> LEFT SIDE ("pehle right, fir left")
       // -----------------------------------------------------------------------
       let colShiftX = 0;
-      if (container) {
+      if (!isMobile && container) {
+        // Desktop: Travel distance from center of Right column to center of Left column
         const containerWidth = container.offsetWidth;
-        // Travel distance from center of Right column to center of Left column
         const travelDistance = containerWidth * 0.5;
 
         if (p <= 0.24) {
@@ -131,9 +131,32 @@
           // Step 2 & 3: Phone rests on the Left side (docking onto the desk stand in Step 3)
           colShiftX = -travelDistance;
         }
+      } else {
+        // Mobile View: Starts on Right (+shift) -> Glides across to Left (-shift) -> Docks onto center stand
+        const screenW = window.innerWidth || 390;
+        const mobileShift = Math.min(75, Math.max(55, screenW * 0.17));
 
-        phoneColumn.style.transform = `translate3d(${colShiftX.toFixed(1)}px, 0, 0)`;
+        if (p <= 0.24) {
+          // Step 1: Phone starts on the Right side
+          colShiftX = mobileShift;
+        } else if (p <= 0.48) {
+          // Transition 1 -> 2: Smooth glide from Right side to Left side while flipping 180°
+          const tGlide = smoothstep(0.24, 0.48, p);
+          colShiftX = mobileShift - (2 * mobileShift) * tGlide;
+        } else if (p <= 0.72) {
+          // Step 2: Phone rests on the Left side
+          colShiftX = -mobileShift;
+        } else if (p <= 0.88) {
+          // Transition 2 -> 3: Glides to center directly over the rising desk stand
+          const tDock = smoothstep(0.72, 0.88, p);
+          colShiftX = -mobileShift * (1 - tDock);
+        } else {
+          // Step 3: Firmly centered and resting in the cradle hooks of the desk stand
+          colShiftX = 0;
+        }
       }
+
+      phoneColumn.style.transform = `translate3d(${colShiftX.toFixed(1)}px, 0, 0)`;
 
       // -----------------------------------------------------------------------
       // 3. 3D REAL IPHONE ROTATIONS, FLIPS & HORIZONTAL DOCK ON MOBILE STAND ("TEDA")
@@ -183,7 +206,7 @@
         curRotZ = -90 * t3; // Smooth 90° roll into pure HORIZONTAL / LANDSCAPE mode!
         curRotX = -12 * t3; // Authentic 3D desk stand tilt
         curZ = (isMobile ? 12 : 24) * Math.sin(t3 * Math.PI);
-        dockY = (isMobile ? 12 : 22) * t3;
+        dockY = (isMobile ? 46 : 62) * t3; // Lowers phone into the cradle hooks!
         curScale = 1.0 - (isMobile ? 0.24 : 0.26) * t3; // Compact scale so landscape fits beautifully
 
         if (t3 > 0.25) {
@@ -199,15 +222,16 @@
         curRotZ = -90; // 100% HORIZONTAL (Landscape) matching user instruction!
         curRotX = -12; // 3D Desk Tilt
         curZ = 0;
-        dockY = isMobile ? 12 : 22;
+        dockY = isMobile ? 46 : 62; // Securely seated inside the cradle hooks!
         curScale = isMobile ? 0.76 : 0.74;
 
         if (deskStand) deskStand.classList.add('visible');
         if (floatingPill) floatingPill.classList.add('visible');
       }
 
-      // Subtle aerodynamic breathing wave
-      const floatY = Math.sin(p * Math.PI * 3.5) * (isMobile ? 2.5 : 6) + dockY;
+      // Subtle aerodynamic breathing wave (dampens to 0 when docked on stand so phone doesn't detach)
+      const wave = p < 0.72 ? Math.sin(p * Math.PI * 3.5) * (isMobile ? 2.5 : 5) : 0;
+      const floatY = wave + dockY;
 
       // Apply 3D Transforms to phone element
       phone.style.transform = `translate3d(0, ${floatY.toFixed(1)}px, ${curZ.toFixed(1)}px) scale(${curScale.toFixed(4)}) rotateX(${curRotX.toFixed(2)}deg) rotateZ(${curRotZ.toFixed(2)}deg)`;
