@@ -2741,9 +2741,9 @@ img {
   .story-layout-container {
     display: grid !important;
     grid-template-columns: 1fr !important;
-    grid-template-rows: clamp(175px, 24vh, 205px) 1fr !important;
-    gap: 6px !important;
-    padding: 6px 14px 8px !important;
+    grid-template-rows: clamp(140px, 19vh, 168px) 1fr !important;
+    gap: 4px !important;
+    padding: 4px 12px 6px !important;
     height: 100% !important;
     box-sizing: border-box !important;
     align-items: center !important;
@@ -2752,8 +2752,8 @@ img {
   .story-zone {
     width: 100% !important;
     height: 100% !important;
-    min-height: 175px !important;
-    max-height: 205px !important;
+    min-height: 140px !important;
+    max-height: 168px !important;
     position: relative !important;
     display: flex !important;
     align-items: center !important;
@@ -2770,12 +2770,12 @@ img {
     top: 50% !important;
     left: 0 !important;
     right: 0 !important;
-    transform: translateY(-50%) translateY(14px) !important;
+    transform: translateY(-50%) translateY(12px) !important;
     text-align: center !important;
     align-items: center !important;
-    gap: 8px !important;
+    gap: 5px !important;
     width: 100% !important;
-    max-width: 420px !important;
+    max-width: 360px !important;
     margin: 0 auto !important;
     padding: 0 4px !important;
     box-sizing: border-box !important;
@@ -2784,16 +2784,22 @@ img {
   .story-step-slide.active {
     transform: translateY(-50%) translateY(0) !important;
   }
+  .story-step-slide .eyebrow-badge {
+    font-size: 8.5px !important;
+    letter-spacing: 1px !important;
+    padding: 2.5px 8px !important;
+    border-radius: 12px !important;
+  }
   .story-title {
-    font-size: clamp(22px, 6.2vw, 29px) !important;
-    line-height: 1.12 !important;
+    font-size: clamp(17px, 4.6vw, 21px) !important;
+    line-height: 1.14 !important;
     letter-spacing: -0.02em !important;
     margin: 0 !important;
   }
   .story-tagline {
-    font-size: 12.5px !important;
-    line-height: 1.42 !important;
-    max-width: 340px !important;
+    font-size: 11px !important;
+    line-height: 1.35 !important;
+    max-width: 290px !important;
     margin: 0 auto !important;
     color: var(--text-secondary, #584147) !important;
     display: -webkit-box !important;
@@ -2803,42 +2809,46 @@ img {
     text-overflow: ellipsis !important;
   }
   .hero-badges-row {
-    margin-top: 2px !important;
-    gap: 6px !important;
+    margin-top: 1px !important;
+    gap: 5px !important;
+  }
+  .hero-badges-row .pill-badge {
+    font-size: 9px !important;
+    padding: 2.5px 7px !important;
   }
   .hero-quick-cta-row {
-    margin: 4px auto 0 !important;
-    gap: 8px !important;
+    margin: 2px auto 0 !important;
+    gap: 6px !important;
   }
   .hero-quick-cta-row .btn-crimson {
-    padding: 8px 18px !important;
-    font-size: 12.5px !important;
+    padding: 6px 14px !important;
+    font-size: 11px !important;
   }
   .hero-quick-cta-row .btn-text-link {
-    font-size: 12px !important;
+    font-size: 10px !important;
   }
   .story-scroll-hint {
-    margin-top: 2px !important;
-    font-size: 11px !important;
-    gap: 6px !important;
+    margin-top: 1px !important;
+    font-size: 9.5px !important;
+    gap: 5px !important;
   }
   .story-spec-chips {
     justify-content: center !important;
-    gap: 6px !important;
-    margin-top: 4px !important;
+    gap: 5px !important;
+    margin-top: 3px !important;
   }
   .story-spec-chips .spec-pill {
-    padding: 5px 9px !important;
-    border-radius: 12px !important;
+    padding: 3.5px 7.5px !important;
+    border-radius: 10px !important;
   }
   .story-spec-chips .spec-pill strong {
-    font-size: 11px !important;
+    font-size: 9.5px !important;
   }
   .story-spec-chips .spec-pill span {
-    font-size: 9px !important;
+    font-size: 8px !important;
   }
 
-  /* Phone Stage pinned to Row 2 */
+  /* Phone Stage pinned to Row 2 - Compact Sizing */
   .story-phone-column {
     grid-row: 2 / 3 !important;
     grid-column: 1 / 2 !important;
@@ -2858,9 +2868,9 @@ img {
   .story-phone-stage {
     position: relative !important;
     width: 100% !important;
-    max-width: 360px !important;
+    max-width: 320px !important;
     height: 100% !important;
-    max-height: clamp(340px, 50vh, 420px) !important;
+    max-height: clamp(280px, 46vh, 340px) !important;
     display: flex !important;
     align-items: center !important;
     justify-content: center !important;
@@ -2868,8 +2878,8 @@ img {
   .story-phone-stage .phone-art,
   .phone-art,
   .hero-mobile-stage .phone-art {
-    width: min(56vw, 195px) !important;
-    max-width: 195px !important;
+    width: min(44vw, 150px) !important;
+    max-width: 150px !important;
     margin: 0 auto !important;
   }
 
@@ -2877,91 +2887,94 @@ img {
   .mobile-desk-stand {
     top: 50% !important;
     bottom: auto !important;
-    transform: translate(-50%, -50%) translateY(32px) !important;
+    transform: translate(-50%, -50%) translateY(22px) !important;
   }
   .mobile-desk-stand.visible {
-    transform: translate(-50%, -50%) translateY(8px) !important;
+    transform: translate(-50%, -50%) translateY(4px) !important;
   }
   .stand-backplate {
-    width: 118px !important;
-    height: 145px !important;
-    border-radius: 14px 14px 6px 6px !important;
+    width: 95px !important;
+    height: 120px !important;
+    border-radius: 12px 12px 5px 5px !important;
   }
   .stand-cradle-hooks {
-    width: 120px !important;
-    height: 22px !important;
-    padding: 0 10px !important;
+    width: 98px !important;
+    height: 18px !important;
+    padding: 0 8px !important;
   }
   .cradle-prong {
-    width: 14px !important;
-    height: 20px !important;
+    width: 11px !important;
+    height: 16px !important;
   }
   .stand-stem {
-    width: 14px !important;
-    height: 60px !important;
+    width: 11px !important;
+    height: 48px !important;
   }
   .stand-base {
-    width: 130px !important;
-    height: 13px !important;
-    border-radius: 14px !important;
+    width: 105px !important;
+    height: 10px !important;
+    border-radius: 12px !important;
   }
   .standby-floating-pill {
-    bottom: 6px !important;
-    padding: 6px 14px !important;
-    font-size: 11px !important;
-    gap: 8px !important;
+    bottom: 4px !important;
+    padding: 4px 10px !important;
+    font-size: 9.5px !important;
+    gap: 6px !important;
   }
   .standby-floating-pill .pill-brand-badge {
-    font-size: 11px !important;
+    font-size: 9.5px !important;
+  }
+  .standby-floating-pill .pill-cta-text {
+    font-size: 9.5px !important;
   }
 
   /* StandBy landscape screen mobile scale */
   .standby-landscape-screen {
-    border-radius: 28px !important;
-    padding: 10px 14px !important;
+    border-radius: 22px !important;
+    padding: 8px 10px !important;
   }
   .standby-island-pill {
-    left: 8px !important;
-    width: 10px !important;
-    height: 38px !important;
-    border-radius: 7px !important;
+    left: 6px !important;
+    width: 8px !important;
+    height: 28px !important;
+    border-radius: 6px !important;
   }
   .standby-ui-content {
-    padding-left: 18px !important;
+    padding-left: 14px !important;
   }
   .standby-tab {
-    font-size: 9px !important;
-    padding: 2px 8px !important;
+    font-size: 7.5px !important;
+    padding: 1.5px 6px !important;
   }
   .standby-clock-time {
-    font-size: 9.5px !important;
+    font-size: 8px !important;
   }
   .digit-col .big-num {
-    font-size: 42px !important;
+    font-size: 32px !important;
     letter-spacing: -1px !important;
   }
   .digit-col .unit-marker {
-    font-size: 8.5px !important;
+    font-size: 7.5px !important;
   }
   .digit-col .cycle-marker {
-    font-size: 8px !important;
-    right: -40px !important;
-    bottom: 4px !important;
+    font-size: 7px !important;
+    right: -32px !important;
+    bottom: 2px !important;
   }
   .standby-session-tag {
-    font-size: 9px !important;
-    gap: 5px !important;
+    font-size: 8px !important;
+    gap: 4px !important;
   }
   .standby-session-tag .session-duration {
     display: none !important;
   }
   .standby-pause-btn {
-    padding: 3px 8px !important;
-    font-size: 9px !important;
+    padding: 2.5px 6px !important;
+    font-size: 8px !important;
   }
   .standby-icon-btn {
-    width: 20px !important;
-    height: 20px !important;
+    width: 18px !important;
+    height: 18px !important;
   }
 
   .hero-mosaic-container {

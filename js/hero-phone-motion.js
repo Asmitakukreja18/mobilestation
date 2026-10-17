@@ -130,9 +130,9 @@
 
         phoneColumn.style.transform = `translate3d(${colShiftX.toFixed(1)}px, 0, 0)`;
       } else {
-        // Mobile View: Synchronized Right-to-Left motion & Center Stand Docking
+        // Mobile View: Synchronized Right-to-Left motion & Center Stand Docking (scaled for compact phone)
         const screenW = window.innerWidth || 390;
-        const mobileTravel = Math.min(36, Math.max(22, (screenW - 200) * 0.24));
+        const mobileTravel = Math.min(24, Math.max(14, (screenW - 150) * 0.16));
 
         if (p <= 0.22) {
           // Step 1: Phone starts gracefully on the Right (+shift)
@@ -206,9 +206,9 @@
         curRotY = 180 - 4 * t3;
         curRotZ = -90 * t3; // Rotates smoothly from 0° (portrait) to -90° (landscape / "teda")
         curRotX = -12 * t3; // Authentic 3D desk stand tilt
-        curZ = (isMobile ? 12 : 25) * Math.sin(t3 * Math.PI);
-        dockY = (isMobile ? 12 : 22) * t3;
-        curScale = isMobile ? (1.0 - 0.12 * t3) : (1.0 - 0.05 * t3);
+        curZ = (isMobile ? 10 : 25) * Math.sin(t3 * Math.PI);
+        dockY = (isMobile ? 8 : 22) * t3;
+        curScale = isMobile ? (1.0 - 0.08 * t3) : (1.0 - 0.05 * t3);
 
         // Fade in StandBy landscape OLED screen and show stand
         if (standbyScreen) {
@@ -227,8 +227,8 @@
         curRotZ = -90; // Landscape ("teda")!
         curRotX = -12; // 3D Desk Tilt
         curZ = 0;
-        dockY = isMobile ? 12 : 22;
-        curScale = isMobile ? 0.88 : 0.95;
+        dockY = isMobile ? 8 : 22;
+        curScale = isMobile ? 0.92 : 0.95;
 
         if (standbyScreen) standbyScreen.style.opacity = '1';
         if (deskStand) deskStand.classList.add('visible');
@@ -236,7 +236,7 @@
       }
 
       // Subtle aerodynamic breathing wave
-      const floatY = Math.sin(p * Math.PI * 3.5) * (isMobile ? 4 : 6) + dockY;
+      const floatY = Math.sin(p * Math.PI * 3.5) * (isMobile ? 2.5 : 6) + dockY;
 
       // Apply 3D Transforms to phone element
       phone.style.transform = `translate3d(0, ${floatY.toFixed(1)}px, ${curZ.toFixed(1)}px) scale(${curScale.toFixed(4)}) rotateX(${curRotX.toFixed(2)}deg) rotateZ(${curRotZ.toFixed(2)}deg)`;
