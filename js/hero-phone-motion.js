@@ -1,39 +1,57 @@
 /**
- * MOBILE STATION — FLAGSHIP PHONE 3D FLOATING & TOP-TO-BOTTOM TRAVEL ENGINE
- * Recreates the iconic Flowty.co / Flagship showcase motion:
- *  1. Top-to-Bottom Travel ("uper se neeche tak jaa rahi"):
- *     As the user scrolls through the hero section, the phone glides smoothly
- *     downwards from its elevated top starting position (+165px desktop, +95px mobile)
- *  2. Continuous 3D Levitation ("float karke"):
- *     Fluid, prominent organic floating wave (±22px vertical float + 3D yaw/pitch breathing)
- *  3. Flowty Dynamic Scale Expansion:
- *     Scales organically from 1.0 -> 1.16 as it glides downwards
- *  4. 3D Parallax Pitch & Interactive Tilt:
- *     Perspective pitch on scroll (-7deg) plus responsive mouse/touch/gyro tracking
- *  5. 100% GPU Accelerated & Damped Lerp Easing:
- *     Silky smooth at 60 FPS with zero layout shifts, preserving all website content
+ * MOBILE STATION — CINEMATIC SCROLL-DRIVEN PRODUCT TRANSITION
+ * Strictly recreates the reference motion sequence:
+ *
+ *  PHASE 1 (0% - 15%): INITIAL VIEW
+ *    - Phone remains at its normal size and original position.
+ *    - Static, sharp, and stable. Zero unsolicited movement.
+ *
+ *  PHASE 2 (15% - 45%): COMES FORWARD INTO CENTER
+ *    - As user scrolls, phone glides smoothly toward the visual center.
+ *    - Gradually scales up and comes forward toward the viewer.
+ *
+ *  PHASE 3 (45% - 70%): LARGE HERO PHONE MOMENT
+ *    - Phone reaches primary focal position (centered, enlarged, razor sharp).
+ *    - Dominant flagship presence close to the viewer.
+ *
+ *  PHASE 4 (DEPTH & SOFTNESS):
+ *    - Surrounding stage chips and rings soften/fade out to let the phone dominate.
+ *    - Text remains completely static.
+ *
+ *  PHASE 5 (70% - 100%): PHONE EXITS UPWARD / TRANSITIONS OUT
+ *    - Phone smoothly glides upward and out of the focal position.
+ *    - Scale gently eases down as next section content naturally comes into view.
+ *    - Seamlessly reverses when scrolling upward.
+ *
+ *  STRICT RULES OBSERVED:
+ *    - NO infinite floating loops, NO continuous bouncing, NO spinning, NO pulsing.
+ *    - 100% scroll-driven with silky damped lerp interpolation.
+ *    - Transform-only GPU acceleration (translate3d, scale, subtle perspective pitch).
+ *    - Zero layout shifts, zero text alterations, zero redesign.
  */
 
 (function () {
   'use strict';
 
-  function initPhoneAnimation() {
+  function initCinematicPhoneMotion() {
     const phone = document.getElementById('heroPhoneArt') || document.querySelector('.phone-art');
     const stage = document.querySelector('.product-stage');
     const hero = document.getElementById('home') || document.querySelector('.hero');
-    const shine = phone ? phone.querySelector('.shine') : null;
+    const stageContainer = document.querySelector('.hero-stage-container') || hero;
     const halo = stage ? stage.querySelector('.image-halo') : null;
+    const chips = stage ? stage.querySelectorAll('.spec-chip, .stage-caption, .stage-ring') : [];
 
     if (!phone) return;
 
     // Accessibility: Return to stable static state if user prefers reduced motion
     if (window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
       phone.style.transform = 'none';
+      phone.style.opacity = '1';
       return;
     }
 
     // Prepare GPU acceleration and 3D rendering context
-    phone.style.willChange = 'transform';
+    phone.style.willChange = 'transform, opacity';
     phone.style.transformStyle = 'preserve-3d';
 
     if (stage) {
@@ -42,208 +60,170 @@
       stage.style.overflow = 'visible';
     }
 
-    // Motion State Variables
-    let time = 0;
-    let targetScroll = 0;
-    let smoothScroll = 0;
+    // Layout calibration variables
+    let baseDeltaX = 0;
+    let baseDeltaY = 0;
+    let baseFocalScale = 1.46;
+    let baseExitDist = 300;
 
-    let targetPointerX = 0;
-    let targetPointerY = 0;
-    let smoothPointerX = 0;
-    let smoothPointerY = 0;
+    // Measure layout offsets accurately
+    function measureLayout() {
+      if (!phone || !stageContainer) return;
 
-    let gyroX = 0;
-    let gyroY = 0;
-    let smoothGyroX = 0;
-    let smoothGyroY = 0;
+      const prevTransform = phone.style.transform;
+      phone.style.transform = 'none';
 
-    // Responsive Motion Profile Configuration
-    function getMotionConfig() {
       const w = window.innerWidth;
+      const cRect = stageContainer.getBoundingClientRect();
+      const pRect = phone.getBoundingClientRect();
+
       if (w >= 1024) {
-        // Desktop: Expansive 3D stage with pronounced top-to-bottom glide
-        return {
-          startOffsetY: -24,    // Start elevated at the top
-          travelY: 165,         // Glides downwards from top to bottom on scroll
-          floatAmp: 22,         // Prominent organic floating amplitude
-          scaleExpand: 0.16,    // Expands smoothly as it travels downwards
-          pitchOnScroll: -7.0,  // Dynamic 3D perspective pitch tilt
-          tiltX: 12,            // Interactive pointer tilt
-          tiltY: 14,
-          shiftX: 18,
-          shiftY: 12
-        };
+        // Desktop: Phone starts on right column; calculate exact offset to visual stage center
+        const containerCenterX = cRect.left + cRect.width / 2;
+        const containerCenterY = cRect.top + cRect.height / 2;
+        const phoneCenterX = pRect.left + pRect.width / 2;
+        const phoneCenterY = pRect.top + pRect.height / 2;
+
+        baseDeltaX = containerCenterX - phoneCenterX;
+        baseDeltaY = (containerCenterY - phoneCenterY) - 20;
+        baseFocalScale = 1.46;
+        baseExitDist = 320;
+      } else if (w >= 768) {
+        // Tablet
+        const containerCenterX = cRect.left + cRect.width / 2;
+        const containerCenterY = cRect.top + cRect.height / 2;
+        const phoneCenterX = pRect.left + pRect.width / 2;
+        const phoneCenterY = pRect.top + pRect.height / 2;
+
+        baseDeltaX = (containerCenterX - phoneCenterX) * 0.75;
+        baseDeltaY = (containerCenterY - phoneCenterY) - 15;
+        baseFocalScale = 1.30;
+        baseExitDist = 260;
+      } else {
+        // Mobile: Phone is already horizontally centered; shift slightly upward toward optical center
+        baseDeltaX = 0;
+        baseDeltaY = -25;
+        baseFocalScale = 1.22;
+        baseExitDist = 210;
       }
-      if (w >= 768) {
-        // Tablet: Balanced travel and floating
-        return {
-          startOffsetY: -18,
-          travelY: 130,
-          floatAmp: 19,
-          scaleExpand: 0.14,
-          pitchOnScroll: -6.0,
-          tiltX: 10,
-          tiltY: 12,
-          shiftX: 14,
-          shiftY: 10
-        };
-      }
-      // Mobile: Clearly noticeable top-to-bottom floating glide contained within mobile view
-      return {
-        startOffsetY: -14,
-        travelY: 95,
-        floatAmp: 16,
-        scaleExpand: 0.12,
-        pitchOnScroll: -5.0,
-        tiltX: 9,
-        tiltY: 11,
-        shiftX: 12,
-        shiftY: 8
-      };
+
+      phone.style.transform = prevTransform;
     }
 
-    // 1. Precise Scroll Progression Tracking (Top to Bottom Journey)
-    function updateScroll() {
+    measureLayout();
+    window.addEventListener('resize', measureLayout, { passive: true });
+
+    // Scroll state tracking
+    let targetProgress = 0;
+    let smoothProgress = 0;
+
+    function updateScrollProgress() {
       const scrollY = window.pageYOffset || document.documentElement.scrollTop || window.scrollY || 0;
       if (!hero) {
-        targetScroll = Math.max(0, Math.min(1.0, scrollY / 550));
+        targetProgress = Math.max(0, Math.min(1.0, scrollY / 600));
         return;
       }
+
       const rect = hero.getBoundingClientRect();
-      const heroHeight = hero.offsetHeight || window.innerHeight || 650;
+      const heroHeight = hero.offsetHeight || window.innerHeight || 750;
       const scrolled = Math.max(0, -rect.top);
-      // Normalized progress: 0.0 at very top -> 1.0 as user scrolls through hero
-      targetScroll = Math.max(0, Math.min(1.0, scrolled / (heroHeight * 0.70)));
+
+      // Transition completes over 85% of hero scroll travel before section exits
+      const travelDistance = Math.max(400, heroHeight * 0.85);
+      targetProgress = Math.max(0, Math.min(1.0, scrolled / travelDistance));
     }
 
-    window.addEventListener('scroll', updateScroll, { passive: true });
-    window.addEventListener('resize', updateScroll, { passive: true });
-    updateScroll();
+    window.addEventListener('scroll', updateScrollProgress, { passive: true });
+    updateScrollProgress();
 
-    // 2. Interactive Pointer / Mouse Tracking (Desktop & Laptop)
-    function onPointerMove(e) {
-      const container = stage || hero;
-      if (!container) return;
-      const rect = container.getBoundingClientRect();
-      if (!rect.width || !rect.height) return;
-
-      const nx = ((e.clientX - rect.left) / rect.width - 0.5) * 2;
-      const ny = ((e.clientY - rect.top) / rect.height - 0.5) * 2;
-
-      targetPointerX = Math.max(-1, Math.min(1, nx));
-      targetPointerY = Math.max(-1, Math.min(1, ny));
+    // Smoothstep Hermite curve for buttery easing between keyframes
+    function smoothstep(edge0, edge1, x) {
+      const t = Math.max(0, Math.min(1, (x - edge0) / (edge1 - edge0)));
+      return t * t * (3 - 2 * t);
     }
 
-    function onPointerLeave() {
-      targetPointerX = 0;
-      targetPointerY = 0;
-    }
-
-    const interactiveArea = stage || hero;
-    if (interactiveArea) {
-      interactiveArea.addEventListener('pointermove', onPointerMove, { passive: true });
-      interactiveArea.addEventListener('pointerleave', onPointerLeave, { passive: true });
-      interactiveArea.addEventListener('pointercancel', onPointerLeave, { passive: true });
-    }
-
-    // 3. Mobile Touch Drag / Tilt
-    window.addEventListener('touchmove', (e) => {
-      if (!stage || !e.touches || !e.touches[0]) return;
-      const rect = stage.getBoundingClientRect();
-      if (rect.top < window.innerHeight && rect.bottom > 0) {
-        const touch = e.touches[0];
-        const nx = ((touch.clientX - rect.left) / rect.width - 0.5) * 2;
-        const ny = ((touch.clientY - rect.top) / rect.height - 0.5) * 2;
-        targetPointerX = Math.max(-1, Math.min(1, nx));
-        targetPointerY = Math.max(-1, Math.min(1, ny));
-      }
-    }, { passive: true });
-
-    window.addEventListener('touchend', () => {
-      targetPointerX = 0;
-      targetPointerY = 0;
-    }, { passive: true });
-
-    // 4. Mobile Device Gyroscope (Physical Tilt Interaction)
-    if (window.DeviceOrientationEvent) {
-      window.addEventListener('deviceorientation', (e) => {
-        if (e.gamma !== null && e.beta !== null) {
-          const clampedGamma = Math.max(-28, Math.min(28, e.gamma));
-          const clampedBeta = Math.max(10, Math.min(70, e.beta)) - 40;
-          gyroX = clampedGamma / 28;
-          gyroY = clampedBeta / 28;
-        }
-      }, { passive: true });
-    }
-
-    // 5. 60 FPS Physics & Render Loop
-    let lastTime = performance.now();
-
-    function renderLoop(now) {
+    // 60 FPS Render Loop (100% Scroll-driven with Damped Lerp Easing)
+    function renderLoop() {
       requestAnimationFrame(renderLoop);
 
-      const dt = Math.min(50, now - lastTime) / 1000;
-      lastTime = now;
+      // Silky damped easing
+      smoothProgress += (targetProgress - smoothProgress) * 0.095;
+      const p = smoothProgress;
 
-      // Natural harmonic time advance (smooth floating period ~3.1s)
-      time += dt * 2.05;
+      let currentX = 0;
+      let currentY = 0;
+      let currentScale = 1.0;
+      let currentZ = 0;
+      let currentPitchX = 0;
+      let currentOpacity = 1.0;
 
-      const config = getMotionConfig();
+      // -----------------------------------------------------------------------
+      // CINEMATIC SCROLL TIMELINE (5 PHASES)
+      // -----------------------------------------------------------------------
 
-      // Damped interpolation (lerp) for silky easing
-      smoothScroll += (targetScroll - smoothScroll) * 0.085;
-      smoothPointerX += (targetPointerX - smoothPointerX) * 0.08;
-      smoothPointerY += (targetPointerY - smoothPointerY) * 0.08;
-
-      smoothGyroX += (gyroX - smoothGyroX) * 0.06;
-      smoothGyroY += (gyroY - smoothGyroY) * 0.06;
-
-      const combinedX = smoothPointerX + smoothGyroX * 0.75;
-      const combinedY = smoothPointerY + smoothGyroY * 0.75;
-
-      // --- A. Continuous 3D Levitation ("float karke") ---
-      // Smooth sinusoidal vertical float + coordinated 3D breathing rotation
-      const floatY = Math.sin(time) * config.floatAmp;
-      const floatRotY = Math.cos(time * 0.85) * 3.6;
-      const floatRotX = Math.sin(time * 0.65) * 2.4;
-      const floatRotZ = Math.sin(time * 0.45) * 1.2;
-
-      // --- B. Top-to-Bottom Scroll Travel ("uper se neeche tak jaa rahi") ---
-      // Phone starts at startOffsetY and travels downwards (+travelY) as scroll progresses
-      const scrollTravelY = smoothScroll * config.travelY;
-      // Dynamic scale expansion (Flowty style 1.0 -> 1.16)
-      const scrollScale = 1 + (smoothScroll * config.scaleExpand);
-      // Perspective pitch tilt on scroll
-      const scrollPitchX = smoothScroll * config.pitchOnScroll;
-
-      // --- C. Interactive Parallax Tilt (Mouse, Touch, and Gyro) ---
-      const tiltX = -combinedY * config.tiltX;
-      const tiltY = combinedX * config.tiltY;
-      const shiftX = combinedX * config.shiftX;
-      const shiftY = combinedY * config.shiftY;
-
-      // --- D. Combine All Motion Layers ---
-      const finalX = (shiftX).toFixed(2);
-      const finalY = (config.startOffsetY + scrollTravelY + floatY + shiftY).toFixed(2);
-      const finalRotX = (floatRotX + scrollPitchX + tiltX).toFixed(2);
-      const finalRotY = (floatRotY + tiltY).toFixed(2);
-      const finalRotZ = (floatRotZ).toFixed(2);
-      const finalScale = scrollScale.toFixed(4);
-
-      // Apply GPU-accelerated transform to the phone element
-      phone.style.transform = `translate3d(${finalX}px, ${finalY}px, 0px) rotateX(${finalRotX}deg) rotateY(${finalRotY}deg) rotateZ(${finalRotZ}deg) scale(${finalScale})`;
-
-      // Dynamic specular highlight reflection shift across phone glass
-      if (shine) {
-        const shineShift = (combinedX * 32 + Math.sin(time) * 15).toFixed(1);
-        shine.style.transform = `translateX(${shineShift}px)`;
+      if (p <= 0.15) {
+        // PHASE 1: INITIAL VIEW (0% - 15%)
+        // Phone stays at normal size and initial starting position
+        currentX = 0;
+        currentY = 0;
+        currentScale = 1.0;
+        currentZ = 0;
+        currentPitchX = 0;
+        currentOpacity = 1.0;
+      } else if (p <= 0.45) {
+        // PHASE 2: COMING FORWARD INTO CENTER (15% - 45%)
+        // Smoothly glides to visual center, scales larger, comes forward in 3D
+        const t = smoothstep(0.15, 0.45, p);
+        currentX = baseDeltaX * t;
+        currentY = baseDeltaY * t;
+        currentScale = 1.0 + (baseFocalScale - 1.0) * t;
+        currentZ = 120 * t;
+        // Subtle perspective angle straightens up as product faces viewer
+        currentPitchX = -3.5 * (1 - t);
+        currentOpacity = 1.0;
+      } else if (p <= 0.70) {
+        // PHASE 3: LARGE HERO PHONE MOMENT (45% - 70%)
+        // Primary visual focus: centered, significantly enlarged, close to viewer
+        const tMid = (p - 0.45) / 0.25;
+        currentX = baseDeltaX;
+        currentY = baseDeltaY - (tMid * 10);
+        currentScale = baseFocalScale;
+        currentZ = 120;
+        currentPitchX = 0;
+        currentOpacity = 1.0;
+      } else {
+        // PHASE 5: TRANSITION UPWARD & OUT (70% - 100%)
+        // Smoothly glides upward and out of main focal position as next content arrives
+        const tExit = smoothstep(0.70, 1.0, p);
+        currentX = baseDeltaX;
+        currentY = (baseDeltaY - 10) - (baseExitDist * tExit);
+        currentScale = baseFocalScale * (1 - tExit * 0.16);
+        currentZ = 120 * (1 - tExit);
+        currentPitchX = 3.0 * tExit;
+        // Stays solid until halfway through exit, then smoothly fades out
+        currentOpacity = tExit < 0.45 ? 1.0 : Math.max(0, 1 - (tExit - 0.45) / 0.55);
       }
 
-      // Synchronize background halo scale and breathing intensity
+      // Apply GPU-accelerated transforms
+      phone.style.transform = `translate3d(${currentX.toFixed(2)}px, ${currentY.toFixed(2)}px, ${currentZ.toFixed(1)}px) scale(${currentScale.toFixed(4)}) rotateX(${currentPitchX.toFixed(2)}deg)`;
+      phone.style.opacity = currentOpacity.toFixed(3);
+
+      // PHASE 4: Background Depth & Ambient Softness
+      // During focal moment (0.25 -> 0.75), surrounding stage chips soften so phone commands focus
+      const depthStrength = smoothstep(0.20, 0.45, p) * (1 - smoothstep(0.75, 0.95, p));
+
+      if (chips && chips.length > 0) {
+        const chipOpacity = (1 - depthStrength * 0.85).toFixed(2);
+        chips.forEach((chip) => {
+          chip.style.opacity = chipOpacity;
+        });
+      }
+
+      // Synchronize background halo bloom
       if (halo) {
-        const haloScale = (1 + Math.sin(time) * 0.12 + smoothScroll * 0.14).toFixed(3);
-        const haloShiftY = (config.startOffsetY * 0.4 + scrollTravelY * 0.6).toFixed(1);
-        halo.style.transform = `translateY(${haloShiftY}px) scale(${haloScale})`;
+        const haloScale = (1 + depthStrength * 0.45).toFixed(3);
+        halo.style.transform = `translate3d(${currentX.toFixed(2)}px, ${currentY.toFixed(2)}px, 0) scale(${haloScale})`;
+        halo.style.opacity = (0.5 + depthStrength * 0.45).toFixed(2);
       }
     }
 
@@ -252,8 +232,8 @@
 
   // Safe startup on DOM ready
   if (document.readyState === 'loading') {
-    document.addEventListener('DOMContentLoaded', initPhoneAnimation);
+    document.addEventListener('DOMContentLoaded', initCinematicPhoneMotion);
   } else {
-    initPhoneAnimation();
+    initCinematicPhoneMotion();
   }
 })();
