@@ -1333,6 +1333,11 @@ img {
   -webkit-transform: rotateY(180deg);
 }
 
+.phone-face.phone-face-front img {
+  height: 100% !important;
+  object-fit: contain !important;
+}
+
 .phone-face img,
 .phone-art img {
   width: 100%;
@@ -2026,7 +2031,8 @@ img {
     padding-top: 96px;
     min-height: auto;
     padding-bottom: 28px;
-    overflow: hidden;
+    overflow: visible !important;
+    overflow-x: clip !important;
     width: 100%;
     background: var(--paper, #f5f4ef);
   }
@@ -2153,7 +2159,8 @@ img {
 
   .phone-art,
   .hero-mobile-stage .phone-art {
-    width: min(78%, 250px) !important;
+    width: min(72vw, 225px) !important;
+    max-width: 225px !important;
     margin: 0 !important;
   }
 
