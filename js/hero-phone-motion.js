@@ -34,7 +34,6 @@
     const frontFace = document.getElementById('phoneFrontFace');
     const deskStand = document.getElementById('magsafeDeskStand');
     const floatingPill = document.getElementById('standbyFloatingPill');
-    const standbyScreen = document.getElementById('standbyLandscapeScreen');
 
     const step1 = document.getElementById('storyStep1');
     const step2 = document.getElementById('storyStep2');
@@ -157,7 +156,7 @@
       }
 
       // -----------------------------------------------------------------------
-      // 3. 3D REAL IPHONE ROTATIONS, FLIPS & TEDA STANDBY DOCK ON MOBILE STAND
+      // 3. 3D REAL IPHONE ROTATIONS, FLIPS & TILTED DOCK ON MOBILE STAND ("TEDA")
       // -----------------------------------------------------------------------
       let curRotY = 0;
       let curZ = 0;
@@ -174,19 +173,17 @@
         curRotX = -2.0;
         curScale = 1.0;
 
-        if (standbyScreen) standbyScreen.style.opacity = '0';
         if (deskStand) deskStand.classList.remove('visible');
         if (floatingPill) floatingPill.classList.remove('visible');
       } else if (p <= 0.44) {
         // Transition 1 -> 2: 180° Flip to Real Front Display + Glides Right to Left
         const t1 = smoothstep(0.22, 0.44, p);
         curRotY = 180 * t1;
-        curZ = (isMobile ? 45 : 75) * Math.sin(t1 * Math.PI);
-        curRotZ = Math.sin(t1 * Math.PI) * (isMobile ? 4.0 : 6.0);
+        curZ = (isMobile ? 40 : 70) * Math.sin(t1 * Math.PI);
+        curRotZ = Math.sin(t1 * Math.PI) * (isMobile ? 3.0 : 5.0);
         curRotX = -2.0 + Math.sin(t1 * Math.PI) * -3.0;
-        curScale = 1.0 + 0.05 * Math.sin(t1 * Math.PI);
+        curScale = 1.0 + 0.04 * Math.sin(t1 * Math.PI);
 
-        if (standbyScreen) standbyScreen.style.opacity = '0';
         if (deskStand) deskStand.classList.remove('visible');
         if (floatingPill) floatingPill.classList.remove('visible');
       } else if (p <= 0.68) {
@@ -197,23 +194,18 @@
         curRotX = 0;
         curScale = 1.0;
 
-        if (standbyScreen) standbyScreen.style.opacity = '0';
         if (deskStand) deskStand.classList.remove('visible');
         if (floatingPill) floatingPill.classList.remove('visible');
       } else if (p <= 0.88) {
-        // Transition 2 -> 3: Phone rotates into Landscape ("teda") & docks onto Desk Stand!
+        // Transition 2 -> 3: Mobile Desk Stand emerges & cradles the iPhone at a stylish tilted angle ("teda")!
         const t3 = smoothstep(0.68, 0.88, p);
-        curRotY = 180 - 4 * t3;
-        curRotZ = -90 * t3; // Rotates smoothly from 0° (portrait) to -90° (landscape / "teda")
-        curRotX = -12 * t3; // Authentic 3D desk stand tilt
-        curZ = (isMobile ? 10 : 25) * Math.sin(t3 * Math.PI);
-        dockY = (isMobile ? 8 : 22) * t3;
-        curScale = isMobile ? (1.0 - 0.08 * t3) : (1.0 - 0.05 * t3);
+        curRotY = 180 - 18 * t3; // Elegant 3D perspective angle
+        curRotZ = -4 * t3; // Subtle tilt ("teda")
+        curRotX = -10 * t3; // Authentic 3D desk stand tilt
+        curZ = (isMobile ? 10 : 20) * Math.sin(t3 * Math.PI);
+        dockY = (isMobile ? 8 : 14) * t3;
+        curScale = isMobile ? 1.0 : 0.98;
 
-        // Fade in StandBy landscape OLED screen and show stand
-        if (standbyScreen) {
-          standbyScreen.style.opacity = t3 > 0.35 ? ((t3 - 0.35) / 0.65).toFixed(3) : '0';
-        }
         if (t3 > 0.3) {
           if (deskStand) deskStand.classList.add('visible');
           if (floatingPill) floatingPill.classList.add('visible');
@@ -222,15 +214,14 @@
           if (floatingPill) floatingPill.classList.remove('visible');
         }
       } else {
-        // Step 3: Real iPhone resting horizontally ("teda") in StandBy Mode on Desk Stand (Reference Match!)
-        curRotY = 176;
-        curRotZ = -90; // Landscape ("teda")!
-        curRotX = -12; // 3D Desk Tilt
+        // Step 3: Real iPhone resting securely on the Mobile Desk Stand at a stylish 3D tilted angle ("teda")
+        curRotY = 162; // 3D tilted angle matching reference media_1792231678148.png!
+        curRotZ = -4; // Subtle angle
+        curRotX = -10; // 3D Desk Tilt
         curZ = 0;
-        dockY = isMobile ? 8 : 22;
-        curScale = isMobile ? 0.92 : 0.95;
+        dockY = isMobile ? 8 : 14;
+        curScale = isMobile ? 1.0 : 0.98;
 
-        if (standbyScreen) standbyScreen.style.opacity = '1';
         if (deskStand) deskStand.classList.add('visible');
         if (floatingPill) floatingPill.classList.add('visible');
       }

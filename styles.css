@@ -1532,12 +1532,12 @@ img {
   justify-content: center;
 }
 
-/* 1. Mobile Desk Stand Hardware (Behind & Under the Horizontal Phone) */
+/* 1. Mobile Desk Stand Hardware (Behind & Under the Phone) */
 .mobile-desk-stand {
   position: absolute;
   left: 50%;
-  top: 50%;
-  transform: translate(-50%, -50%) translateY(35px);
+  bottom: 3%;
+  transform: translateX(-50%) translateY(40px);
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -1549,15 +1549,15 @@ img {
 
 .mobile-desk-stand.visible {
   opacity: 1;
-  transform: translate(-50%, -50%) translateY(5px);
+  transform: translateX(-50%) translateY(0);
 }
 
-/* Compact Fluted Silicone/Rubber Backplate (Peeks behind top of horizontal phone) */
+/* Compact Fluted Silicone/Rubber Backplate */
 .stand-backplate {
   position: relative;
-  width: 145px;
-  height: 190px;
-  border-radius: 20px 20px 10px 10px;
+  width: 135px;
+  height: 165px;
+  border-radius: 18px 18px 8px 8px;
   background: linear-gradient(180deg, #2b2629 0%, #161315 100%);
   border: 1px solid rgba(255, 255, 255, 0.18);
   box-shadow: 0 10px 28px rgba(0, 0, 0, 0.6), inset 0 1px 0 rgba(255, 255, 255, 0.2);
@@ -1579,11 +1579,11 @@ img {
   opacity: 0.85;
 }
 
-/* Dual Silver Cradle Hooks (Holding the bottom long edge of horizontal phone) */
+/* Dual Silver Cradle Hooks (Holding the bottom of the phone) */
 .stand-cradle-hooks {
   position: relative;
-  width: 150px;
-  height: 26px;
+  width: 135px;
+  height: 24px;
   display: flex;
   justify-content: space-between;
   padding: 0 16px;
@@ -1594,8 +1594,8 @@ img {
 
 .cradle-prong {
   position: relative;
-  width: 18px;
-  height: 24px;
+  width: 16px;
+  height: 22px;
   background: linear-gradient(135deg, #443c40, #171315);
   border-radius: 4px 4px 2px 2px;
   border: 1px solid rgba(255, 255, 255, 0.35);
@@ -1650,8 +1650,8 @@ img {
 /* Weighted Heavy Aluminum Desk Base */
 .stand-base {
   position: relative;
-  width: 160px;
-  height: 16px;
+  width: 155px;
+  height: 15px;
   background: linear-gradient(180deg, #302b2e, #141113);
   border-radius: 18px;
   border: 1px solid rgba(255, 255, 255, 0.2);
@@ -1669,228 +1669,6 @@ img {
   background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.5) 50%, transparent);
   border-radius: 2px;
 }
-
-/* =========================================================================
-   AUTHENTIC STANDBY LANDSCAPE SCREEN (TEDA / HORIZONTAL DISPLAY ON STAND)
-   Matches Reference: Focus/Break, 49 49 OLED Digits, Power Hour, Pause/Reset
-========================================================================= */
-.standby-landscape-screen {
-  position: absolute;
-  top: 50%;
-  left: 50%;
-  width: 196%;
-  height: 92.6%;
-  transform: translate(-50%, -50%) rotate(90deg);
-  transform-origin: center center;
-  border-radius: 42px;
-  background: #08080a;
-  overflow: hidden;
-  opacity: 0;
-  pointer-events: none;
-  transition: opacity 0.4s ease;
-  z-index: 10;
-  box-shadow: inset 0 0 0 1px rgba(255, 255, 255, 0.08);
-  display: flex;
-  align-items: center;
-  padding: 18px 26px;
-  box-sizing: border-box;
-}
-
-.standby-island-pill {
-  position: absolute;
-  left: 14px;
-  top: 50%;
-  transform: translateY(-50%);
-  width: 14px;
-  height: 52px;
-  border-radius: 10px;
-  background: #000000;
-  border: 1px solid rgba(255, 255, 255, 0.08);
-  box-shadow: inset 0 0 4px rgba(0, 0, 0, 0.9);
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  z-index: 5;
-}
-
-.standby-island-pill .island-lens {
-  width: 7px;
-  height: 7px;
-  border-radius: 50%;
-  background: #0a0e1a;
-  border: 0.5px solid rgba(70, 100, 160, 0.5);
-}
-
-.standby-ui-content {
-  position: relative;
-  width: 100%;
-  height: 100%;
-  display: flex;
-  flex-direction: column;
-  justify-content: space-between;
-  padding-left: 28px;
-  box-sizing: border-box;
-}
-
-.standby-top-bar {
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  width: 100%;
-}
-
-.standby-tab-capsule {
-  display: inline-flex;
-  align-items: center;
-  background: rgba(255, 255, 255, 0.12);
-  border-radius: 20px;
-  padding: 3px 4px;
-  gap: 2px;
-}
-
-.standby-tab {
-  font-size: 11px;
-  font-weight: 700;
-  padding: 4px 12px;
-  border-radius: 14px;
-  color: #888892;
-  transition: all 0.2s ease;
-}
-
-.standby-tab.active {
-  background: #ffffff;
-  color: #08080a;
-}
-
-.standby-clock-time {
-  font-size: 11.5px;
-  font-weight: 600;
-  color: #a0a0ab;
-  letter-spacing: 0.3px;
-}
-
-.standby-clock-time .time-day {
-  color: #6a6a75;
-  margin-left: 4px;
-}
-
-.standby-digits-wrapper {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  gap: 28px;
-  margin: auto 0;
-  position: relative;
-}
-
-.digit-col {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  position: relative;
-}
-
-.digit-col .unit-marker {
-  font-size: 11px;
-  font-weight: 800;
-  color: #6a6a75;
-  text-transform: uppercase;
-  margin-bottom: -4px;
-  letter-spacing: 1px;
-}
-
-.digit-col .big-num {
-  font-family: "Inter", "Manrope", sans-serif;
-  font-size: 72px;
-  font-weight: 800;
-  line-height: 1;
-  color: #ffffff;
-  letter-spacing: -2px;
-  text-shadow: 0 0 24px rgba(255, 255, 255, 0.25);
-}
-
-.digit-col .cycle-marker {
-  position: absolute;
-  right: -52px;
-  bottom: 12px;
-  font-size: 9.5px;
-  color: #6a6a75;
-  font-weight: 600;
-  white-space: nowrap;
-}
-
-.standby-bottom-bar {
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  width: 100%;
-}
-
-.standby-session-tag {
-  display: flex;
-  align-items: center;
-  gap: 7px;
-  font-size: 11.5px;
-  color: #ffffff;
-}
-
-.session-green-dot {
-  width: 6.5px;
-  height: 6.5px;
-  border-radius: 50%;
-  background: #34d399;
-  box-shadow: 0 0 8px rgba(52, 211, 153, 0.7);
-}
-
-.standby-session-tag strong {
-  font-weight: 700;
-}
-
-.standby-session-tag .session-duration {
-  color: #6a6a75;
-  font-size: 10px;
-}
-
-.standby-actions-group {
-  display: flex;
-  align-items: center;
-  gap: 8px;
-}
-
-.standby-pause-btn {
-  display: inline-flex;
-  align-items: center;
-  gap: 6px;
-  padding: 5px 12px;
-  border-radius: 8px;
-  background: rgba(229, 23, 68, 0.14);
-  border: 1px solid rgba(229, 23, 68, 0.5);
-  color: #ffffff;
-  font-size: 11px;
-  font-weight: 700;
-  cursor: pointer;
-}
-
-.standby-pause-btn .pause-box-icon {
-  width: 8px;
-  height: 8px;
-  border-radius: 1.5px;
-  border: 1.5px solid #ff3b65;
-}
-
-.standby-icon-btn {
-  width: 26px;
-  height: 26px;
-  border-radius: 50%;
-  background: rgba(255, 255, 255, 0.1);
-  border: 1px solid rgba(255, 255, 255, 0.18);
-  color: #ffffff;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  cursor: pointer;
-}
-
 
 /* Floating Bottom Action Pill */
 .standby-floating-pill {
@@ -2883,14 +2661,14 @@ img {
     margin: 0 auto !important;
   }
 
-  /* Mobile Desk Stand hardware responsive sizing (for horizontal phone) */
+  /* Mobile Desk Stand hardware responsive sizing */
   .mobile-desk-stand {
-    top: 50% !important;
-    bottom: auto !important;
-    transform: translate(-50%, -50%) translateY(22px) !important;
+    bottom: 3% !important;
+    top: auto !important;
+    transform: translateX(-50%) translateY(32px) !important;
   }
   .mobile-desk-stand.visible {
-    transform: translate(-50%, -50%) translateY(4px) !important;
+    transform: translateX(-50%) translateY(0) !important;
   }
   .stand-backplate {
     width: 95px !important;
@@ -2928,54 +2706,7 @@ img {
     font-size: 9.5px !important;
   }
 
-  /* StandBy landscape screen mobile scale */
-  .standby-landscape-screen {
-    border-radius: 22px !important;
-    padding: 8px 10px !important;
-  }
-  .standby-island-pill {
-    left: 6px !important;
-    width: 8px !important;
-    height: 28px !important;
-    border-radius: 6px !important;
-  }
-  .standby-ui-content {
-    padding-left: 14px !important;
-  }
-  .standby-tab {
-    font-size: 7.5px !important;
-    padding: 1.5px 6px !important;
-  }
-  .standby-clock-time {
-    font-size: 8px !important;
-  }
-  .digit-col .big-num {
-    font-size: 32px !important;
-    letter-spacing: -1px !important;
-  }
-  .digit-col .unit-marker {
-    font-size: 7.5px !important;
-  }
-  .digit-col .cycle-marker {
-    font-size: 7px !important;
-    right: -32px !important;
-    bottom: 2px !important;
-  }
-  .standby-session-tag {
-    font-size: 8px !important;
-    gap: 4px !important;
-  }
-  .standby-session-tag .session-duration {
-    display: none !important;
-  }
-  .standby-pause-btn {
-    padding: 2.5px 6px !important;
-    font-size: 8px !important;
-  }
-  .standby-icon-btn {
-    width: 18px !important;
-    height: 18px !important;
-  }
+
 
   .hero-mosaic-container {
     display: none !important;
