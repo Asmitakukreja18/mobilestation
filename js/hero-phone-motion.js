@@ -82,25 +82,30 @@
       updateProgress();
 
       const isMobile = window.innerWidth < 768;
-      const lerpSpeed = isMobile ? 0.14 : 0.11;
-      smoothProgress += (targetProgress - smoothProgress) * lerpSpeed;
+      const diff = targetProgress - smoothProgress;
+      // Controlled cinematic lerp speed
+      const lerpSpeed = isMobile ? 0.085 : 0.075;
+      // Maximum advance per frame so fast scrolling stays visibly smooth ("fast scroll kar rahe na to bhi slow hi ho")
+      const maxDelta = isMobile ? 0.022 : 0.020;
+      const step = Math.sign(diff) * Math.min(Math.abs(diff * lerpSpeed), maxDelta);
+      smoothProgress += step;
       const p = smoothProgress;
 
       // -----------------------------------------------------------------------
-      // 1. STEP-BY-STEP TEXT SLIDE ACTIVATION (NO OVERLAP)
+      // 1. STEP-BY-STEP TEXT SLIDE ACTIVATION (GENEROUS VISIBLE DWELL TIME)
       // -----------------------------------------------------------------------
-      if (p < 0.32) {
-        // Step 1: Active in Left Zone
+      if (p < 0.28) {
+        // Step 1: Active in Left Zone (Titanium Rear View Spotlight on Right)
         if (step1) step1.classList.add('active');
         if (step2) step2.classList.remove('active');
         if (step3) step3.classList.remove('active');
-      } else if (p < 0.68) {
-        // Step 2: Active in Right Zone
+      } else if (p < 0.72) {
+        // Step 2: Active in Right Zone (Super Retina Display with Dynamic Island on Left)
         if (step1) step1.classList.remove('active');
         if (step2) step2.classList.add('active');
         if (step3) step3.classList.remove('active');
       } else {
-        // Step 3: Active in Right Zone
+        // Step 3: Active in Right Zone (StandBy Landscape on Desk Stand on Left)
         if (step1) step1.classList.remove('active');
         if (step2) step2.classList.remove('active');
         if (step3) step3.classList.add('active');
@@ -115,12 +120,12 @@
         // Travel distance from center of Right column to center of Left column
         const travelDistance = containerWidth * 0.5;
 
-        if (p <= 0.22) {
+        if (p <= 0.24) {
           // Step 1: Phone starts on the Right side
           colShiftX = 0;
-        } else if (p <= 0.44) {
+        } else if (p <= 0.48) {
           // Transition 1 -> 2: Phone smoothly glides from Right side to Left side while flipping 180°
-          const tGlide = smoothstep(0.22, 0.44, p);
+          const tGlide = smoothstep(0.24, 0.48, p);
           colShiftX = -travelDistance * tGlide;
         } else {
           // Step 2 & 3: Phone rests on the Left side (docking onto the desk stand in Step 3)
@@ -131,7 +136,7 @@
       }
 
       // -----------------------------------------------------------------------
-      // 3. 3D REAL IPHONE ROTATIONS, FLIPS & TILTED DOCK ON MOBILE STAND ("TEDA")
+      // 3. 3D REAL IPHONE ROTATIONS, FLIPS & HORIZONTAL DOCK ON MOBILE STAND ("TEDA")
       // -----------------------------------------------------------------------
       let curRotY = 0;
       let curZ = 0;
@@ -140,8 +145,8 @@
       let curScale = 1.0;
       let dockY = 0;
 
-      if (p <= 0.22) {
-        // Step 1: 100% Real Titanium iPhone Rear View (0° Back) on Right side
+      if (p <= 0.24) {
+        // Step 1: 100% Real Titanium iPhone Rear View (0° Back) on Right side (Portrait / Vertical)
         curRotY = 0;
         curZ = 0;
         curRotZ = 0;
@@ -150,19 +155,19 @@
 
         if (deskStand) deskStand.classList.remove('visible');
         if (floatingPill) floatingPill.classList.remove('visible');
-      } else if (p <= 0.44) {
-        // Transition 1 -> 2: 180° Flip to Real Front Display + Glides Right to Left
-        const t1 = smoothstep(0.22, 0.44, p);
+      } else if (p <= 0.48) {
+        // Transition 1 -> 2: 180° Flip to Real Front Display + Glides Right to Left (Portrait / Vertical)
+        const t1 = smoothstep(0.24, 0.48, p);
         curRotY = 180 * t1;
-        curZ = (isMobile ? 40 : 70) * Math.sin(t1 * Math.PI);
-        curRotZ = Math.sin(t1 * Math.PI) * (isMobile ? 3.0 : 5.0);
+        curZ = (isMobile ? 35 : 65) * Math.sin(t1 * Math.PI);
+        curRotZ = 0;
         curRotX = -2.0 + Math.sin(t1 * Math.PI) * -3.0;
         curScale = 1.0 + 0.04 * Math.sin(t1 * Math.PI);
 
         if (deskStand) deskStand.classList.remove('visible');
         if (floatingPill) floatingPill.classList.remove('visible');
-      } else if (p <= 0.68) {
-        // Step 2: Real iPhone Super Retina OLED Display with Dynamic Island on Left (Portrait)
+      } else if (p <= 0.72) {
+        // Step 2: Real iPhone Super Retina OLED Display with Dynamic Island on Left (Portrait / Vertical)
         curRotY = 180;
         curZ = 0;
         curRotZ = 0;
@@ -172,16 +177,16 @@
         if (deskStand) deskStand.classList.remove('visible');
         if (floatingPill) floatingPill.classList.remove('visible');
       } else if (p <= 0.88) {
-        // Transition 2 -> 3: Mobile Desk Stand emerges & cradles the iPhone at a stylish tilted angle ("teda")!
-        const t3 = smoothstep(0.68, 0.88, p);
-        curRotY = 180 - 18 * t3; // Elegant 3D perspective angle
-        curRotZ = -4 * t3; // Subtle tilt ("teda")
-        curRotX = -10 * t3; // Authentic 3D desk stand tilt
-        curZ = (isMobile ? 10 : 20) * Math.sin(t3 * Math.PI);
-        dockY = (isMobile ? 8 : 14) * t3;
-        curScale = isMobile ? 1.0 : 0.98;
+        // Transition 2 -> 3: Phone rotates from Vertical (0°) to HORIZONTAL (-90°) & docks onto Desk Stand!
+        const t3 = smoothstep(0.72, 0.88, p);
+        curRotY = 180 - 6 * t3; // Gentle 3D perspective angle
+        curRotZ = -90 * t3; // Smooth 90° roll into pure HORIZONTAL / LANDSCAPE mode!
+        curRotX = -12 * t3; // Authentic 3D desk stand tilt
+        curZ = (isMobile ? 12 : 24) * Math.sin(t3 * Math.PI);
+        dockY = (isMobile ? 12 : 22) * t3;
+        curScale = 1.0 - (isMobile ? 0.24 : 0.26) * t3; // Compact scale so landscape fits beautifully
 
-        if (t3 > 0.3) {
+        if (t3 > 0.25) {
           if (deskStand) deskStand.classList.add('visible');
           if (floatingPill) floatingPill.classList.add('visible');
         } else {
@@ -189,13 +194,13 @@
           if (floatingPill) floatingPill.classList.remove('visible');
         }
       } else {
-        // Step 3: Real iPhone resting securely on the Mobile Desk Stand at a stylish 3D tilted angle ("teda")
-        curRotY = 162; // 3D tilted angle matching reference media_1792231678148.png!
-        curRotZ = -4; // Subtle angle
-        curRotX = -10; // 3D Desk Tilt
+        // Step 3: Real iPhone resting 100% HORIZONTALLY ("teda") in StandBy Mode on Desk Stand!
+        curRotY = 174;
+        curRotZ = -90; // 100% HORIZONTAL (Landscape) matching user instruction!
+        curRotX = -12; // 3D Desk Tilt
         curZ = 0;
-        dockY = isMobile ? 8 : 14;
-        curScale = isMobile ? 1.0 : 0.98;
+        dockY = isMobile ? 12 : 22;
+        curScale = isMobile ? 0.76 : 0.74;
 
         if (deskStand) deskStand.classList.add('visible');
         if (floatingPill) floatingPill.classList.add('visible');

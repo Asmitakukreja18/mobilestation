@@ -1256,7 +1256,7 @@ img {
 ========================================================================= */
 .hero-scroll-story {
   position: relative;
-  height: 270vh;
+  height: 420vh;
   background: var(--showroom-bg, #f5ece5);
   width: 100%;
   overflow: visible;
@@ -2506,7 +2506,7 @@ img {
 
   /* Mobile Scroll Story Experience (1:1 Parity with Desktop: Right -> Left Motion) */
   .hero-scroll-story {
-    height: 260vh !important;
+    height: 380vh !important;
     overflow: visible !important;
   }
   .story-sticky-viewport {
