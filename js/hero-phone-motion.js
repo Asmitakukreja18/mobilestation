@@ -1,19 +1,27 @@
 /**
- * MOBILE STATION — VIEWPORT 3D DUAL-FACE PHONE FLIP & CONTINUOUS ZIG-ZAG ENGINE
+ * MOBILE STATION — 3D DUAL-FACE PHONE FLIP, ZIG-ZAG WEAVE & SHOWROOM CARD DOCKING
  * 
- * Features:
- *   1. Full Page Journey ("ye uoper se hero se footer tak"):
- *      Phone accompanies user from the top hero showcase all the way down to the footer.
- *   2. Viewport-Pinned Smooth Gliding ("scroll ke sath smooth ho"):
- *      Direct body mount (position: fixed, z-index: 99999). Smoothly glides from hero stage
- *      into the viewport line of sight and stays centered as page scrolls.
- *   3. Dynamic 3D Zig-Zag Weaving ("zig zag m ghumega jese jese scroll krr hu"):
- *      Sinusoidal lateral weaving, banking roll (rotateZ), and harmonic pitch (rotateX).
- *   4. Dual-Face 3D Flips ("back se sidha honga n sidhe se back"):
- *      Starts at Titanium Rear (0°), flips to Super Retina Front (180°), flips back to
- *      Titanium Rear (360°), and flips forward again into footer finale with 3D Z-depth pop.
- *   5. Mobile-First Optimization:
- *      Fluid touch tracking, safe horizontal margins, and 60/120 FPS damped lerp.
+ * Flow:
+ *   1. Starts in Hero Showcase Stage (scrollY = 0):
+ *      Luxury Titanium Rear View (0° Back).
+ *   2. Glides DOWNWARDS towards Showroom Card (Never into Header!):
+ *      As user scrolls down, phone descends from hero directly toward the first
+ *      flagship card (#productsShowroomGrid .phone-card:first-child).
+ *   3. Dynamic 3D Zig-Zag Weave:
+ *      Weaves in an organic left-right wave with 3D banking roll (rotateZ)
+ *      and gyroscopic yaw wobble, dampening smoothly into card docking.
+ *   4. First 3D Flip ("back se sidha honga"):
+ *      Flips 0° -> 180° to reveal the razor-sharp Super Retina front OLED display
+ *      with Dynamic Island and 9:41 lock screen.
+ *   5. Second 3D Flip ("n sidhe se back like fir card mai jayega"):
+ *      Flips 180° -> 360° back to Titanium Rear view as it descends into the card.
+ *   6. Millimeter Card Docking:
+ *      Lands directly on the card's visual pedestal, perfectly scaled.
+ *      Seamlessly pins to the card as the page continues scrolling, and fades
+ *      safely before the header if scrolled far off top.
+ *   7. Header Safeguard:
+ *      Phone is strictly clamped below the navbar (Y >= 84px) so it can NEVER
+ *      overlap or enter the header.
  */
 
 (function () {
@@ -31,22 +39,22 @@
 
     if (!phone) return;
 
-    // Direct body mount to escape all ancestor transforms, perspective, and overflow clipping
+    // Direct body mount to escape ancestor transform/perspective/clipping boundaries
     if (phone.parentElement !== document.body) {
       document.body.appendChild(phone);
     }
 
-    // Fixed viewport styling
+    // Viewport fixed styling
     phone.style.position = 'fixed';
     phone.style.left = '0';
     phone.style.top = '0';
     phone.style.margin = '0';
-    phone.style.zIndex = '99999';
+    phone.style.zIndex = '99990';
     phone.style.display = 'block';
     phone.style.visibility = 'visible';
     phone.style.opacity = '1';
     phone.style.pointerEvents = 'none';
-    phone.style.willChange = 'transform';
+    phone.style.willChange = 'transform, opacity';
     phone.style.transformStyle = 'preserve-3d';
 
     if (phone3D) {
@@ -54,43 +62,67 @@
       phone3D.style.transformStyle = 'preserve-3d';
     }
 
-    // Scroll helper supporting all mobile & desktop browsers
     function getScrollTop() {
       return window.pageYOffset || document.documentElement.scrollTop || document.body.scrollTop || window.scrollY || 0;
     }
 
     // Trajectory coordinates in document space
     let heroDocX = window.innerWidth * 0.5;
-    let heroDocY = 480;
-    let maxScroll = 4000;
+    let heroDocY = 500;
+    let cardDocX = window.innerWidth * 0.5;
+    let cardDocY = 1350;
+    let targetScale = 0.85;
+    let dockScrollY = 650;
+    let targetCardImg = null;
 
     function measureLayout() {
       if (!phone) return;
 
       const w = window.innerWidth;
-      const curScrollY = getScrollTop();
+      const scrollY = getScrollTop();
 
+      // 1. Initial Hero Stage center in document space
       if (stage) {
         const sRect = stage.getBoundingClientRect();
         heroDocX = sRect.left + sRect.width / 2;
-        heroDocY = sRect.top + curScrollY + sRect.height / 2;
+        heroDocY = sRect.top + scrollY + sRect.height / 2;
       } else {
         heroDocX = w * 0.5;
         heroDocY = 480;
       }
 
-      const docHeight = Math.max(
-        document.body.scrollHeight || 0,
-        document.documentElement.scrollHeight || 0,
-        document.body.offsetHeight || 0,
-        document.documentElement.offsetHeight || 0
-      );
-      maxScroll = Math.max(600, docHeight - window.innerHeight);
+      // 2. Target Showroom Card in document space
+      const targetCard =
+        document.querySelector('#productsShowroomGrid .phone-card:first-child') ||
+        document.querySelector('#productsShowroomGrid .phone-card') ||
+        document.querySelector('.phone-card');
+
+      if (targetCard) {
+        const targetVisual =
+          targetCard.querySelector('.card-visual-stage') ||
+          targetCard.querySelector('.card-phone-image') ||
+          targetCard;
+
+        targetCardImg = targetCard.querySelector('.card-phone-image');
+
+        const cRect = targetVisual.getBoundingClientRect();
+        cardDocX = cRect.left + cRect.width / 2;
+        cardDocY = cRect.top + scrollY + cRect.height / 2;
+
+        const pWidth = phone.offsetWidth || (w < 768 ? 220 : 280);
+        targetScale = Math.min(1.0, Math.max(0.65, (cRect.width * 0.88) / pWidth));
+        dockScrollY = Math.max(220, cardDocY - window.innerHeight * 0.44);
+      } else {
+        cardDocX = w < 1024 ? w * 0.5 : w * 0.28;
+        cardDocY = heroDocY + 860;
+        targetScale = 0.85;
+        dockScrollY = 620;
+      }
     }
 
     measureLayout();
 
-    // Recalibrate on image load, resize, orientation change, or DOM shifts
+    // Recalibrate on image load, resize, orientation change, or dynamic catalog rendering
     const imgs = phone.querySelectorAll('img');
     imgs.forEach((img) => {
       if (!img.complete) {
@@ -100,6 +132,14 @@
 
     window.addEventListener('resize', measureLayout, { passive: true });
     window.addEventListener('orientationchange', measureLayout, { passive: true });
+
+    const grid = document.getElementById('productsShowroomGrid');
+    if (grid && window.MutationObserver) {
+      const observer = new MutationObserver(() => {
+        measureLayout();
+      });
+      observer.observe(grid, { childList: true, subtree: true });
+    }
 
     // Smoothstep easing helper
     function smoothstep(edge0, edge1, x) {
@@ -113,7 +153,7 @@
 
     function updateScrollProgress() {
       const scrollY = getScrollTop();
-      const raw = scrollY / Math.max(1, maxScroll);
+      const raw = scrollY / Math.max(100, dockScrollY);
       targetProgress = Math.max(0, Math.min(1.0, raw));
     }
 
@@ -125,127 +165,99 @@
     function renderLoop() {
       requestAnimationFrame(renderLoop);
 
-      // Continuous real-time scroll tracking (ensures 100% responsiveness on mobile touch flings)
       updateScrollProgress();
 
       const isMobile = window.innerWidth < 768;
-      const lerpSpeed = isMobile ? 0.12 : 0.09;
+      const lerpSpeed = isMobile ? 0.12 : 0.10;
       smoothProgress += (targetProgress - smoothProgress) * lerpSpeed;
       const p = smoothProgress;
 
       const scrollY = getScrollTop();
 
       // -----------------------------------------------------------------------
-      // 1. VIEWPORT ANCHOR POSITIONING ("scroll ke sath smooth ho")
+      // 1. FLIGHT TRAJECTORY FROM HERO TO CARD (Downwards, Never Into Header!)
       // -----------------------------------------------------------------------
-      const viewportCenterY = window.innerHeight * (isMobile ? 0.46 : 0.48);
-      const viewportCenterX = window.innerWidth * 0.50;
+      // Interpolate in DOCUMENT space so the phone moves naturally with the page
+      const tFlight = smoothstep(0, 1.0, p);
+      let curDocX = heroDocX + (cardDocX - heroDocX) * tFlight;
+      let curDocY = heroDocY + (cardDocY - heroDocY) * tFlight;
 
-      // Hero stage screen Y position
-      const curHeroScreenY = heroDocY - scrollY;
-
-      let baseScreenX = viewportCenterX;
-      let baseScreenY = viewportCenterY;
-
-      if (p <= 0.10) {
-        // Phase 1: Smooth lift-off from hero stage into viewport center
-        const tHero = smoothstep(0, 0.10, p);
-        baseScreenX = heroDocX + (viewportCenterX - heroDocX) * tHero;
-        baseScreenY = curHeroScreenY + (viewportCenterY - curHeroScreenY) * tHero;
-      } else if (p <= 0.90) {
-        // Phase 2: Stays locked in viewport center through the full journey
-        baseScreenX = viewportCenterX;
-        baseScreenY = viewportCenterY;
-      } else {
-        // Phase 3: Footer gentle landing
-        const tFoot = smoothstep(0.90, 1.0, p);
-        baseScreenX = viewportCenterX;
-        baseScreenY = viewportCenterY + tFoot * (isMobile ? 22 : 36);
+      // When scrolled past dock position, lock to the card as it scrolls
+      if (p >= 1.0) {
+        curDocX = cardDocX;
+        curDocY = cardDocY;
       }
+
+      // Convert document coordinates to fixed viewport screen coordinates
+      const baseScreenX = curDocX;
+      const baseScreenY = curDocY - scrollY;
 
       // -----------------------------------------------------------------------
       // 2. DYNAMIC 3D ZIG-ZAG ENGINE ("zig zag m ghumega jese jese scroll krr hu")
       // -----------------------------------------------------------------------
-      // 5.5 complete weaves from hero to footer
-      const waveCycles = 5.5;
-      const wavePhase = p * Math.PI * 2 * waveCycles;
+      // Sway is active only during flight (0 at hero, max at mid-flight, 0 at card docking)
+      const swayDampen = Math.sin(p * Math.PI);
+      const wavePhase = p * Math.PI * 4.0; // 2 complete fluid weaves
 
-      // Sway factor: builds up smoothly right as you scroll away from hero stage
-      const swayFactor = smoothstep(0.015, 0.08, p) * (1 - smoothstep(0.94, 1.0, p) * 0.65);
-
-      // Horizontal Sway (safe bounds so mobile screen edges never clip)
+      // Lateral Sway X
       const maxSwayX = isMobile
-        ? Math.min(36, window.innerWidth * 0.09)
-        : Math.min(85, window.innerWidth * 0.075);
-      const zigZagSwayX = Math.sin(wavePhase) * maxSwayX * swayFactor;
+        ? Math.min(30, window.innerWidth * 0.08)
+        : Math.min(55, window.innerWidth * 0.05);
+      const zigZagSwayX = Math.sin(wavePhase) * maxSwayX * swayDampen;
 
-      // 3D Banking Roll (rotateZ banks into the weave)
-      const maxRoll = isMobile ? 8.5 : 12.0;
-      const zigZagRollZ = Math.sin(wavePhase) * maxRoll * swayFactor;
+      // 3D Banking Roll (banks into turns)
+      const maxRoll = isMobile ? 7.5 : 10.5;
+      const zigZagRollZ = Math.sin(wavePhase) * maxRoll * swayDampen;
 
-      // Harmonic Floating Breath (subtle vertical oscillation)
-      const floatY = Math.cos(wavePhase * 1.3) * (isMobile ? 10 : 16) * swayFactor;
+      // Gyroscopic Yaw wobble
+      const maxYaw = isMobile ? 12.0 : 16.0;
+      const zigZagYaw = Math.cos(wavePhase * 0.9) * maxYaw * swayDampen;
 
-      // Aerodynamic Pitch (rotateX)
-      const maxPitch = isMobile ? 3.5 : 5.0;
-      const zigZagPitch = Math.sin(wavePhase * 0.9) * maxPitch * swayFactor;
+      // Aerodynamic Pitch
+      const zigZagPitch = Math.sin(wavePhase * 1.2) * 3.5 * swayDampen;
 
       // -----------------------------------------------------------------------
-      // 3. 3D FLIP TIMELINE ("back se sidha honga n sidhe se back")
+      // 3. 3D FLIP TIMELINE ("back se sidha honga n sidhe se back like fir card mai jayega")
       // -----------------------------------------------------------------------
       let baseRotY = 0;
       let curZ = 0;
       let flipScaleBonus = 0;
 
-      if (p <= 0.06) {
-        // 0.00 - 0.06: Titanium Rear View (0° Y)
+      if (p <= 0.08) {
+        // 0.00 - 0.08: Titanium Rear View (0° Back in Hero)
         baseRotY = 0;
         curZ = 0;
-      } else if (p <= 0.22) {
-        // 0.06 - 0.22: First 3D Flip (0° -> 180° Sidha / Super Retina Display)
-        const t1 = smoothstep(0.06, 0.22, p);
+      } else if (p <= 0.46) {
+        // 0.08 - 0.46: First 3D Flip (0° -> 180° Sidha / Super Retina Front View)
+        const t1 = smoothstep(0.08, 0.46, p);
         baseRotY = 180 * t1;
         curZ = 75 * Math.sin(t1 * Math.PI);
         flipScaleBonus = 0.08 * Math.sin(t1 * Math.PI);
-      } else if (p <= 0.44) {
-        // 0.22 - 0.44: Holds Sidha / Front View through Flagships
+      } else if (p <= 0.58) {
+        // 0.46 - 0.58: Holds Sidha / Front View facing user
         baseRotY = 180;
         curZ = 0;
-      } else if (p <= 0.60) {
-        // 0.44 - 0.60: Second 3D Flip (180° -> 360° Titanium Rear View)
-        const t2 = smoothstep(0.44, 0.60, p);
+      } else if (p <= 0.96) {
+        // 0.58 - 0.96: Second 3D Flip (180° -> 360° Titanium Rear View)
+        const t2 = smoothstep(0.58, 0.96, p);
         baseRotY = 180 + 180 * t2;
         curZ = 75 * Math.sin(t2 * Math.PI);
         flipScaleBonus = 0.08 * Math.sin(t2 * Math.PI);
-      } else if (p <= 0.78) {
-        // 0.60 - 0.78: Holds Titanium Rear View through Schemes & Services
-        baseRotY = 360;
-        curZ = 0;
-      } else if (p <= 0.92) {
-        // 0.78 - 0.92: Third 3D Flip (360° -> 540° Sidha / Front View)
-        const t3 = smoothstep(0.78, 0.92, p);
-        baseRotY = 360 + 180 * t3;
-        curZ = 75 * Math.sin(t3 * Math.PI);
-        flipScaleBonus = 0.08 * Math.sin(t3 * Math.PI);
       } else {
-        // 0.92 - 1.00: Holds Front View into Footer Finale
-        baseRotY = 540;
+        // 0.96 - 1.00: Docks at 360° (Back View) directly into Showroom Card
+        baseRotY = 360;
         curZ = 0;
       }
 
-      // Gyroscopic Yaw wobble in sync with zig-zag
-      const maxYawWobble = isMobile ? 10.0 : 16.0;
-      const zigZagYaw = Math.cos(wavePhase * 0.95) * maxYawWobble * swayFactor;
-
       // Combine Rotations & Coordinates
       const finalScreenX = baseScreenX + zigZagSwayX;
-      const finalScreenY = baseScreenY + floatY;
+      const finalScreenY = baseScreenY;
       const finalRotX = zigZagPitch;
       const finalRotY = baseRotY + zigZagYaw;
       const finalRotZ = zigZagRollZ;
 
-      // Base scale
-      const baseScale = isMobile ? 0.92 : 1.0;
+      // Scale: interpolates smoothly from hero size (1.0) to card size (targetScale)
+      const baseScale = 1.0 + (targetScale - 1.0) * tFlight;
       const curScale = baseScale + flipScaleBonus;
 
       // Center offset calculation for fixed viewport element
@@ -253,11 +265,29 @@
       const pHeight = phone.offsetHeight || (isMobile ? 440 : 560);
 
       const tx = finalScreenX - pWidth / 2;
-      const ty = finalScreenY - pHeight / 2;
+      let ty = finalScreenY - pHeight / 2;
+
+      // -----------------------------------------------------------------------
+      // 4. HEADER SAFEGUARD (Phone NEVER Penetrates Header / Navbar)
+      // -----------------------------------------------------------------------
+      // Navbar is 76px tall. Clamp ty so phone's top NEVER enters the navbar area
+      const minHeaderSafeY = 82;
+      if (ty < minHeaderSafeY && p < 0.98) {
+        ty = minHeaderSafeY;
+      }
+
+      // Smooth fade-out if card scrolls far off the top of the viewport
+      let curOpacity = 1.0;
+      if (p >= 0.98) {
+        const phoneTopOnScreen = finalScreenY - (pHeight * curScale) / 2;
+        if (phoneTopOnScreen < 85) {
+          curOpacity = Math.max(0, (phoneTopOnScreen - 25) / 60);
+        }
+      }
 
       // Apply 3D transforms
       phone.style.transform = `translate3d(${tx.toFixed(2)}px, ${ty.toFixed(2)}px, ${curZ.toFixed(1)}px) scale(${curScale.toFixed(4)}) rotateX(${finalRotX.toFixed(2)}deg) rotateZ(${finalRotZ.toFixed(2)}deg)`;
-      phone.style.opacity = '1';
+      phone.style.opacity = curOpacity.toFixed(3);
 
       if (phone3D) {
         phone3D.style.transform = `rotateY(${finalRotY.toFixed(2)}deg)`;
@@ -272,8 +302,18 @@
         frontFace.style.opacity = isFrontFacing ? '1' : '0';
       }
 
-      // Ambient hero stage halo & spec chips fade softly as phone lifts off
-      const ambientFade = Math.max(0, 1 - smoothstep(0.02, 0.12, p) * 1.5);
+      // Hide card's static image when 3D phone is docked (prevents image collision)
+      if (targetCardImg) {
+        if (p >= 0.92) {
+          const imgFade = Math.max(0, 1 - smoothstep(0.92, 0.98, p));
+          targetCardImg.style.opacity = imgFade.toFixed(2);
+        } else {
+          targetCardImg.style.opacity = '1';
+        }
+      }
+
+      // Ambient hero stage halo & spec chips fade softly as phone leaves hero stage
+      const ambientFade = Math.max(0, 1 - smoothstep(0.02, 0.14, p) * 1.5);
       if (chips && chips.length > 0) {
         chips.forEach((chip) => {
           chip.style.opacity = ambientFade.toFixed(2);
