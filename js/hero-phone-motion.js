@@ -1,20 +1,20 @@
 /**
- * MOBILE STATION — 3D DUAL-FACE PHONE FLIP & CARD DOCKING ENGINE
+ * MOBILE STATION — 3D DUAL-FACE PHONE FLIP & ZIG-ZAG CARD DOCKING ENGINE
  * 
  * Choreography:
  *   1. Initial View (Hero): Phone starts showing luxury TITANIUM REAR VIEW (cameras, Apple logo).
  *   2. Scroll Forward ("back se sidha honga"):
  *      Flips 180° in 3D around Y-axis from BACK to SIDHA (FRONT Super Retina Lock Screen with Dynamic Island).
- *   3. Focal Showcase Hold:
- *      Large, razor-sharp front display faces the user directly.
+ *   3. Dynamic Zig-Zag Weave ("zig zag m ghumega jese jese scroll krr hu"):
+ *      As user scrolls, the phone weaves in a fluid 3D zig-zag path — swaying left and right (X-axis),
+ *      banking into turns (Z-axis roll), with gyroscopic yaw wobble (Y-axis) and aerodynamic pitch (X-axis).
  *   4. Second Flip & Glide into Card ("n sidhe se back like fir card mai jayega like iphone banke"):
- *      Flips 180° from SIDHA back to BACK view while gliding down with 3D depth and aerodynamic tilt,
- *      docking with precision right into the featured iPhone card in the showroom below.
- *   5. Above All Layers ("arey vo iske ander chae jara h" fix):
- *      Elevated stacking context ensures the phone glides cleanly ON TOP of the white specs bar
- *      and ON TOP of the showroom section.
+ *      Flips from SIDHA back to BACK view while continuing its zig-zag descent, gently dampening into
+ *      a rock-solid straight docking landing directly inside the featured showroom card.
+ *   5. Elevated Z-Index:
+ *      Floats cleanly on top of the white specs bar and showroom section.
  *   6. Reverse on Scroll Up:
- *      Buttery-smooth reverse from card back to front, then back to initial hero position.
+ *      Reverses dynamically back out of the card with the exact same fluid zig-zag motion.
  */
 
 (function () {
@@ -221,6 +221,39 @@
         curScale = 1.14 + (targetScale - 1.14) * t2;
       }
 
+      // -----------------------------------------------------------------------
+      // ZIG-ZAG 3D WAVE ENGINE ("zig zag m ghumega jese jese scroll krr hu")
+      // -----------------------------------------------------------------------
+      const isMobile = window.innerWidth < 768;
+
+      // Dampen zig-zag oscillations as phone docks into card so it lands perfectly straight
+      const dockDampen = (p > 0.04 && p < 0.96) ? (1 - smoothstep(0.80, 0.96, p)) * smoothstep(0.04, 0.12, p) : 0;
+
+      // Zig-Zag wave phase across the scroll travel (2.5 full sinusoidal waves)
+      const wavePhase = p * Math.PI * 5.0;
+
+      // 1. Spatial Zig-Zag Sway (X-axis weaving left and right)
+      const maxSwayX = isMobile ? Math.min(36, window.innerWidth * 0.09) : Math.min(65, window.innerWidth * 0.06);
+      const zigZagSwayX = Math.sin(wavePhase) * maxSwayX * dockDampen;
+
+      // 2. 3D Banking / Roll (Z-axis tilt swinging left and right with the weave)
+      const maxRollZ = isMobile ? 8.5 : 11.0;
+      const zigZagRollZ = Math.sin(wavePhase) * maxRollZ * dockDampen;
+
+      // 3. 3D Gyroscopic Yaw Oscillation (Y-axis zig-zag turn)
+      const maxYawWobble = isMobile ? 14.0 : 20.0;
+      const zigZagYaw = Math.cos(wavePhase * 0.9) * maxYawWobble * dockDampen;
+
+      // 4. 3D Pitch Wave (X-axis subtle aerodynamic breathing tilt)
+      const maxPitchWobble = 5.0;
+      const zigZagPitch = Math.sin(wavePhase * 1.2) * maxPitchWobble * dockDampen;
+
+      // Combine base trajectory with dynamic zig-zag oscillations
+      const finalX = curX + zigZagSwayX;
+      const finalRotX = curRotX + zigZagPitch;
+      const finalRotY = curRotY + zigZagYaw;
+      const finalRotZ = zigZagRollZ;
+
       // Opacity: Stays 100% visible at hero, during entire flight, and inside card.
       // Softly fades only if user scrolls far down past the flagships showroom.
       const scrollY = window.pageYOffset || document.documentElement.scrollTop || 0;
@@ -232,16 +265,16 @@
         curOpacity = Math.max(0, 1 - overScroll);
       }
 
-      // Apply 3D transforms
-      phone.style.transform = `translate3d(${curX.toFixed(2)}px, ${curY.toFixed(2)}px, ${curZ.toFixed(1)}px) scale(${curScale.toFixed(4)}) rotateX(${curRotX.toFixed(2)}deg)`;
+      // Apply 3D transforms with 3-axis gyroscopic zig-zag motion
+      phone.style.transform = `translate3d(${finalX.toFixed(2)}px, ${curY.toFixed(2)}px, ${curZ.toFixed(1)}px) scale(${curScale.toFixed(4)}) rotateX(${finalRotX.toFixed(2)}deg) rotateZ(${finalRotZ.toFixed(2)}deg)`;
       phone.style.opacity = curOpacity.toFixed(3);
 
       if (phone3D) {
-        phone3D.style.transform = `rotateY(${curRotY.toFixed(2)}deg)`;
+        phone3D.style.transform = `rotateY(${finalRotY.toFixed(2)}deg)`;
       }
 
       // Double-guarantee cross-face visibility for 100% crispness across all browser engines
-      const normY = ((curRotY % 360) + 360) % 360;
+      const normY = ((finalRotY % 360) + 360) % 360;
       const isFrontFacing = normY > 90 && normY < 270;
 
       if (backFace && frontFace) {
