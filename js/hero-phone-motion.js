@@ -4,18 +4,17 @@
  * Features & Sequence:
  *   - Step 1 (0.00 -> 0.32): Hero Flagship Spotlight (Right Side)
  *     Left Zone: "iPhone 18 Pro Max" headline, specs, CTAs, scroll hint.
- *     Right Side: 3D Phone in Portrait Titanium Rear View (0° Back).
+ *     Right Side: 100% Real Titanium iPhone in Portrait Rear View (0° Back).
  * 
  *   - Step 2 (0.33 -> 0.67): Dynamic Travel to Left + Super Retina Display
  *     The phone glides across from Right side to Left side while flipping 180° to Front View!
+ *     Left Side: 100% Real iPhone Super Retina OLED Display with Dynamic Island & Lock Screen.
  *     Right Zone: "Brilliance at 3000 Nits. Pure Clarity." (Dynamic Island, 120Hz LTPO).
  *     *Zero text behind the phone! Text is on the right, phone is on the left!*
  * 
  *   - Step 3 (0.68 -> 1.00): Smartphone Desktop Stand ("Vo Rakhne Vala")
  *     Left Side: Authentic aluminum desk phone holder rises behind and under the iPhone.
- *     The iPhone rotates -90° into horizontal landscape, scaling naturally (0.72x) to phone proportions,
- *     and docks securely into the two silver-chamfered cradle hooks.
- *     Screen displays the authentic Flowty 49:49 Focus Timer with Dynamic Island notch on left.
+ *     The REAL iPhone rests gracefully in the stand's cradle hooks with an authentic 3D desk tilt angle.
  *     Floating action pill appears below the stand.
  *     Right Zone: "Always-On StandBy. Studio Precision." specs & CTAs.
  * 
@@ -33,9 +32,7 @@
     const phone3D = document.getElementById('heroPhone3D');
     const backFace = document.getElementById('phoneBackFace');
     const frontFace = document.getElementById('phoneFrontFace');
-    const standbyOverlay = document.getElementById('iosStandbyOverlay');
     const deskStand = document.getElementById('magsafeDeskStand');
-    const standFrontCradle = document.getElementById('standFrontCradle');
     const floatingPill = document.getElementById('standbyFloatingPill');
 
     const step1 = document.getElementById('storyStep1');
@@ -136,7 +133,7 @@
       }
 
       // -----------------------------------------------------------------------
-      // 3. 3D PHONE ROTATIONS, FLIPS & STANDBY LANDSCAPE DOCK
+      // 3. 3D REAL IPHONE ROTATIONS, FLIPS & STANDBY DOCK ON MOBILE STAND
       // -----------------------------------------------------------------------
       let curRotY = 0;
       let curZ = 0;
@@ -146,79 +143,65 @@
       let dockY = 0;
 
       if (p <= 0.22) {
-        // Step 1: Titanium Rear View (0° Back)
+        // Step 1: 100% Real Titanium iPhone Rear View (0° Back) on Right side
         curRotY = 0;
         curZ = 0;
         curRotZ = 0;
         curRotX = -2.0;
+        curScale = 1.0;
 
         if (deskStand) deskStand.classList.remove('visible');
-        if (standFrontCradle) standFrontCradle.classList.remove('visible');
         if (floatingPill) floatingPill.classList.remove('visible');
-        if (standbyOverlay) standbyOverlay.classList.remove('active');
       } else if (p <= 0.44) {
-        // Transition 1 -> 2: 180° Flip to Sidha / Front Super Retina Display
+        // Transition 1 -> 2: 180° Flip to Real Front Display + Glides Right to Left
         const t1 = smoothstep(0.22, 0.44, p);
         curRotY = 180 * t1;
         curZ = (isMobile ? 45 : 75) * Math.sin(t1 * Math.PI);
-        curRotZ = Math.sin(t1 * Math.PI) * (isMobile ? 5.5 : 8.5);
+        curRotZ = Math.sin(t1 * Math.PI) * (isMobile ? 4.0 : 6.0);
         curRotX = -2.0 + Math.sin(t1 * Math.PI) * -3.0;
-        curScale = 1.0 + 0.06 * Math.sin(t1 * Math.PI);
+        curScale = 1.0 + 0.05 * Math.sin(t1 * Math.PI);
 
         if (deskStand) deskStand.classList.remove('visible');
-        if (standFrontCradle) standFrontCradle.classList.remove('visible');
         if (floatingPill) floatingPill.classList.remove('visible');
-        if (standbyOverlay) standbyOverlay.classList.remove('active');
       } else if (p <= 0.68) {
-        // Step 2: Holds Front View (180° Sidha) with Dynamic Island & Screen on Left
+        // Step 2: Real iPhone Super Retina OLED Display with Dynamic Island on Left
         curRotY = 180;
         curZ = 0;
         curRotZ = 0;
         curRotX = 0;
+        curScale = 1.0;
 
         if (deskStand) deskStand.classList.remove('visible');
-        if (standFrontCradle) standFrontCradle.classList.remove('visible');
         if (floatingPill) floatingPill.classList.remove('visible');
-        if (standbyOverlay) standbyOverlay.classList.remove('active');
       } else if (p <= 0.88) {
-        // Transition 2 -> 3: Rotates -90° into Landscape StandBy Mode on Desk Stand!
+        // Transition 2 -> 3: Mobile Desk Stand emerges & cradles the real iPhone!
         const t3 = smoothstep(0.68, 0.88, p);
-        curRotY = 180;
-        curRotZ = -90 * t3; // Rotates smoothly into horizontal landscape
-        curZ = (isMobile ? 35 : 55) * Math.sin(t3 * Math.PI);
-        dockY = (isMobile ? 12 : 18) * t3;
-        // Smoothly scale down from 1.0 to 0.74 so horizontal phone maintains smartphone proportions
-        curScale = 1.0 - (isMobile ? 0.22 : 0.26) * t3;
+        curRotY = 180 - 6 * t3;
+        curRotZ = 0;
+        curRotX = -6 * t3; // Authentic 3D desk stand tilt
+        curZ = (isMobile ? 15 : 25) * Math.sin(t3 * Math.PI);
+        dockY = (isMobile ? 10 : 16) * t3;
+        curScale = 1.0 - 0.03 * t3;
 
-        // Show desk stand, cradle hooks, floating pill & standby overlay
-        if (t3 > 0.35) {
+        // Show desk stand & floating pill
+        if (t3 > 0.3) {
           if (deskStand) deskStand.classList.add('visible');
-          if (standFrontCradle) standFrontCradle.classList.add('visible');
           if (floatingPill) floatingPill.classList.add('visible');
         } else {
           if (deskStand) deskStand.classList.remove('visible');
-          if (standFrontCradle) standFrontCradle.classList.remove('visible');
           if (floatingPill) floatingPill.classList.remove('visible');
         }
-
-        if (t3 > 0.55) {
-          if (standbyOverlay) standbyOverlay.classList.add('active');
-        } else {
-          if (standbyOverlay) standbyOverlay.classList.remove('active');
-        }
       } else {
-        // Step 3: Holds Landscape StandBy Mode on Desk Stand (Reference Match!)
-        curRotY = 180;
-        curRotZ = -90;
+        // Step 3: Real iPhone resting securely on the Mobile Desk Stand (Reference Match!)
+        curRotY = 174;
+        curRotZ = 0;
+        curRotX = -6;
         curZ = 0;
-        curRotX = 0;
-        dockY = isMobile ? 12 : 18;
-        curScale = isMobile ? 0.78 : 0.74;
+        dockY = isMobile ? 10 : 16;
+        curScale = 0.97;
 
         if (deskStand) deskStand.classList.add('visible');
-        if (standFrontCradle) standFrontCradle.classList.add('visible');
         if (floatingPill) floatingPill.classList.add('visible');
-        if (standbyOverlay) standbyOverlay.classList.add('active');
       }
 
       // Subtle aerodynamic breathing wave

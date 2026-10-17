@@ -1532,16 +1532,16 @@ img {
   justify-content: center;
 }
 
-/* 1. Mobile Desk Stand Hardware (Behind the Phone) */
+/* 1. Mobile Desk Stand Hardware (Behind & Under the Phone) */
 .mobile-desk-stand {
   position: absolute;
   left: 50%;
-  top: 50%;
-  transform: translate(-50%, calc(-50% + 40px));
+  bottom: 2%;
+  transform: translateX(-50%) translateY(40px);
   display: flex;
   flex-direction: column;
   align-items: center;
-  z-index: 20;
+  z-index: 15; /* Behind the phone */
   opacity: 0;
   pointer-events: none;
   transition: opacity 0.45s ease, transform 0.45s cubic-bezier(0.16, 1, 0.3, 1);
@@ -1549,15 +1549,15 @@ img {
 
 .mobile-desk-stand.visible {
   opacity: 1;
-  transform: translate(-50%, -50%);
+  transform: translateX(-50%) translateY(0);
 }
 
 /* Compact Fluted Silicone/Rubber Backplate */
 .stand-backplate {
   position: relative;
-  width: 125px;
-  height: 135px;
-  border-radius: 16px 16px 8px 8px;
+  width: 135px;
+  height: 155px;
+  border-radius: 18px 18px 8px 8px;
   background: linear-gradient(180deg, #2b2629 0%, #161315 100%);
   border: 1px solid rgba(255, 255, 255, 0.18);
   box-shadow: 0 10px 28px rgba(0, 0, 0, 0.6), inset 0 1px 0 rgba(255, 255, 255, 0.2);
@@ -1579,16 +1579,50 @@ img {
   opacity: 0.85;
 }
 
+/* Dual Silver Cradle Hooks (Holding the bottom of the phone) */
+.stand-cradle-hooks {
+  position: relative;
+  width: 135px;
+  height: 24px;
+  display: flex;
+  justify-content: space-between;
+  padding: 0 16px;
+  box-sizing: border-box;
+  margin-top: -6px;
+  z-index: 55;
+}
+
+.cradle-prong {
+  position: relative;
+  width: 16px;
+  height: 22px;
+  background: linear-gradient(135deg, #443c40, #171315);
+  border-radius: 4px 4px 2px 2px;
+  border: 1px solid rgba(255, 255, 255, 0.35);
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.6);
+}
+
+.cradle-prong .prong-chamfer {
+  position: absolute;
+  top: -3px;
+  left: 0;
+  right: 0;
+  height: 4px;
+  background: #665b61;
+  border-radius: 3px 3px 0 0;
+  border-top: 1.5px solid rgba(255, 255, 255, 0.65);
+}
+
 /* Telescopic Aluminum Stem & Pivot Hinge */
 .stand-stem {
   position: relative;
   width: 16px;
-  height: 85px;
+  height: 80px;
   background: linear-gradient(90deg, #1b1719, #362f33 45%, #463d41 55%, #181416 100%);
   border-left: 1px solid rgba(255, 255, 255, 0.2);
   border-right: 1px solid rgba(0, 0, 0, 0.8);
   box-shadow: 0 8px 20px rgba(0, 0, 0, 0.5);
-  margin-top: -6px;
+  margin-top: -4px;
   z-index: 2;
   display: flex;
   flex-direction: column;
@@ -1616,8 +1650,8 @@ img {
 /* Weighted Heavy Aluminum Desk Base */
 .stand-base {
   position: relative;
-  width: 140px;
-  height: 14px;
+  width: 155px;
+  height: 15px;
   background: linear-gradient(180deg, #302b2e, #141113);
   border-radius: 18px;
   border: 1px solid rgba(255, 255, 255, 0.2);
@@ -1636,276 +1670,10 @@ img {
   border-radius: 2px;
 }
 
-/* 2. Front Cradle Hooks (Directly Hold Bottom Edge of the iPhone) */
-.stand-front-cradle {
-  position: absolute;
-  left: 50%;
-  top: 50%;
-  transform: translate(-50%, -50%);
-  width: 110px;
-  height: 24px;
-  pointer-events: none;
-  z-index: 75;
-  display: flex;
-  justify-content: space-between;
-  align-items: flex-end;
-  margin-top: 76px;
-  opacity: 0;
-  transition: opacity 0.45s ease;
-}
-
-.stand-front-cradle.visible {
-  opacity: 1;
-}
-
-.cradle-prong {
-  position: relative;
-  width: 15px;
-  height: 22px;
-  background: linear-gradient(135deg, #443c40, #171315);
-  border-radius: 4px 4px 2px 2px;
-  border: 1px solid rgba(255, 255, 255, 0.35);
-  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.6);
-}
-
-.cradle-prong .prong-chamfer {
-  position: absolute;
-  top: -3px;
-  left: 0;
-  right: 0;
-  height: 4px;
-  background: #665b61;
-  border-radius: 3px 3px 0 0;
-  border-top: 1.5px solid rgba(255, 255, 255, 0.65);
-}
-
-/* =========================================================================
-   IOS LANDSCAPE STANDBY DISPLAY OVERLAY (WITH DYNAMIC ISLAND & FLOWTY 49:49)
-========================================================================= */
-.ios-standby-overlay {
-  position: absolute;
-  top: 3.2%;
-  left: 4.8%;
-  right: 4.8%;
-  bottom: 3.2%;
-  border-radius: 42px;
-  background: #000000;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  opacity: 0;
-  transition: opacity 0.45s ease;
-  pointer-events: none;
-  overflow: hidden;
-  z-index: 10;
-  box-shadow: inset 0 0 30px rgba(0, 0, 0, 0.95);
-}
-
-.ios-standby-overlay.active {
-  opacity: 1;
-}
-
-.standby-screen-frame {
-  width: 100%;
-  height: 100%;
-  display: flex;
-  flex-direction: column;
-  justify-content: space-between;
-  padding: 16px 20px;
-  box-sizing: border-box;
-  transform: rotate(90deg); /* Counter-rotated: Displays upright when phone turns -90deg */
-  color: #ffffff;
-  user-select: none;
-}
-
-.standby-top-bar {
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  width: 100%;
-}
-
-.standby-left-meta {
-  display: flex;
-  align-items: center;
-  gap: 10px;
-}
-
-.standby-nav-back {
-  font-size: 18px;
-  color: rgba(255, 255, 255, 0.6);
-  cursor: pointer;
-  line-height: 1;
-}
-
-/* Dynamic Island Notch in Landscape (Authentic iPhone Identity) */
-.landscape-dynamic-island {
-  width: 26px;
-  height: 12px;
-  background: #000000;
-  border-radius: 12px;
-  border: 1px solid rgba(255, 255, 255, 0.15);
-  display: inline-flex;
-  align-items: center;
-  justify-content: flex-end;
-  padding-right: 3px;
-  box-shadow: 0 0 6px rgba(0, 0, 0, 0.8);
-}
-
-.landscape-dynamic-island .island-lens {
-  width: 5px;
-  height: 5px;
-  border-radius: 50%;
-  background: #141724;
-  border: 0.5px solid rgba(255, 255, 255, 0.3);
-}
-
-.standby-mode-pill {
-  display: inline-flex;
-  background: rgba(255, 255, 255, 0.12);
-  border-radius: 20px;
-  padding: 3px;
-  border: 1px solid rgba(255, 255, 255, 0.15);
-}
-
-.standby-mode-pill .mode-opt {
-  font-size: 10px;
-  font-weight: 700;
-  padding: 3px 10px;
-  border-radius: 16px;
-  color: rgba(255, 255, 255, 0.6);
-}
-
-.standby-mode-pill .mode-opt.active {
-  background: #ffffff;
-  color: #000000;
-  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.3);
-}
-
-.standby-clock-meta {
-  display: flex;
-  flex-direction: column;
-  align-items: flex-end;
-  font-size: 9px;
-  line-height: 1.2;
-}
-
-.standby-clock-meta .meta-time {
-  font-weight: 800;
-  color: #ffffff;
-}
-
-.standby-clock-meta .meta-day {
-  color: rgba(255, 255, 255, 0.5);
-}
-
-/* Center Big Focus Timer: 49 49 (with superscript M and S) */
-.standby-timer-display {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  gap: 16px;
-  margin: auto 0;
-}
-
-.standby-timer-display .timer-col {
-  position: relative;
-  display: flex;
-  align-items: flex-start;
-}
-
-.standby-timer-display .unit-sup {
-  position: absolute;
-  top: -8px;
-  left: -10px;
-  font-size: 11px;
-  font-weight: 700;
-  color: rgba(255, 255, 255, 0.5);
-}
-
-.standby-timer-display .timer-num {
-  font-family: "Manrope", sans-serif;
-  font-size: 64px;
-  font-weight: 900;
-  letter-spacing: -2px;
-  line-height: 1;
-  color: #ffffff;
-  text-shadow: 0 0 20px rgba(255, 255, 255, 0.3);
-}
-
-/* Bottom Bar */
-.standby-bottom-bar {
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  width: 100%;
-}
-
-.standby-profile-tag {
-  display: flex;
-  align-items: center;
-  gap: 6px;
-}
-
-.standby-profile-tag .tag-dot {
-  width: 6px;
-  height: 6px;
-  border-radius: 50%;
-  background: #54d68a;
-  box-shadow: 0 0 8px rgba(84, 214, 138, 0.8);
-}
-
-.standby-profile-tag .tag-text {
-  display: flex;
-  flex-direction: column;
-  font-size: 8.5px;
-  line-height: 1.2;
-}
-
-.standby-profile-tag .tag-text strong {
-  color: #ffffff;
-}
-
-.standby-profile-tag .tag-text span {
-  color: rgba(255, 255, 255, 0.5);
-}
-
-.standby-playback-controls {
-  display: flex;
-  align-items: center;
-  gap: 8px;
-}
-
-.standby-playback-controls .ctrl-btn {
-  background: rgba(255, 255, 255, 0.1);
-  border: 1px solid rgba(255, 255, 255, 0.2);
-  color: #ffffff;
-  border-radius: 14px;
-  padding: 4px 10px;
-  font-size: 10px;
-  font-weight: 700;
-  display: inline-flex;
-  align-items: center;
-  gap: 4px;
-  cursor: pointer;
-}
-
-.standby-playback-controls .ctrl-pause {
-  border-color: rgba(215, 25, 66, 0.6);
-  background: rgba(215, 25, 66, 0.2);
-  color: #ff6b81;
-}
-
-.standby-cycle-tag {
-  font-size: 9px;
-  font-weight: 700;
-  color: rgba(255, 255, 255, 0.7);
-}
-
-/* Floating Bottom Action Pill (Flowty Reference Match) */
+/* Floating Bottom Action Pill */
 .standby-floating-pill {
   position: absolute;
-  bottom: 14px;
+  bottom: 12px;
   left: 50%;
   transform: translateX(-50%) translateY(20px);
   z-index: 50;
