@@ -2582,9 +2582,9 @@ img {
     will-change: opacity, transform !important;
   }
   .story-step-slide.active {
-    opacity: 1 !important;
-    visibility: visible !important;
-    pointer-events: auto !important;
+    opacity: 1;
+    visibility: visible;
+    pointer-events: auto;
   }
   .story-step-slide .eyebrow-badge {
     font-size: 10px !important;
@@ -2730,6 +2730,7 @@ img {
     width: 115px !important;
     height: 18px !important;
     padding: 0 10px !important;
+    z-index: 55 !important;
   }
   .cradle-prong {
     width: 13px !important;

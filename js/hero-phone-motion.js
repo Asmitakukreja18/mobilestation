@@ -74,23 +74,26 @@
 
     function setMobileSlide(slide, opacity, translateY) {
       if (!slide) return;
-      slide.style.opacity = opacity.toFixed(3);
-      slide.style.transform = `translateY(${translateY.toFixed(1)}px)`;
-      if (opacity > 0.02) {
-        slide.style.visibility = 'visible';
-        slide.style.pointerEvents = 'auto';
+      const isVis = opacity > 0.02;
+      slide.style.setProperty('opacity', opacity.toFixed(3), 'important');
+      slide.style.setProperty('transform', `translateY(${translateY.toFixed(1)}px)`, 'important');
+      slide.style.setProperty('-webkit-transform', `translateY(${translateY.toFixed(1)}px)`, 'important');
+      slide.style.setProperty('visibility', isVis ? 'visible' : 'hidden', 'important');
+      slide.style.setProperty('pointer-events', isVis ? 'auto' : 'none', 'important');
+      if (isVis) {
+        slide.classList.add('active');
       } else {
-        slide.style.visibility = 'hidden';
-        slide.style.pointerEvents = 'none';
+        slide.classList.remove('active');
       }
     }
 
     function clearMobileSlideStyles(slide) {
       if (!slide) return;
-      slide.style.opacity = '';
-      slide.style.transform = '';
-      slide.style.visibility = '';
-      slide.style.pointerEvents = '';
+      slide.style.removeProperty('opacity');
+      slide.style.removeProperty('transform');
+      slide.style.removeProperty('-webkit-transform');
+      slide.style.removeProperty('visibility');
+      slide.style.removeProperty('pointer-events');
     }
 
     // 60/120 FPS Fluid Render Loop
@@ -347,7 +350,7 @@
           curRotZ = -90 * t3; // 100% HORIZONTAL (Landscape - "teda")!
           curRotX = -12 * t3; // Authentic 3D desk tilt
           curZ = 12 * Math.sin(t3 * Math.PI);
-          dockY = 46 * t3; // Lowers into cradle hooks
+          dockY = 88 * t3; // Lowers into cradle hooks
           curScale = 1.0 - 0.24 * t3;
 
           if (t3 > 0.15) {
@@ -366,7 +369,7 @@
           curRotZ = -90; // 100% HORIZONTAL
           curRotX = -12;
           curZ = 0;
-          dockY = 46;
+          dockY = 88;
           curScale = 0.76;
 
           if (deskStand) deskStand.classList.add('visible');
