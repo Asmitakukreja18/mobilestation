@@ -2505,7 +2505,7 @@ img {
 
   /* Mobile Scroll Story Experience (Full-Viewport Cinematic Parity) */
   .hero-scroll-story {
-    height: 260vh !important;
+    height: 300vh !important;
     overflow: visible !important;
   }
   .story-sticky-viewport {
@@ -2566,7 +2566,6 @@ img {
     top: 0 !important;
     left: 0 !important;
     right: 0 !important;
-    transform: translateY(14px) !important;
     text-align: center !important;
     align-items: center !important;
     gap: 7px !important;
@@ -2575,18 +2574,17 @@ img {
     margin: 0 auto !important;
     padding: 0 !important;
     box-sizing: border-box !important;
-    opacity: 0 !important;
-    visibility: hidden !important;
-    pointer-events: none !important;
+    opacity: 0;
+    visibility: hidden;
+    pointer-events: none;
     display: flex !important;
     flex-direction: column !important;
-    transition: opacity 0.4s ease, transform 0.4s cubic-bezier(0.16, 1, 0.3, 1), visibility 0.4s ease !important;
+    will-change: opacity, transform !important;
   }
   .story-step-slide.active {
     opacity: 1 !important;
     visibility: visible !important;
     pointer-events: auto !important;
-    transform: translateY(0) !important;
   }
   .story-step-slide .eyebrow-badge {
     font-size: 10px !important;
