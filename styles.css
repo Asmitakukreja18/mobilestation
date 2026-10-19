@@ -68,7 +68,6 @@ html {
   scroll-behavior: smooth;
   font-size: 16px;
   background-color: var(--showroom-bg);
-  overflow-x: hidden;
   overflow-x: clip;
   width: 100%;
   max-width: 100%;
@@ -79,7 +78,6 @@ body {
   background: var(--showroom-bg);
   color: var(--text-primary);
   line-height: 1.6;
-  overflow-x: hidden;
   overflow-x: clip;
   width: 100%;
   max-width: 100%;
@@ -1263,6 +1261,7 @@ img {
 }
 
 .story-sticky-viewport {
+  position: -webkit-sticky;
   position: sticky;
   top: 76px;
   height: calc(100vh - 76px);
@@ -2506,10 +2505,11 @@ img {
 
   /* Mobile Scroll Story Experience (Full-Viewport Cinematic Parity) */
   .hero-scroll-story {
-    height: 380vh !important;
+    height: 260vh !important;
     overflow: visible !important;
   }
   .story-sticky-viewport {
+    position: -webkit-sticky !important;
     position: sticky !important;
     height: calc(100vh - 72px) !important;
     height: calc(100dvh - 72px) !important;
@@ -2521,6 +2521,8 @@ img {
     flex-direction: column !important;
     justify-content: flex-start !important;
     z-index: 20 !important;
+    -webkit-backface-visibility: hidden;
+    backface-visibility: hidden;
   }
   /* Vertically balanced mobile story layout: Top Editorial + Bottom 3D Phone Stage */
   .story-layout-container {
