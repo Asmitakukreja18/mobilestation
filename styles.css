@@ -1287,7 +1287,7 @@ img {
   box-sizing: border-box;
 }
 
-/* Side Zones: Left zone holds Step 1; Right zone holds Step 2 & 3 */
+/* Editorial Zone: Consistently on the Left column */
 .story-zone {
   position: relative;
   height: 100%;
@@ -1299,10 +1299,7 @@ img {
 
 .story-zone-left {
   grid-column: 1;
-}
-
-.story-zone-right {
-  grid-column: 2;
+  width: 100%;
 }
 
 .story-step-slide {

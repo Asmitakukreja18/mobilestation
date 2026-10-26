@@ -312,52 +312,10 @@
       }
 
       // -----------------------------------------------------------------------
-      // 2. HORIZONTAL PHONE TRAVEL: RIGHT -> LEFT -> CENTER
+      // 2. FIXED STAGE ANCHOR: ALL ANIMATIONS ANCHORED ON ONE SIDE (RIGHT STAGE)
       // -----------------------------------------------------------------------
-      let colShiftX = 0;
-      if (!isMobile && container) {
-        const containerWidth = container.offsetWidth;
-        const travelDistance = containerWidth * 0.5;
-
-        if (p <= 0.16) {
-          // Act 1: Center of Right column
-          colShiftX = 0;
-        } else if (p <= 0.32) {
-          // Act 2: Glides to Left column
-          const tGlide = smoothstep(0.16, 0.32, p);
-          colShiftX = -travelDistance * tGlide;
-        } else if (p <= 0.44) {
-          // Rests on Left
-          colShiftX = -travelDistance;
-        } else if (p <= 0.54) {
-          // Act 3: Glides to center stage between columns (-50% of travelDistance)
-          const tCenter = smoothstep(0.44, 0.54, p);
-          colShiftX = -travelDistance + (travelDistance * 0.5) * tCenter;
-        } else {
-          // Centered for StandBy, Exploded Assembly, and Trio Fan-Out
-          colShiftX = -travelDistance * 0.5;
-        }
-      } else {
-        // Mobile: Starts on Right (+shift) -> Glides across to Left (-shift) -> Centers on stand
-        const screenW = window.innerWidth || 390;
-        const mobileShift = Math.min(75, Math.max(55, screenW * 0.17));
-
-        if (p <= 0.14) {
-          colShiftX = mobileShift;
-        } else if (p <= 0.30) {
-          const tGlide = smoothstep(0.14, 0.30, p);
-          colShiftX = mobileShift - (2 * mobileShift) * tGlide;
-        } else if (p <= 0.44) {
-          colShiftX = -mobileShift;
-        } else if (p <= 0.54) {
-          const tDock = smoothstep(0.44, 0.54, p);
-          colShiftX = -mobileShift * (1 - tDock);
-        } else {
-          colShiftX = 0;
-        }
-      }
-
-      const tCol = `translate3d(${colShiftX.toFixed(1)}px, 0, 0)`;
+      const colShiftX = 0;
+      const tCol = 'translate3d(0, 0, 0)';
       phoneColumn.style.transform = tCol;
       phoneColumn.style.webkitTransform = tCol;
 
@@ -512,7 +470,7 @@
           trioStack.classList.add('visible');
 
           const tFan = smoothstep(0.87, 0.96, p);
-          const fanDist = isMobile ? 68 : 170;
+          const fanDist = isMobile ? 68 : 145;
           const fanScale = isMobile ? 0.82 : 0.88;
           const fanRotY = isMobile ? 12 : 16;
           const fanRotZ = isMobile ? 2.5 : 3.5;
