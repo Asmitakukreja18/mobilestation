@@ -185,18 +185,18 @@ const PRODUCTS = [
     "display": "6.8\" Dynamic AMOLED 2X (3200 nits, Anti-Reflective)",
     "camera": "200MP Main + 50MP 5x Periscope + 50MP 3x + 50MP Ultra-Wide",
     "battery": "5000 mAh + 65W Super Fast Charge 2.0",
-    "image": "assets/user_phone_2.jpg",
+    "image": "assets/samsung-s26-ultra.png",
     "fallbackImage": "assets/phone.png",
     "colors": [
         {
             "name": "Sapphire Blue Titanium",
             "hex": "#1e3a5f",
-            "image": "assets/user_phone_2.jpg"
+            "image": "assets/samsung-s26-ultra.png"
         },
         {
             "name": "Titanium Black",
             "hex": "#1c1c1e",
-            "image": "assets/user_phone_2.jpg"
+            "image": "assets/samsung-s26-ultra.png"
         }
     ],
     "storage": [
@@ -223,18 +223,18 @@ const PRODUCTS = [
     "display": "8.0\" Super Actua Flex OLED 120Hz + 6.3\" Outer Display",
     "camera": "48MP Triple Rear Camera + Magic Editor 2.0",
     "battery": "4650 mAh + Wireless Charging",
-    "image": "assets/user_phone_3.jpg",
+    "image": "assets/pixel-11-pro.png",
     "fallbackImage": "assets/phone.png",
     "colors": [
         {
             "name": "Obsidian Black",
             "hex": "#191919",
-            "image": "assets/user_phone_3.jpg"
+            "image": "assets/pixel-11-pro.png"
         },
         {
             "name": "Porcelain White",
             "hex": "#f0f0ed",
-            "image": "assets/user_phone_3.jpg"
+            "image": "assets/pixel-11-pro.png"
         }
     ],
     "storage": [
@@ -260,18 +260,18 @@ const PRODUCTS = [
     "display": "6.82\" QHD+ 165Hz ProXDR AMOLED",
     "camera": "50MP Sony LYT-900 + 64MP 3x Periscope Telephoto",
     "battery": "5800 mAh + 150W SuperVOOC Charge",
-    "image": "assets/user_phone_4.jpg",
+    "image": "assets/oneplus-15.png",
     "fallbackImage": "assets/phone.png",
     "colors": [
         {
             "name": "Emerald Green",
             "hex": "#1f4a38",
-            "image": "assets/user_phone_4.jpg"
+            "image": "assets/oneplus-15.png"
         },
         {
             "name": "Silky Black",
             "hex": "#1a1a1b",
-            "image": "assets/user_phone_4.jpg"
+            "image": "assets/oneplus-15.png"
         }
     ],
     "storage": [
@@ -298,18 +298,18 @@ const PRODUCTS = [
     "display": "6.73\" WQHD+ 120Hz AMOLED 3000 nits",
     "camera": "50MP 1-inch Main + 50MP 5x Periscope + 50MP 3.2x Telephoto",
     "battery": "5300 mAh + 90W HyperCharge",
-    "image": "assets/user_phone_5.jpg",
+    "image": "assets/user_phone_3.jpg",
     "fallbackImage": "assets/phone.png",
     "colors": [
         {
             "name": "Black Leather",
             "hex": "#222224",
-            "image": "assets/user_phone_5.jpg"
+            "image": "assets/user_phone_3.jpg"
         },
         {
             "name": "White Ceramic",
             "hex": "#f4f4f6",
-            "image": "assets/user_phone_5.jpg"
+            "image": "assets/user_phone_3.jpg"
         }
     ],
     "storage": [
@@ -372,18 +372,18 @@ const PRODUCTS = [
     "display": "6.82\" QHD+ 120Hz Curved AMOLED",
     "camera": "50MP Dual Periscope Hasselblad Camera System",
     "battery": "5910 mAh + 80W SUPERVOOC",
-    "image": "assets/user_phone_7.jpg",
+    "image": "assets/user_phone_8.jpg",
     "fallbackImage": "assets/phone.png",
     "colors": [
         {
             "name": "Silk Gold",
             "hex": "#dfc7a1",
-            "image": "assets/user_phone_7.jpg"
+            "image": "assets/user_phone_8.jpg"
         },
         {
             "name": "Ocean Blue",
             "hex": "#2b547e",
-            "image": "assets/user_phone_7.jpg"
+            "image": "assets/user_phone_8.jpg"
         }
     ],
     "storage": [
@@ -409,18 +409,18 @@ const PRODUCTS = [
     "display": "6.6\" OLED 120Hz Edge-to-Edge Fluid Display",
     "camera": "48MP Dual Fusion Optical Engine",
     "battery": "Solid State Battery (26 hrs playback)",
-    "image": "assets/user_phone_8.jpg",
+    "image": "assets/iphone-air.png",
     "fallbackImage": "assets/phone.png",
     "colors": [
         {
             "name": "Titanium White",
             "hex": "#f0f0ed",
-            "image": "assets/user_phone_8.jpg"
+            "image": "assets/iphone-air.png"
         },
         {
             "name": "Titanium Space Gray",
             "hex": "#2a2a2c",
-            "image": "assets/user_phone_8.jpg"
+            "image": "assets/iphone-air.png"
         }
     ],
     "storage": [
@@ -457,18 +457,18 @@ const PRODUCTS = [
     "display": "7.6\" Dynamic AMOLED 2X Inner + 6.3\" Outer Display",
     "camera": "200MP Main + 50MP Telephoto + 12MP Ultra-Wide",
     "battery": "4600 mAh + 45W Fast Charging",
-    "image": "assets/user_phone_9.jpg",
+    "image": "assets/samsung-z-fold8.png",
     "fallbackImage": "assets/phone.png",
     "colors": [
         {
             "name": "Crafted Black",
             "hex": "#171718",
-            "image": "assets/user_phone_9.jpg"
+            "image": "assets/samsung-z-fold8.png"
         },
         {
             "name": "Silver Shadow",
             "hex": "#c9cbcf",
-            "image": "assets/user_phone_9.jpg"
+            "image": "assets/samsung-z-fold8.png"
         }
     ],
     "storage": [
@@ -1220,7 +1220,7 @@ const PRODUCTS = [
     display: "6.73\" 2K C9 LTPO OLED 120Hz (3500 nits, Dolby Vision)",
     camera: "50MP 1-inch Stepless Aperture + 200MP Leica Periscope + 50MP 3.2x + 50MP UW",
     battery: "6000 mAh Silicon-Carbon + 120W Wired & 80W Wireless",
-    image: "assets/user_phone_5.jpg",
+    image: "assets/user_phone_3.jpg",
     colors: [
       { name: "Leica Crimson", hex: "#7a1120", image: "assets/user_phone_5.jpg" },
       { name: "Titanium Silver", hex: "#c2c4c8", image: "assets/user_phone_5.jpg" },
@@ -1245,7 +1245,7 @@ const PRODUCTS = [
     display: "6.36\" 1.5K 120Hz LTPO OLED (1.38mm Bezel)",
     camera: "50MP Leica Hunter 900 + 50MP Telephoto + 50MP Ultrawide",
     battery: "5400 mAh + 90W HyperCharge",
-    image: "assets/temp_batch_1.jpg",
+    image: "assets/user_phone_2.jpg",
     colors: [
       { name: "Alpine Green", hex: "#3e5246", image: "assets/temp_batch_1.jpg" },
       { name: "White Velvet", hex: "#f4f3ef", image: "assets/temp_batch_1.jpg" }
@@ -1269,7 +1269,7 @@ const PRODUCTS = [
     display: "6.67\" 1.5K Curved AMOLED 144Hz (Dolby Vision)",
     camera: "200MP Samsung ISOCELL HP3 OIS + 8MP UW + 2MP Macro",
     battery: "5500 mAh + 120W Fast Charger in Box",
-    image: "assets/temp_batch_2.jpg",
+    image: "assets/user_phone_4.jpg",
     colors: [
       { name: "Crimson Red", hex: "#871526", image: "assets/temp_batch_2.jpg" },
       { name: "Midnight Black", hex: "#1c1c1f", image: "assets/temp_batch_2.jpg" },
@@ -1294,7 +1294,7 @@ const PRODUCTS = [
     display: "6.67\" 120Hz 1.5K AMOLED (Gorilla Glass Victus 2)",
     camera: "50MP Sony LYT-600 OIS Dual Camera",
     battery: "5100 mAh + 67W Turbo Charge",
-    image: "assets/temp_batch_3.jpg",
+    image: "assets/user_phone_4.jpg",
     colors: [
       { name: "Ocean Teal", hex: "#3f6e70", image: "assets/temp_batch_3.jpg" },
       { name: "Obsidian Black", hex: "#1a1b1d", image: "assets/temp_batch_3.jpg" }
@@ -1318,7 +1318,7 @@ const PRODUCTS = [
     display: "6.67\" FHD+ 120Hz AMOLED (2100 nits)",
     camera: "108MP 3x In-Sensor Zoom Camera",
     battery: "5000 mAh + 45W Fast Charging",
-    image: "assets/temp_batch_4.jpg",
+    image: "assets/user_phone_4.jpg",
     colors: [
       { name: "Prism Gold", hex: "#d5b47a", image: "assets/temp_batch_4.jpg" },
       { name: "Graphite Black", hex: "#222325", image: "assets/temp_batch_4.jpg" }
@@ -1395,7 +1395,7 @@ const PRODUCTS = [
     display: "6.67\" 1.5K 120Hz Ultra-Bright Display",
     camera: "50MP Sony IMX921 Main + 50MP ZEISS Telephoto + 50MP UW",
     battery: "5800 mAh + 90W FlashCharge",
-    image: "assets/temp_batch_5.jpg",
+    image: "assets/user_phone_5.jpg",
     colors: [
       { name: "Aurora White", hex: "#f0f2f5", image: "assets/temp_batch_5.jpg" },
       { name: "Carbon Black", hex: "#181819", image: "assets/temp_batch_5.jpg" }
@@ -1419,7 +1419,7 @@ const PRODUCTS = [
     display: "6.78\" 3D Curved 1.5K 120Hz AMOLED",
     camera: "50MP ZEISS OIS Main + 50MP ZEISS Telephoto + 50MP Group Selfie",
     battery: "5500 mAh + 80W FlashCharge",
-    image: "assets/user_phone_8.jpg",
+    image: "assets/user_phone_5.jpg",
     colors: [
       { name: "Ganges Blue", hex: "#325c74", image: "assets/user_phone_8.jpg" },
       { name: "Titanium Silver", hex: "#bfc2c7", image: "assets/user_phone_8.jpg" }
@@ -1472,7 +1472,7 @@ const PRODUCTS = [
     display: "6.78\" 1.5K 120Hz Micro-Quad Curved AMOLED",
     camera: "50MP Sony LYT-808 + 50MP 3x Periscope + 50MP UW",
     battery: "5910 mAh Silicon-Carbon + 80W SUPERVOOC",
-    image: "assets/user_phone_4.jpg",
+    image: "assets/user_phone_8.jpg",
     colors: [
       { name: "Starry Silver", hex: "#c9cbcf", image: "assets/user_phone_4.jpg" },
       { name: "Space Black", hex: "#18181a", image: "assets/user_phone_4.jpg" }
@@ -1496,7 +1496,7 @@ const PRODUCTS = [
     display: "6.59\" 1.5K 120Hz Flat AMOLED (1.45mm Symmetrical Bezels)",
     camera: "50MP Sony Main + 50MP 3x Periscope + 50MP Ultra-Wide",
     battery: "5630 mAh + 80W SUPERVOOC",
-    image: "assets/user_phone_2.jpg",
+    image: "assets/user_phone_9.jpg",
     colors: [
       { name: "Wind Chime Blue", hex: "#4b748a", image: "assets/user_phone_2.jpg" },
       { name: "Pure White", hex: "#f3f3f5", image: "assets/user_phone_2.jpg" },
