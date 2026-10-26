@@ -151,19 +151,58 @@ function selectCardStorage(productId, storage, btn) {
     const pills = card.querySelectorAll(".storage-pill");
     pills.forEach(p => p.classList.remove("active"));
     btn.classList.add("active");
+
+    // Dynamic Price & EMI update based on selected storage
+    const p = (typeof getProductById === "function") ? getProductById(productId) : (typeof PRODUCTS !== "undefined" ? PRODUCTS.find(x => x.id === productId) : null);
+    if (p) {
+      let price = p.price;
+      if (p.storagePrices && p.storagePrices[storage]) {
+        price = p.storagePrices[storage];
+      }
+      cardSelectionState[productId].price = price;
+
+      const priceEl = card.querySelector(".current-price");
+      if (priceEl) priceEl.textContent = "₹" + price.toLocaleString("en-IN");
+
+      const mrpEl = card.querySelector(".mrp-price");
+      if (mrpEl) {
+        let mrp = (p.mrpPrices && p.mrpPrices[storage]) ? p.mrpPrices[storage] : (p.originalPrice || price);
+        mrpEl.textContent = "MRP ₹" + mrp.toLocaleString("en-IN");
+      }
+
+      const emiEl = card.querySelector(".emi-pill strong");
+      if (emiEl) {
+        const emiVal = Math.round(price / 24);
+        emiEl.textContent = "₹" + emiVal.toLocaleString("en-IN") + "/mo";
+      }
+
+      const waBtn = card.querySelector(".btn-whatsapp-secondary");
+      if (waBtn) {
+        waBtn.setAttribute("onclick", `enquireWhatsApp('${p.name} (${storage})', '${price}')`);
+      }
+    }
   }
 }
 
 function handleAddCardToBag(productId) {
-  const p = getProductById(productId);
+  const p = (typeof getProductById === "function") ? getProductById(productId) : (typeof PRODUCTS !== "undefined" ? PRODUCTS.find(x => x.id === productId) : null);
   if (!p) return;
 
   const state = cardSelectionState[productId] || {};
   const chosenColor = state.color || (p.colors[0] ? p.colors[0].name : "Standard");
   const chosenStorage = state.storage || (p.storage[0] ? p.storage[0] : "Standard");
+  const chosenPrice = state.price || (p.storagePrices && p.storagePrices[chosenStorage]) || p.price;
+
+  // Clone with chosen price for shopping cart
+  const itemToAdd = { ...p, price: chosenPrice };
 
   if (typeof Cart !== "undefined") {
-    Cart.addItem(p, chosenColor, chosenStorage);
+    Cart.addItem(itemToAdd, chosenColor, chosenStorage);
+  } else if (typeof showroomCart !== "undefined") {
+    showroomCart.push({ ...itemToAdd, selectedColor: chosenColor, selectedStorage: chosenStorage });
+    localStorage.setItem("ms_showroom_bag", JSON.stringify(showroomCart));
+    if (typeof updateCartBadge === "function") updateCartBadge();
+    if (typeof showToast === "function") showToast(`Added ${p.name} (${chosenStorage}) to bag`);
   }
 }
 

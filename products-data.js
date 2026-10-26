@@ -35,8 +35,8 @@ const STORE_CONFIG = {
 };
 
 const BRANDS = [
-  { id: "all", name: "All Flagships", count: 32 },
-  { id: "apple", name: "Apple", count: 6, logo: "🍎" },
+  { id: "all", name: "All Flagships", count: 36 },
+  { id: "apple", name: "Apple", count: 10, logo: "🍎" },
   { id: "samsung", name: "Samsung", count: 6, logo: "🪐" },
   { id: "oneplus", name: "OnePlus", count: 4, logo: "⚡" },
   { id: "google", name: "Google Pixel", count: 5, logo: "🤖" },
@@ -52,9 +52,9 @@ const PRODUCTS = [
     "brand": "Apple",
     "category": "apple",
     "tagline": "Exclusive Deep Burgundy Titanium Edition with 2nm A20 Pro",
-    "price": 189900,
-    "originalPrice": 199900,
-    "badge": "\ud83d\udc51 Special Edition",
+    "price": 179900,
+    "originalPrice": 179900,
+    "badge": "👑 Showroom Flagship",
     "isFeaturedHero": true,
     "isHero": true,
     "rating": 5.0,
@@ -83,7 +83,19 @@ const PRODUCTS = [
         "1TB",
         "2TB"
     ],
-    "emi": "\u20b98,440/mo"
+    "storagePrices": {
+        "256GB": 179900,
+        "512GB": 204900,
+        "1TB": 254900,
+        "2TB": 329900
+    },
+    "mrpPrices": {
+        "256GB": 179900,
+        "512GB": 204900,
+        "1TB": 254900,
+        "2TB": 329900
+    },
+    "emi": "₹7,495/mo"
 },
 {
     "id": "samsung-s26-ultra-sapphire",
@@ -315,9 +327,9 @@ const PRODUCTS = [
     "brand": "Apple",
     "category": "apple",
     "tagline": "Ultra-Thin 5mm Grade-5 Titanium Body",
-    "price": 109900,
-    "originalPrice": 119900,
-    "badge": "\ud83e\udeb6 5mm Titanium Slim",
+    "price": 119900,
+    "originalPrice": 149900,
+    "badge": "🪶 5mm Titanium Slim",
     "isFeaturedHero": false,
     "isHero": false,
     "rating": 4.9,
@@ -342,9 +354,20 @@ const PRODUCTS = [
     ],
     "storage": [
         "256GB",
-        "512GB"
+        "512GB",
+        "1TB"
     ],
-    "emi": "\u20b94,880/mo"
+    "storagePrices": {
+        "256GB": 119900,
+        "512GB": 139900,
+        "1TB": 159900
+    },
+    "mrpPrices": {
+        "256GB": 149900,
+        "512GB": 174900,
+        "1TB": 224900
+    },
+    "emi": "₹4,995/mo"
 },
 {
     "id": "samsung-galaxy-zfold8-luxe",
@@ -385,7 +408,7 @@ const PRODUCTS = [
     "emi": "\u20b97,550/mo"
 },
   // ==========================================
-  // APPLE COLLECTION
+  // APPLE COLLECTION (OFFICIAL SHOWROOM RATES)
   // ==========================================
   {
     id: "apple-18-pro-max",
@@ -394,7 +417,7 @@ const PRODUCTS = [
     category: "apple",
     tagline: "Power. Beauty. Beyond.",
     price: 179900,
-    originalPrice: 199900,
+    originalPrice: 179900,
     badge: "👑 2026 Flagship Hero",
     isFeaturedHero: true,
     rating: 5.0,
@@ -405,13 +428,25 @@ const PRODUCTS = [
     battery: "Up to 38 hrs video playback, MagSafe 45W Ultra Charge",
     image: "assets/iphone-18-pro-max.png",
     colors: [
-      { name: "Deep Red Titanium", hex: "#7a1120", image: "assets/iphone-18-pro-max.png" },
+      { name: "Deep Burgundy Titanium", hex: "#7a1120", image: "assets/iphone-18-pro-max.png" },
       { name: "Champagne Gold", hex: "#d8c49e", image: "assets/iphone-18-pro-max.png" },
       { name: "Natural Titanium", hex: "#9e9d99", image: "assets/iphone-18-pro-max.png" },
       { name: "Space Graphite", hex: "#1d1d1f", image: "assets/iphone-18-pro-max.png" }
     ],
     storage: ["256GB", "512GB", "1TB", "2TB"],
-    emi: "₹7,990/mo"
+    storagePrices: {
+      "256GB": 179900,
+      "512GB": 204900,
+      "1TB": 254900,
+      "2TB": 329900
+    },
+    mrpPrices: {
+      "256GB": 179900,
+      "512GB": 204900,
+      "1TB": 254900,
+      "2TB": 329900
+    },
+    emi: "₹7,495/mo"
   },
   {
     id: "apple-18-pro",
@@ -419,8 +454,8 @@ const PRODUCTS = [
     brand: "Apple",
     category: "apple",
     tagline: "Compact Pro Performance Without Compromise",
-    price: 139900,
-    originalPrice: 149900,
+    price: 164900,
+    originalPrice: 164900,
     badge: "🔥 Compact Pro Leader",
     isFeaturedHero: false,
     rating: 4.9,
@@ -435,8 +470,20 @@ const PRODUCTS = [
       { name: "Natural Titanium", hex: "#9e9d99", image: "assets/iphone-18-pro.png" },
       { name: "Space Graphite", hex: "#1d1d1f", image: "assets/iphone-18-pro.png" }
     ],
-    storage: ["128GB", "256GB", "512GB", "1TB"],
-    emi: "₹6,210/mo"
+    storage: ["256GB", "512GB", "1TB", "2TB"],
+    storagePrices: {
+      "256GB": 164900,
+      "512GB": 189900,
+      "1TB": 239900,
+      "2TB": 314900
+    },
+    mrpPrices: {
+      "256GB": 164900,
+      "512GB": 189900,
+      "1TB": 239900,
+      "2TB": 314900
+    },
+    emi: "₹6,870/mo"
   },
   {
     id: "apple-17-pro-max",
@@ -444,8 +491,8 @@ const PRODUCTS = [
     brand: "Apple",
     category: "apple",
     tagline: "Proven Titanium Durability & Pro Cameras",
-    price: 144900,
-    originalPrice: 159900,
+    price: 149900,
+    originalPrice: 149900,
     badge: "⭐ Bestseller Pro",
     isFeaturedHero: false,
     rating: 4.9,
@@ -460,8 +507,20 @@ const PRODUCTS = [
       { name: "Black Titanium", hex: "#1e1e20", image: "assets/iphone-17-pro-max.png" },
       { name: "White Titanium", hex: "#e5e5ea", image: "assets/iphone-17-pro-max.png" }
     ],
-    storage: ["256GB", "512GB", "1TB"],
-    emi: "₹6,450/mo"
+    storage: ["256GB", "512GB", "1TB", "2TB"],
+    storagePrices: {
+      "256GB": 149900,
+      "512GB": 169900,
+      "1TB": 189900,
+      "2TB": 229900
+    },
+    mrpPrices: {
+      "256GB": 149900,
+      "512GB": 169900,
+      "1TB": 189900,
+      "2TB": 229900
+    },
+    emi: "₹6,245/mo"
   },
   {
     id: "apple-17-pro",
@@ -469,7 +528,7 @@ const PRODUCTS = [
     brand: "Apple",
     category: "apple",
     tagline: "Grade-5 Titanium Architecture & Action Button",
-    price: 119900,
+    price: 134900,
     originalPrice: 134900,
     badge: "✨ Pro Grade",
     isFeaturedHero: false,
@@ -484,8 +543,18 @@ const PRODUCTS = [
       { name: "Natural Titanium", hex: "#9e9d99", image: "assets/iphone-17-pro.png" },
       { name: "Black Titanium", hex: "#1e1e20", image: "assets/iphone-17-pro.png" }
     ],
-    storage: ["128GB", "256GB", "512GB"],
-    emi: "₹5,330/mo"
+    storage: ["256GB", "512GB", "1TB"],
+    storagePrices: {
+      "256GB": 134900,
+      "512GB": 154900,
+      "1TB": 174900
+    },
+    mrpPrices: {
+      "256GB": 134900,
+      "512GB": 154900,
+      "1TB": 174900
+    },
+    emi: "₹5,620/mo"
   },
   {
     id: "apple-iphone-air",
@@ -493,8 +562,8 @@ const PRODUCTS = [
     brand: "Apple",
     category: "apple",
     tagline: "Ultra-Thin 5mm Futuristic Titanium Chassis",
-    price: 99900,
-    originalPrice: 109900,
+    price: 119900,
+    originalPrice: 149900,
     badge: "🪶 Ultra-Slim Luxury",
     isFeaturedHero: false,
     rating: 4.9,
@@ -509,8 +578,18 @@ const PRODUCTS = [
       { name: "Crimson Red", hex: "#871024", image: "assets/iphone-air.png" },
       { name: "Obsidian", hex: "#18181a", image: "assets/iphone-air.png" }
     ],
-    storage: ["256GB", "512GB"],
-    emi: "₹4,440/mo"
+    storage: ["256GB", "512GB", "1TB"],
+    storagePrices: {
+      "256GB": 119900,
+      "512GB": 139900,
+      "1TB": 159900
+    },
+    mrpPrices: {
+      "256GB": 149900,
+      "512GB": 174900,
+      "1TB": 224900
+    },
+    emi: "₹4,995/mo"
   },
   {
     id: "apple-17",
@@ -518,8 +597,8 @@ const PRODUCTS = [
     brand: "Apple",
     category: "apple",
     tagline: "Apple Intelligence & 120Hz ProMotion For Everyone",
-    price: 79900,
-    originalPrice: 84900,
+    price: 82900,
+    originalPrice: 99900,
     badge: "🔥 Super Value Flagship",
     isFeaturedHero: false,
     rating: 4.8,
@@ -534,8 +613,141 @@ const PRODUCTS = [
       { name: "Starlight Red", hex: "#9e1529", image: "assets/iphone-17.png" },
       { name: "Teal", hex: "#43827d", image: "assets/iphone-17.png" }
     ],
-    storage: ["128GB", "256GB", "512GB"],
-    emi: "₹3,550/mo"
+    storage: ["256GB", "512GB"],
+    storagePrices: {
+      "256GB": 82900,
+      "512GB": 102900
+    },
+    mrpPrices: {
+      "256GB": 99900,
+      "512GB": 124900
+    },
+    emi: "₹3,454/mo"
+  },
+  {
+    id: "apple-17e",
+    name: "iPhone 17e",
+    brand: "Apple",
+    category: "apple",
+    tagline: "Compact Luxury Edition with Apple Intelligence",
+    price: 64900,
+    originalPrice: 79900,
+    badge: "✨ Special Edition",
+    isFeaturedHero: false,
+    rating: 4.8,
+    reviewsCount: 220,
+    chip: "A19 Bionic",
+    display: "6.1\" Super Retina XDR OLED",
+    camera: "48MP Main Fusion Camera",
+    battery: "22 hrs video playback, USB-C Fast Charge",
+    image: "assets/iphone-17.png",
+    colors: [
+      { name: "Midnight Black", hex: "#1c1c1e", image: "assets/iphone-17.png" },
+      { name: "Starlight", hex: "#f0f0ed", image: "assets/iphone-17.png" }
+    ],
+    storage: ["256GB", "512GB"],
+    storagePrices: {
+      "256GB": 64900,
+      "512GB": 84900
+    },
+    mrpPrices: {
+      "256GB": 79900,
+      "512GB": 104900
+    },
+    emi: "₹2,704/mo"
+  },
+  {
+    id: "apple-16",
+    name: "iPhone 16",
+    brand: "Apple",
+    category: "apple",
+    tagline: "A18 Chip & Camera Control with Apple Intelligence",
+    price: 69900,
+    originalPrice: 89900,
+    badge: "₹20,000 Off Festive",
+    isFeaturedHero: false,
+    rating: 4.9,
+    reviewsCount: 890,
+    chip: "A18 Bionic",
+    display: "6.1\" Super Retina XDR with Dynamic Island",
+    camera: "48MP Fusion + 12MP Ultra-Wide Macro",
+    battery: "22 hrs video playback, MagSafe Wireless",
+    image: "assets/iphone-17.png",
+    colors: [
+      { name: "Ultramarine", hex: "#2b4c8a", image: "assets/iphone-17.png" },
+      { name: "Teal", hex: "#43827d", image: "assets/iphone-17.png" },
+      { name: "Black", hex: "#1c1c1e", image: "assets/iphone-17.png" }
+    ],
+    storage: ["128GB"],
+    storagePrices: {
+      "128GB": 69900
+    },
+    mrpPrices: {
+      "128GB": 89900
+    },
+    emi: "₹2,912/mo"
+  },
+  {
+    id: "apple-15",
+    name: "iPhone 15",
+    brand: "Apple",
+    category: "apple",
+    tagline: "Dynamic Island, 48MP Main Camera & USB-C",
+    price: 59900,
+    originalPrice: 74900,
+    badge: "₹15,000 Off Festive",
+    isFeaturedHero: false,
+    rating: 4.9,
+    reviewsCount: 1250,
+    chip: "A16 Bionic",
+    display: "6.1\" Super Retina XDR OLED Dynamic Island",
+    camera: "48MP Main Camera + 2x Telephoto",
+    battery: "20 hrs video playback, USB-C",
+    image: "assets/iphone-17.png",
+    colors: [
+      { name: "Black", hex: "#1c1c1e", image: "assets/iphone-17.png" },
+      { name: "Blue", hex: "#d2dce2", image: "assets/iphone-17.png" },
+      { name: "Pink", hex: "#f4d6d8", image: "assets/iphone-17.png" }
+    ],
+    storage: ["128GB"],
+    storagePrices: {
+      "128GB": 59900
+    },
+    mrpPrices: {
+      "128GB": 74900
+    },
+    emi: "₹2,495/mo"
+  },
+  {
+    id: "apple-13",
+    name: "iPhone 13",
+    brand: "Apple",
+    category: "apple",
+    tagline: "Super Retina XDR OLED & A15 Bionic Reliability",
+    price: 49900,
+    originalPrice: 49900,
+    badge: "Evergreen Value",
+    isFeaturedHero: false,
+    rating: 4.8,
+    reviewsCount: 2100,
+    chip: "A15 Bionic",
+    display: "6.1\" Super Retina XDR OLED",
+    camera: "12MP Dual-Camera System with Sensor-Shift OIS",
+    battery: "19 hrs video playback, Lightning Fast Charge",
+    image: "assets/iphone-17.png",
+    colors: [
+      { name: "Midnight", hex: "#1c1c1e", image: "assets/iphone-17.png" },
+      { name: "Starlight", hex: "#f0f0ed", image: "assets/iphone-17.png" },
+      { name: "Blue", hex: "#2b4c8a", image: "assets/iphone-17.png" }
+    ],
+    storage: ["128GB"],
+    storagePrices: {
+      "128GB": 49900
+    },
+    mrpPrices: {
+      "128GB": 49900
+    },
+    emi: "₹2,079/mo"
   },
 
   // ==========================================

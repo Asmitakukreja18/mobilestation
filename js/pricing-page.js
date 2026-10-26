@@ -38,7 +38,11 @@ document.addEventListener("DOMContentLoaded", () => {
           let count = 0;
           dataList.forEach(item => {
             const itemB = (item.brand || "").toLowerCase();
-            if (keyLower === "xiaomi / redmi") {
+            const itemSub = (item.subBrand || "").toLowerCase();
+            const itemM = (item.model || "").toLowerCase();
+            if (keyLower === "iphone") {
+              if (itemSub.includes("iphone") || itemM.includes("iphone")) count++;
+            } else if (keyLower === "xiaomi / redmi") {
               if (itemB.includes("xiaomi") || itemB.includes("redmi")) count++;
             } else if (keyLower === "nothing") {
               if (itemB.includes("nothing") || itemB.includes("cmf")) count++;
@@ -79,7 +83,7 @@ document.addEventListener("DOMContentLoaded", () => {
   // Get brand badge class
   function getBrandClass(brand) {
     const b = (brand || "").toLowerCase();
-    if (b.includes("apple")) return "apple";
+    if (b.includes("apple") || b.includes("iphone")) return "apple";
     if (b.includes("samsung")) return "samsung";
     if (b.includes("oneplus")) return "oneplus";
     if (b.includes("google") || b.includes("pixel")) return "google";
@@ -99,8 +103,12 @@ document.addEventListener("DOMContentLoaded", () => {
       // Brand filter
       if (currentBrand !== "all") {
         const itemB = (item.brand || "").toLowerCase();
+        const itemSub = (item.subBrand || "").toLowerCase();
+        const itemM = (item.model || "").toLowerCase();
         const curB = currentBrand.toLowerCase();
-        if (curB === "xiaomi / redmi") {
+        if (curB === "iphone") {
+          if (!itemSub.includes("iphone") && !itemM.includes("iphone")) return false;
+        } else if (curB === "xiaomi / redmi") {
           if (!itemB.includes("xiaomi") && !itemB.includes("redmi")) return false;
         } else if (curB === "nothing") {
           if (!itemB.includes("nothing") && !itemB.includes("cmf")) return false;
@@ -379,6 +387,36 @@ document.addEventListener("DOMContentLoaded", () => {
         <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="8" y1="6" x2="21" y2="6"></line><line x1="8" y1="12" x2="21" y2="12"></line><line x1="8" y1="18" x2="21" y2="18"></line><line x1="3" y1="6" x2="3.01" y2="6"></line><line x1="3" y1="12" x2="3.01" y2="12"></line><line x1="3" y1="18" x2="3.01" y2="18"></line></svg>
         <span>Table View</span>
       `;
+    }
+  }
+
+  // Handle URL Query Params (?brand=iPhone, ?brand=Apple, ?search=...)
+  const urlParams = new URLSearchParams(window.location.search);
+  const brandParam = urlParams.get("brand");
+  const searchParam = urlParams.get("search");
+  const catParam = urlParams.get("cat") || urlParams.get("category");
+
+  if (brandParam) {
+    const matchingBtn = Array.from(brandPills).find(b => b.dataset.brand.toLowerCase() === brandParam.toLowerCase());
+    if (matchingBtn) {
+      brandPills.forEach(b => b.classList.remove("active"));
+      matchingBtn.classList.add("active");
+      currentBrand = matchingBtn.dataset.brand;
+    }
+  }
+
+  if (searchParam && searchInput) {
+    searchQuery = searchParam;
+    searchInput.value = searchParam;
+    if (clearSearchBtn) clearSearchBtn.style.display = "block";
+  }
+
+  if (catParam) {
+    const matchingCat = Array.from(categoryPills).find(p => p.dataset.cat.toLowerCase() === catParam.toLowerCase());
+    if (matchingCat) {
+      categoryPills.forEach(p => p.classList.remove("active"));
+      matchingCat.classList.add("active");
+      currentCategory = matchingCat.dataset.cat;
     }
   }
 

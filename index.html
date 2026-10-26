@@ -11,7 +11,7 @@
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&family=Manrope:wght@400;500;600;700;800;900&family=Outfit:wght@400;500;600;700;800&display=swap" rel="stylesheet">
 
-  <link rel="stylesheet" href="styles.css?v=ms-hero-no-overlap-34.0" />
+  <link rel="stylesheet" href="styles.css?v=ms-luxury-3d-story-35.0" />
   <link rel="icon" type="image/png" href="assets/logo.png" />
 </head>
 
@@ -192,6 +192,54 @@
               </div>
             </div>
           </article>
+
+          <!-- STEP 4: DECONSTRUCTED 3D ARCHITECTURE -->
+          <article class="story-step-slide" data-step="4" id="storyStep4">
+            <div class="eyebrow-badge crimson-eyebrow">
+              <span>🔬</span> 04 / 3D DECONSTRUCTED ARCHITECTURE
+            </div>
+            <h2 class="story-title">
+              2nm Silicon. <strong>Studio Optics.</strong>
+            </h2>
+            <p class="story-tagline">
+              Engineered from the inside out. Dual 2nm flagship silicon paired with optical periscope glass, sapphire prisms, and grade-5 aerospace titanium.
+            </p>
+            <div class="story-spec-chips">
+              <div class="spec-pill">
+                <strong>A19 Pro & S8 Elite</strong>
+                <span>2nm Superconducting Die</span>
+              </div>
+              <div class="spec-pill">
+                <strong>200MP Periscope</strong>
+                <span>Sapphire Optical Prism</span>
+              </div>
+              <div class="spec-pill">
+                <strong>Grade-5 Titanium</strong>
+                <span>Laser-Welded Chassis</span>
+              </div>
+            </div>
+          </article>
+
+          <!-- STEP 5: 3-FLAGSHIP TRIO FAN-OUT (APPLE + SAMSUNG + ONEPLUS) -->
+          <article class="story-step-slide" data-step="5" id="storyStep5">
+            <div class="eyebrow-badge gold-eyebrow">
+              <span>👑</span> 05 / THE 2026 FLAGSHIP TRIO
+            </div>
+            <h2 class="story-title">
+              Apple. Samsung. <strong>OnePlus.</strong>
+            </h2>
+            <p class="story-tagline">
+              The triumvirate of ultra-flagship power. Side-by-side, factory sealed with 100% brand warranty, 0% EMI financing, and instant trade-in valuation.
+            </p>
+            <div class="hero-quick-cta-row">
+              <a href="#flagships" class="btn btn-crimson btn-pill">
+                Explore All 3 Flagships ↓
+              </a>
+              <button class="btn-text-link" onclick="openTradeInModal()">
+                Instant Trade-In Valuation →
+              </button>
+            </div>
+          </article>
         </div>
 
         <!-- DYNAMIC 3D PHONE + STAND COLUMN (GLIDES RIGHT -> LEFT SMOOTHLY) -->
@@ -241,6 +289,68 @@
                   <div class="phone-face phone-face-front" id="phoneFrontFace">
                     <img src="assets/Modern_iPhone_Lock_Screen_Mockup-removebg-preview.png" alt="iPhone 18 Pro Max Super Retina Display Front View" loading="eager" />
                   </div>
+                  <!-- METALLIC LIGHT SWEEP (CURSOR & TOUCH REFLECTION STREAK) -->
+                  <div class="metallic-light-streak" id="metallicLightStreak"></div>
+                </div>
+
+                <!-- 3D DECONSTRUCTED / EXPLODED ARCHITECTURE LAYERS -->
+                <div class="phone-exploded-assembly" id="phoneExplodedAssembly">
+                  <!-- Layer 1: Front Ceramic Glass Display -->
+                  <div class="exploded-layer layer-front-glass" id="layerFrontGlass">
+                    <img src="assets/Modern_iPhone_Lock_Screen_Mockup-removebg-preview.png" alt="Ceramic Shield Display Layer" />
+                    <div class="exploded-pin pin-glass">
+                      <span class="pin-dot"></span>
+                      <span class="pin-label">3000 Nits LTPO OLED</span>
+                    </div>
+                  </div>
+
+                  <!-- Layer 2: 200MP Studio Periscope Camera Optics -->
+                  <div class="exploded-layer layer-camera-module" id="layerCameraModule">
+                    <div class="module-cutout-frame">
+                      <img src="assets/camera-lens-layer.jpg" alt="Periscope Camera Optics" />
+                    </div>
+                    <div class="exploded-pin pin-camera">
+                      <span class="pin-dot"></span>
+                      <span class="pin-label">200MP Studio Optics</span>
+                    </div>
+                  </div>
+
+                  <!-- Layer 3: 2nm Flagship Chip Die Silicon -->
+                  <div class="exploded-layer layer-chip-silicon" id="layerChipSilicon">
+                    <div class="chip-die-frame">
+                      <img src="assets/chip-silicon-layer.jpg" alt="2nm Flagship Silicon" />
+                    </div>
+                    <div class="exploded-pin pin-chip">
+                      <span class="pin-dot"></span>
+                      <span class="pin-label">2nm A19 Pro & S8 Elite</span>
+                    </div>
+                  </div>
+
+                  <!-- Layer 4: Grade 5 Titanium Chassis -->
+                  <div class="exploded-layer layer-titanium-chassis" id="layerTitaniumChassis">
+                    <img src="assets/Silver_iPhone-Style_Smartphone_Rear_View-removebg-preview.png" alt="Grade-5 Titanium Chassis Layer" />
+                    <div class="exploded-pin pin-chassis">
+                      <span class="pin-dot"></span>
+                      <span class="pin-label">Grade-5 Titanium Chassis</span>
+                    </div>
+                  </div>
+
+                  <!-- Magnetic Snap Glow Flash -->
+                  <div class="magnetic-snap-flash" id="magneticSnapFlash"></div>
+                </div>
+
+                <!-- 3-FLAGSHIP TRIO FAN-OUT STACK (IPHONE + SAMSUNG + ONEPLUS) -->
+                <div class="trio-companion-stack" id="trioCompanionStack">
+                  <!-- Companion Left: Samsung Galaxy S26 Ultra -->
+                  <div class="companion-phone phone-samsung" id="companionSamsung">
+                    <img src="assets/samsung-s26-ultra.png" alt="Samsung Galaxy S26 Ultra" />
+                    <div class="companion-brand-tag">Galaxy S26 Ultra</div>
+                  </div>
+                  <!-- Companion Right: OnePlus 15 Flagship -->
+                  <div class="companion-phone phone-oneplus" id="companionOnePlus">
+                    <img src="assets/oneplus-15.png" alt="OnePlus 15 Flagship" />
+                    <div class="companion-brand-tag">OnePlus 15</div>
+                  </div>
                 </div>
               </div>
 
@@ -255,6 +365,20 @@
 
           </div>
         </div>
+
+        <!-- SIDE MICRO PROGRESS INDICATOR -->
+        <nav class="story-chapter-indicator" id="storyChapterIndicator" aria-label="Story Chapters">
+          <div class="indicator-track">
+            <div class="indicator-bar" id="indicatorBar"></div>
+          </div>
+          <div class="chapter-labels">
+            <span class="chapter-label active" data-ch="1">01 Design</span>
+            <span class="chapter-label" data-ch="2">02 Display</span>
+            <span class="chapter-label" data-ch="3">03 StandBy</span>
+            <span class="chapter-label" data-ch="4">04 Silicon</span>
+            <span class="chapter-label" data-ch="5">05 Trio</span>
+          </div>
+        </nav>
 
       </div>
     </div>
@@ -983,6 +1107,6 @@
   <script src="products-data.js"></script>
   <script src="js/add-phone.js"></script>
   <script src="script.js"></script>
-  <script src="js/hero-phone-motion.js?v=ms-hero-no-overlap-34.0"></script>
+  <script src="js/hero-phone-motion.js?v=ms-luxury-3d-story-35.0"></script>
 </body>
 </html>

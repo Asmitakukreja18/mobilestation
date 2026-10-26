@@ -4,8 +4,10 @@
   <meta charset="UTF-8">
   <meta http-equiv="refresh" content="0; url=pricing.html">
   <title>Official Price List | Mobile Station</title>
-  <script>window.location.href = "pricing.html";</script>
-  <link rel="icon" type="image/png" href="assets/logo.png" />
+  <script>
+    const search = window.location.search;
+    window.location.href = "pricing.html" + search;
+  </script>
 </head>
 <body>
   <p>Redirecting to <a href="pricing.html">Mobile Station Official Price List & Festive Schemes</a>...</p>
