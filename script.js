@@ -500,16 +500,28 @@ function initSearch() {
         (p.tagline && p.tagline.toLowerCase().includes(query))
     );
 
-    if (matches.length === 0) {
+    let priceListMatches = [];
+    if (typeof OFFICIAL_PRICE_LIST_2026 !== "undefined") {
+      priceListMatches = OFFICIAL_PRICE_LIST_2026.filter((item) => {
+        const m = (item.model || "").toLowerCase();
+        const b = (item.brand || "").toLowerCase();
+        const s = (item.specs || "").toLowerCase();
+        return m.includes(query) || b.includes(query) || s.includes(query);
+      }).slice(0, 15);
+    }
+
+    if (matches.length === 0 && priceListMatches.length === 0) {
       searchResultsContainer.innerHTML = `
-        <div class="search-hint">No matching smartphones found for "${query}".</div>
+        <div class="search-hint">No matching devices found for "${query}". Check our <a href="pricing.html" style="color:var(--crimson-primary);text-decoration:underline;">Official Price List</a>.</div>
       `;
       return;
     }
 
-    searchResultsContainer.innerHTML = matches
-      .map(
-        (p) => `
+    let html = "";
+    if (matches.length > 0) {
+      html += matches
+        .map(
+          (p) => `
         <div class="search-result-item" onclick="selectSearchResult('${p.id}')">
           <div class="search-result-left">
             <img src="${p.image}" alt="${p.name}" />
@@ -523,8 +535,38 @@ function initSearch() {
           </div>
         </div>
       `
-      )
-      .join("");
+        )
+        .join("");
+    }
+
+    if (priceListMatches.length > 0) {
+      html += `
+        <div style="padding: 12px 14px 6px; font-size: 11px; font-weight: 800; letter-spacing: 1px; color: var(--crimson-primary); text-transform: uppercase;">
+          Official October 2026 Price List Matches
+        </div>
+      `;
+      html += priceListMatches
+        .map(
+          (item) => `
+        <div class="search-result-item" style="cursor: pointer;" onclick="window.location.href='pricing.html?search=${encodeURIComponent(item.model)}'">
+          <div class="search-result-left">
+            <div style="width: 34px; height: 34px; border-radius: 8px; background: rgba(215,25,66,0.08); display: flex; align-items: center; justify-content: center; font-size: 16px; margin-right: 12px; flex-shrink: 0;">🏷️</div>
+            <div class="search-result-info">
+              <strong>${item.model}</strong>
+              <span style="font-size: 11.5px; color: #887076;">${item.brand} • ${item.specs}</span>
+            </div>
+          </div>
+          <div class="search-result-price" style="text-align: right;">
+            <div style="font-weight: 800; color: #100609;">₹${Number(item.mop).toLocaleString("en-IN")}</div>
+            ${item.mrp && item.mrp > item.mop ? `<small style="font-size: 10px; color: #10b981; font-weight: 700;">Save ₹${(item.mrp - item.mop).toLocaleString("en-IN")}</small>` : `<small style="font-size: 10px; color: #887076;">Official Festive Rate</small>`}
+          </div>
+        </div>
+      `
+        )
+        .join("");
+    }
+
+    searchResultsContainer.innerHTML = html;
   });
 }
 
