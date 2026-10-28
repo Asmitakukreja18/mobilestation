@@ -36,7 +36,7 @@
       ]
     },
     oneplus: {
-      name: "OnePlus 15 Flagship",
+      name: "OnePlus 15",
       subtitle: "Extreme Velocity. Gen 6 Hasselblad Optics, 6000mAh Battery with 120W SuperVOOC Charge.",
       image: "assets/oneplus-15.png",
       alt: "OnePlus 15 5G Emerald Forest",
