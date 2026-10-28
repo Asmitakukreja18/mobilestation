@@ -203,37 +203,13 @@
     renderTilt();
   }
 
-  // Auto-switch models gently every 7 seconds if user hasn't manually clicked
-  function initAutoCycle() {
-    const keys = ['iphone', 'samsung', 'oneplus', 'pixel'];
-    let idx = 0;
-
-    autoTimer = setInterval(() => {
-      if (userInteracted) return;
-      idx = (idx + 1) % keys.length;
-      switchHeroPhone(keys[idx]);
-    }, 6500);
-
-    // Pause auto timer on user click
-    const buttons = document.querySelectorAll('.hero-switch-btn');
-    buttons.forEach(btn => {
-      btn.addEventListener('click', () => {
-        userInteracted = true;
-        if (autoTimer) clearInterval(autoTimer);
-      });
-    });
-  }
-
-  // Expose globally
+  // Expose globally if needed
   window.switchHeroPhone = function (key) {
-    userInteracted = true;
-    if (autoTimer) clearInterval(autoTimer);
     switchHeroPhone(key);
   };
 
   document.addEventListener('DOMContentLoaded', function () {
     init3DTilt();
-    initAutoCycle();
   });
 
 })();

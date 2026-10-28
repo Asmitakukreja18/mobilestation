@@ -130,7 +130,37 @@
   transition: opacity 0.25s ease;
 }
 
-/* Interactive Flagship Switcher Pills */
+/* Flagship Feature Chips (Fixed Single Showcase) */
+.hero-flagship-chips {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  flex-wrap: wrap;
+}
+
+.hero-chip {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  padding: 6px 14px;
+  border-radius: 999px;
+  background: rgba(255, 255, 255, 0.82);
+  border: 1px solid rgba(215, 25, 66, 0.16);
+  font-size: 12px;
+  font-weight: 700;
+  color: var(--text-heading, #100609);
+  backdrop-filter: blur(8px);
+  box-shadow: 0 2px 8px rgba(80, 25, 35, 0.04);
+}
+
+.hero-chip .chip-dot {
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  background: var(--crimson-primary, #d71942);
+}
+
+/* Interactive Flagship Switcher Pills (Fallback) */
 .hero-model-switcher {
   display: flex;
   align-items: center;
